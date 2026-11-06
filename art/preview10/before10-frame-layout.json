@@ -1,0 +1,1967 @@
+{
+  "Green": [
+    {
+      "file": "green.png",
+      "x": "64",
+      "y": "70"
+    }
+  ],
+  "Tree": [
+    {
+      "file": "tree.png",
+      "x": "64",
+      "y": "126"
+    }
+  ],
+  "Tree2": [
+    {
+      "file": "tree2.png",
+      "x": "64",
+      "y": "128"
+    }
+  ],
+  "Tree3": [
+    {
+      "file": "tree3.png",
+      "x": "65",
+      "y": "143"
+    }
+  ],
+  "Desert": [
+    {
+      "file": "desert_0.png",
+      "x": "65",
+      "y": "70"
+    },
+    {
+      "file": "desert_1d.png",
+      "x": "65",
+      "y": "68"
+    },
+    {
+      "file": "desert_1r.png",
+      "x": "65",
+      "y": "69"
+    },
+    {
+      "file": "desert_2rd.png",
+      "x": "65",
+      "y": "69"
+    },
+    {
+      "file": "desert_1l.png",
+      "x": "65",
+      "y": "68"
+    },
+    {
+      "file": "desert_2ld.png",
+      "x": "65",
+      "y": "68"
+    },
+    {
+      "file": "desert_2lr.png",
+      "x": "65",
+      "y": "70"
+    },
+    {
+      "file": "desert_3lrd.png",
+      "x": "65",
+      "y": "69"
+    },
+    {
+      "file": "desert_1u.png",
+      "x": "65",
+      "y": "70"
+    },
+    {
+      "file": "desert_2ud.png",
+      "x": "65",
+      "y": "70"
+    },
+    {
+      "file": "desert_2ru.png",
+      "x": "65",
+      "y": "70"
+    },
+    {
+      "file": "desert_3rud.png",
+      "x": "65",
+      "y": "69"
+    },
+    {
+      "file": "desert_2lu.png",
+      "x": "65",
+      "y": "65"
+    },
+    {
+      "file": "desert_3lud.png",
+      "x": "65",
+      "y": "65"
+    },
+    {
+      "file": "desert_3lru.png",
+      "x": "65",
+      "y": "65"
+    },
+    {
+      "file": "desert.png",
+      "x": "65",
+      "y": "65"
+    }
+  ],
+  "Water": [
+    {
+      "file": "water.png",
+      "x": "64",
+      "y": "70"
+    },
+    {
+      "file": "waterd.png",
+      "x": "64",
+      "y": "68"
+    },
+    {
+      "file": "waterr.png",
+      "x": "64",
+      "y": "66"
+    },
+    {
+      "file": "waterrd.png",
+      "x": "64",
+      "y": "69"
+    },
+    {
+      "file": "waterl.png",
+      "x": "64",
+      "y": "69"
+    },
+    {
+      "file": "waterld.png",
+      "x": "64",
+      "y": "69"
+    },
+    {
+      "file": "waterlr.png",
+      "x": "64",
+      "y": "69"
+    },
+    {
+      "file": "waterlrd.png",
+      "x": "64",
+      "y": "69"
+    },
+    {
+      "file": "wateru.png",
+      "x": "64",
+      "y": "69"
+    },
+    {
+      "file": "waterud.png",
+      "x": "64",
+      "y": "68"
+    },
+    {
+      "file": "waterur.png",
+      "x": "64",
+      "y": "69"
+    },
+    {
+      "file": "waterurd.png",
+      "x": "64",
+      "y": "68"
+    },
+    {
+      "file": "waterlu.png",
+      "x": "64",
+      "y": "65"
+    },
+    {
+      "file": "waterlud.png",
+      "x": "64",
+      "y": "65"
+    },
+    {
+      "file": "waterlur.png",
+      "x": "64",
+      "y": "65"
+    },
+    {
+      "file": "waterlurd.png",
+      "x": "64",
+      "y": "65"
+    }
+  ],
+  "PowerLine": [
+    {
+      "file": "powerlhd.png",
+      "x": "46",
+      "y": "106"
+    },
+    {
+      "file": "powerlvd.png",
+      "x": "45",
+      "y": "106"
+    },
+    {
+      "file": "powerlrdd.png",
+      "x": "45",
+      "y": "112"
+    },
+    {
+      "file": "powerlldd.png",
+      "x": "45",
+      "y": "102"
+    },
+    {
+      "file": "powerlldrd.png",
+      "x": "45",
+      "y": "112"
+    },
+    {
+      "file": "powerlrud.png",
+      "x": "29",
+      "y": "102"
+    },
+    {
+      "file": "powerludrd.png",
+      "x": "45",
+      "y": "112"
+    },
+    {
+      "file": "powerllud.png",
+      "x": "46",
+      "y": "112"
+    },
+    {
+      "file": "powerlldud.png",
+      "x": "46",
+      "y": "112"
+    },
+    {
+      "file": "powerllurd.png",
+      "x": "46",
+      "y": "112"
+    },
+    {
+      "file": "powerlludrd.png",
+      "x": "46",
+      "y": "112"
+    },
+    {
+      "file": "powerlhl.png",
+      "x": "46",
+      "y": "109"
+    },
+    {
+      "file": "powerlvl.png",
+      "x": "45",
+      "y": "109"
+    },
+    {
+      "file": "powerlrdl.png",
+      "x": "45",
+      "y": "114"
+    },
+    {
+      "file": "powerlldl.png",
+      "x": "45",
+      "y": "102"
+    },
+    {
+      "file": "powerlldrl.png",
+      "x": "45",
+      "y": "114"
+    },
+    {
+      "file": "powerlrul.png",
+      "x": "42",
+      "y": "102"
+    },
+    {
+      "file": "powerludrl.png",
+      "x": "45",
+      "y": "114"
+    },
+    {
+      "file": "powerllul.png",
+      "x": "46",
+      "y": "115"
+    },
+    {
+      "file": "powerlldul.png",
+      "x": "46",
+      "y": "114"
+    },
+    {
+      "file": "powerllurl.png",
+      "x": "46",
+      "y": "114"
+    },
+    {
+      "file": "powerlludrl.png",
+      "x": "46",
+      "y": "114"
+    },
+    {
+      "file": "powerl-suspended90.png",
+      "x": "45",
+      "y": "102"
+    },
+    {
+      "file": "powerl-suspended0.png",
+      "x": "45",
+      "y": "102"
+    }
+  ],
+  "Track": [
+    {
+      "file": "tracklr.png",
+      "x": "64",
+      "y": "65"
+    },
+    {
+      "file": "trackud.png",
+      "x": "64",
+      "y": "65"
+    },
+    {
+      "file": "tracklu.png",
+      "x": "64",
+      "y": "74"
+    },
+    {
+      "file": "trackur.png",
+      "x": "64",
+      "y": "79"
+    },
+    {
+      "file": "tracklur.png",
+      "x": "64",
+      "y": "65"
+    },
+    {
+      "file": "trackld.png",
+      "x": "64",
+      "y": "97"
+    },
+    {
+      "file": "tracklud.png",
+      "x": "64",
+      "y": "65"
+    },
+    {
+      "file": "trackdr.png",
+      "x": "64",
+      "y": "105"
+    },
+    {
+      "file": "trackldr.png",
+      "x": "64",
+      "y": "65"
+    },
+    {
+      "file": "trackudr.png",
+      "x": "64",
+      "y": "65"
+    },
+    {
+      "file": "trackludr.png",
+      "x": "64",
+      "y": "65"
+    },
+    {
+      "file": "bridge_track_90.png",
+      "x": "64",
+      "y": "98"
+    },
+    {
+      "file": "bridge_track_0.png",
+      "x": "64",
+      "y": "98"
+    },
+    {
+      "file": "bridge_track_slope1_270.png",
+      "x": "64",
+      "y": "98"
+    },
+    {
+      "file": "bridge_track_slope1_0.png",
+      "x": "64",
+      "y": "98"
+    },
+    {
+      "file": "bridge_track_slope1_90.png",
+      "x": "64",
+      "y": "85"
+    },
+    {
+      "file": "bridge_track_slope1_180.png",
+      "x": "64",
+      "y": "85"
+    }
+  ],
+  "TrackBridge": [
+    {
+      "file": "bridge_track_90.png",
+      "x": "64",
+      "y": "98"
+    },
+    {
+      "file": "bridge_track_0.png",
+      "x": "64",
+      "y": "98"
+    }
+  ],
+  "Road": [
+    {
+      "file": "roadlr.png",
+      "x": "64",
+      "y": "66"
+    },
+    {
+      "file": "roadud.png",
+      "x": "64",
+      "y": "66"
+    },
+    {
+      "file": "roadlu.png",
+      "x": "64",
+      "y": "66"
+    },
+    {
+      "file": "roadur.png",
+      "x": "64",
+      "y": "66"
+    },
+    {
+      "file": "roadlur.png",
+      "x": "64",
+      "y": "66"
+    },
+    {
+      "file": "roadld.png",
+      "x": "64",
+      "y": "66"
+    },
+    {
+      "file": "roadlud.png",
+      "x": "64",
+      "y": "66"
+    },
+    {
+      "file": "roaddr.png",
+      "x": "64",
+      "y": "66"
+    },
+    {
+      "file": "roadldr.png",
+      "x": "64",
+      "y": "66"
+    },
+    {
+      "file": "roadudr.png",
+      "x": "64",
+      "y": "66"
+    },
+    {
+      "file": "roadludr.png",
+      "x": "64",
+      "y": "66"
+    },
+    {
+      "file": "bridge_road_90.png",
+      "x": "64",
+      "y": "119"
+    },
+    {
+      "file": "bridge_road_0.png",
+      "x": "64",
+      "y": "119"
+    },
+    {
+      "file": "bridge_road_slope2_270.png",
+      "x": "64",
+      "y": "119"
+    },
+    {
+      "file": "bridge_road_slope2_0.png",
+      "x": "64",
+      "y": "119"
+    },
+    {
+      "file": "bridge_road_slope2_90.png",
+      "x": "64",
+      "y": "98"
+    },
+    {
+      "file": "bridge_road_slope2_180.png",
+      "x": "64",
+      "y": "99"
+    },
+    {
+      "file": "bridge_road_slope1_270.png",
+      "x": "64",
+      "y": "97"
+    },
+    {
+      "file": "bridge_road_slope1_0.png",
+      "x": "64",
+      "y": "97"
+    },
+    {
+      "file": "bridge_road_slope1_90.png",
+      "x": "64",
+      "y": "76"
+    },
+    {
+      "file": "bridge_road_slope1_180.png",
+      "x": "64",
+      "y": "76"
+    }
+  ],
+  "RoadBridge": [
+    {
+      "file": "bridge_road_90.png",
+      "x": "64",
+      "y": "119"
+    },
+    {
+      "file": "bridge_road_0.png",
+      "x": "64",
+      "y": "119"
+    }
+  ],
+  "Rail": [
+    {
+      "file": "raillr.png",
+      "x": "66",
+      "y": "69"
+    },
+    {
+      "file": "railud.png",
+      "x": "66",
+      "y": "69"
+    },
+    {
+      "file": "raillu.png",
+      "x": "66",
+      "y": "69"
+    },
+    {
+      "file": "railur.png",
+      "x": "66",
+      "y": "67"
+    },
+    {
+      "file": "raillur.png",
+      "x": "66",
+      "y": "68"
+    },
+    {
+      "file": "railld.png",
+      "x": "66",
+      "y": "69"
+    },
+    {
+      "file": "raillud.png",
+      "x": "66",
+      "y": "69"
+    },
+    {
+      "file": "raildr.png",
+      "x": "66",
+      "y": "68"
+    },
+    {
+      "file": "railldr.png",
+      "x": "66",
+      "y": "68"
+    },
+    {
+      "file": "railudr.png",
+      "x": "66",
+      "y": "69"
+    },
+    {
+      "file": "railludr.png",
+      "x": "66",
+      "y": "70"
+    },
+    {
+      "file": "bridge_rail_90.png",
+      "x": "64",
+      "y": "119"
+    },
+    {
+      "file": "bridge_rail_0.png",
+      "x": "64",
+      "y": "118"
+    },
+    {
+      "file": "bridge_rail_slope2_270.png",
+      "x": "64",
+      "y": "119"
+    },
+    {
+      "file": "bridge_rail_slope2_0.png",
+      "x": "64",
+      "y": "119"
+    },
+    {
+      "file": "bridge_rail_slope2_90.png",
+      "x": "64",
+      "y": "103"
+    },
+    {
+      "file": "bridge_rail_slope2_180.png",
+      "x": "64",
+      "y": "103"
+    },
+    {
+      "file": "bridge_rail_slope1_270.png",
+      "x": "64",
+      "y": "103"
+    },
+    {
+      "file": "bridge_rail_slope1_0.png",
+      "x": "64",
+      "y": "103"
+    },
+    {
+      "file": "bridge_rail_slope1_90.png",
+      "x": "64",
+      "y": "75"
+    },
+    {
+      "file": "bridge_rail_slope1_180.png",
+      "x": "64",
+      "y": "75"
+    },
+    {
+      "file": "crossing_rail_track0.png",
+      "x": "64",
+      "y": "94"
+    },
+    {
+      "file": "crossing_rail_track90.png",
+      "x": "64",
+      "y": "67"
+    },
+    {
+      "file": "crossing_rail_road0.png",
+      "x": "64",
+      "y": "108"
+    },
+    {
+      "file": "crossing_rail_road90.png",
+      "x": "64",
+      "y": "81"
+    }
+  ],
+  "RailBridge": [
+    {
+      "file": "bridge_rail_90.png",
+      "x": "64",
+      "y": "119"
+    },
+    {
+      "file": "bridge_rail_0.png",
+      "x": "64",
+      "y": "118"
+    }
+  ],
+  "Waterwell": [
+    {
+      "file": "revamp-water-well.png",
+      "x": "128",
+      "y": "184"
+    }
+  ],
+  "Tip": [
+    {
+      "file": "tip0.png",
+      "x": "262",
+      "y": "262"
+    },
+    {
+      "file": "tip1.png",
+      "x": "262",
+      "y": "262"
+    },
+    {
+      "file": "tip2.png",
+      "x": "262",
+      "y": "262"
+    },
+    {
+      "file": "tip3.png",
+      "x": "262",
+      "y": "262"
+    },
+    {
+      "file": "tip4.png",
+      "x": "262",
+      "y": "262"
+    },
+    {
+      "file": "tip5.png",
+      "x": "262",
+      "y": "262"
+    },
+    {
+      "file": "tip6.png",
+      "x": "262",
+      "y": "262"
+    },
+    {
+      "file": "tip7.png",
+      "x": "254",
+      "y": "254"
+    },
+    {
+      "file": "tip8.png",
+      "x": "254",
+      "y": "278"
+    }
+  ],
+  "PowerSolar": [
+    {
+      "file": "revamp-solar-plant.png",
+      "x": "256",
+      "y": "309"
+    }
+  ],
+  "Pottery": [
+    {
+      "file": "pottery0.png",
+      "x": "131",
+      "y": "162"
+    },
+    {
+      "file": "pottery1.png",
+      "x": "131",
+      "y": "162"
+    },
+    {
+      "file": "pottery2.png",
+      "x": "131",
+      "y": "165"
+    },
+    {
+      "file": "pottery3.png",
+      "x": "131",
+      "y": "204"
+    },
+    {
+      "file": "pottery4.png",
+      "x": "131",
+      "y": "210"
+    },
+    {
+      "file": "pottery5.png",
+      "x": "131",
+      "y": "195"
+    },
+    {
+      "file": "pottery6.png",
+      "x": "131",
+      "y": "162"
+    },
+    {
+      "file": "pottery7.png",
+      "x": "131",
+      "y": "189"
+    },
+    {
+      "file": "pottery8.png",
+      "x": "131",
+      "y": "191"
+    },
+    {
+      "file": "pottery9.png",
+      "x": "131",
+      "y": "189"
+    },
+    {
+      "file": "pottery10.png",
+      "x": "131",
+      "y": "162"
+    }
+  ],
+  "Blacksmith": [
+    {
+      "file": "blacksmith0.png",
+      "x": "132",
+      "y": "193"
+    },
+    {
+      "file": "blacksmith1.png",
+      "x": "132",
+      "y": "244"
+    },
+    {
+      "file": "blacksmith2.png",
+      "x": "132",
+      "y": "248"
+    },
+    {
+      "file": "blacksmith3.png",
+      "x": "132",
+      "y": "240"
+    },
+    {
+      "file": "blacksmith4.png",
+      "x": "132",
+      "y": "240"
+    },
+    {
+      "file": "blacksmith5.png",
+      "x": "132",
+      "y": "244"
+    },
+    {
+      "file": "blacksmith6.png",
+      "x": "132",
+      "y": "247"
+    }
+  ],
+  "Commune": [
+    {
+      "file": "commune1.png",
+      "x": "256",
+      "y": "330"
+    },
+    {
+      "file": "commune2.png",
+      "x": "256",
+      "y": "330"
+    },
+    {
+      "file": "commune3.png",
+      "x": "256",
+      "y": "330"
+    },
+    {
+      "file": "commune4.png",
+      "x": "256",
+      "y": "330"
+    },
+    {
+      "file": "commune5.png",
+      "x": "256",
+      "y": "330"
+    },
+    {
+      "file": "commune6.png",
+      "x": "256",
+      "y": "330"
+    },
+    {
+      "file": "commune7.png",
+      "x": "256",
+      "y": "330"
+    },
+    {
+      "file": "commune8.png",
+      "x": "256",
+      "y": "330"
+    },
+    {
+      "file": "commune9.png",
+      "x": "256",
+      "y": "330"
+    },
+    {
+      "file": "commune10.png",
+      "x": "256",
+      "y": "330"
+    },
+    {
+      "file": "commune11.png",
+      "x": "256",
+      "y": "330"
+    }
+  ],
+  "CoalMine": [
+    {
+      "file": "coalmine-empty.png",
+      "x": "256",
+      "y": "299"
+    }
+  ],
+  "CoalMineLow": [
+    {
+      "file": "coalmine-low.png",
+      "x": "256",
+      "y": "299"
+    }
+  ],
+  "CoalMineMed": [
+    {
+      "file": "coalmine-med.png",
+      "x": "256",
+      "y": "299"
+    }
+  ],
+  "CoalMineFull": [
+    {
+      "file": "coalmine-full.png",
+      "x": "256",
+      "y": "299"
+    }
+  ],
+  "MarketEmpty": [
+    {
+      "file": "revamp-market.png",
+      "x": "128",
+      "y": "221"
+    }
+  ],
+  "MarketLow": [
+    {
+      "file": "revamp-market.png",
+      "x": "128",
+      "y": "221"
+    }
+  ],
+  "MarketMed": [
+    {
+      "file": "revamp-market.png",
+      "x": "128",
+      "y": "221"
+    }
+  ],
+  "MarketFull": [
+    {
+      "file": "revamp-market.png",
+      "x": "128",
+      "y": "221"
+    }
+  ],
+  "OreMine": [
+    {
+      "file": "oremine1.png",
+      "x": "256",
+      "y": "289"
+    },
+    {
+      "file": "oremine2.png",
+      "x": "256",
+      "y": "288"
+    },
+    {
+      "file": "oremine3.png",
+      "x": "256",
+      "y": "284"
+    },
+    {
+      "file": "oremine4.png",
+      "x": "256",
+      "y": "276"
+    },
+    {
+      "file": "oremine5.png",
+      "x": "256",
+      "y": "273"
+    },
+    {
+      "file": "oremine6.png",
+      "x": "256",
+      "y": "278"
+    },
+    {
+      "file": "oremine7.png",
+      "x": "256",
+      "y": "280"
+    },
+    {
+      "file": "oremine8.png",
+      "x": "256",
+      "y": "281"
+    }
+  ],
+  "IndustryHigh": [
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    }
+  ],
+  "IndustryHighL": [
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    }
+  ],
+  "IndustryHighM": [
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    }
+  ],
+  "IndustryHighH": [
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    },
+    {
+      "file": "revamp-heavy-factory.png",
+      "x": "256",
+      "y": "465"
+    }
+  ],
+  "IndustryLight": [
+    {
+      "file": "revamp-factory.png",
+      "x": "192",
+      "y": "399"
+    }
+  ],
+  "IndustryLightL": [
+    {
+      "file": "revamp-factory.png",
+      "x": "192",
+      "y": "399"
+    }
+  ],
+  "IndustryLightM": [
+    {
+      "file": "revamp-factory.png",
+      "x": "192",
+      "y": "399"
+    }
+  ],
+  "IndustryLightH": [
+    {
+      "file": "revamp-factory.png",
+      "x": "192",
+      "y": "399"
+    }
+  ],
+  "GraySmoke": [
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    }
+  ],
+  "PowerCoalEmpty": [
+    {
+      "file": "revamp-coal-plant.png",
+      "x": "256",
+      "y": "463"
+    }
+  ],
+  "PowerCoalLow": [
+    {
+      "file": "revamp-coal-plant.png",
+      "x": "256",
+      "y": "463"
+    }
+  ],
+  "PowerCoalMed": [
+    {
+      "file": "revamp-coal-plant.png",
+      "x": "256",
+      "y": "463"
+    }
+  ],
+  "PowerCoalFull": [
+    {
+      "file": "revamp-coal-plant.png",
+      "x": "256",
+      "y": "463"
+    }
+  ],
+  "BlackSmoke": [
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    }
+  ],
+  "WindMill": [
+    {
+      "file": "revamp-wind-turbine.png",
+      "x": "128",
+      "y": "501"
+    },
+    {
+      "file": "revamp-wind-turbine.png",
+      "x": "128",
+      "y": "501"
+    },
+    {
+      "file": "revamp-wind-turbine.png",
+      "x": "128",
+      "y": "501"
+    }
+  ],
+  "WindMillHTech": [
+    {
+      "file": "revamp-wind-turbine.png",
+      "x": "128",
+      "y": "501"
+    },
+    {
+      "file": "revamp-wind-turbine.png",
+      "x": "128",
+      "y": "501"
+    },
+    {
+      "file": "revamp-wind-turbine.png",
+      "x": "128",
+      "y": "501"
+    }
+  ],
+  "WindMillHTechRG": [
+    {
+      "file": "revamp-wind-turbine.png",
+      "x": "128",
+      "y": "501"
+    },
+    {
+      "file": "revamp-wind-turbine.png",
+      "x": "128",
+      "y": "501"
+    },
+    {
+      "file": "revamp-wind-turbine.png",
+      "x": "128",
+      "y": "501"
+    }
+  ],
+  "WindMillHTechG": [
+    {
+      "file": "revamp-wind-turbine.png",
+      "x": "128",
+      "y": "501"
+    },
+    {
+      "file": "revamp-wind-turbine.png",
+      "x": "128",
+      "y": "501"
+    },
+    {
+      "file": "revamp-wind-turbine.png",
+      "x": "128",
+      "y": "501"
+    }
+  ],
+  "FireStation": [
+    {
+      "file": "revamp-fire-station.png",
+      "x": "128",
+      "y": "239"
+    },
+    {
+      "file": "revamp-fire-station.png",
+      "x": "128",
+      "y": "239"
+    },
+    {
+      "file": "revamp-fire-station.png",
+      "x": "128",
+      "y": "239"
+    },
+    {
+      "file": "revamp-fire-station.png",
+      "x": "128",
+      "y": "239"
+    },
+    {
+      "file": "revamp-fire-station.png",
+      "x": "128",
+      "y": "239"
+    },
+    {
+      "file": "revamp-fire-station.png",
+      "x": "128",
+      "y": "239"
+    },
+    {
+      "file": "revamp-fire-station.png",
+      "x": "128",
+      "y": "239"
+    },
+    {
+      "file": "revamp-fire-station.png",
+      "x": "128",
+      "y": "239"
+    },
+    {
+      "file": "revamp-fire-station.png",
+      "x": "128",
+      "y": "239"
+    },
+    {
+      "file": "revamp-fire-station.png",
+      "x": "128",
+      "y": "239"
+    }
+  ],
+  "Fire": [
+    {
+      "file": "fire1.png",
+      "x": "101",
+      "y": "191"
+    },
+    {
+      "file": "fire2.png",
+      "x": "101",
+      "y": "195"
+    },
+    {
+      "file": "fire3.png",
+      "x": "101",
+      "y": "197"
+    },
+    {
+      "file": "fire4.png",
+      "x": "101",
+      "y": "200"
+    },
+    {
+      "file": "fire5.png",
+      "x": "101",
+      "y": "205"
+    }
+  ],
+  "FireWasteLand": [
+    {
+      "file": "firedone1.png",
+      "x": "66",
+      "y": "206"
+    },
+    {
+      "file": "firedone2.png",
+      "x": "66",
+      "y": "65"
+    },
+    {
+      "file": "firedone3.png",
+      "x": "66",
+      "y": "65"
+    },
+    {
+      "file": "firedone4.png",
+      "x": "66",
+      "y": "65"
+    }
+  ],
+  "Monument": [
+    {
+      "file": "monument5.png",
+      "x": "131",
+      "y": "187"
+    }
+  ],
+  "MonumentConstruction": [
+    {
+      "file": "monument0.png",
+      "x": "128",
+      "y": "129"
+    },
+    {
+      "file": "monument1.png",
+      "x": "128",
+      "y": "129"
+    },
+    {
+      "file": "monument2.png",
+      "x": "128",
+      "y": "129"
+    },
+    {
+      "file": "monument3.png",
+      "x": "128",
+      "y": "175"
+    },
+    {
+      "file": "monument4.png",
+      "x": "128",
+      "y": "175"
+    }
+  ],
+  "Harbor": [
+    {
+      "file": "ex_port.png",
+      "x": "256",
+      "y": "324"
+    }
+  ],
+  "Rocket": [
+    {
+      "file": "rocket1.png",
+      "x": "235",
+      "y": "265"
+    },
+    {
+      "file": "rocket2.png",
+      "x": "235",
+      "y": "489"
+    },
+    {
+      "file": "rocket3.png",
+      "x": "235",
+      "y": "511"
+    },
+    {
+      "file": "rocket4.png",
+      "x": "235",
+      "y": "511"
+    },
+    {
+      "file": "rocket5.png",
+      "x": "446",
+      "y": "633"
+    },
+    {
+      "file": "rocket6.png",
+      "x": "256",
+      "y": "633"
+    },
+    {
+      "file": "rocket7.png",
+      "x": "446",
+      "y": "633"
+    },
+    {
+      "file": "rocketflown.png",
+      "x": "235",
+      "y": "524"
+    }
+  ],
+  "University": [
+    {
+      "file": "revamp-university.png",
+      "x": "192",
+      "y": "313"
+    }
+  ],
+  "School": [
+    {
+      "file": "revamp-school.png",
+      "x": "128",
+      "y": "240"
+    },
+    {
+      "file": "revamp-school.png",
+      "x": "128",
+      "y": "240"
+    }
+  ],
+  "ChildOnSwing": [
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    },
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    }
+  ],
+  "Shanty": [
+    {
+      "file": "shanty.png",
+      "x": "129",
+      "y": "134"
+    }
+  ],
+  "SubstationOff": [
+    {
+      "file": "revamp-substation.png",
+      "x": "128",
+      "y": "229"
+    }
+  ],
+  "Substation": [
+    {
+      "file": "revamp-substation.png",
+      "x": "128",
+      "y": "229"
+    }
+  ],
+  "SubstationOn": [
+    {
+      "file": "revamp-substation.png",
+      "x": "128",
+      "y": "229"
+    }
+  ],
+  "ParklandPlane": [
+    {
+      "file": "parkland-plane.png",
+      "x": "65",
+      "y": "118"
+    }
+  ],
+  "ParklandLake": [
+    {
+      "file": "parkland-lake.png",
+      "x": "65",
+      "y": "98"
+    }
+  ],
+  "Recycle": [
+    {
+      "file": "revamp-recycling-center.png",
+      "x": "128",
+      "y": "226"
+    }
+  ],
+  "Health": [
+    {
+      "file": "revamp-clinic.png",
+      "x": "128",
+      "y": "223"
+    }
+  ],
+  "Farm": [
+    {
+      "file": "revamp-farm.png",
+      "x": "256",
+      "y": "429"
+    },
+    {
+      "file": "revamp-farm.png",
+      "x": "256",
+      "y": "429"
+    },
+    {
+      "file": "revamp-farm.png",
+      "x": "256",
+      "y": "429"
+    },
+    {
+      "file": "revamp-farm.png",
+      "x": "256",
+      "y": "429"
+    },
+    {
+      "file": "revamp-farm.png",
+      "x": "256",
+      "y": "429"
+    }
+  ],
+  "Mill": [
+    {
+      "file": "mill0.png",
+      "x": "128",
+      "y": "191"
+    },
+    {
+      "file": "mill1.png",
+      "x": "128",
+      "y": "249"
+    },
+    {
+      "file": "mill2.png",
+      "x": "128",
+      "y": "242"
+    },
+    {
+      "file": "mill3.png",
+      "x": "128",
+      "y": "235"
+    },
+    {
+      "file": "mill4.png",
+      "x": "128",
+      "y": "235"
+    },
+    {
+      "file": "mill5.png",
+      "x": "128",
+      "y": "237"
+    },
+    {
+      "file": "mill6.png",
+      "x": "128",
+      "y": "239"
+    }
+  ],
+  "ResidentialLowLow": [
+    {
+      "file": "revamp-residence-basic-low.png",
+      "x": "192",
+      "y": "344"
+    }
+  ],
+  "ResidentialMedLow": [
+    {
+      "file": "revamp-residence-basic-medium.png",
+      "x": "192",
+      "y": "340"
+    }
+  ],
+  "ResidentialHighLow": [
+    {
+      "file": "revamp-residence-basic-high.png",
+      "x": "192",
+      "y": "350"
+    }
+  ],
+  "ResidentialLow": [
+    {
+      "file": "revamp-residence-modern-low.png",
+      "x": "192",
+      "y": "250"
+    }
+  ],
+  "ResidentialMedHigh": [
+    {
+      "file": "revamp-residence-modern-medium.png",
+      "x": "192",
+      "y": "348"
+    }
+  ],
+  "ResidentialHighHigh": [
+    {
+      "file": "revamp-residence-modern-high.png",
+      "x": "192",
+      "y": "347"
+    }
+  ],
+  "SportsCroud": [
+    {
+      "file": "cricket1.png",
+      "x": "130",
+      "y": "166"
+    },
+    {
+      "file": "cricket2.png",
+      "x": "130",
+      "y": "166"
+    },
+    {
+      "file": "cricket3.png",
+      "x": "130",
+      "y": "166"
+    },
+    {
+      "file": "cricket4.png",
+      "x": "130",
+      "y": "166"
+    },
+    {
+      "file": "cricket5.png",
+      "x": "130",
+      "y": "166"
+    },
+    {
+      "file": "cricket6.png",
+      "x": "130",
+      "y": "166"
+    },
+    {
+      "file": "cricket7.png",
+      "x": "130",
+      "y": "166"
+    }
+  ],
+  "Bluecar": [
+    {
+      "file": "car01-0000.png",
+      "x": "26",
+      "y": "45"
+    },
+    {
+      "file": "car01-0001.png",
+      "x": "13",
+      "y": "44"
+    },
+    {
+      "file": "car01-0002.png",
+      "x": "24",
+      "y": "45"
+    },
+    {
+      "file": "car01-0003.png",
+      "x": "24",
+      "y": "43"
+    },
+    {
+      "file": "car01-0004.png",
+      "x": "24",
+      "y": "44"
+    },
+    {
+      "file": "car01-0005.png",
+      "x": "13",
+      "y": "44"
+    },
+    {
+      "file": "car01-0006.png",
+      "x": "26",
+      "y": "44"
+    },
+    {
+      "file": "car01-0007.png",
+      "x": "27",
+      "y": "43"
+    },
+    {
+      "file": "car01-up0009.png",
+      "x": "24",
+      "y": "43"
+    },
+    {
+      "file": "car01-up0010.png",
+      "x": "25",
+      "y": "43"
+    },
+    {
+      "file": "car01-up0011.png",
+      "x": "24",
+      "y": "48"
+    },
+    {
+      "file": "car01-up0012.png",
+      "x": "24",
+      "y": "48"
+    },
+    {
+      "file": "car01-down0013.png",
+      "x": "27",
+      "y": "46"
+    },
+    {
+      "file": "car01-down0014.png",
+      "x": "22",
+      "y": "46"
+    },
+    {
+      "file": "car01-down0015.png",
+      "x": "22",
+      "y": "43"
+    },
+    {
+      "file": "car01-down0016.png",
+      "x": "27",
+      "y": "43"
+    }
+  ],
+  "EvolutionWarehouse": [
+    {
+      "file": "revamp-warehouse.png",
+      "x": "128",
+      "y": "227"
+    }
+  ],
+  "EvolutionTech": [
+    {
+      "file": "revamp-tech-campus.png",
+      "x": "192",
+      "y": "302"
+    }
+  ],
+  "EvolutionCafe": [
+    {
+      "file": "revamp-cafe.png",
+      "x": "64",
+      "y": "139"
+    }
+  ],
+  "EvolutionFoodhall": [
+    {
+      "file": "revamp-food-hall.png",
+      "x": "128",
+      "y": "206"
+    }
+  ],
+  "TransitBusStop": [
+    {
+      "file": "revamp-bus-stop.png",
+      "x": "64",
+      "y": "101"
+    }
+  ],
+  "TransitBusTerminal": [
+    {
+      "file": "revamp-bus-terminal.png",
+      "x": "128",
+      "y": "133"
+    }
+  ],
+  "TransitRail": [
+    {
+      "file": "revamp-rail-station.png",
+      "x": "192",
+      "y": "248"
+    }
+  ],
+  "TransitMetro": [
+    {
+      "file": "revamp-metro-entrance.png",
+      "x": "64",
+      "y": "117"
+    }
+  ],
+  "TransitElevated": [
+    {
+      "file": "revamp-elevated-station.png",
+      "x": "128",
+      "y": "173"
+    }
+  ],
+  "TransitTunnel": [
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    }
+  ],
+  "TransitViaduct": [
+    {
+      "file": "revamp-clear.png",
+      "x": "0",
+      "y": "0"
+    }
+  ]
+}

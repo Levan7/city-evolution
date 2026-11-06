@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "public_name": "Church",
+  "plural": "Churches",
+  "text_files_changed": 4,
+  "model_or_image_files_in_patch": 0,
+  "gameplay_changes": false,
+  "resource_and_save_ids_changed": false,
+  "help_xml_parses": true,
+  "regional_or_denomination_words_in_display_name_or_help": false,
+  "second_apply_changes": 0,
+  "compiled_game_rebuilt": false
+}

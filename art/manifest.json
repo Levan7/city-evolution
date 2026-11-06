@@ -1,0 +1,1491 @@
+{
+  "projection": "isometric 2:1",
+  "note": "Preview 11: original-style low-rise forestry, farms and workshops; twelve housing appearances; three location-stable commune variants. Replacement building sprites use 80% scale over original-sized native grass lots. Native animation frame counts retained. Traffic motorises from 10% to 30% tech. Terrain/bridges remain upstream.",
+  "resource_bindings": {
+    "Waterwell": "water-well",
+    "PowerSolar": "solar-plant",
+    "MarketEmpty": "workshop-compact-3",
+    "MarketLow": "workshop-compact-market",
+    "MarketMed": "workshop-compact-market",
+    "MarketFull": "workshop-compact-market",
+    "IndustryHigh": "heavy-factory",
+    "IndustryHighL": "heavy-factory",
+    "IndustryHighM": "heavy-factory",
+    "IndustryHighH": "heavy-factory",
+    "IndustryLight": "factory",
+    "IndustryLightL": "factory",
+    "IndustryLightM": "factory",
+    "IndustryLightH": "factory",
+    "PowerCoalEmpty": "coal-plant",
+    "PowerCoalLow": "coal-plant",
+    "PowerCoalMed": "coal-plant",
+    "PowerCoalFull": "coal-plant",
+    "WindMill": "wind-turbine",
+    "WindMillHTech": "wind-turbine",
+    "WindMillHTechRG": "wind-turbine",
+    "WindMillHTechG": "wind-turbine",
+    "FireStation": "fire-station",
+    "University": "university",
+    "School": "school",
+    "SubstationOff": "substation",
+    "Substation": "substation",
+    "SubstationOn": "substation",
+    "Recycle": "recycling-center",
+    "Health": "clinic",
+    "Farm": "farm-fields",
+    "ResidentialLowLow": "housing-compact-0",
+    "ResidentialMedLow": "housing-compact-1",
+    "ResidentialHighLow": "housing-compact-2",
+    "ResidentialLow": "housing-compact-3",
+    "ResidentialMedHigh": "housing-compact-4",
+    "ResidentialHighHigh": "housing-compact-5",
+    "EvolutionWarehouse": "warehouse",
+    "EvolutionTech": "tech-campus",
+    "EvolutionCafe": "cafe",
+    "EvolutionFoodhall": "food-hall",
+    "TransitBusStop": "bus-stop",
+    "TransitBusTerminal": "bus-terminal",
+    "TransitRail": "rail-station",
+    "TransitMetro": "metro-entrance",
+    "TransitElevated": "elevated-station",
+    "Pottery": "workshop-compact-0",
+    "Blacksmith": "workshop-compact-1",
+    "Mill": "workshop-compact-2",
+    "Commune": "forestry-0",
+    "Tip": "landfill",
+    "Harbor": "port",
+    "SportsCroud": "sports",
+    "Monument": "monument",
+    "MonumentConstruction": "monument",
+    "Rocket": "rocket",
+    "ParklandPlane": "park",
+    "ParklandLake": "park-lake",
+    "Shanty": "shanty",
+    "Bluecar": "native-car",
+    "CoalMine": "coal-mine",
+    "CoalMineLow": "coal-mine",
+    "CoalMineMed": "coal-mine",
+    "CoalMineFull": "coal-mine",
+    "OreMine": "ore-mine",
+    "ChildOnSwing": "school",
+    "GeorgianChurch": "georgian-orthodox-church",
+    "CommuneVariant1": "forestry-1",
+    "CommuneVariant2": "forestry-2",
+    "ResidentialLowLowVariant1": "housing-compact-0-alt",
+    "ResidentialMedLowVariant1": "housing-compact-1-alt",
+    "ResidentialHighLowVariant1": "housing-compact-2-alt",
+    "ResidentialLowVariant1": "housing-compact-3-alt",
+    "ResidentialMedHighVariant1": "housing-compact-4-alt",
+    "ResidentialHighHighVariant1": "housing-compact-5-alt"
+  },
+  "assets": {
+    "bus-NE": {
+      "file": "images/transit/bus-NE.png",
+      "size": [
+        54,
+        43
+      ],
+      "anchor": [
+        27,
+        39
+      ],
+      "footprint": null
+    },
+    "bus-NW": {
+      "file": "images/transit/bus-NW.png",
+      "size": [
+        54,
+        44
+      ],
+      "anchor": [
+        27,
+        40
+      ],
+      "footprint": null
+    },
+    "bus-SE": {
+      "file": "images/transit/bus-SE.png",
+      "size": [
+        54,
+        43
+      ],
+      "anchor": [
+        27,
+        39
+      ],
+      "footprint": null
+    },
+    "bus-SW": {
+      "file": "images/transit/bus-SW.png",
+      "size": [
+        54,
+        38
+      ],
+      "anchor": [
+        27,
+        34
+      ],
+      "footprint": null
+    },
+    "bus-stop": {
+      "file": "images/tiles/lower-revamp-bus-stop.png",
+      "size": [
+        128,
+        89
+      ],
+      "anchor": [
+        64,
+        85
+      ],
+      "footprint": 1
+    },
+    "bus-terminal": {
+      "file": "images/tiles/lower-revamp-bus-terminal.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "cafe": {
+      "file": "images/tiles/lower-revamp-cafe.png",
+      "size": [
+        128,
+        119
+      ],
+      "anchor": [
+        64,
+        115
+      ],
+      "footprint": 1
+    },
+    "car-NE": {
+      "file": "images/transit/car-NE.png",
+      "size": [
+        34,
+        27
+      ],
+      "anchor": [
+        17,
+        23
+      ],
+      "footprint": null
+    },
+    "car-NW": {
+      "file": "images/transit/car-NW.png",
+      "size": [
+        34,
+        28
+      ],
+      "anchor": [
+        17,
+        24
+      ],
+      "footprint": null
+    },
+    "car-SE": {
+      "file": "images/transit/car-SE.png",
+      "size": [
+        34,
+        31
+      ],
+      "anchor": [
+        17,
+        27
+      ],
+      "footprint": null
+    },
+    "car": {
+      "file": "images/transit/car-SW.png",
+      "size": [
+        34,
+        31
+      ],
+      "anchor": [
+        17,
+        27
+      ],
+      "footprint": null
+    },
+    "clinic": {
+      "file": "images/tiles/lower-revamp-clinic.png",
+      "size": [
+        256,
+        186
+      ],
+      "anchor": [
+        128,
+        182
+      ],
+      "footprint": 2
+    },
+    "coal-plant": {
+      "file": "images/tiles/lower-revamp10-coal-plant-00.png",
+      "size": [
+        512,
+        346
+      ],
+      "anchor": [
+        256,
+        342
+      ],
+      "footprint": 4,
+      "frames": [
+        {
+          "file": "revamp10-coal-plant-00.png",
+          "x": 256,
+          "y": 422
+        }
+      ]
+    },
+    "elevated-station": {
+      "file": "images/tiles/lower-revamp-elevated-station.png",
+      "size": [
+        256,
+        146
+      ],
+      "anchor": [
+        128,
+        142
+      ],
+      "footprint": 2
+    },
+    "factory": {
+      "file": "images/tiles/lower-revamp10-factory-00.png",
+      "size": [
+        384,
+        204
+      ],
+      "anchor": [
+        192,
+        200
+      ],
+      "footprint": 3,
+      "frames": [
+        {
+          "file": "revamp10-factory-00.png",
+          "x": 192,
+          "y": 239
+        }
+      ]
+    },
+    "farm": {
+      "file": "images/tiles/revamp10-farm-00.png",
+      "size": [
+        512,
+        478
+      ],
+      "anchor": [
+        256,
+        473
+      ],
+      "footprint": 4,
+      "frames": [
+        {
+          "file": "revamp10-farm-00.png",
+          "x": 256,
+          "y": 473
+        },
+        {
+          "file": "revamp10-farm-01.png",
+          "x": 256,
+          "y": 473
+        },
+        {
+          "file": "revamp10-farm-02.png",
+          "x": 256,
+          "y": 473
+        },
+        {
+          "file": "revamp10-farm-03.png",
+          "x": 256,
+          "y": 473
+        },
+        {
+          "file": "revamp10-farm-04.png",
+          "x": 256,
+          "y": 473
+        },
+        {
+          "file": "revamp10-farm-05.png",
+          "x": 256,
+          "y": 473
+        }
+      ]
+    },
+    "fire-station": {
+      "file": "images/tiles/lower-revamp10-fire-station-00.png",
+      "size": [
+        256,
+        210
+      ],
+      "anchor": [
+        128,
+        206
+      ],
+      "footprint": 2,
+      "frames": [
+        {
+          "file": "revamp10-fire-station-00.png",
+          "x": 128,
+          "y": 253
+        },
+        {
+          "file": "revamp10-fire-station-01.png",
+          "x": 128,
+          "y": 253
+        },
+        {
+          "file": "revamp10-fire-station-02.png",
+          "x": 128,
+          "y": 253
+        }
+      ]
+    },
+    "food-hall": {
+      "file": "images/tiles/lower-revamp-food-hall.png",
+      "size": [
+        256,
+        173
+      ],
+      "anchor": [
+        128,
+        169
+      ],
+      "footprint": 2
+    },
+    "heavy-factory": {
+      "file": "images/tiles/lower-revamp10-heavy-factory-00.png",
+      "size": [
+        512,
+        426
+      ],
+      "anchor": [
+        256,
+        422
+      ],
+      "footprint": 4,
+      "frames": [
+        {
+          "file": "revamp10-heavy-factory-00.png",
+          "x": 256,
+          "y": 523
+        },
+        {
+          "file": "revamp10-heavy-factory-01.png",
+          "x": 256,
+          "y": 523
+        },
+        {
+          "file": "revamp10-heavy-factory-02.png",
+          "x": 256,
+          "y": 523
+        }
+      ]
+    },
+    "horse-cart": {
+      "file": "images/transit/horse-cart.png",
+      "size": [
+        52,
+        40
+      ],
+      "anchor": [
+        26,
+        36
+      ],
+      "footprint": null
+    },
+    "horse": {
+      "file": "images/transit/horse.png",
+      "size": [
+        24,
+        24
+      ],
+      "anchor": [
+        12,
+        20
+      ],
+      "footprint": null
+    },
+    "house": {
+      "file": "images/tiles/revamp-house.png",
+      "size": [
+        256,
+        301
+      ],
+      "anchor": [
+        128,
+        297
+      ],
+      "footprint": 2
+    },
+    "market": {
+      "file": "images/tiles/revamp-market.png",
+      "size": [
+        256,
+        225
+      ],
+      "anchor": [
+        128,
+        221
+      ],
+      "footprint": 2
+    },
+    "metro-entrance": {
+      "file": "images/tiles/lower-revamp-metro-entrance.png",
+      "size": [
+        128,
+        102
+      ],
+      "anchor": [
+        64,
+        98
+      ],
+      "footprint": 1
+    },
+    "rail-station": {
+      "file": "images/tiles/lower-revamp-rail-station.png",
+      "size": [
+        384,
+        206
+      ],
+      "anchor": [
+        192,
+        202
+      ],
+      "footprint": 3
+    },
+    "recycling-center": {
+      "file": "images/tiles/lower-revamp-recycling-center.png",
+      "size": [
+        256,
+        189
+      ],
+      "anchor": [
+        128,
+        185
+      ],
+      "footprint": 2
+    },
+    "residence-basic-high": {
+      "file": "images/tiles/revamp-residence-basic-high.png",
+      "size": [
+        384,
+        354
+      ],
+      "anchor": [
+        192,
+        350
+      ],
+      "footprint": 3
+    },
+    "residence-basic-low": {
+      "file": "images/tiles/revamp-residence-basic-low.png",
+      "size": [
+        384,
+        348
+      ],
+      "anchor": [
+        192,
+        344
+      ],
+      "footprint": 3
+    },
+    "residence-basic-medium": {
+      "file": "images/tiles/revamp-residence-basic-medium.png",
+      "size": [
+        384,
+        344
+      ],
+      "anchor": [
+        192,
+        340
+      ],
+      "footprint": 3
+    },
+    "residence-modern-high": {
+      "file": "images/tiles/revamp-residence-modern-high.png",
+      "size": [
+        384,
+        351
+      ],
+      "anchor": [
+        192,
+        347
+      ],
+      "footprint": 3
+    },
+    "residence-modern-low": {
+      "file": "images/tiles/revamp-residence-modern-low.png",
+      "size": [
+        384,
+        254
+      ],
+      "anchor": [
+        192,
+        250
+      ],
+      "footprint": 3
+    },
+    "residence-modern-medium": {
+      "file": "images/tiles/revamp-residence-modern-medium.png",
+      "size": [
+        384,
+        352
+      ],
+      "anchor": [
+        192,
+        348
+      ],
+      "footprint": 3
+    },
+    "school": {
+      "file": "images/tiles/lower-revamp10-school-00.png",
+      "size": [
+        256,
+        206
+      ],
+      "anchor": [
+        128,
+        202
+      ],
+      "footprint": 2,
+      "frames": [
+        {
+          "file": "revamp10-school-00.png",
+          "x": 128,
+          "y": 247
+        },
+        {
+          "file": "revamp10-school-01.png",
+          "x": 128,
+          "y": 247
+        },
+        {
+          "file": "revamp10-school-02.png",
+          "x": 128,
+          "y": 247
+        }
+      ]
+    },
+    "solar-plant": {
+      "file": "images/tiles/lower-revamp-solar-plant.png",
+      "size": [
+        512,
+        268
+      ],
+      "anchor": [
+        256,
+        264
+      ],
+      "footprint": 4
+    },
+    "substation": {
+      "file": "images/tiles/lower-revamp-substation.png",
+      "size": [
+        256,
+        191
+      ],
+      "anchor": [
+        128,
+        187
+      ],
+      "footprint": 2
+    },
+    "tech-campus": {
+      "file": "images/tiles/lower-revamp-tech-campus.png",
+      "size": [
+        384,
+        250
+      ],
+      "anchor": [
+        192,
+        246
+      ],
+      "footprint": 3
+    },
+    "train-NE": {
+      "file": "images/transit/train-NE.png",
+      "size": [
+        82,
+        56
+      ],
+      "anchor": [
+        41,
+        52
+      ],
+      "footprint": null
+    },
+    "train-NW": {
+      "file": "images/transit/train-NW.png",
+      "size": [
+        82,
+        58
+      ],
+      "anchor": [
+        41,
+        54
+      ],
+      "footprint": null
+    },
+    "train-SE": {
+      "file": "images/transit/train-SE.png",
+      "size": [
+        82,
+        53
+      ],
+      "anchor": [
+        41,
+        49
+      ],
+      "footprint": null
+    },
+    "train-SW": {
+      "file": "images/transit/train-SW.png",
+      "size": [
+        82,
+        55
+      ],
+      "anchor": [
+        41,
+        51
+      ],
+      "footprint": null
+    },
+    "truck": {
+      "file": "images/transit/truck.png",
+      "size": [
+        48,
+        42
+      ],
+      "anchor": [
+        24,
+        38
+      ],
+      "footprint": null
+    },
+    "university": {
+      "file": "images/tiles/lower-revamp-university.png",
+      "size": [
+        384,
+        258
+      ],
+      "anchor": [
+        192,
+        254
+      ],
+      "footprint": 3
+    },
+    "warehouse": {
+      "file": "images/tiles/lower-revamp-warehouse.png",
+      "size": [
+        256,
+        190
+      ],
+      "anchor": [
+        128,
+        186
+      ],
+      "footprint": 2
+    },
+    "water-well": {
+      "file": "images/tiles/lower-revamp-water-well.png",
+      "size": [
+        256,
+        155
+      ],
+      "anchor": [
+        128,
+        151
+      ],
+      "footprint": 2
+    },
+    "wind-turbine": {
+      "file": "images/tiles/lower-revamp10-wind-turbine-00.png",
+      "size": [
+        256,
+        353
+      ],
+      "anchor": [
+        128,
+        349
+      ],
+      "footprint": 2,
+      "frames": [
+        {
+          "file": "revamp10-wind-turbine-00.png",
+          "x": 128,
+          "y": 431
+        },
+        {
+          "file": "revamp10-wind-turbine-01.png",
+          "x": 128,
+          "y": 431
+        },
+        {
+          "file": "revamp10-wind-turbine-02.png",
+          "x": 128,
+          "y": 431
+        }
+      ]
+    },
+    "pottery": {
+      "file": "images/tiles/revamp10-pottery-00.png",
+      "size": [
+        256,
+        230
+      ],
+      "anchor": [
+        128,
+        225
+      ],
+      "footprint": 2,
+      "frames": [
+        {
+          "file": "revamp10-pottery-00.png",
+          "x": 128,
+          "y": 225
+        },
+        {
+          "file": "revamp10-pottery-01.png",
+          "x": 128,
+          "y": 225
+        },
+        {
+          "file": "revamp10-pottery-02.png",
+          "x": 128,
+          "y": 225
+        }
+      ]
+    },
+    "blacksmith": {
+      "file": "images/tiles/revamp10-blacksmith-00.png",
+      "size": [
+        256,
+        253
+      ],
+      "anchor": [
+        128,
+        249
+      ],
+      "footprint": 2,
+      "frames": [
+        {
+          "file": "revamp10-blacksmith-00.png",
+          "x": 128,
+          "y": 249
+        },
+        {
+          "file": "revamp10-blacksmith-01.png",
+          "x": 128,
+          "y": 249
+        },
+        {
+          "file": "revamp10-blacksmith-02.png",
+          "x": 128,
+          "y": 249
+        }
+      ]
+    },
+    "mill": {
+      "file": "images/tiles/revamp10-mill-00.png",
+      "size": [
+        256,
+        264
+      ],
+      "anchor": [
+        128,
+        259
+      ],
+      "footprint": 2,
+      "frames": [
+        {
+          "file": "revamp10-mill-00.png",
+          "x": 128,
+          "y": 259
+        },
+        {
+          "file": "revamp10-mill-01.png",
+          "x": 128,
+          "y": 259
+        },
+        {
+          "file": "revamp10-mill-02.png",
+          "x": 128,
+          "y": 259
+        }
+      ]
+    },
+    "commune": {
+      "file": "images/tiles/revamp10-commune-00.png",
+      "size": [
+        512,
+        501
+      ],
+      "anchor": [
+        256,
+        496
+      ],
+      "footprint": 4,
+      "frames": [
+        {
+          "file": "revamp10-commune-00.png",
+          "x": 256,
+          "y": 496
+        },
+        {
+          "file": "revamp10-commune-01.png",
+          "x": 256,
+          "y": 496
+        },
+        {
+          "file": "revamp10-commune-02.png",
+          "x": 256,
+          "y": 496
+        }
+      ]
+    },
+    "ore-mine": {
+      "file": "images/tiles/lower-revamp10-ore-mine-00.png",
+      "size": [
+        512,
+        379
+      ],
+      "anchor": [
+        256,
+        375
+      ],
+      "footprint": 4,
+      "frames": [
+        {
+          "file": "revamp10-ore-mine-00.png",
+          "x": 256,
+          "y": 464
+        },
+        {
+          "file": "revamp10-ore-mine-01.png",
+          "x": 256,
+          "y": 464
+        },
+        {
+          "file": "revamp10-ore-mine-02.png",
+          "x": 256,
+          "y": 464
+        }
+      ]
+    },
+    "coal-mine": {
+      "file": "images/tiles/lower-revamp10-coal-mine-00.png",
+      "size": [
+        512,
+        386
+      ],
+      "anchor": [
+        256,
+        382
+      ],
+      "footprint": 4,
+      "frames": [
+        {
+          "file": "revamp10-coal-mine-00.png",
+          "x": 256,
+          "y": 473
+        }
+      ]
+    },
+    "landfill": {
+      "file": "images/tiles/lower-revamp10-landfill-00.png",
+      "size": [
+        512,
+        286
+      ],
+      "anchor": [
+        256,
+        282
+      ],
+      "footprint": 4,
+      "frames": [
+        {
+          "file": "revamp10-landfill-00.png",
+          "x": 256,
+          "y": 348
+        },
+        {
+          "file": "revamp10-landfill-01.png",
+          "x": 256,
+          "y": 348
+        },
+        {
+          "file": "revamp10-landfill-02.png",
+          "x": 256,
+          "y": 348
+        }
+      ]
+    },
+    "port": {
+      "file": "images/tiles/lower-revamp10-port-00.png",
+      "size": [
+        512,
+        279
+      ],
+      "anchor": [
+        256,
+        275
+      ],
+      "footprint": 4,
+      "frames": [
+        {
+          "file": "revamp10-port-00.png",
+          "x": 256,
+          "y": 339
+        }
+      ]
+    },
+    "sports": {
+      "file": "images/tiles/lower-revamp10-sports-00.png",
+      "size": [
+        256,
+        186
+      ],
+      "anchor": [
+        128,
+        182
+      ],
+      "footprint": 2,
+      "frames": [
+        {
+          "file": "revamp10-sports-00.png",
+          "x": 128,
+          "y": 222
+        },
+        {
+          "file": "revamp10-sports-01.png",
+          "x": 128,
+          "y": 222
+        },
+        {
+          "file": "revamp10-sports-02.png",
+          "x": 128,
+          "y": 222
+        }
+      ]
+    },
+    "monument": {
+      "file": "images/tiles/lower-revamp10-monument-00.png",
+      "size": [
+        256,
+        205
+      ],
+      "anchor": [
+        128,
+        201
+      ],
+      "footprint": 2,
+      "frames": [
+        {
+          "file": "revamp10-monument-00.png",
+          "x": 128,
+          "y": 246
+        },
+        {
+          "file": "revamp10-monument-01.png",
+          "x": 128,
+          "y": 246
+        },
+        {
+          "file": "revamp10-monument-02.png",
+          "x": 128,
+          "y": 246
+        },
+        {
+          "file": "revamp10-monument-03.png",
+          "x": 128,
+          "y": 246
+        },
+        {
+          "file": "revamp10-monument-04.png",
+          "x": 128,
+          "y": 246
+        },
+        {
+          "file": "revamp10-monument-05.png",
+          "x": 128,
+          "y": 246
+        }
+      ]
+    },
+    "rocket": {
+      "file": "images/tiles/lower-revamp10-rocket-00.png",
+      "size": [
+        512,
+        399
+      ],
+      "anchor": [
+        256,
+        395
+      ],
+      "footprint": 4,
+      "frames": [
+        {
+          "file": "revamp10-rocket-00.png",
+          "x": 256,
+          "y": 489
+        },
+        {
+          "file": "revamp10-rocket-01.png",
+          "x": 256,
+          "y": 489
+        },
+        {
+          "file": "revamp10-rocket-02.png",
+          "x": 256,
+          "y": 489
+        },
+        {
+          "file": "revamp10-rocket-03.png",
+          "x": 256,
+          "y": 489
+        },
+        {
+          "file": "revamp10-rocket-04.png",
+          "x": 256,
+          "y": 489
+        },
+        {
+          "file": "revamp10-rocket-05.png",
+          "x": 256,
+          "y": 489
+        },
+        {
+          "file": "revamp10-rocket-06.png",
+          "x": 256,
+          "y": 489
+        },
+        {
+          "file": "revamp10-rocket-07.png",
+          "x": 256,
+          "y": 489
+        }
+      ]
+    },
+    "park": {
+      "file": "images/tiles/lower-revamp10-park-00.png",
+      "size": [
+        128,
+        86
+      ],
+      "anchor": [
+        64,
+        82
+      ],
+      "footprint": 1,
+      "frames": [
+        {
+          "file": "revamp10-park-00.png",
+          "x": 64,
+          "y": 98
+        }
+      ]
+    },
+    "shanty": {
+      "file": "images/tiles/lower-revamp10-shanty-00.png",
+      "size": [
+        128,
+        104
+      ],
+      "anchor": [
+        64,
+        100
+      ],
+      "footprint": 1,
+      "frames": [
+        {
+          "file": "revamp10-shanty-00.png",
+          "x": 64,
+          "y": 120
+        }
+      ]
+    },
+    "park-lake": {
+      "file": "images/tiles/lower-revamp10-park-lake-00.png",
+      "size": [
+        128,
+        93
+      ],
+      "anchor": [
+        64,
+        89
+      ],
+      "footprint": 1,
+      "frames": [
+        {
+          "file": "revamp10-park-lake-00.png",
+          "x": 64,
+          "y": 106
+        }
+      ]
+    },
+    "native-car": {
+      "file": "images/tiles/revamp10-native-car-00.png",
+      "size": [
+        48,
+        45
+      ],
+      "anchor": [
+        24,
+        40
+      ],
+      "footprint": 0,
+      "frames": [
+        {
+          "file": "revamp10-native-car-00.png",
+          "x": 25,
+          "y": 47
+        },
+        {
+          "file": "revamp10-native-car-01.png",
+          "x": 24,
+          "y": 47
+        },
+        {
+          "file": "revamp10-native-car-02.png",
+          "x": 24,
+          "y": 47
+        },
+        {
+          "file": "revamp10-native-car-03.png",
+          "x": 23,
+          "y": 49
+        },
+        {
+          "file": "revamp10-native-car-04.png",
+          "x": 24,
+          "y": 47
+        },
+        {
+          "file": "revamp10-native-car-05.png",
+          "x": 23,
+          "y": 47
+        },
+        {
+          "file": "revamp10-native-car-06.png",
+          "x": 25,
+          "y": 47
+        },
+        {
+          "file": "revamp10-native-car-07.png",
+          "x": 26,
+          "y": 49
+        },
+        {
+          "file": "revamp10-native-car-08.png",
+          "x": 24,
+          "y": 49
+        },
+        {
+          "file": "revamp10-native-car-09.png",
+          "x": 26,
+          "y": 49
+        },
+        {
+          "file": "revamp10-native-car-10.png",
+          "x": 25,
+          "y": 47
+        },
+        {
+          "file": "revamp10-native-car-11.png",
+          "x": 23,
+          "y": 47
+        },
+        {
+          "file": "revamp10-native-car-12.png",
+          "x": 27,
+          "y": 46
+        },
+        {
+          "file": "revamp10-native-car-13.png",
+          "x": 22,
+          "y": 45
+        },
+        {
+          "file": "revamp10-native-car-14.png",
+          "x": 22,
+          "y": 49
+        },
+        {
+          "file": "revamp10-native-car-15.png",
+          "x": 27,
+          "y": 49
+        }
+      ]
+    },
+    "georgian-orthodox-church": {
+      "file": "images/tiles/lower-revamp11-church.png",
+      "size": [
+        384,
+        302
+      ],
+      "anchor": [
+        192,
+        298
+      ],
+      "footprint": 3
+    },
+    "forestry-0": {
+      "file": "images/tiles/lower-revamp11-compact-forestry-0-0.png",
+      "size": [
+        512,
+        274
+      ],
+      "anchor": [
+        256,
+        270
+      ],
+      "footprint": 4
+    },
+    "forestry-1": {
+      "file": "images/tiles/lower-revamp11-compact-forestry-1-0.png",
+      "size": [
+        512,
+        268
+      ],
+      "anchor": [
+        256,
+        264
+      ],
+      "footprint": 4
+    },
+    "forestry-2": {
+      "file": "images/tiles/lower-revamp11-compact-forestry-2-0.png",
+      "size": [
+        512,
+        275
+      ],
+      "anchor": [
+        256,
+        271
+      ],
+      "footprint": 4
+    },
+    "housing-compact-0": {
+      "file": "images/tiles/lower-revamp11-compact-housing-compact-0-0.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "housing-compact-0-alt": {
+      "file": "images/tiles/lower-revamp11-compact-housing-compact-0-alt-0.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "housing-compact-1": {
+      "file": "images/tiles/lower-revamp11-compact-housing-compact-1-0.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "housing-compact-1-alt": {
+      "file": "images/tiles/lower-revamp11-compact-housing-compact-1-alt-0.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "housing-compact-2": {
+      "file": "images/tiles/lower-revamp11-compact-housing-compact-2-0.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "housing-compact-2-alt": {
+      "file": "images/tiles/lower-revamp11-compact-housing-compact-2-alt-0.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "housing-compact-3": {
+      "file": "images/tiles/lower-revamp11-compact-housing-compact-3-0.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "housing-compact-3-alt": {
+      "file": "images/tiles/lower-revamp11-compact-housing-compact-3-alt-0.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "housing-compact-4": {
+      "file": "images/tiles/lower-revamp11-compact-housing-compact-4-0.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "housing-compact-4-alt": {
+      "file": "images/tiles/lower-revamp11-compact-housing-compact-4-alt-0.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "housing-compact-5": {
+      "file": "images/tiles/lower-revamp11-compact-housing-compact-5-0.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "housing-compact-5-alt": {
+      "file": "images/tiles/lower-revamp11-compact-housing-compact-5-alt-0.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "workshop-compact-0": {
+      "file": "images/tiles/lower-revamp11-compact-workshop-compact-0-0.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "workshop-compact-1": {
+      "file": "images/tiles/lower-revamp11-compact-workshop-compact-1-0.png",
+      "size": [
+        256,
+        140
+      ],
+      "anchor": [
+        128,
+        136
+      ],
+      "footprint": 2
+    },
+    "workshop-compact-2": {
+      "file": "images/tiles/lower-revamp11-compact-workshop-compact-2-0.png",
+      "size": [
+        256,
+        158
+      ],
+      "anchor": [
+        128,
+        154
+      ],
+      "footprint": 2
+    },
+    "workshop-compact-3": {
+      "file": "images/tiles/lower-revamp11-compact-workshop-compact-3-0.png",
+      "size": [
+        256,
+        145
+      ],
+      "anchor": [
+        128,
+        141
+      ],
+      "footprint": 2
+    },
+    "workshop-compact-market": {
+      "file": "images/tiles/lower-revamp11-compact-workshop-compact-market-0.png",
+      "size": [
+        256,
+        145
+      ],
+      "anchor": [
+        128,
+        141
+      ],
+      "footprint": 2
+    },
+    "farm-fields": {
+      "file": "images/tiles/lower-revamp11-compact-farm-fields-0.png",
+      "size": [
+        512,
+        268
+      ],
+      "anchor": [
+        256,
+        264
+      ],
+      "footprint": 4
+    }
+  }
+}

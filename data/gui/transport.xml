@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet href="identity.xsl" type="text/xsl"?>
+<Window name="TransportWindow" width="800" height="570" border="10" titlesize="32" resizable="no">
+  <title>
+    <Paragraph color="#f1efdf" font-size="22">TRANSPORT REPORT</Paragraph>
+  </title>
+  <background>
+    <FilledRectangle color="#14252dff"/>
+  </background>
+  <title-background>
+    <FilledRectangle color="#29463fff"/>
+  </title-background>
+  <closebutton>
+    <text color="white">X</text>
+  </closebutton>
+  <contents>
+    <TableLayout rows="8" cols="2"><rowsize row="1" fixed="46"/><rowsize row="2" fixed="34"/><rowsize row="3" fixed="34"/><rowsize row="4" fixed="34"/><rowsize row="5" fixed="34"/><rowsize row="6" fixed="100"/><rowsize row="7" fixed="48"/><rowsize row="8" fixed="48"/><cell row="1" col="1" colspan="2"><Paragraph name="TransitSummary" color="#edf0df" font-size="17">Passenger services connect homes to jobs.</Paragraph></cell><cell row="2" col="1" colspan="2"><Paragraph name="TransitMode0" color="#edf0df" font-size="17">Waiting for a connected service.</Paragraph></cell><cell row="3" col="1" colspan="2"><Paragraph name="TransitMode1" color="#edf0df" font-size="17">Waiting for a connected service.</Paragraph></cell><cell row="4" col="1" colspan="2"><Paragraph name="TransitMode2" color="#edf0df" font-size="17">Waiting for a connected service.</Paragraph></cell><cell row="5" col="1" colspan="2"><Paragraph name="TransitMode3" color="#edf0df" font-size="17">Waiting for a connected service.</Paragraph></cell><cell row="6" col="1" colspan="2"><Paragraph name="TransitIntro" color="#edf0df" font-size="17">Build from the categories on the left. Connect at least two supplied stops. Early bus routes use horse carriages. Motor traffic begins at 10% technology and reaches 100% at 30%.</Paragraph></cell><cell row="7" col="1" colspan="2" halign="center" valign="center"><Button name="TransitView" width="720" height="36"><image src="images/readable/plate-650-normal.png" width="720" height="36" resizable="yes"/><image-hover src="images/readable/plate-650-hover.png" width="720" height="36" resizable="yes"/><image-clicked src="images/readable/plate-650-clicked.png" width="720" height="36" resizable="yes"/><text-caption color="#edf1df" halign="center" font-size="18">Normal city view</text-caption></Button></cell><cell row="8" col="1" colspan="1" halign="center" valign="center"><Button name="TransitRefresh" width="340" height="36"><image src="images/readable/plate-650-normal.png" width="340" height="36" resizable="yes"/><image-hover src="images/readable/plate-650-hover.png" width="340" height="36" resizable="yes"/><image-clicked src="images/readable/plate-650-clicked.png" width="340" height="36" resizable="yes"/><text-caption color="#edf1df" halign="center" font-size="18">Refresh service report</text-caption></Button></cell><cell row="8" col="2" colspan="1" halign="center" valign="center"><Button name="TransitClose" width="340" height="36"><image src="images/readable/plate-650-normal.png" width="340" height="36" resizable="yes"/><image-hover src="images/readable/plate-650-hover.png" width="340" height="36" resizable="yes"/><image-clicked src="images/readable/plate-650-clicked.png" width="340" height="36" resizable="yes"/><text-caption color="#edf1df" halign="center" font-size="18">Close report</text-caption></Button></cell></TableLayout></contents>
+</Window>

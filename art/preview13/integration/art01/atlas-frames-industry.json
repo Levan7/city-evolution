@@ -1,0 +1,70 @@
+{
+  "ore-mine": [
+    {
+      "file": "art01-ore-mine-00.png",
+      "x": "256",
+      "y": "286"
+    },
+    {
+      "file": "art01-ore-mine-01.png",
+      "x": "256",
+      "y": "286"
+    },
+    {
+      "file": "art01-ore-mine-02.png",
+      "x": "256",
+      "y": "286"
+    }
+  ],
+  "coal-mine": [
+    {
+      "file": "art01-coal-mine-00.png",
+      "x": "256",
+      "y": "318"
+    },
+    {
+      "file": "art01-coal-mine-01.png",
+      "x": "256",
+      "y": "318"
+    },
+    {
+      "file": "art01-coal-mine-02.png",
+      "x": "256",
+      "y": "318"
+    }
+  ],
+  "steel-works": [
+    {
+      "file": "art01-steel-works-00.png",
+      "x": "256",
+      "y": "324"
+    },
+    {
+      "file": "art01-steel-works-01.png",
+      "x": "256",
+      "y": "324"
+    },
+    {
+      "file": "art01-steel-works-02.png",
+      "x": "256",
+      "y": "324"
+    }
+  ],
+  "substation": [
+    {
+      "file": "art01-substation-00.png",
+      "x": "128",
+      "y": "157"
+    },
+    {
+      "file": "art01-substation-01.png",
+      "x": "128",
+      "y": "157"
+    },
+    {
+      "file": "art01-substation-02.png",
+      "x": "128",
+      "y": "157"
+    }
+  ]
+}

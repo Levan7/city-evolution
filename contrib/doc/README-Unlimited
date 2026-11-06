@@ -1,0 +1,34 @@
+LinCity Unlimited
+
+Major features
+- Free mapsizes larger than 50²
+- Smart simulation on huge maps
+- Quick map generation
+- New savegames with optional text mode. Import of legacy savegames
+- New water and power management (flows along transport)
+- Irrigation for forests and powered farms on dry land
+- Density and traffic maps for all different kind of commodities (mousewheel over minimap)
+- Stat bars reflect city wide averages
+- Coal/Ore mines can store material and are evacuated before auto-bulldozing
+- xml config files for sprites and sounds
+- seed compression for savegames
+
+Minor features
+- In text mode query with "d" pressed sends XML info to console
+- press p to cylcle trough constructions and/or locate village on map
+- hold s while building watertower to build a shanty
+- press Ctrl to toggle left/right cornered road dragging
+- Evacuate commodities from buildings or transport
+- Up/downgrading of transport by simple dragging
+- find coal deposits by right click on tile
+- Animated waste burning
+- 2nd page of stat bars
+- Zooming on cursor position
+- updated help contents
+- bridging power cables
+- railway crossings for roads and tracks
+- power poles on any terrain
+
+
+And of course thousands time more changes under the skin and endless hours of game testing.
+have fun with LinCity Unlimites. It is free and unlimited.

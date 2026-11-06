@@ -1,0 +1,198 @@
+{
+  "projection": "2:1 isometric orthographic",
+  "creation_method": "Built-in image generation; included raw atlas and prompt; deterministic Pillow sprite exports.",
+  "assets": [
+    {
+      "id": "residential-ivory-blue",
+      "label": "Ivory / blue apartments",
+      "suggested_role": "residential",
+      "status": "art only; no gameplay or resource binding installed",
+      "file": "images/skyscrapers/residential-ivory-blue.png",
+      "cutout_file": "images/skyscrapers/residential-ivory-blue-cutout.png",
+      "thumbnail_file": "images/skyscrapers/residential-ivory-blue-thumbnail.png",
+      "footprint_tiles": [
+        3,
+        3
+      ],
+      "native_tile_pixels": [
+        128,
+        64
+      ],
+      "size_pixels": [
+        384,
+        476
+      ],
+      "anchor_pixels": [
+        192,
+        472
+      ],
+      "cutout_anchor_pixels": [
+        150,
+        468
+      ],
+      "ground_opaque_fraction": 1.0,
+      "animation": "single daylight pose; no window-light animation",
+      "integration": "Create new late-game resource/building types or choose explicit existing late-game tiers in the current rewrite; do not overwrite low-rise starter homes."
+    },
+    {
+      "id": "residential-red-brick",
+      "label": "Red brick apartments",
+      "suggested_role": "residential",
+      "status": "art only; no gameplay or resource binding installed",
+      "file": "images/skyscrapers/residential-red-brick.png",
+      "cutout_file": "images/skyscrapers/residential-red-brick-cutout.png",
+      "thumbnail_file": "images/skyscrapers/residential-red-brick-thumbnail.png",
+      "footprint_tiles": [
+        3,
+        3
+      ],
+      "native_tile_pixels": [
+        128,
+        64
+      ],
+      "size_pixels": [
+        384,
+        459
+      ],
+      "anchor_pixels": [
+        192,
+        455
+      ],
+      "cutout_anchor_pixels": [
+        150,
+        451
+      ],
+      "ground_opaque_fraction": 1.0,
+      "animation": "single daylight pose; no window-light animation",
+      "integration": "Create new late-game resource/building types or choose explicit existing late-game tiers in the current rewrite; do not overwrite low-rise starter homes."
+    },
+    {
+      "id": "residential-sand-green",
+      "label": "Sand / green apartments",
+      "suggested_role": "residential",
+      "status": "art only; no gameplay or resource binding installed",
+      "file": "images/skyscrapers/residential-sand-green.png",
+      "cutout_file": "images/skyscrapers/residential-sand-green-cutout.png",
+      "thumbnail_file": "images/skyscrapers/residential-sand-green-thumbnail.png",
+      "footprint_tiles": [
+        3,
+        3
+      ],
+      "native_tile_pixels": [
+        128,
+        64
+      ],
+      "size_pixels": [
+        384,
+        456
+      ],
+      "anchor_pixels": [
+        192,
+        452
+      ],
+      "cutout_anchor_pixels": [
+        150,
+        448
+      ],
+      "ground_opaque_fraction": 1.0,
+      "animation": "single daylight pose; no window-light animation",
+      "integration": "Create new late-game resource/building types or choose explicit existing late-game tiers in the current rewrite; do not overwrite low-rise starter homes."
+    },
+    {
+      "id": "office-cyan-glass",
+      "label": "Cyan glass offices",
+      "suggested_role": "office",
+      "status": "art only; no gameplay or resource binding installed",
+      "file": "images/skyscrapers/office-cyan-glass.png",
+      "cutout_file": "images/skyscrapers/office-cyan-glass-cutout.png",
+      "thumbnail_file": "images/skyscrapers/office-cyan-glass-thumbnail.png",
+      "footprint_tiles": [
+        3,
+        3
+      ],
+      "native_tile_pixels": [
+        128,
+        64
+      ],
+      "size_pixels": [
+        384,
+        466
+      ],
+      "anchor_pixels": [
+        192,
+        462
+      ],
+      "cutout_anchor_pixels": [
+        150,
+        458
+      ],
+      "ground_opaque_fraction": 1.0,
+      "animation": "single daylight pose; no window-light animation",
+      "integration": "Create new late-game resource/building types or choose explicit existing late-game tiers in the current rewrite; do not overwrite low-rise starter homes."
+    },
+    {
+      "id": "office-charcoal-bronze",
+      "label": "Charcoal / bronze offices",
+      "suggested_role": "office",
+      "status": "art only; no gameplay or resource binding installed",
+      "file": "images/skyscrapers/office-charcoal-bronze.png",
+      "cutout_file": "images/skyscrapers/office-charcoal-bronze-cutout.png",
+      "thumbnail_file": "images/skyscrapers/office-charcoal-bronze-thumbnail.png",
+      "footprint_tiles": [
+        3,
+        3
+      ],
+      "native_tile_pixels": [
+        128,
+        64
+      ],
+      "size_pixels": [
+        384,
+        463
+      ],
+      "anchor_pixels": [
+        192,
+        459
+      ],
+      "cutout_anchor_pixels": [
+        150,
+        455
+      ],
+      "ground_opaque_fraction": 1.0,
+      "animation": "single daylight pose; no window-light animation",
+      "integration": "Create new late-game resource/building types or choose explicit existing late-game tiers in the current rewrite; do not overwrite low-rise starter homes."
+    },
+    {
+      "id": "office-art-deco",
+      "label": "Limestone Art Deco offices",
+      "suggested_role": "office",
+      "status": "art only; no gameplay or resource binding installed",
+      "file": "images/skyscrapers/office-art-deco.png",
+      "cutout_file": "images/skyscrapers/office-art-deco-cutout.png",
+      "thumbnail_file": "images/skyscrapers/office-art-deco-thumbnail.png",
+      "footprint_tiles": [
+        3,
+        3
+      ],
+      "native_tile_pixels": [
+        128,
+        64
+      ],
+      "size_pixels": [
+        384,
+        464
+      ],
+      "anchor_pixels": [
+        192,
+        460
+      ],
+      "cutout_anchor_pixels": [
+        150,
+        456
+      ],
+      "ground_opaque_fraction": 1.0,
+      "animation": "single daylight pose; no window-light animation",
+      "integration": "Create new late-game resource/building types or choose explicit existing late-game tiers in the current rewrite; do not overwrite low-rise starter homes."
+    }
+  ]
+}

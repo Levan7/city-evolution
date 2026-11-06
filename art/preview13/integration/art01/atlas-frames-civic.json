@@ -1,0 +1,70 @@
+{
+  "fire-station": [
+    {
+      "file": "art01-fire-station-00.png",
+      "x": "128",
+      "y": "152"
+    },
+    {
+      "file": "art01-fire-station-01.png",
+      "x": "128",
+      "y": "152"
+    },
+    {
+      "file": "art01-fire-station-02.png",
+      "x": "128",
+      "y": "152"
+    }
+  ],
+  "school": [
+    {
+      "file": "art01-school-00.png",
+      "x": "128",
+      "y": "149"
+    },
+    {
+      "file": "art01-school-01.png",
+      "x": "128",
+      "y": "149"
+    },
+    {
+      "file": "art01-school-02.png",
+      "x": "128",
+      "y": "149"
+    }
+  ],
+  "clinic": [
+    {
+      "file": "art01-clinic-00.png",
+      "x": "128",
+      "y": "153"
+    },
+    {
+      "file": "art01-clinic-01.png",
+      "x": "128",
+      "y": "153"
+    },
+    {
+      "file": "art01-clinic-02.png",
+      "x": "128",
+      "y": "153"
+    }
+  ],
+  "university": [
+    {
+      "file": "art01-university-00.png",
+      "x": "192",
+      "y": "213"
+    },
+    {
+      "file": "art01-university-01.png",
+      "x": "192",
+      "y": "213"
+    },
+    {
+      "file": "art01-university-02.png",
+      "x": "192",
+      "y": "213"
+    }
+  ]
+}

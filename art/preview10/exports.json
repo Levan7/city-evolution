@@ -1,0 +1,778 @@
+{
+  "pottery": {
+    "atlas": "pottery.png",
+    "grid": [
+      3,
+      1
+    ],
+    "footprint": 2,
+    "size": [
+      256,
+      230
+    ],
+    "anchor": [
+      128,
+      225
+    ],
+    "frames": [
+      {
+        "file": "revamp10-pottery-00.png",
+        "x": 128,
+        "y": 225
+      },
+      {
+        "file": "revamp10-pottery-01.png",
+        "x": 128,
+        "y": 225
+      },
+      {
+        "file": "revamp10-pottery-02.png",
+        "x": 128,
+        "y": 225
+      }
+    ]
+  },
+  "blacksmith": {
+    "atlas": "blacksmith.png",
+    "grid": [
+      3,
+      1
+    ],
+    "footprint": 2,
+    "size": [
+      256,
+      253
+    ],
+    "anchor": [
+      128,
+      249
+    ],
+    "frames": [
+      {
+        "file": "revamp10-blacksmith-00.png",
+        "x": 128,
+        "y": 249
+      },
+      {
+        "file": "revamp10-blacksmith-01.png",
+        "x": 128,
+        "y": 249
+      },
+      {
+        "file": "revamp10-blacksmith-02.png",
+        "x": 128,
+        "y": 249
+      }
+    ]
+  },
+  "mill": {
+    "atlas": "mill.png",
+    "grid": [
+      3,
+      1
+    ],
+    "footprint": 2,
+    "size": [
+      256,
+      264
+    ],
+    "anchor": [
+      128,
+      259
+    ],
+    "frames": [
+      {
+        "file": "revamp10-mill-00.png",
+        "x": 128,
+        "y": 259
+      },
+      {
+        "file": "revamp10-mill-01.png",
+        "x": 128,
+        "y": 259
+      },
+      {
+        "file": "revamp10-mill-02.png",
+        "x": 128,
+        "y": 259
+      }
+    ]
+  },
+  "commune": {
+    "atlas": "commune.png",
+    "grid": [
+      3,
+      1
+    ],
+    "footprint": 4,
+    "size": [
+      512,
+      501
+    ],
+    "anchor": [
+      256,
+      496
+    ],
+    "frames": [
+      {
+        "file": "revamp10-commune-00.png",
+        "x": 256,
+        "y": 496
+      },
+      {
+        "file": "revamp10-commune-01.png",
+        "x": 256,
+        "y": 496
+      },
+      {
+        "file": "revamp10-commune-02.png",
+        "x": 256,
+        "y": 496
+      }
+    ]
+  },
+  "ore-mine": {
+    "atlas": "ore-mine.png",
+    "grid": [
+      3,
+      1
+    ],
+    "footprint": 4,
+    "size": [
+      512,
+      469
+    ],
+    "anchor": [
+      256,
+      464
+    ],
+    "frames": [
+      {
+        "file": "revamp10-ore-mine-00.png",
+        "x": 256,
+        "y": 464
+      },
+      {
+        "file": "revamp10-ore-mine-01.png",
+        "x": 256,
+        "y": 464
+      },
+      {
+        "file": "revamp10-ore-mine-02.png",
+        "x": 256,
+        "y": 464
+      }
+    ]
+  },
+  "coal-mine": {
+    "atlas": "coal-mine.png",
+    "grid": [
+      1,
+      1
+    ],
+    "footprint": 4,
+    "size": [
+      512,
+      477
+    ],
+    "anchor": [
+      256,
+      473
+    ],
+    "frames": [
+      {
+        "file": "revamp10-coal-mine-00.png",
+        "x": 256,
+        "y": 473
+      }
+    ]
+  },
+  "landfill": {
+    "atlas": "landfill.png",
+    "grid": [
+      3,
+      1
+    ],
+    "footprint": 4,
+    "size": [
+      512,
+      352
+    ],
+    "anchor": [
+      256,
+      348
+    ],
+    "frames": [
+      {
+        "file": "revamp10-landfill-00.png",
+        "x": 256,
+        "y": 348
+      },
+      {
+        "file": "revamp10-landfill-01.png",
+        "x": 256,
+        "y": 348
+      },
+      {
+        "file": "revamp10-landfill-02.png",
+        "x": 256,
+        "y": 348
+      }
+    ]
+  },
+  "port": {
+    "atlas": "port.png",
+    "grid": [
+      1,
+      1
+    ],
+    "footprint": 4,
+    "size": [
+      512,
+      343
+    ],
+    "anchor": [
+      256,
+      339
+    ],
+    "frames": [
+      {
+        "file": "revamp10-port-00.png",
+        "x": 256,
+        "y": 339
+      }
+    ]
+  },
+  "sports": {
+    "atlas": "sports.png",
+    "grid": [
+      3,
+      1
+    ],
+    "footprint": 2,
+    "size": [
+      256,
+      227
+    ],
+    "anchor": [
+      128,
+      222
+    ],
+    "frames": [
+      {
+        "file": "revamp10-sports-00.png",
+        "x": 128,
+        "y": 222
+      },
+      {
+        "file": "revamp10-sports-01.png",
+        "x": 128,
+        "y": 222
+      },
+      {
+        "file": "revamp10-sports-02.png",
+        "x": 128,
+        "y": 222
+      }
+    ]
+  },
+  "monument": {
+    "atlas": "monument.png",
+    "grid": [
+      3,
+      2
+    ],
+    "footprint": 2,
+    "size": [
+      256,
+      250
+    ],
+    "anchor": [
+      128,
+      246
+    ],
+    "frames": [
+      {
+        "file": "revamp10-monument-00.png",
+        "x": 128,
+        "y": 246
+      },
+      {
+        "file": "revamp10-monument-01.png",
+        "x": 128,
+        "y": 246
+      },
+      {
+        "file": "revamp10-monument-02.png",
+        "x": 128,
+        "y": 246
+      },
+      {
+        "file": "revamp10-monument-03.png",
+        "x": 128,
+        "y": 246
+      },
+      {
+        "file": "revamp10-monument-04.png",
+        "x": 128,
+        "y": 246
+      },
+      {
+        "file": "revamp10-monument-05.png",
+        "x": 128,
+        "y": 246
+      }
+    ]
+  },
+  "rocket": {
+    "atlas": "rocket.png",
+    "grid": [
+      4,
+      2
+    ],
+    "footprint": 4,
+    "size": [
+      512,
+      493
+    ],
+    "anchor": [
+      256,
+      489
+    ],
+    "frames": [
+      {
+        "file": "revamp10-rocket-00.png",
+        "x": 256,
+        "y": 489
+      },
+      {
+        "file": "revamp10-rocket-01.png",
+        "x": 256,
+        "y": 489
+      },
+      {
+        "file": "revamp10-rocket-02.png",
+        "x": 256,
+        "y": 489
+      },
+      {
+        "file": "revamp10-rocket-03.png",
+        "x": 256,
+        "y": 489
+      },
+      {
+        "file": "revamp10-rocket-04.png",
+        "x": 256,
+        "y": 489
+      },
+      {
+        "file": "revamp10-rocket-05.png",
+        "x": 256,
+        "y": 489
+      },
+      {
+        "file": "revamp10-rocket-06.png",
+        "x": 256,
+        "y": 489
+      },
+      {
+        "file": "revamp10-rocket-07.png",
+        "x": 256,
+        "y": 489
+      }
+    ]
+  },
+  "park": {
+    "atlas": "park.png",
+    "grid": [
+      1,
+      1
+    ],
+    "footprint": 1,
+    "size": [
+      128,
+      103
+    ],
+    "anchor": [
+      64,
+      98
+    ],
+    "frames": [
+      {
+        "file": "revamp10-park-00.png",
+        "x": 64,
+        "y": 98
+      }
+    ]
+  },
+  "shanty": {
+    "atlas": "shanty.png",
+    "grid": [
+      1,
+      1
+    ],
+    "footprint": 1,
+    "size": [
+      128,
+      124
+    ],
+    "anchor": [
+      64,
+      120
+    ],
+    "frames": [
+      {
+        "file": "revamp10-shanty-00.png",
+        "x": 64,
+        "y": 120
+      }
+    ]
+  },
+  "wind-turbine": {
+    "atlas": "wind-turbine.png",
+    "grid": [
+      3,
+      1
+    ],
+    "footprint": 2,
+    "size": [
+      256,
+      435
+    ],
+    "anchor": [
+      128,
+      431
+    ],
+    "frames": [
+      {
+        "file": "revamp10-wind-turbine-00.png",
+        "x": 128,
+        "y": 431
+      },
+      {
+        "file": "revamp10-wind-turbine-01.png",
+        "x": 128,
+        "y": 431
+      },
+      {
+        "file": "revamp10-wind-turbine-02.png",
+        "x": 128,
+        "y": 431
+      }
+    ]
+  },
+  "heavy-factory": {
+    "atlas": "heavy-factory.png",
+    "grid": [
+      3,
+      1
+    ],
+    "footprint": 4,
+    "size": [
+      512,
+      527
+    ],
+    "anchor": [
+      256,
+      523
+    ],
+    "frames": [
+      {
+        "file": "revamp10-heavy-factory-00.png",
+        "x": 256,
+        "y": 523
+      },
+      {
+        "file": "revamp10-heavy-factory-01.png",
+        "x": 256,
+        "y": 523
+      },
+      {
+        "file": "revamp10-heavy-factory-02.png",
+        "x": 256,
+        "y": 523
+      }
+    ]
+  },
+  "fire-station": {
+    "atlas": "fire-station.png",
+    "grid": [
+      3,
+      1
+    ],
+    "footprint": 2,
+    "size": [
+      256,
+      258
+    ],
+    "anchor": [
+      128,
+      253
+    ],
+    "frames": [
+      {
+        "file": "revamp10-fire-station-00.png",
+        "x": 128,
+        "y": 253
+      },
+      {
+        "file": "revamp10-fire-station-01.png",
+        "x": 128,
+        "y": 253
+      },
+      {
+        "file": "revamp10-fire-station-02.png",
+        "x": 128,
+        "y": 253
+      }
+    ]
+  },
+  "farm": {
+    "atlas": "farm.png",
+    "grid": [
+      3,
+      2
+    ],
+    "footprint": 4,
+    "size": [
+      512,
+      478
+    ],
+    "anchor": [
+      256,
+      473
+    ],
+    "frames": [
+      {
+        "file": "revamp10-farm-00.png",
+        "x": 256,
+        "y": 473
+      },
+      {
+        "file": "revamp10-farm-01.png",
+        "x": 256,
+        "y": 473
+      },
+      {
+        "file": "revamp10-farm-02.png",
+        "x": 256,
+        "y": 473
+      },
+      {
+        "file": "revamp10-farm-03.png",
+        "x": 256,
+        "y": 473
+      },
+      {
+        "file": "revamp10-farm-04.png",
+        "x": 256,
+        "y": 473
+      },
+      {
+        "file": "revamp10-farm-05.png",
+        "x": 256,
+        "y": 473
+      }
+    ]
+  },
+  "school": {
+    "atlas": "school.png",
+    "grid": [
+      3,
+      1
+    ],
+    "footprint": 2,
+    "size": [
+      256,
+      252
+    ],
+    "anchor": [
+      128,
+      247
+    ],
+    "frames": [
+      {
+        "file": "revamp10-school-00.png",
+        "x": 128,
+        "y": 247
+      },
+      {
+        "file": "revamp10-school-01.png",
+        "x": 128,
+        "y": 247
+      },
+      {
+        "file": "revamp10-school-02.png",
+        "x": 128,
+        "y": 247
+      }
+    ]
+  },
+  "park-lake": {
+    "atlas": "park-lake.png",
+    "grid": [
+      1,
+      1
+    ],
+    "footprint": 1,
+    "size": [
+      128,
+      110
+    ],
+    "anchor": [
+      64,
+      106
+    ],
+    "frames": [
+      {
+        "file": "revamp10-park-lake-00.png",
+        "x": 64,
+        "y": 106
+      }
+    ]
+  },
+  "factory": {
+    "atlas": "factory.png",
+    "grid": [
+      1,
+      1
+    ],
+    "footprint": 3,
+    "size": [
+      384,
+      243
+    ],
+    "anchor": [
+      192,
+      239
+    ],
+    "frames": [
+      {
+        "file": "revamp10-factory-00.png",
+        "x": 192,
+        "y": 239
+      }
+    ]
+  },
+  "coal-plant": {
+    "atlas": "coal-plant.png",
+    "grid": [
+      1,
+      1
+    ],
+    "footprint": 4,
+    "size": [
+      512,
+      426
+    ],
+    "anchor": [
+      256,
+      422
+    ],
+    "frames": [
+      {
+        "file": "revamp10-coal-plant-00.png",
+        "x": 256,
+        "y": 422
+      }
+    ]
+  },
+  "native-car": {
+    "atlas": "native-car.png",
+    "grid": [
+      4,
+      4
+    ],
+    "footprint": 0,
+    "size": [
+      48,
+      45
+    ],
+    "anchor": [
+      24,
+      40
+    ],
+    "frames": [
+      {
+        "file": "revamp10-native-car-00.png",
+        "x": 25,
+        "y": 47
+      },
+      {
+        "file": "revamp10-native-car-01.png",
+        "x": 24,
+        "y": 47
+      },
+      {
+        "file": "revamp10-native-car-02.png",
+        "x": 24,
+        "y": 47
+      },
+      {
+        "file": "revamp10-native-car-03.png",
+        "x": 23,
+        "y": 49
+      },
+      {
+        "file": "revamp10-native-car-04.png",
+        "x": 24,
+        "y": 47
+      },
+      {
+        "file": "revamp10-native-car-05.png",
+        "x": 23,
+        "y": 47
+      },
+      {
+        "file": "revamp10-native-car-06.png",
+        "x": 25,
+        "y": 47
+      },
+      {
+        "file": "revamp10-native-car-07.png",
+        "x": 26,
+        "y": 49
+      },
+      {
+        "file": "revamp10-native-car-08.png",
+        "x": 24,
+        "y": 49
+      },
+      {
+        "file": "revamp10-native-car-09.png",
+        "x": 26,
+        "y": 49
+      },
+      {
+        "file": "revamp10-native-car-10.png",
+        "x": 25,
+        "y": 47
+      },
+      {
+        "file": "revamp10-native-car-11.png",
+        "x": 23,
+        "y": 47
+      },
+      {
+        "file": "revamp10-native-car-12.png",
+        "x": 27,
+        "y": 46
+      },
+      {
+        "file": "revamp10-native-car-13.png",
+        "x": 22,
+        "y": 45
+      },
+      {
+        "file": "revamp10-native-car-14.png",
+        "x": 22,
+        "y": 49
+      },
+      {
+        "file": "revamp10-native-car-15.png",
+        "x": 27,
+        "y": 49
+      }
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "public_name": "Church",
+  "public_plural": "Churches",
+  "files": [
+    {
+      "path": "src/lincity/modules/church.cpp",
+      "required": true,
+      "replacements": [
+        {
+          "old": "\"Georgian Orthodox church\",\"Georgian Orthodox churches\"",
+          "new": "\"Church\",\"Churches\""
+        }
+      ]
+    },
+    {
+      "path": "data/help/en/church.xml",
+      "required": true,
+      "replacements": [
+        {
+          "old": "Georgian Orthodox church",
+          "new": "Church"
+        }
+      ]
+    },
+    {
+      "path": "README.md",
+      "required": false,
+      "replacements": [
+        {
+          "old": "a Georgian Orthodox church",
+          "new": "a church"
+        }
+      ]
+    },
+    {
+      "path": "CHANGELOG-Preview-11.md",
+      "required": false,
+      "replacements": [
+        {
+          "old": "## Georgian Orthodox Christian church",
+          "new": "## Church"
+        },
+        {
+          "old": "Find it in Civic. The model has Georgian stonework, a conical teal roof, a bell tower and visible Christian crosses.",
+          "new": "Find Church in Civic. The existing church model is retained."
+        }
+      ]
+    }
+  ]
+}

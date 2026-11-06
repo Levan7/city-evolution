@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Document>
+  <Paragraph style="htitle">Public transport</Paragraph>
+  <img src="images/readable/BPMMetroTrackButton-building.png" width="208" height="180" />
+  <Paragraph style="hp">Build homes near one stop and jobs near another. Bus stops use connected roads. Railway stations use connected rail. Underground metro and elevated metro use their own track layers. Paint tracks with the matching tool.</Paragraph>
+  <Paragraph style="hp">Stations need workers. Rail and metro need electricity. Terminals offer more capacity than small bus stops. An isolated stop does not serve passengers.</Paragraph>
+  <Paragraph style="hp">Transport earns fares and costs money to run. The report shows estimated journeys per month, not individually simulated citizens. Covered homes receive an attractiveness bonus.</Paragraph>
+  <Paragraph style="hp">Use the Transport button at the top right. Select underground or elevated view before removing tracks; the bulldozer removes that layer first and keeps surface buildings.</Paragraph>
+</Document>

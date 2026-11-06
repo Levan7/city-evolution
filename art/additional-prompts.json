@@ -1,0 +1,72 @@
+[
+  {
+    "name": "residence-basic-low",
+    "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-4676bd69-6652-413a-abb3-70717f86efb9.png",
+    "prompt": "Use case: stylized-concept. Asset type: isolated game building sprite. A three-by-three tile residential plot with three modest single-storey cream cottages, terracotta roofs, shared garden and gravel paths. Low-density basic homes. Coherent hand-painted miniature 3D style, cream plaster and warm brick, teal and terracotta palette, orthographic 2:1 isometric ground axes 26.565 degrees, verticals vertical. Soft upper-left afternoon illumination. Entire complete square plot centered, no cropping, transparent alpha background, no backdrop, no text, no logo, no exterior shadows, crisp edges and no glow or haze."
+  },
+  {
+    "name": "residence-basic-medium",
+    "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-192ac819-a3f8-4237-9370-226edbc00d3a.png",
+    "prompt": "Use case: stylized-concept. Asset type: isolated game building sprite. A three-by-three tile residential plot with a pair of two-storey attached Georgian courtyard houses, terracotta pitched roofs, wooden balconies and a shared courtyard. Medium-density basic homes. Coherent hand-painted miniature 3D style, cream plaster and warm brick, teal and terracotta palette, orthographic 2:1 isometric ground axes 26.565 degrees, verticals vertical. Soft upper-left afternoon illumination. Entire complete square plot centered, no cropping, transparent alpha background, no backdrop, no text, no logo, no exterior shadows, crisp edges and no glow or haze."
+  },
+  {
+    "name": "residence-basic-high",
+    "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-fa289303-b731-4882-b4f9-88ca7eb4a547.png",
+    "prompt": "Use case: stylized-concept. Asset type: isolated game building sprite. A three-by-three tile residential plot with a compact four-storey brick apartment courtyard block, warm plaster, terracotta roofs and modest balconies. High-density basic homes. Coherent hand-painted miniature 3D style, cream plaster and warm brick, teal and terracotta palette, orthographic 2:1 isometric ground axes 26.565 degrees, verticals vertical. Soft upper-left afternoon illumination. Entire complete square plot centered, no cropping, transparent alpha background, no backdrop, no text, no logo, no exterior shadows, crisp edges and no glow or haze."
+  },
+  {
+    "name": "residence-modern-low",
+    "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-5dbd9980-00e9-4634-ad4a-620e64a5369f.png",
+    "prompt": "Use case: stylized-concept. Asset type: isolated game building sprite. A three-by-three tile residential plot with two modern detached cream-and-glass villas, flat teal roofs, solar panels and generous gardens. Low-density modern housing. Coherent hand-painted miniature 3D style, cream plaster and warm brick, teal and terracotta palette, orthographic 2:1 isometric ground axes 26.565 degrees, verticals vertical. Soft upper-left afternoon illumination. Entire complete square plot centered, no cropping, transparent alpha background, no backdrop, no text, no logo, no exterior shadows, crisp edges and no glow or haze."
+  },
+  {
+    "name": "residence-modern-medium",
+    "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-c8b39734-2376-4b03-acbb-993cdeb79c67.png",
+    "prompt": "Use case: stylized-concept. Asset type: isolated game building sprite. A three-by-three tile residential plot with two three-storey modern cream apartment buildings, teal roof terraces, glass balconies and a small shared garden. Medium-density modern housing. Coherent hand-painted miniature 3D style, cream plaster and warm brick, teal and terracotta palette, orthographic 2:1 isometric ground axes 26.565 degrees, verticals vertical. Soft upper-left afternoon illumination. Entire complete square plot centered, no cropping, transparent alpha background, no backdrop, no text, no logo, no exterior shadows, crisp edges and no glow or haze."
+  },
+  {
+    "name": "residence-modern-high",
+    "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-227f2ab1-662a-406a-a54f-0d9b8ed46574.png",
+    "prompt": "Use case: stylized-concept. Asset type: isolated game building sprite. A three-by-three tile residential plot with two elegant six-storey cream-and-brick apartment towers, teal flat roofs, glass balconies and landscaped podium courtyard. High-density modern housing. Coherent hand-painted miniature 3D style, cream plaster and warm brick, teal and terracotta palette, orthographic 2:1 isometric ground axes 26.565 degrees, verticals vertical. Soft upper-left afternoon illumination. Entire complete square plot centered, no cropping, transparent alpha background, no backdrop, no text, no logo, no exterior shadows, crisp edges and no glow or haze."
+  },
+  {
+    "name": "substation",
+    "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-7585298e-7328-4861-b0cc-eb536a7cdd3f.png",
+    "prompt": "Use case: stylized-concept. Asset type: isolated game building sprite. An electrical substation on a two-by-two tile plot, teal transformers, cream utility cabin, ceramic insulators and small fenced switching yard. No power lines extending beyond the plot. Coherent hand-painted miniature 3D style, cream plaster and warm brick, teal and terracotta palette, orthographic 2:1 isometric ground axes 26.565 degrees, verticals vertical. Soft upper-left afternoon illumination. Entire complete square plot centered, no cropping, transparent alpha background, no backdrop, no text, no logo, no exterior shadows, crisp edges and no glow or haze."
+  },
+  {
+    "name": "water-well",
+    "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-242c7924-055c-4825-ba2b-60fbca848a68.png",
+    "prompt": "Use case: stylized-concept. Asset type: isolated game building sprite. A public water well and small cream pumping shed, teal canopy, stone base and a neat grass plot of two-by-two tiles. Coherent hand-painted miniature 3D style, cream plaster and warm brick, teal and terracotta palette, orthographic 2:1 isometric ground axes 26.565 degrees, verticals vertical. Soft upper-left afternoon illumination. Entire complete square plot centered, no cropping, transparent alpha background, no backdrop, no text, no logo, no exterior shadows, crisp edges and no glow or haze."
+  },
+  {
+    "name": "coal-plant",
+    "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-74b0dc23-4dde-4b06-9430-7d380bd72582.png",
+    "prompt": "Use case: stylized-concept. Asset type: isolated game building sprite. A coal-fired city power station on a four-by-four tile plot, red-brick turbine hall, teal industrial roofs, two tall brick smokestacks, coal storage and cooling equipment. No smoke obscuring the building. Coherent hand-painted miniature 3D style, cream plaster and warm brick, teal and terracotta palette, orthographic 2:1 isometric ground axes 26.565 degrees, verticals vertical. Soft upper-left afternoon illumination. Entire complete square plot centered, no cropping, transparent alpha background, no backdrop, no text, no logo, no exterior shadows, crisp edges and no glow or haze."
+  },
+  {
+    "name": "heavy-factory",
+    "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-b1140832-2c59-4fdc-b834-dd5011160331.png",
+    "prompt": "Use case: stylized-concept. Asset type: isolated game building sprite. A large steelworks on a four-by-four tile plot, red-brick industrial halls, teal sawtooth roofs, blast-furnace pipes, two chimneys and neat stacks of steel. No smoke obscuring it. Coherent hand-painted miniature 3D style, cream plaster and warm brick, teal and terracotta palette, orthographic 2:1 isometric ground axes 26.565 degrees, verticals vertical. Soft upper-left afternoon illumination. Entire complete square plot centered, no cropping, transparent alpha background, no backdrop, no text, no logo, no exterior shadows, crisp edges and no glow or haze."
+  },
+  {
+    "name": "recycling-center",
+    "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-9e672a2a-bb52-4260-adde-0d83741f809a.png",
+    "prompt": "Use case: stylized-concept. Asset type: isolated game building sprite. A recycling center on a two-by-two tile plot, cream warehouse with teal roof, sorted blue green and terracotta bins, covered loading area. No lettering. Coherent hand-painted miniature 3D style, cream plaster and warm brick, teal and terracotta palette, orthographic 2:1 isometric ground axes 26.565 degrees, verticals vertical. Soft upper-left afternoon illumination. Entire complete square plot centered, no cropping, transparent alpha background, no backdrop, no text, no logo, no exterior shadows, crisp edges and no glow or haze."
+  },
+  {
+    "name": "car-NE",
+    "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-076e8577-15bf-46a7-a1a2-fdf7b17ee4af.png",
+    "prompt": "Use case: precise-object-edit. Reference image is the teal-and-cream compact city car. Create a new directional game sprite of EXACTLY this car from another angle. Isometric orthographic 2:1 view with nose pointing upper-right; REAR closest to viewer, nose points away. Keep cream roof, teal body, warm brown interior and chrome details. One complete isolated car, no scenery, no road, no text, transparent alpha background, no cast shadow, generous padding. Do not simply mirror the reference front view to imply a rear view."
+  },
+  {
+    "name": "car-NW",
+    "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-fabd258e-fa3e-44ad-9ff4-927cdb96f1ae.png",
+    "prompt": "Use case: precise-object-edit. Reference image is the teal-and-cream compact city car. Create a new directional game sprite of EXACTLY this car from another angle. Isometric orthographic 2:1 view with nose pointing upper-left; REAR closest to viewer, nose points away. Keep cream roof, teal body, warm brown interior and chrome details. One complete isolated car, no scenery, no road, no text, transparent alpha background, no cast shadow, generous padding. Do not simply mirror the reference front view to imply a rear view."
+  },
+  {
+    "name": "car-SE",
+    "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-f140e9ee-c754-4173-af57-c4bc46fc9278.png",
+    "prompt": "Use case: precise-object-edit. Reference image is the teal-and-cream compact city car. Create a new directional game sprite of EXACTLY this car from another angle. Isometric orthographic 2:1 view with nose pointing lower-right; FRONT closest to viewer, nose points toward viewer. Keep cream roof, teal body, warm brown interior and chrome details. One complete isolated car, no scenery, no road, no text, transparent alpha background, no cast shadow, generous padding. Do not simply mirror the reference front view to imply a rear view."
+  }
+]

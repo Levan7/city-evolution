@@ -1,0 +1,20 @@
+CITY EVOLUTION - PREVIEW 9 MENU STARTUP HOTFIX
+
+Fixes the launch.log exception: no style "boxtext".
+The redesigned main menu omitted the style required by Load city and Save city.
+Also restores dialogbutton, required by confirmation and statistics dialogs.
+Both styles are registered before any imported menu pages load.
+The startup diagnostic now checks the actual package SHA256SUMS.txt instead of
+older executable hashes and obsolete DLL requirements.
+
+The game executable, simulation, artwork, saved cities and menu layout are unchanged.
+No executable rebuild is needed for this XML resource correction.
+
+Validation: the GUI style check reproduces the missing styles before the fix and
+passes afterward for source and packaged XML, with translations enabled and disabled.
+This check does not run Windows graphics or prove that no other runtime issue exists.
+
+For an existing Preview 9 installation: close the game, extract the hotfix ZIP
+into the CityPreview folder containing Play.cmd, and allow the included files
+to replace their matching copies. Then run Play.cmd.
+For the full corrected portable ZIP: extract into a new folder and run Play.cmd.

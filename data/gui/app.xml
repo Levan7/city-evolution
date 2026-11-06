@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="identity.xsl" type="text/xsl"?>
+<gui>
+  <DefineStyle name="title" color="white" font-size="20" margin-left="7" />
+  <DefineStyle name="message" color="#edf0df" font-size="18" margin-left="10" margin-right="10" />
+  <DefineStyle name="messagebold" color="#e0eff8" font-size="20" font-weight="bold" margin-bottom="10" />
+  <DefineStyle name="tooltip" color="#102333" font-size="18" background="#fff5d6ff" />
+  <DefineStyle name="helpdocument" font-family="sans" background="#ffffff22" font-size="16" color="#e0eff8" />
+  <DefineStyle name="htitle" style="helpdocument" font-size="20" margin-top="5" halign="center" margin-bottom="10" />
+  <DefineStyle name="hsubtitle" style="helpdocument" font-size="18" margin-bottom="5" margin-top="10" />
+  <DefineStyle name="hp" style="helpdocument" margin-left="15" margin-right="10" margin-bottom="5" />
+  <DefineStyle name="list" style="helpdocument" margin-left="10" />
+  <GameView name="GameView" />
+  <TableLayout rows="3" cols="3">
+    <colsize col="1" fixed="208" />
+    <colsize col="2" relative="1" />
+    <colsize col="3" fixed="264" />
+    <rowsize row="1" fixed="124" />
+    <rowsize row="3" fixed="40" />
+    <cell row="1" col="3" halign="right" valign="center">
+      <TableLayout rows="2" cols="1">
+        <rowsize row="1" fixed="44" />
+        <rowsize row="2" fixed="44" />
+        <cell row="1" col="1" halign="right" valign="center">
+          <Button name="MayorButton" width="200" height="36">
+            <image src="images/evolution/wide-normal.png" width="200" height="36" resizable="yes" />
+            <image-hover src="images/evolution/wide-hover.png" width="200" height="36" resizable="yes" />
+            <image-clicked src="images/evolution/wide-clicked.png" width="200" height="36" resizable="yes" />
+            <text-caption color="#edf1df" halign="center" font-size="16">Mayor</text-caption>
+          </Button>
+        </cell>
+        <cell row="2" col="1" halign="right" valign="center">
+          <Button name="TransportButton" width="200" height="36">
+            <image src="images/evolution/wide-normal.png" width="200" height="36" resizable="yes" />
+            <image-hover src="images/evolution/wide-hover.png" width="200" height="36" resizable="yes" />
+            <image-clicked src="images/evolution/wide-clicked.png" width="200" height="36" resizable="yes" />
+            <text-caption color="#edf1df" halign="center" font-size="16">Transport report</text-caption>
+          </Button>
+        </cell>
+      </TableLayout>
+    </cell>
+    <cell row="1" col="1" rowspan="2" halign="left" valign="top">
+      <TableLayout rows="3" cols="1">
+        <rowsize row="1" fixed="360" />
+        <rowsize row="3" fixed="156" />
+        <cell row="1" col="1" halign="left" valign="top">
+          <Import src="gui/buttonpanel.xml" />
+        </cell>
+        <cell row="3" col="1" halign="left" valign="bottom">
+          <Import src="gui/speedpanel.xml" />
+        </cell>
+      </TableLayout>
+    </cell>
+    <cell row="2" col="3" valign="bottom" halign="right">
+      <Import src="gui/minimap.xml" />
+    </cell>
+    <cell row="3" col="1" valign="bottom" colspan="3">
+      <TableLayout rows="1" cols="3" border="false">
+        <colsize col="1" fixed="130" />
+        <colsize col="3" fixed="220" />
+        <cell row="1" col="1" valign="bottom">
+          <Document background="#102333ee">
+            <Paragraph halign="left" color="#e0eff8" name="dateParagraph" height="40" font-size="16">January 0000</Paragraph>
+          </Document>
+        </cell>
+        <cell row="1" col="2" valign="bottom">
+          <Document background="#102333ee">
+            <Paragraph halign="left" color="#e0eff8" name="statusParagraph" height="40" font-size="16">Welcome to City Evolution</Paragraph>
+          </Document>
+        </cell>
+        <cell row="1" col="3" valign="bottom">
+          <Document background="#102333ee">
+            <Paragraph halign="right" color="#e0eff8" name="moneyParagraph" height="40" font-size="16">-123 456789$</Paragraph>
+          </Document>
+        </cell>
+      </TableLayout>
+    </cell>
+  </TableLayout>
+  <WindowManager name="windowManager" />
+  <TooltipManager />
+</gui>

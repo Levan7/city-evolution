@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet href="identity.xsl" type="text/xsl"?><Panel width="200" height="156">
+  <FilledRectangle color="#102333ee"/>
+  <TableLayout rows="4" cols="4">
+    <rowsize row="1" fixed="24"/>
+    <rowsize row="2" fixed="40"/>
+    <rowsize row="3" fixed="44"/>
+    <rowsize row="4" fixed="44"/>
+    <cell row="1" col="1" colspan="4">
+      <Paragraph color="#bdd4c8" font-size="14" halign="center">GAME SPEED</Paragraph>
+    </cell>
+    <cell row="2" col="1" halign="center" valign="center">
+      <CheckButton name="SpeedPauseButton" width="44" height="36">
+        <image src="images/evolution/speed-normal.png" width="44" height="36" resizable="yes"/>
+        <image-hover src="images/evolution/speed-hover.png" width="44" height="36" resizable="yes"/>
+        <image-checked src="images/evolution/speed-checked.png" width="44" height="36" resizable="yes"/>
+        <image-caption src="images/evolution/SpeedPauseButton.png" width="44" height="36" resizable="yes"/>
+        <tooltip>Pause</tooltip>
+      </CheckButton>
+    </cell>
+    <cell row="2" col="2" halign="center" valign="center">
+      <CheckButton name="SpeedNormalButton" width="44" height="36">
+        <image src="images/evolution/speed-normal.png" width="44" height="36" resizable="yes"/>
+        <image-hover src="images/evolution/speed-hover.png" width="44" height="36" resizable="yes"/>
+        <image-checked src="images/evolution/speed-checked.png" width="44" height="36" resizable="yes"/>
+        <image-caption src="images/evolution/SpeedNormalButton.png" width="44" height="36" resizable="yes"/>
+        <tooltip>Play</tooltip>
+      </CheckButton>
+    </cell>
+    <cell row="2" col="3" halign="center" valign="center">
+      <CheckButton name="SpeedFastButton" width="44" height="36">
+        <image src="images/evolution/speed-normal.png" width="44" height="36" resizable="yes"/>
+        <image-hover src="images/evolution/speed-hover.png" width="44" height="36" resizable="yes"/>
+        <image-checked src="images/evolution/speed-checked.png" width="44" height="36" resizable="yes"/>
+        <image-caption src="images/evolution/SpeedFastButton.png" width="44" height="36" resizable="yes"/>
+        <tooltip>Fast forward</tooltip>
+      </CheckButton>
+    </cell>
+    <cell row="2" col="4" halign="center" valign="center">
+      <CheckButton name="SpeedFastestButton" width="44" height="36">
+        <image src="images/evolution/speed-normal.png" width="44" height="36" resizable="yes"/>
+        <image-hover src="images/evolution/speed-hover.png" width="44" height="36" resizable="yes"/>
+        <image-checked src="images/evolution/speed-checked.png" width="44" height="36" resizable="yes"/>
+        <image-caption src="images/evolution/SpeedFastestButton.png" width="44" height="36" resizable="yes"/>
+        <tooltip>Fastest forward</tooltip>
+      </CheckButton>
+    </cell>
+    <cell row="3" col="1" colspan="4" halign="center" valign="center">
+      <Button name="CityAdvisorsButton" width="192" height="34">
+        <image src="images/evolution/wide-normal.png" width="192" height="34" resizable="yes"/>
+        <image-hover src="images/evolution/wide-hover.png" width="192" height="34" resizable="yes"/>
+        <image-clicked src="images/evolution/wide-clicked.png" width="192" height="34" resizable="yes"/>
+        <text-caption color="#edf1df" halign="center" font-size="16">City Hall</text-caption>
+      </Button>
+    </cell>
+    <cell row="4" col="1" colspan="4" halign="center" valign="center">
+      <Button name="GameMenuButton" width="192" height="34">
+        <image src="images/evolution/wide-normal.png" width="192" height="34" resizable="yes"/>
+        <image-hover src="images/evolution/wide-hover.png" width="192" height="34" resizable="yes"/>
+        <image-clicked src="images/evolution/wide-clicked.png" width="192" height="34" resizable="yes"/>
+        <text-caption color="#edf1df" halign="center" font-size="16">Menu / Save city</text-caption>
+      </Button>
+    </cell>
+  </TableLayout>
+</Panel>

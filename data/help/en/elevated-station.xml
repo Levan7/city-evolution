@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Document style="helpdocument">
+  <Paragraph style="htitle">Elevated station</Paragraph>
+  <img src="images/tiles/lower-revamp-elevated-station.png" width="220" height="125" />
+  <Paragraph style="hp">Build homes near this stop and jobs near another stop on the same connected network. Buses use roads, railway stations use rails; underground and elevated stations use their matching track layer. Staff and supplies are required. Open Transport report for ridership and operating costs.</Paragraph>
+</Document>

@@ -1,0 +1,45 @@
+appimagetool, continuous build (git version 11d54c9), build 370 built on 2026-11-06 00:47:16 UTC
+Using architecture x86_64
+/workspace/scratch/085b248c71d7/preview14-work/CityEvolution.AppDir should be packaged as /workspace/scratch/085b248c71d7/preview14-work/CityEvolution-Preview-14-Linux-x86_64.AppImage
+Creating .DirIcon symlink based on information from desktop file
+Generating squashfs...
+Downloading runtime file from https://github.com/AppImage/type2-runtime/releases/download/continuous/runtime-x86_64
+Downloaded runtime binary of size 944632
+Parallel mksquashfs: Using 9 processors
+Creating 4.0 filesystem on /workspace/scratch/085b248c71d7/preview14-work/CityEvolution-Preview-14-Linux-x86_64.AppImage, block size 131072.
+[=============================================================-] 3533/3533 100%
+
+Exportable Squashfs 4.0 filesystem, zstd compressed, data block size 131072
+	compressed data, compressed metadata, compressed fragments,
+	compressed xattrs, compressed ids
+	duplicates are removed
+Filesystem size 102041.55 Kbytes (99.65 Mbytes)
+	72.48% of uncompressed filesystem size (140789.72 Kbytes)
+Inode table size 23450 bytes (22.90 Kbytes)
+	23.91% of uncompressed inode table size (98076 bytes)
+Directory table size 23507 bytes (22.96 Kbytes)
+	31.87% of uncompressed directory table size (73751 bytes)
+Number of duplicate files found 175
+Number of inodes 2942
+Number of files 2832
+Number of fragments 365
+Number of symbolic links 30
+Number of device nodes 0
+Number of fifo nodes 0
+Number of socket nodes 0
+Number of directories 80
+Number of hard-links 0
+Number of ids (unique uids + gids) 1
+Number of uids 1
+	root (0)
+Number of gids 1
+	root (0)
+Embedding ELF...
+Marking the AppImage as executable...
+Embedding MD5 digest
+Success
+
+Please consider submitting your AppImage to appimage.github.io, the crowd-sourced
+central directory of available AppImages, by opening a pull request
+at https://github.com/AppImage/appimage.github.io
+BUNDLED 30 libraries

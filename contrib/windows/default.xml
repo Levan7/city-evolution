@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lc-config>
+  <video>
+    <x>1280</x><y>800</y>
+    <useOpenGL>no</useOpenGL><fullscreen>no</fullscreen>
+  </video>
+  <audio>
+    <soundEnabled>yes</soundEnabled><soundVolume>70</soundVolume>
+    <musicEnabled>yes</musicEnabled><musicVolume>35</musicVolume>
+    <musicTheme>default</musicTheme>
+  </audio>
+  <game>
+    <language>en</language><WorldSideLen>100</WorldSideLen>
+    <carsEnabled>yes</carsEnabled>
+    <startWithVillage>no</startWithVillage><startWithoutTrees>no</startWithoutTrees>
+  </game>
+</lc-config>

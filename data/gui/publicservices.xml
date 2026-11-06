@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="identity.xsl" type="text/xsl"?>
+<Window name="PublicServices" width="760" height="600" border="12" titlesize="30" resizable="no">
+  <title>
+    <Paragraph color="#ffffff" font-size="21">BUDGET / PUBLIC SERVICES</Paragraph>
+  </title>
+  <background>
+    <FilledRectangle color="#14252dff" />
+  </background>
+  <title-background>
+    <FilledRectangle color="#29463fff" />
+  </title-background>
+  <closebutton>
+    <text color="white">X</text>
+  </closebutton>
+  <contents>
+    <TableLayout rows="6" cols="2">
+      <rowsize row="1" fixed="38" />
+      <rowsize row="2" fixed="38" />
+      <rowsize row="3" fixed="40" />
+      <rowsize row="5" fixed="42" />
+      <rowsize row="6" fixed="40" />
+      <cell row="1" col="1" colspan="2" halign="center" valign="center">
+        <Paragraph name="ServiceSummary" color="#edf0df" font-size="16">Budget</Paragraph>
+      </cell>
+      <cell row="2" col="1" colspan="2" halign="center" valign="center">
+        <Paragraph name="ServiceHealth" color="#edf0df" font-size="16">Health</Paragraph>
+      </cell>
+      <cell row="3" col="1" colspan="2" halign="center" valign="center">
+        <Button name="FullAutonomy" width="688" height="34">
+          <image src="images/readable/plate-320-normal.png" resizable="yes" />
+          <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+          <text-caption color="#ffffff" halign="center" font-size="16">Full autonomy: OFF</text-caption>
+        </Button>
+      </cell>
+      <cell row="4" col="1" colspan="2" halign="center" valign="center">
+        <SwitchComponent name="ServicePages">
+          <Panel name="BudgetPage" resizable="yes">
+            <TableLayout rows="9" cols="2">
+              <rowsize row="1" fixed="38" />
+              <rowsize row="2" fixed="38" />
+              <rowsize row="3" fixed="38" />
+              <rowsize row="4" fixed="38" />
+              <rowsize row="5" fixed="38" />
+              <rowsize row="6" fixed="38" />
+              <rowsize row="7" fixed="38" />
+              <rowsize row="8" fixed="38" />
+              <rowsize row="9" fixed="38" />
+              <cell row="1" col="1" colspan="1" halign="center" valign="center">
+                <Button name="TaxDown" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Income tax -</text-caption>
+                </Button>
+              </cell>
+              <cell row="1" col="2" colspan="1" halign="center" valign="center">
+                <Button name="TaxUp" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Income tax +</text-caption>
+                </Button>
+              </cell>
+              <cell row="2" col="1" colspan="1" halign="center" valign="center">
+                <Button name="AutoTax" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Mayor taxes: OFF</text-caption>
+                </Button>
+              </cell>
+              <cell row="2" col="2" colspan="1" halign="center" valign="center">
+                <Button name="AutoBudget" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Mayor budgets: OFF</text-caption>
+                </Button>
+              </cell>
+              <cell row="3" col="1" colspan="1" halign="center" valign="center">
+                <Button name="EducationBudget" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Education: 100%</text-caption>
+                </Button>
+              </cell>
+              <cell row="3" col="2" colspan="1" halign="center" valign="center">
+                <Button name="HealthBudget" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Healthcare: 100%</text-caption>
+                </Button>
+              </cell>
+              <cell row="4" col="1" colspan="1" halign="center" valign="center">
+                <Button name="FireBudget" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Fire service: 100%</text-caption>
+                </Button>
+              </cell>
+              <cell row="4" col="2" colspan="1" halign="center" valign="center">
+                <Button name="PoliceBudget" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Police: 100%</text-caption>
+                </Button>
+              </cell>
+              <cell row="5" col="1" colspan="1" halign="center" valign="center">
+                <Button name="SocialDown" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Social support -</text-caption>
+                </Button>
+              </cell>
+              <cell row="5" col="2" colspan="1" halign="center" valign="center">
+                <Button name="SocialUp" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Social support +</text-caption>
+                </Button>
+              </cell>
+              <cell row="6" col="1" colspan="1" halign="center" valign="center">
+                <Button name="OpenMayorArea" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Mayor area and settings</text-caption>
+                </Button>
+              </cell>
+              <cell row="6" col="2" colspan="1" halign="center" valign="center">
+                <Button name="TaxCeiling" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Tax ceiling: 15%</text-caption>
+                </Button>
+              </cell>
+              <cell row="7" col="1" colspan="1" halign="center" valign="center">
+                <Button name="ReserveDown" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Cash reserve -</text-caption>
+                </Button>
+              </cell>
+              <cell row="7" col="2" colspan="1" halign="center" valign="center">
+                <Button name="ReserveUp" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Cash reserve +</text-caption>
+                </Button>
+              </cell>
+              <cell row="8" col="1" colspan="1" halign="center" valign="center">
+                <Button name="BusinessDown" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Goods tax -</text-caption>
+                </Button>
+              </cell>
+              <cell row="8" col="2" colspan="1" halign="center" valign="center">
+                <Button name="BusinessUp" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Goods tax +</text-caption>
+                </Button>
+              </cell>
+              <cell row="9" col="1" halign="center" valign="center">
+                <Button name="FluToggle" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" resizable="yes" />
+                  <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+                  <text-caption color="#ffffff" halign="center" font-size="16">Flu transmission: ON</text-caption>
+                </Button>
+              </cell>
+              <cell row="9" col="2">
+                <Paragraph color="#edf0df" font-size="14">Full autonomy controls building and funding.</Paragraph>
+              </cell>
+            </TableLayout>
+          </Panel>
+        </SwitchComponent>
+      </cell>
+      <cell row="5" col="1" colspan="2" halign="center" valign="center">
+        <Paragraph name="ServiceNote" color="#edf0df" font-size="14">Roads speed up crews; off-road travel is slower. Water needs a crossing.</Paragraph>
+      </cell>
+      <cell row="6" col="1" colspan="2" halign="center" valign="center">
+        <Button name="ServicesClose" width="320" height="34">
+          <image src="images/readable/plate-320-normal.png" resizable="yes" />
+          <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+          <text-caption color="#ffffff" halign="center" font-size="16">Back to my city</text-caption>
+        </Button>
+      </cell>
+    </TableLayout>
+  </contents>
+</Window>

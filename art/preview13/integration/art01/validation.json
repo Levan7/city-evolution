@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "base": "Preview 11 source archive version 12, 5 November 2026",
+  "resource_families_changed": 56,
+  "resource_image_slots_changed": 161,
+  "exported_png_files": 332,
+  "native_frame_counts_preserved_for_all_resources": true,
+  "patched_resource_images_match": true,
+  "all_resource_and_new_help_images_resolve": true,
+  "ground_coverage": {
+    "records": 14,
+    "minimum_opaque_fraction": 1.0
+  },
+  "merge_rehearsal": "Applied twice to separate complete source copy; second application changes zero bindings/help documents.",
+  "source_files_hashed": 240,
+  "all_source_files_unchanged": true,
+  "runtime_limit": "No Windows graphical run claimed. Smoke and pedestrian rendering require integration by code rewrite.",
+  "errors": [],
+  "preexisting_help_xml_issues": [
+    {
+      "file": "data/help/tr/industryl.xml",
+      "error": "mismatched tag: line 21, column 2"
+    },
+    {
+      "file": "data/help/tr/industryh.xml",
+      "error": "mismatched tag: line 21, column 2"
+    },
+    {
+      "file": "data/help/tr/port.xml",
+      "error": "not well-formed (invalid token): line 21, column 1"
+    }
+  ]
+}

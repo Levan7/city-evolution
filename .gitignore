@@ -1,0 +1,7 @@
+# Build Files
+/build/
+
+/build/
+*.AppImage
+/*.zip
+/*.tar.xz

@@ -1,0 +1,2 @@
+PASS packaged native Wayland game under Weston headless using inherited Wayland socket, 3072x1590, scale1.75, no DISPLAY or development library paths; graphical volume controls and graceful exit
+PASS packaged AppImage with native Wayland: automatic PulseAudio, non-zero PCM peak=19725, 30 music+30 effects graphical plus clicks saved volumes100, graceful exit

@@ -1,0 +1,5 @@
+{
+  "woman": "Generated 4 directions \u00d7 4 walking phases, exported to 16\u00d724 RGBA with 18px visible figure; mixed with existing men by stable actor appearance seed.",
+  "inventory": "Generated food/goods/ore/coal sprites at low/medium/full stock, one constant export scale per material, 50\u00d750 canvas; selected from actual building inventory or native market ratio.",
+  "existing_states": "Original module state transitions and animation slot counts remain unchanged. Existing farm, workshop, mine and windmill variations remain installed. New stock overlays distinguish matching states without replacing whole buildings."
+}

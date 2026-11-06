@@ -1,0 +1,70 @@
+[
+  {
+    "id": "gas-streetlamp",
+    "file": "images/lighting/gas-streetlamp.png",
+    "size": [
+      9,
+      36
+    ],
+    "anchor": [
+      4,
+      35
+    ],
+    "light_point": [
+      4,
+      9
+    ],
+    "placement": "optional fixture; attach to actual street/service infrastructure in the audited code; do not scatter on empty wilderness"
+  },
+  {
+    "id": "electric-streetlamp",
+    "file": "images/lighting/electric-streetlamp.png",
+    "size": [
+      15,
+      40
+    ],
+    "anchor": [
+      2,
+      39
+    ],
+    "light_point": [
+      12,
+      5
+    ],
+    "placement": "optional fixture; attach to actual street/service infrastructure in the audited code; do not scatter on empty wilderness"
+  },
+  {
+    "id": "wall-lantern",
+    "file": "images/lighting/wall-lantern.png",
+    "size": [
+      15,
+      18
+    ],
+    "anchor": [
+      1,
+      17
+    ],
+    "light_point": [
+      11,
+      7
+    ],
+    "placement": "optional fixture; attach to actual street/service infrastructure in the audited code; do not scatter on empty wilderness"
+  },
+  {
+    "id": "path-bollard",
+    "file": "images/lighting/path-bollard.png",
+    "size": [
+      5,
+      14
+    ],
+    "anchor": [
+      2,
+      13
+    ],
+    "light_point": [
+      2,
+      3
+    ],
+    "placement": "optional fixture; attach to actual street/service infrastructure in the audited code; do not scatter on empty wilderness"
+  }
+]

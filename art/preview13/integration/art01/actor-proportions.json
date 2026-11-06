@@ -1,0 +1,462 @@
+{
+  "traffic": {
+    "images/transit/horse-walk-SE.png": {
+      "before_size": [
+        38,
+        38
+      ],
+      "size": [
+        33,
+        37
+      ],
+      "scale": 0.86,
+      "anchor": [
+        16.5,
+        33
+      ]
+    },
+    "images/transit/horse.png": {
+      "before_size": [
+        24,
+        24
+      ],
+      "size": [
+        21,
+        24
+      ],
+      "scale": 0.86,
+      "anchor": [
+        10.5,
+        20
+      ]
+    },
+    "images/transit/car-NE.png": {
+      "before_size": [
+        34,
+        27
+      ],
+      "size": [
+        29,
+        26
+      ],
+      "scale": 0.84,
+      "anchor": [
+        14.5,
+        22
+      ]
+    },
+    "images/transit/carriage-SW.png": {
+      "before_size": [
+        64,
+        63
+      ],
+      "size": [
+        50,
+        53
+      ],
+      "scale": 0.78,
+      "anchor": [
+        25.0,
+        49
+      ]
+    },
+    "images/transit/car-SE.png": {
+      "before_size": [
+        34,
+        31
+      ],
+      "size": [
+        29,
+        29
+      ],
+      "scale": 0.84,
+      "anchor": [
+        14.5,
+        25
+      ]
+    },
+    "images/transit/carriage-SE.png": {
+      "before_size": [
+        64,
+        62
+      ],
+      "size": [
+        50,
+        52
+      ],
+      "scale": 0.78,
+      "anchor": [
+        25.0,
+        48
+      ]
+    },
+    "images/transit/horse-walk-NE.png": {
+      "before_size": [
+        38,
+        49
+      ],
+      "size": [
+        33,
+        46
+      ],
+      "scale": 0.86,
+      "anchor": [
+        16.5,
+        42
+      ]
+    },
+    "images/transit/horse-walk-NW.png": {
+      "before_size": [
+        38,
+        52
+      ],
+      "size": [
+        33,
+        49
+      ],
+      "scale": 0.86,
+      "anchor": [
+        16.5,
+        45
+      ]
+    },
+    "images/transit/carriage-NE.png": {
+      "before_size": [
+        64,
+        63
+      ],
+      "size": [
+        50,
+        53
+      ],
+      "scale": 0.78,
+      "anchor": [
+        25.0,
+        49
+      ]
+    },
+    "images/transit/car-SW.png": {
+      "before_size": [
+        34,
+        31
+      ],
+      "size": [
+        29,
+        29
+      ],
+      "scale": 0.84,
+      "anchor": [
+        14.5,
+        25
+      ]
+    },
+    "images/transit/car-NW.png": {
+      "before_size": [
+        34,
+        28
+      ],
+      "size": [
+        29,
+        27
+      ],
+      "scale": 0.84,
+      "anchor": [
+        14.5,
+        23
+      ]
+    },
+    "images/transit/carriage-NW.png": {
+      "before_size": [
+        64,
+        64
+      ],
+      "size": [
+        50,
+        54
+      ],
+      "scale": 0.78,
+      "anchor": [
+        25.0,
+        50
+      ]
+    },
+    "images/transit/truck.png": {
+      "before_size": [
+        48,
+        42
+      ],
+      "size": [
+        40,
+        38
+      ],
+      "scale": 0.84,
+      "anchor": [
+        20.0,
+        34
+      ]
+    },
+    "images/transit/horse-cart.png": {
+      "before_size": [
+        52,
+        40
+      ],
+      "size": [
+        41,
+        34
+      ],
+      "scale": 0.78,
+      "anchor": [
+        20.5,
+        30
+      ]
+    },
+    "images/transit/horse-walk-SW.png": {
+      "before_size": [
+        38,
+        39
+      ],
+      "size": [
+        33,
+        38
+      ],
+      "scale": 0.86,
+      "anchor": [
+        16.5,
+        34
+      ]
+    }
+  },
+  "pedestrians": [
+    {
+      "direction": "NE",
+      "frame": 0,
+      "file": "images/transit/pedestrian-NE-00.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "NE",
+      "frame": 1,
+      "file": "images/transit/pedestrian-NE-01.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "NE",
+      "frame": 2,
+      "file": "images/transit/pedestrian-NE-02.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "NE",
+      "frame": 3,
+      "file": "images/transit/pedestrian-NE-03.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "NW",
+      "frame": 0,
+      "file": "images/transit/pedestrian-NW-00.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "NW",
+      "frame": 1,
+      "file": "images/transit/pedestrian-NW-01.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "NW",
+      "frame": 2,
+      "file": "images/transit/pedestrian-NW-02.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "NW",
+      "frame": 3,
+      "file": "images/transit/pedestrian-NW-03.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "SE",
+      "frame": 0,
+      "file": "images/transit/pedestrian-SE-00.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "SE",
+      "frame": 1,
+      "file": "images/transit/pedestrian-SE-01.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "SE",
+      "frame": 2,
+      "file": "images/transit/pedestrian-SE-02.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "SE",
+      "frame": 3,
+      "file": "images/transit/pedestrian-SE-03.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "SW",
+      "frame": 0,
+      "file": "images/transit/pedestrian-SW-00.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "SW",
+      "frame": 1,
+      "file": "images/transit/pedestrian-SW-01.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "SW",
+      "frame": 2,
+      "file": "images/transit/pedestrian-SW-02.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    },
+    {
+      "direction": "SW",
+      "frame": 3,
+      "file": "images/transit/pedestrian-SW-03.png",
+      "size": [
+        16,
+        24
+      ],
+      "anchor": [
+        8,
+        21
+      ],
+      "visible_height": 18
+    }
+  ],
+  "renderer_required": {
+    "current": "GameView.cpp::drawStreetActors draws people as 10px procedural lines/rectangles; does not load pedestrian PNGs.",
+    "recommended": "Load pedestrian-DIRECTION-FRAME.png, draw at zoom * native size; anchor the road contact at [8,21]. Frame=floor(walkPhase*4)%4.",
+    "fallback": "If retaining procedural people, multiply ONLY human dimensions and stride by 1.7. Do not multiply world placement, road lane offsets, or traffic zoom.",
+    "body_height_before_px": 10,
+    "body_height_after_px": 18
+  }
+}

@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="identity.xsl" type="text/xsl"?>
+<Window name="CityHall" width="800" height="660" border="12" titlesize="30" resizable="no">
+  <title>
+    <Paragraph name="HallTitle" color="#ffffff" font-size="18">CITY HALL</Paragraph>
+  </title>
+  <background>
+    <FilledRectangle color="#14252dff" />
+  </background>
+  <title-background>
+    <FilledRectangle color="#1c485eff" />
+  </title-background>
+  <closebutton>
+    <text color="white">X</text>
+  </closebutton>
+  <contents>
+    <TableLayout rows="6" cols="5">
+      <rowsize row="1" fixed="34" />
+      <rowsize row="2" fixed="34" />
+      <rowsize row="3" fixed="34" />
+      <rowsize row="4" fixed="44" />
+      <rowsize row="6" fixed="44" />
+      <cell row="1" col="1" colspan="5" halign="center" valign="center">
+        <Paragraph name="CivicSummary" color="#ffffff" font-size="18">City report: population, powered homes, current approval, economy and term information</Paragraph>
+      </cell>
+      <cell row="2" col="1" colspan="5" halign="center" valign="center">
+        <Paragraph name="ElectionSummary" color="#ffffff" font-size="18">City report: population, powered homes, current approval, economy and term information</Paragraph>
+      </cell>
+      <cell row="3" col="1" colspan="5" halign="center" valign="center">
+        <Paragraph name="EconomySummary" color="#ffffff" font-size="18">City report: population, powered homes, current approval, economy and term information</Paragraph>
+      </cell>
+      <cell row="4" col="1" colspan="1" halign="center" valign="center">
+        <Button name="CouncilTab" width="150" height="36">
+          <image src="images/readable/plate-160-normal.png" />
+          <image-hover src="images/readable/plate-160-hover.png" />
+          <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Overview</text-caption>
+        </Button>
+      </cell>
+      <cell row="4" col="2" colspan="1" halign="center" valign="center">
+        <Button name="DistrictsTab" width="150" height="36">
+          <image src="images/readable/plate-160-normal.png" />
+          <image-hover src="images/readable/plate-160-hover.png" />
+          <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Districts</text-caption>
+        </Button>
+      </cell>
+      <cell row="4" col="3" colspan="1" halign="center" valign="center">
+        <Button name="PlanTab" width="150" height="36">
+          <image src="images/readable/plate-160-normal.png" />
+          <image-hover src="images/readable/plate-160-hover.png" />
+          <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Plan</text-caption>
+        </Button>
+      </cell>
+      <cell row="4" col="5" colspan="1" halign="center" valign="center">
+        <Button name="WeatherTab" width="150" height="36">
+          <image src="images/readable/plate-160-normal.png" />
+          <image-hover src="images/readable/plate-160-hover.png" />
+          <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Sky</text-caption>
+        </Button>
+      </cell>
+      <cell row="4" col="4" colspan="1" halign="center" valign="center">
+        <Button name="MayorTab" width="150" height="36">
+          <image src="images/readable/plate-160-normal.png" />
+          <image-hover src="images/readable/plate-160-hover.png" />
+          <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Mayor</text-caption>
+        </Button>
+      </cell>
+      <cell row="5" col="1" colspan="5" halign="center" valign="center">
+        <SwitchComponent name="HallPages">
+          <Panel name="CouncilPage" resizable="yes">
+            <TableLayout rows="11" cols="2">
+              <rowsize row="1" fixed="30" />
+              <rowsize row="2" fixed="28" />
+              <rowsize row="3" fixed="28" />
+              <rowsize row="4" fixed="28" />
+              <rowsize row="5" fixed="28" />
+              <rowsize row="6" fixed="28" />
+              <rowsize row="7" fixed="28" />
+              <rowsize row="8" fixed="58" />
+              <rowsize row="9" fixed="58" />
+              <rowsize row="10" fixed="44" />
+              <rowsize row="11" fixed="40" />
+              <cell row="1" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="CityLine" color="#ffd36a" font-size="19" />
+              </cell>
+              <cell row="2" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="WorkHead" color="#7fd6e8" font-size="18" />
+              </cell>
+              <cell row="3" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="WorkTech" color="#ffffff" font-size="17" />
+              </cell>
+              <cell row="4" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="WorkEng" color="#ffffff" font-size="17" />
+              </cell>
+              <cell row="5" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="WorkCampus" color="#ffffff" font-size="17" />
+              </cell>
+              <cell row="6" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="WorkTrain" color="#ffffff" font-size="17" />
+              </cell>
+              <cell row="7" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="AdviceHead" color="#7fd6e8" font-size="18" />
+              </cell>
+              <cell row="8" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="Advice1" color="#ffffff" font-size="17" />
+              </cell>
+              <cell row="9" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="Advice2" color="#ffffff" font-size="17" />
+              </cell>
+              <cell row="10" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="News1" color="#9fb4c2" font-size="16" />
+              </cell>
+              <cell row="11" col="1" halign="center" valign="center">
+                <Button name="RenameCity" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="17" halign="center" font-weight="bold">Rename the city</text-caption>
+                </Button>
+              </cell>
+              <cell row="11" col="2" halign="center" valign="center">
+                <Button name="AllAdvice" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="17" halign="center" font-weight="bold">All advice (what to fix)</text-caption>
+                </Button>
+              </cell>
+            </TableLayout>
+          </Panel>
+          <Panel name="DistrictsPage" resizable="yes">
+            <TableLayout rows="9" cols="2">
+              <rowsize row="1" fixed="28" />
+              <rowsize row="2" fixed="30" />
+              <rowsize row="3" fixed="76" />
+              <rowsize row="4" fixed="44" />
+              <rowsize row="5" fixed="44" />
+              <rowsize row="6" fixed="38" />
+              <rowsize row="7" fixed="38" />
+              <rowsize row="8" fixed="38" />
+              <rowsize row="9" fixed="38" />
+              <cell row="1" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="DistHead" color="#7fd6e8" font-size="18" />
+              </cell>
+              <cell row="2" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="DistSel" color="#ffffff" font-size="17" />
+              </cell>
+              <cell row="3" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="DistDetail" color="#ffffff" font-size="16" />
+              </cell>
+              <cell row="4" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="DistList" color="#9fb4c2" font-size="15" />
+              </cell>
+              <cell row="5" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="DistNaming" color="#ffd36a" font-size="15" />
+              </cell>
+              <cell row="6" col="1" halign="center" valign="center">
+                <Button name="DistNewType" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="17" halign="center" font-weight="bold">New zone type: Industrial</text-caption>
+                </Button>
+              </cell>
+              <cell row="6" col="2" halign="center" valign="center">
+                <Button name="DistNew" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="17" halign="center" font-weight="bold">Draw zone on the map</text-caption>
+                </Button>
+              </cell>
+              <cell row="7" col="1" halign="center" valign="center">
+                <Button name="DistPrev" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="17" halign="center" font-weight="bold">&lt; Previous district</text-caption>
+                </Button>
+              </cell>
+              <cell row="7" col="2" halign="center" valign="center">
+                <Button name="DistNext" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="17" halign="center" font-weight="bold">Next district &gt;</text-caption>
+                </Button>
+              </cell>
+              <cell row="8" col="1" halign="center" valign="center">
+                <Button name="DistRename" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="17" halign="center" font-weight="bold">Rename (type the name)</text-caption>
+                </Button>
+              </cell>
+              <cell row="8" col="2" halign="center" valign="center">
+                <Button name="DistRetype" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="17" halign="center" font-weight="bold">Make selected this type</text-caption>
+                </Button>
+              </cell>
+              <cell row="9" col="1" halign="center" valign="center">
+                <Button name="DistDelete" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="17" halign="center" font-weight="bold">Delete selected district</text-caption>
+                </Button>
+              </cell>
+            </TableLayout>
+          </Panel>
+          <Panel name="PlanPage" resizable="yes">
+            <TableLayout rows="8" cols="2">
+              <rowsize row="1" fixed="30" />
+              <rowsize row="2" fixed="58" />
+              <rowsize row="3" fixed="58" />
+              <rowsize row="4" fixed="44" />
+              <rowsize row="5" fixed="58" />
+              <rowsize row="6" fixed="40" />
+              <rowsize row="7" fixed="40" />
+              <rowsize row="8" fixed="40" />
+              <cell row="1" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="PlanL1" color="#7fd6e8" font-size="18" />
+              </cell>
+              <cell row="2" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="PlanL2" color="#ffffff" font-size="17" />
+              </cell>
+              <cell row="3" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="PlanL3" color="#ffffff" font-size="17" />
+              </cell>
+              <cell row="4" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="PlanL4" color="#ffffff" font-size="17" />
+              </cell>
+              <cell row="5" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="PlanL5" color="#9fb4c2" font-size="16" />
+              </cell>
+              <cell row="6" col="1" halign="center" valign="center">
+                <Button name="PlanApprove" width="320" height="36">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Approve plan</text-caption>
+                </Button>
+              </cell>
+              <cell row="6" col="2" halign="center" valign="center">
+                <Button name="PlanReject" width="320" height="36">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Reject plan</text-caption>
+                </Button>
+              </cell>
+              <cell row="7" col="1" halign="center" valign="center">
+                <Button name="PlanFocus" width="320" height="36">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Change focus</text-caption>
+                </Button>
+              </cell>
+              <cell row="7" col="2" halign="center" valign="center">
+                <Button name="PlanAuto" width="320" height="36">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Mayor decides alone: off</text-caption>
+                </Button>
+              </cell>
+              <cell row="8" col="1" halign="center" valign="center">
+                <Button name="PlanBudgetDown" width="320" height="36">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Budget -10%</text-caption>
+                </Button>
+              </cell>
+              <cell row="8" col="2" halign="center" valign="center">
+                <Button name="PlanBudgetUp" width="320" height="36">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Budget +10%</text-caption>
+                </Button>
+              </cell>
+            </TableLayout>
+          </Panel>
+          <Panel name="WeatherPage" resizable="yes">
+            <TableLayout rows="5" cols="2">
+              <cell row="1" col="1" colspan="2" halign="center" valign="center">
+                <Paragraph name="AtmosphereSummary" color="#ffffff" font-size="18">Current sky and weather conditions with solar output and pedestrian settings</Paragraph>
+              </cell>
+              <cell row="2" col="1" colspan="1" halign="center" valign="center">
+                <Paragraph color="#ffffff" font-size="18">Day and night change automatically.</Paragraph>
+              </cell>
+              <cell row="2" col="2" colspan="1" halign="center" valign="center">
+                <Paragraph color="#ffffff" font-size="18">Sun, clouds and rain change automatically.</Paragraph>
+              </cell>
+              <cell row="3" col="1" colspan="2" halign="center" valign="center">
+                <Button name="PedestrianControl" width="320" height="36">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Show or hide people</text-caption>
+                </Button>
+              </cell>
+              <cell row="4" col="1" colspan="2" halign="center" valign="center">
+                <Paragraph name="ClockExplanation" color="#ffffff" font-size="18">The sun rises and sets by itself. Days last 8-16 minutes; nights last 3-6.</Paragraph>
+              </cell>
+              <cell row="5" col="1" colspan="2" halign="center" valign="center">
+                <Paragraph name="SolarNote" color="#ffffff" font-size="18">Clouds make solar panels weaker. At night they make no power.</Paragraph>
+              </cell>
+            </TableLayout>
+          </Panel>
+          <Panel name="MayorPage" resizable="yes">
+            <TableLayout rows="10" cols="2">
+              <rowsize row="1" fixed="24" />
+              <rowsize row="2" fixed="24" />
+              <rowsize row="3" fixed="28" />
+              <rowsize row="4" fixed="40" />
+              <rowsize row="5" fixed="62" />
+              <rowsize row="6" fixed="48" />
+              <rowsize row="7" fixed="36" />
+              <rowsize row="8" fixed="36" />
+              <rowsize row="9" fixed="36" />
+              <rowsize row="10" fixed="36" />
+              <cell row="1" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="MayorOn" color="#6fe36f" font-size="20" />
+              </cell>
+              <cell row="2" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="MayorOff" color="#ff7a6e" font-size="20" />
+              </cell>
+              <cell row="3" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="MayorScopeText" color="#ffffff" font-size="17" />
+              </cell>
+              <cell row="4" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="MayorBudgetText" color="#ffffff" font-size="16" />
+              </cell>
+              <cell row="5" col="1" colspan="2" halign="left" valign="top">
+                <Paragraph name="MayorReport" color="#ffd36a" font-size="16" />
+              </cell>
+              <cell row="6" col="1" colspan="1" halign="center" valign="center">
+                <Button name="MayorToggle" width="320" height="44">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="20" halign="center" font-weight="bold">Turn the mayor ON</text-caption>
+                </Button>
+              </cell>
+              <cell row="7" col="1" halign="center" valign="center">
+                <Button name="MayorScopeDistrict" width="320" height="32">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="16" halign="center" font-weight="bold">Area: whole city</text-caption>
+                </Button>
+              </cell>
+              <cell row="7" col="2" halign="center" valign="center">
+                <Button name="MayorScopeZone" width="320" height="32">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="16" halign="center" font-weight="bold">Draw a work zone on the map</text-caption>
+                </Button>
+              </cell>
+              <cell row="8" col="1" halign="center" valign="center">
+                <Button name="MayorBudgetDown" width="320" height="32">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="16" halign="center" font-weight="bold">Budget lower</text-caption>
+                </Button>
+              </cell>
+              <cell row="8" col="2" halign="center" valign="center">
+                <Button name="MayorBudgetUp" width="320" height="32">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="16" halign="center" font-weight="bold">Budget higher</text-caption>
+                </Button>
+              </cell>
+              <cell row="9" col="1" halign="center" valign="center">
+                <Button name="MayorPace" width="320" height="32">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="16" halign="center" font-weight="bold">Pace: normal</text-caption>
+                </Button>
+              </cell>
+              <cell row="9" col="2" halign="center" valign="center">
+                <Button name="MayorRoads" width="320" height="32">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="16" halign="center" font-weight="bold">Roads: blocked</text-caption>
+                </Button>
+              </cell>
+              <cell row="10" col="1" halign="center" valign="center">
+                <Button name="MayorServices" width="320" height="32">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="16" halign="center" font-weight="bold">Basic services: allowed</text-caption>
+                </Button>
+              </cell>
+              <cell row="10" col="2" halign="center" valign="center">
+                <Button name="MayorParks" width="320" height="32">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="16" halign="center" font-weight="bold">Parks: allowed</text-caption>
+                </Button>
+              </cell>
+              <cell row="6" col="2" halign="center" valign="center">
+                <Button name="MayorFullAutonomy" width="320" height="44">
+                  <image src="images/readable/plate-320-normal.png" />
+                  <image-hover src="images/readable/plate-320-hover.png" />
+                  <text-caption color="#ffffff" font-size="20" halign="center" font-weight="bold">Full autonomy: OFF</text-caption>
+                </Button>
+              </cell>
+            </TableLayout>
+          </Panel>
+        </SwitchComponent>
+      </cell>
+      <cell row="6" col="1" colspan="3" halign="center" valign="center">
+        <Button name="CityClose" width="320" height="36">
+          <image src="images/readable/plate-320-normal.png" />
+          <image-hover src="images/readable/plate-320-hover.png" />
+          <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Back to my city</text-caption>
+        </Button>
+      </cell>
+      <cell row="6" col="4" colspan="2" halign="center" valign="center">
+        <Button name="CityServices" width="280" height="34">
+          <image src="images/readable/plate-320-normal.png" resizable="yes" />
+          <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
+          <text-caption color="#ffffff" halign="center" font-size="16">Budget / public services</text-caption>
+        </Button>
+      </cell>
+    </TableLayout>
+  </contents>
+</Window>

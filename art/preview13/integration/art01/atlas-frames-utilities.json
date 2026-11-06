@@ -1,0 +1,53 @@
+{
+  "coal-plant": [
+    {
+      "file": "art01-coal-plant-00.png",
+      "x": "256",
+      "y": "288"
+    },
+    {
+      "file": "art01-coal-plant-01.png",
+      "x": "256",
+      "y": "288"
+    },
+    {
+      "file": "art01-coal-plant-02.png",
+      "x": "256",
+      "y": "288"
+    }
+  ],
+  "factory": [
+    {
+      "file": "art01-factory-00.png",
+      "x": "192",
+      "y": "215"
+    },
+    {
+      "file": "art01-factory-01.png",
+      "x": "192",
+      "y": "215"
+    },
+    {
+      "file": "art01-factory-02.png",
+      "x": "192",
+      "y": "215"
+    }
+  ],
+  "landfill": [
+    {
+      "file": "art01-landfill-00.png",
+      "x": "256",
+      "y": "264"
+    },
+    {
+      "file": "art01-landfill-01.png",
+      "x": "256",
+      "y": "264"
+    },
+    {
+      "file": "art01-landfill-02.png",
+      "x": "256",
+      "y": "264"
+    }
+  ]
+}

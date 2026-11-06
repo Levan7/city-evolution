@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet href="identity.xsl" type="text/xsl"?><ButtonPanel name="ButtonPanel" width="576" height="432">
+<!-- Tooltips for the Button Pannel are created in ButtonPanel.cpp -->
+	<menu button-name="BPPointerButton" drawer-name="BPPointerMenu" default="BPMPointerButton">
+		<tool name="BPMPointerButton" action="QUERY" help="query"/>
+		<tool name="BPMBullDozeButton" action="BULLDOZE" help="bulldoze"/>
+		<tool name="BPMWaterButton" action="FLOOD" help="river"/>
+		<tool name="BPMEvacuateButton" action="EVACUATE" help="evacuate"/>
+	</menu>
+
+	<menu button-name="BPResidenceButton" drawer-name="BPResidenceMenu" default="BPMResidence2Button">
+		<tool name="BPMResidence1Button" grpid="04" help="residential"/>
+		<tool name="BPMResidence2Button" grpid="36" help="residential"/>
+		<tool name="BPMResidence3Button" grpid="37" help="residential"/>
+		<tool name="BPMResidence4Button" grpid="38" help="residential"/>
+		<tool name="BPMResidence5Button" grpid="39" help="residential"/>
+		<tool name="BPMResidence6Button" grpid="40" help="residential"/>
+	</menu>
+
+	<menu button-name="BPFarmButton" drawer-name="BPFarmMenu" default="BPMFarmButton">
+		<tool name="BPMMarketButton" grpid="06" help="market"/>
+		<tool name="BPMWaterwellButton" grpid="41" help="waterwell"/>
+		<tool name="BPMFarmButton" grpid="05" help="farm"/>
+		<tool name="BPMParkButton" grpid="19" help="park"/>
+	<tool name="BPMCafeButton" grpid="53" help="evolution"/>
+	<tool name="BPMFoodHallButton" grpid="54" help="evolution"/>
+	</menu>
+
+	<menu button-name="BPSchoolButton" drawer-name="BPSchoolMenu" default="BPMMonumentButton">
+		<tool name="BPMMonumentButton" grpid="25" help="monument"/>
+		<tool name="BPMSchoolButton" grpid="26" help="school"/>
+		<tool name="BPMUniversityButton" grpid="13" help="university"/>
+		<tool name="BPMFireButton" grpid="30" help="firestation"/>
+		<tool name="BPMHealthButton" grpid="22" help="health"/>
+		<tool name="BPMSportsButton" grpid="31" help="cricket"/>
+	</menu>
+
+	<menu button-name="BPTransportButton" drawer-name="BPTransportMenu" default="BPMTrackButton">
+		<tool name="BPMTrackButton" grpid="07" help="track"/>
+		<tool name="BPMStreetButton" grpid="11" help="road"/>
+		<tool name="BPMRailButton" grpid="09" help="rail"/>
+		<tool name="BPMPortButton" grpid="17" help="port"/>
+		<tool name="BPMRocketButton" grpid="23" help="rocket"/>
+	<tool name="BPMWarehouseButton" grpid="51" help="evolution"/>
+	<tool name="BPMBusStopButton" grpid="55" help="public-transport"/><tool name="BPMBusTerminalButton" grpid="56" help="public-transport"/><tool name="BPMRailStationButton" grpid="57" help="public-transport"/><tool name="BPMMetroStationButton" grpid="58" help="public-transport"/><tool name="BPMElevatedStationButton" grpid="59" help="public-transport"/><tool name="BPMMetroTrackButton" grpid="60" help="public-transport"/><tool name="BPMElevatedTrackButton" grpid="61" help="public-transport"/></menu>
+
+	<menu button-name="BPPowerButton" drawer-name="BPPowerMenu" default="BPMWindmillButton">
+		<tool name="BPMPowerLineButton" grpid="01" help="powerline"/>
+		<tool name="BPMCoalPSButton" grpid="10" help="powerscoal"/>
+		<tool name="BPMSolarPSButton" grpid="02" help="powerssolar"/>
+		<tool name="BPMSubstationButton" grpid="03" help="substation"/>
+		<tool name="BPMWindmillButton" grpid="49" help="windmill"/>
+	</menu>
+
+	<menu button-name="BPMiningButton" drawer-name="BPMiningMenu" default="BPMCommuneButton">
+		<tool name="BPMCommuneButton" grpid="14" help="commune"/>
+		<tool name="BPMCoalButton" grpid="08" help="coalmine"/>
+		<tool name="BPMOreButton" grpid="15" help="oremine"/>
+		<tool name="BPMTipButton" grpid="16" help="tip"/>
+		<tool name="BPMRecycleButton" grpid="20" help="recycle"/>
+	</menu>
+
+	<menu button-name="BPIndustryButton" drawer-name="BPIndustryMenu" default="BPMPotteryButton">
+		<tool name="BPMPotteryButton" grpid="29" help="pottery"/>
+		<tool name="BPMBlacksmithButton" grpid="27" help="blacksmith"/>
+		<tool name="BPMMillButton" grpid="28" help="mill"/>
+		<tool name="BPMLIndustryButton" grpid="12" help="industryl"/>
+		<tool name="BPMHIndustryButton" grpid="18" help="industryh"/>
+	<tool name="BPMTechCampusButton" grpid="52" help="evolution"/>
+	</menu>
+
+	<content>
+		<TableLayout rows="8" cols="2">
+			<colsize col="1" fixed="144"/>
+
+			<!-- base -->
+			<cell row="1" col="1" halign="left">
+				<CheckButton name="BPPointerButton" lower="true" auto-check="false" auto-uncheck="false" width="144" height="48">
+					<image src="images/readable/plate-144-normal.png" width="144" height="48" resizable="yes"/><image-hover src="images/readable/plate-144-hover.png" width="144" height="48" resizable="yes"/><image-clicked src="images/readable/plate-144-clicked.png" width="144" height="48" resizable="yes"/><image-checked src="images/readable/plate-144-checked.png" width="144" height="48" resizable="yes"/><image-caption src="images/readable/BPPointerButton.png" width="144" height="48" resizable="yes"/></CheckButton>
+			</cell>
+			<cell row="1" col="2" halign="left">
+				<Panel name="BPPointerMenu" width="288" height="64" background="images/gui/buttons/button-border-6.png">
+					<TableLayout rows="1" cols="4">
+					<cell row="1" col="1">
+						<CheckButton name="BPMPointerButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMPointerButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="2">
+						<CheckButton name="BPMBullDozeButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMBullDozeButton.png"/></CheckButton>
+					</cell>
+	       				<cell row="1" col="3">
+						<CheckButton name="BPMWaterButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMWaterButton.png"/></CheckButton>
+					</cell>
+						<cell row="1" col="4">
+						<CheckButton name="BPMEvacuateButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMEvacuateButton.png"/></CheckButton>
+					</cell>
+
+				</TableLayout>
+				</Panel>
+			</cell>
+
+			<!-- residents and so -->
+			<cell row="2" col="1" halign="left">
+				<CheckButton name="BPResidenceButton" lower="true" auto-check="false" auto-uncheck="false" width="144" height="48">
+				<image src="images/readable/plate-144-normal.png" width="144" height="48" resizable="yes"/><image-hover src="images/readable/plate-144-hover.png" width="144" height="48" resizable="yes"/><image-clicked src="images/readable/plate-144-clicked.png" width="144" height="48" resizable="yes"/><image-checked src="images/readable/plate-144-checked.png" width="144" height="48" resizable="yes"/><image-caption src="images/readable/BPResidenceButton.png" width="144" height="48" resizable="yes"/></CheckButton>
+			</cell>
+			<cell row="2" col="2" halign="left">
+				<Panel name="BPResidenceMenu" width="432" height="64" background="images/gui/buttons/button-border-6.png">
+					<TableLayout rows="1" cols="6">
+					<cell row="1" col="1">
+						<CheckButton name="BPMResidence1Button" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMResidence1Button.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="2">
+						<CheckButton name="BPMResidence2Button" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMResidence2Button.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="3">
+						<CheckButton name="BPMResidence3Button" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMResidence3Button.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="4">
+						<CheckButton name="BPMResidence4Button" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMResidence4Button.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="5">
+						<CheckButton name="BPMResidence5Button" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMResidence5Button.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="6">
+						<CheckButton name="BPMResidence6Button" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMResidence6Button.png"/></CheckButton>
+					</cell>
+					</TableLayout>
+				</Panel>
+			</cell>
+
+			<!-- Farms -->
+			<cell row="3" col="1" halign="left">
+				<CheckButton name="BPFarmButton" lower="true" auto-check="false" auto-uncheck="false" width="144" height="48">
+				<image src="images/readable/plate-144-normal.png" width="144" height="48" resizable="yes"/><image-hover src="images/readable/plate-144-hover.png" width="144" height="48" resizable="yes"/><image-clicked src="images/readable/plate-144-clicked.png" width="144" height="48" resizable="yes"/><image-checked src="images/readable/plate-144-checked.png" width="144" height="48" resizable="yes"/><image-caption src="images/readable/BPFarmButton.png" width="144" height="48" resizable="yes"/></CheckButton>
+			</cell>
+			<cell row="3" col="2" halign="left">
+				<Panel name="BPFarmMenu" width="432" height="64" background="images/gui/buttons/button-border-6.png">
+					<TableLayout rows="1" cols="6">
+					<cell row="1" col="1">
+						<CheckButton name="BPMMarketButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMMarketButton.png"/></CheckButton>
+					</cell>
+	        			<cell row="1" col="2">
+						<CheckButton name="BPMWaterwellButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMWaterwellButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="3">
+						<CheckButton name="BPMFarmButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMFarmButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="4">
+						<CheckButton name="BPMParkButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMParkButton.png"/></CheckButton>
+					</cell>
+				<cell row="1" col="5"><CheckButton name="BPMCafeButton" auto-uncheck="false" width="72" height="64"><image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMCafeButton.png"/></CheckButton></cell><cell row="1" col="6"><CheckButton name="BPMFoodHallButton" auto-uncheck="false" width="72" height="64"><image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMFoodHallButton.png"/></CheckButton></cell></TableLayout>
+				</Panel>
+			</cell>
+
+			<!-- fire health e.g. -->
+			<cell row="4" col="1" halign="left">
+				<CheckButton name="BPSchoolButton" lower="true" auto-check="false" auto-uncheck="false" width="144" height="48">
+				<image src="images/readable/plate-144-normal.png" width="144" height="48" resizable="yes"/><image-hover src="images/readable/plate-144-hover.png" width="144" height="48" resizable="yes"/><image-clicked src="images/readable/plate-144-clicked.png" width="144" height="48" resizable="yes"/><image-checked src="images/readable/plate-144-checked.png" width="144" height="48" resizable="yes"/><image-caption src="images/readable/BPSchoolButton.png" width="144" height="48" resizable="yes"/></CheckButton>
+			</cell>
+			<cell row="4" col="2" halign="left">
+				<Panel name="BPSchoolMenu" width="432" height="64" background="images/gui/buttons/button-border-6.png">
+					<TableLayout rows="1" cols="6">
+						<cell row="1" col="1">
+						<CheckButton name="BPMMonumentButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMMonumentButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="2">
+						<CheckButton name="BPMSchoolButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMSchoolButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="3">
+						<CheckButton name="BPMUniversityButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMUniversityButton.png"/></CheckButton>
+					</cell>
+	        			<cell row="1" col="4">
+						<CheckButton name="BPMHealthButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMHealthButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="5">
+						<CheckButton name="BPMSportsButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMSportsButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="6">
+						<CheckButton name="BPMFireButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMFireButton.png"/></CheckButton>
+					</cell>
+				</TableLayout>
+				</Panel>
+			</cell>
+
+			<!-- transport -->
+			<cell row="5" col="1" halign="left">
+				<CheckButton name="BPTransportButton" lower="true" auto-check="false" auto-uncheck="false" width="144" height="48">
+				<image src="images/readable/plate-144-normal.png" width="144" height="48" resizable="yes"/><image-hover src="images/readable/plate-144-hover.png" width="144" height="48" resizable="yes"/><image-clicked src="images/readable/plate-144-clicked.png" width="144" height="48" resizable="yes"/><image-checked src="images/readable/plate-144-checked.png" width="144" height="48" resizable="yes"/><image-caption src="images/readable/BPTransportButton.png" width="144" height="48" resizable="yes"/></CheckButton>
+			</cell>
+			<cell row="5" col="2" halign="left">
+				<Panel name="BPTransportMenu" width="432" height="192" background="images/gui/buttons/button-border-6.png">
+					<TableLayout rows="3" cols="6">
+					<cell row="1" col="1">
+						<CheckButton name="BPMTrackButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMTrackButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="2">
+						<CheckButton name="BPMStreetButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMStreetButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="3">
+						<CheckButton name="BPMRailButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMRailButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="4">
+						<CheckButton name="BPMPortButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMPortButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="5">
+						<CheckButton name="BPMRocketButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMRocketButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="6"><CheckButton name="BPMWarehouseButton" auto-uncheck="false" width="72" height="64"><image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMWarehouseButton.png"/></CheckButton></cell><cell row="2" col="1"><CheckButton name="BPMBusStopButton" width="72" height="64" auto-uncheck="false"><image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMBusStopButton.png"/><tooltip>Bus stop — see Transport for requirements and cost.</tooltip></CheckButton></cell><cell row="2" col="2"><CheckButton name="BPMBusTerminalButton" width="72" height="64" auto-uncheck="false"><image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMBusTerminalButton.png"/><tooltip>Bus terminal — see Transport for requirements and cost.</tooltip></CheckButton></cell><cell row="2" col="3"><CheckButton name="BPMRailStationButton" width="72" height="64" auto-uncheck="false"><image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMRailStationButton.png"/><tooltip>Rail station — see Transport for requirements and cost.</tooltip></CheckButton></cell><cell row="2" col="4"><CheckButton name="BPMMetroStationButton" width="72" height="64" auto-uncheck="false"><image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMMetroStationButton.png"/><tooltip>Metro stop — see Transport for requirements and cost.</tooltip></CheckButton></cell><cell row="2" col="5"><CheckButton name="BPMElevatedStationButton" width="72" height="64" auto-uncheck="false"><image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMElevatedStationButton.png"/><tooltip>Elev. stop — see Transport for requirements and cost.</tooltip></CheckButton></cell><cell row="2" col="6"><CheckButton name="BPMMetroTrackButton" width="72" height="64" auto-uncheck="false"><image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMMetroTrackButton.png"/><tooltip>Metro track — see Transport for requirements and cost.</tooltip></CheckButton></cell><cell row="3" col="1"><CheckButton name="BPMElevatedTrackButton" width="72" height="64" auto-uncheck="false"><image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMElevatedTrackButton.png"/><tooltip>Elev. track — see Transport for requirements and cost.</tooltip></CheckButton></cell></TableLayout>
+				</Panel>
+			</cell>
+
+			<!-- power -->
+			<cell row="6" col="1" halign="left">
+				<CheckButton name="BPPowerButton" lower="true" auto-check="false" auto-uncheck="false" width="144" height="48">
+				<image src="images/readable/plate-144-normal.png" width="144" height="48" resizable="yes"/><image-hover src="images/readable/plate-144-hover.png" width="144" height="48" resizable="yes"/><image-clicked src="images/readable/plate-144-clicked.png" width="144" height="48" resizable="yes"/><image-checked src="images/readable/plate-144-checked.png" width="144" height="48" resizable="yes"/><image-caption src="images/readable/BPPowerButton.png" width="144" height="48" resizable="yes"/></CheckButton>
+			</cell>
+			<cell row="6" col="2" halign="left">
+				<Panel name="BPPowerMenu" width="360" height="64" background="images/gui/buttons/button-border-6.png">
+					<TableLayout rows="1" cols="5">
+					<cell row="1" col="1">
+						<CheckButton name="BPMPowerLineButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMPowerLineButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="2">
+						<CheckButton name="BPMCoalPSButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMCoalPSButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="3">
+						<CheckButton name="BPMSolarPSButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMSolarPSButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="4">
+						<CheckButton name="BPMSubstationButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMSubstationButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="5">
+						<CheckButton name="BPMWindmillButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMWindmillButton.png"/></CheckButton>
+					</cell>
+					</TableLayout>
+				</Panel>
+			</cell>
+
+			<!-- mining -->
+			<cell row="7" col="1" halign="left">
+				<CheckButton name="BPMiningButton" lower="true" auto-check="false" auto-uncheck="false" width="144" height="48">
+				<image src="images/readable/plate-144-normal.png" width="144" height="48" resizable="yes"/><image-hover src="images/readable/plate-144-hover.png" width="144" height="48" resizable="yes"/><image-clicked src="images/readable/plate-144-clicked.png" width="144" height="48" resizable="yes"/><image-checked src="images/readable/plate-144-checked.png" width="144" height="48" resizable="yes"/><image-caption src="images/readable/BPMiningButton.png" width="144" height="48" resizable="yes"/></CheckButton>
+			</cell>
+			<cell row="7" col="2" halign="left">
+				<Panel name="BPMiningMenu" width="360" height="64" background="images/gui/buttons/button-border-6.png">
+					<TableLayout rows="1" cols="5">
+					<cell row="1" col="1">
+						<CheckButton name="BPMCommuneButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMCommuneButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="2">
+						<CheckButton name="BPMCoalButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMCoalButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="3">
+						<CheckButton name="BPMOreButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMOreButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="4">
+						<CheckButton name="BPMTipButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMTipButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="5">
+						<CheckButton name="BPMRecycleButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMRecycleButton.png"/></CheckButton>
+					</cell>
+					</TableLayout>
+				</Panel>
+			</cell>
+
+			<!-- industry -->
+			<cell row="8" col="1" halign="left">
+				<CheckButton name="BPIndustryButton" lower="true" auto-check="false" auto-uncheck="false" width="144" height="48">
+				<image src="images/readable/plate-144-normal.png" width="144" height="48" resizable="yes"/><image-hover src="images/readable/plate-144-hover.png" width="144" height="48" resizable="yes"/><image-clicked src="images/readable/plate-144-clicked.png" width="144" height="48" resizable="yes"/><image-checked src="images/readable/plate-144-checked.png" width="144" height="48" resizable="yes"/><image-caption src="images/readable/BPIndustryButton.png" width="144" height="48" resizable="yes"/></CheckButton>
+			</cell>
+			<cell row="8" col="2" halign="left">
+				<Panel name="BPIndustryMenu" width="432" height="64" background="images/gui/buttons/button-border-6.png">
+					<TableLayout rows="1" cols="6">
+					<cell row="1" col="1">
+						<CheckButton name="BPMPotteryButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMPotteryButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="2">
+						<CheckButton name="BPMBlacksmithButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMBlacksmithButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="3">
+						<CheckButton name="BPMMillButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMMillButton.png"/></CheckButton>
+					</cell>
+                			<cell row="1" col="4">
+						<CheckButton name="BPMLIndustryButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMLIndustryButton.png"/></CheckButton>
+					</cell>
+					<cell row="1" col="5">
+						<CheckButton name="BPMHIndustryButton" auto-uncheck="false" width="72" height="64">
+						<image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMHIndustryButton.png"/></CheckButton>
+					</cell>
+				<cell row="1" col="6"><CheckButton name="BPMTechCampusButton" auto-uncheck="false" width="72" height="64"><image src="images/readable/plate-72-normal.png"/><image-hover src="images/readable/plate-72-hover.png"/><image-clicked src="images/readable/plate-72-clicked.png"/><image-checked src="images/readable/plate-72-checked.png"/><image-caption src="images/readable/BPMTechCampusButton.png"/></CheckButton></cell></TableLayout>
+				</Panel>
+			</cell>
+
+		</TableLayout>
+	</content>
+</ButtonPanel>

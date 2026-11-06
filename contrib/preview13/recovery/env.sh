@@ -1,0 +1,8 @@
+export TASK_ROOT=/workspace/scratch/085b248c71d7/preview13-work
+export PATH="$TASK_ROOT/sysroot/usr/bin:$PATH"
+export LD_LIBRARY_PATH="$TASK_ROOT/sysroot/usr/lib/x86_64-linux-gnu:$TASK_ROOT/prefix/lib:$TASK_ROOT/prefix/lib64:${LD_LIBRARY_PATH:-}"
+export PKG_CONFIG_PATH="$TASK_ROOT/prefix/lib/pkgconfig:$TASK_ROOT/prefix/lib64/pkgconfig:$TASK_ROOT/sysroot/usr/lib/x86_64-linux-gnu/pkgconfig:$TASK_ROOT/sysroot/usr/share/pkgconfig"
+export CMAKE_PREFIX_PATH="$TASK_ROOT/prefix;$TASK_ROOT/sysroot/usr"
+export CFLAGS="-I$TASK_ROOT/sysroot/usr/include"
+export CXXFLAGS="$CFLAGS"
+export LDFLAGS="-L$TASK_ROOT/sysroot/usr/lib/x86_64-linux-gnu -Wl,-rpath-link,$TASK_ROOT/sysroot/usr/lib/x86_64-linux-gnu"

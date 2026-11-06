@@ -1,0 +1,76 @@
+# wildcard patterns
+*.[ao]
+*.l[ao]
+Makefile
+Makefile.in
+.deps/
+.libs/
+.stamps/
+.dirstamp
+libxml++config.h
+stamp-h?
+
+# /
+/aclocal.m4
+/INSTALL
+/autom4te.cache/
+/config.h
+/config.h.in
+/config.log
+/config.status
+/configure
+/configure.lineno
+/libxml++-*.pc
+/libxml++-*.tar.*
+/libtool
+
+# MSVC
+/MSVC_NMake/libxml++/libxml++.rc
+
+# docs
+/docs/doc-install.pl
+/docs/doc-postprocess.pl
+/docs/doxygen.css
+/docs/doxygen-extra.css
+/docs/tagfile-to-devhelp2.xsl
+/docs/manual/__pycache__/
+/docs/manual/html/
+/docs/manual/libxml++.xml
+/docs/reference/Doxyfile
+/docs/reference/doxygen.log
+/docs/reference/html/
+/docs/reference/libxml++-*.devhelp2
+/docs/reference/libxml++-*.tag
+
+# examples
+/examples/dom_build/dom_build
+/examples/dom_parse_entities/dom_parse_entities
+/examples/dom_parser/dom_parser
+/examples/dom_parser_raw/dom_parser_raw
+/examples/dom_read_write/dom_read_write
+/examples/dom_read_write/example_output.xml
+/examples/dom_update_namespace/dom_update_namespace
+/examples/dom_xinclude/dom_xinclude
+/examples/dom_xpath/dom_xpath
+/examples/dtdvalidation/dtdvalidation
+/examples/import_node/import_node
+/examples/sax_exception/sax_exception
+/examples/sax_parser/sax_parser
+/examples/sax_parser_build_dom/sax_parser_build_dom
+/examples/sax_parser_entities/sax_parser_entities
+/examples/schemavalidation/schemavalidation
+/examples/textreader/textreader
+/examples/*/make_check.sh
+/examples/*/make_check.sh.log
+/examples/*/make_check.sh.trs
+/examples/test-suite.log
+
+# tests
+/tests/*/test
+/tests/*/test.log
+/tests/*/test.trs
+/tests/test-suite.log
+
+# untracked/
+untracked/build_scripts/
+untracked/docs/

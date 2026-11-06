@@ -1,0 +1,1332 @@
+[
+  {
+    "input": "revamp-water-well.png",
+    "output": "lower-revamp-water-well.png",
+    "original_canvas": [
+      256,
+      188
+    ],
+    "output_canvas": [
+      256,
+      155
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp-solar-plant.png",
+    "output": "lower-revamp-solar-plant.png",
+    "original_canvas": [
+      512,
+      313
+    ],
+    "output_canvas": [
+      512,
+      268
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp11-compact-workshop-compact-3-0.png",
+    "output": "lower-revamp11-compact-workshop-compact-3-0.png",
+    "original_canvas": [
+      256,
+      175
+    ],
+    "output_canvas": [
+      256,
+      145
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-workshop-compact-market-0.png",
+    "output": "lower-revamp11-compact-workshop-compact-market-0.png",
+    "original_canvas": [
+      256,
+      175
+    ],
+    "output_canvas": [
+      256,
+      145
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-heavy-factory-00.png",
+    "output": "lower-revamp10-heavy-factory-00.png",
+    "original_canvas": [
+      512,
+      527
+    ],
+    "output_canvas": [
+      512,
+      426
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-heavy-factory-01.png",
+    "output": "lower-revamp10-heavy-factory-01.png",
+    "original_canvas": [
+      512,
+      527
+    ],
+    "output_canvas": [
+      512,
+      426
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-heavy-factory-02.png",
+    "output": "lower-revamp10-heavy-factory-02.png",
+    "original_canvas": [
+      512,
+      527
+    ],
+    "output_canvas": [
+      512,
+      426
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-factory-00.png",
+    "output": "lower-revamp10-factory-00.png",
+    "original_canvas": [
+      384,
+      243
+    ],
+    "output_canvas": [
+      384,
+      204
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 3
+  },
+  {
+    "input": "revamp10-coal-plant-00.png",
+    "output": "lower-revamp10-coal-plant-00.png",
+    "original_canvas": [
+      512,
+      426
+    ],
+    "output_canvas": [
+      512,
+      346
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-wind-turbine-00.png",
+    "output": "lower-revamp10-wind-turbine-00.png",
+    "original_canvas": [
+      256,
+      435
+    ],
+    "output_canvas": [
+      256,
+      353
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-wind-turbine-01.png",
+    "output": "lower-revamp10-wind-turbine-01.png",
+    "original_canvas": [
+      256,
+      435
+    ],
+    "output_canvas": [
+      256,
+      353
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-wind-turbine-02.png",
+    "output": "lower-revamp10-wind-turbine-02.png",
+    "original_canvas": [
+      256,
+      435
+    ],
+    "output_canvas": [
+      256,
+      353
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-fire-station-00.png",
+    "output": "lower-revamp10-fire-station-00.png",
+    "original_canvas": [
+      256,
+      258
+    ],
+    "output_canvas": [
+      256,
+      210
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-fire-station-01.png",
+    "output": "lower-revamp10-fire-station-01.png",
+    "original_canvas": [
+      256,
+      258
+    ],
+    "output_canvas": [
+      256,
+      210
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-fire-station-02.png",
+    "output": "lower-revamp10-fire-station-02.png",
+    "original_canvas": [
+      256,
+      258
+    ],
+    "output_canvas": [
+      256,
+      210
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp-university.png",
+    "output": "lower-revamp-university.png",
+    "original_canvas": [
+      384,
+      317
+    ],
+    "output_canvas": [
+      384,
+      258
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 3
+  },
+  {
+    "input": "revamp10-school-00.png",
+    "output": "lower-revamp10-school-00.png",
+    "original_canvas": [
+      256,
+      252
+    ],
+    "output_canvas": [
+      256,
+      206
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp-substation.png",
+    "output": "lower-revamp-substation.png",
+    "original_canvas": [
+      256,
+      233
+    ],
+    "output_canvas": [
+      256,
+      191
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp-recycling-center.png",
+    "output": "lower-revamp-recycling-center.png",
+    "original_canvas": [
+      256,
+      230
+    ],
+    "output_canvas": [
+      256,
+      189
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp-clinic.png",
+    "output": "lower-revamp-clinic.png",
+    "original_canvas": [
+      256,
+      227
+    ],
+    "output_canvas": [
+      256,
+      186
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-farm-fields-0.png",
+    "output": "lower-revamp11-compact-farm-fields-0.png",
+    "original_canvas": [
+      512,
+      317
+    ],
+    "output_canvas": [
+      512,
+      268
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp11-compact-farm-fields-1.png",
+    "output": "lower-revamp11-compact-farm-fields-1.png",
+    "original_canvas": [
+      512,
+      317
+    ],
+    "output_canvas": [
+      512,
+      268
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp11-compact-farm-fields-2.png",
+    "output": "lower-revamp11-compact-farm-fields-2.png",
+    "original_canvas": [
+      512,
+      317
+    ],
+    "output_canvas": [
+      512,
+      268
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp11-compact-farm-fields-3.png",
+    "output": "lower-revamp11-compact-farm-fields-3.png",
+    "original_canvas": [
+      512,
+      317
+    ],
+    "output_canvas": [
+      512,
+      268
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp11-compact-farm-fields-4.png",
+    "output": "lower-revamp11-compact-farm-fields-4.png",
+    "original_canvas": [
+      512,
+      317
+    ],
+    "output_canvas": [
+      512,
+      268
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp11-compact-housing-compact-0-0.png",
+    "output": "lower-revamp11-compact-housing-compact-0-0.png",
+    "original_canvas": [
+      256,
+      141
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-housing-compact-1-0.png",
+    "output": "lower-revamp11-compact-housing-compact-1-0.png",
+    "original_canvas": [
+      256,
+      148
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-housing-compact-2-0.png",
+    "output": "lower-revamp11-compact-housing-compact-2-0.png",
+    "original_canvas": [
+      256,
+      149
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-housing-compact-3-0.png",
+    "output": "lower-revamp11-compact-housing-compact-3-0.png",
+    "original_canvas": [
+      256,
+      148
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-housing-compact-4-0.png",
+    "output": "lower-revamp11-compact-housing-compact-4-0.png",
+    "original_canvas": [
+      256,
+      147
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-housing-compact-5-0.png",
+    "output": "lower-revamp11-compact-housing-compact-5-0.png",
+    "original_canvas": [
+      256,
+      149
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp-warehouse.png",
+    "output": "lower-revamp-warehouse.png",
+    "original_canvas": [
+      256,
+      231
+    ],
+    "output_canvas": [
+      256,
+      190
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp-tech-campus.png",
+    "output": "lower-revamp-tech-campus.png",
+    "original_canvas": [
+      384,
+      306
+    ],
+    "output_canvas": [
+      384,
+      250
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 3
+  },
+  {
+    "input": "revamp-cafe.png",
+    "output": "lower-revamp-cafe.png",
+    "original_canvas": [
+      128,
+      143
+    ],
+    "output_canvas": [
+      128,
+      119
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 1
+  },
+  {
+    "input": "revamp-food-hall.png",
+    "output": "lower-revamp-food-hall.png",
+    "original_canvas": [
+      256,
+      210
+    ],
+    "output_canvas": [
+      256,
+      173
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp-bus-stop.png",
+    "output": "lower-revamp-bus-stop.png",
+    "original_canvas": [
+      128,
+      105
+    ],
+    "output_canvas": [
+      128,
+      89
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 1
+  },
+  {
+    "input": "revamp-bus-terminal.png",
+    "output": "lower-revamp-bus-terminal.png",
+    "original_canvas": [
+      256,
+      137
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp-rail-station.png",
+    "output": "lower-revamp-rail-station.png",
+    "original_canvas": [
+      384,
+      252
+    ],
+    "output_canvas": [
+      384,
+      206
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 3
+  },
+  {
+    "input": "revamp-metro-entrance.png",
+    "output": "lower-revamp-metro-entrance.png",
+    "original_canvas": [
+      128,
+      121
+    ],
+    "output_canvas": [
+      128,
+      102
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 1
+  },
+  {
+    "input": "revamp-elevated-station.png",
+    "output": "lower-revamp-elevated-station.png",
+    "original_canvas": [
+      256,
+      177
+    ],
+    "output_canvas": [
+      256,
+      146
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-workshop-compact-0-0.png",
+    "output": "lower-revamp11-compact-workshop-compact-0-0.png",
+    "original_canvas": [
+      256,
+      158
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-workshop-compact-0-1.png",
+    "output": "lower-revamp11-compact-workshop-compact-0-1.png",
+    "original_canvas": [
+      256,
+      158
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-workshop-compact-0-2.png",
+    "output": "lower-revamp11-compact-workshop-compact-0-2.png",
+    "original_canvas": [
+      256,
+      158
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-workshop-compact-1-0.png",
+    "output": "lower-revamp11-compact-workshop-compact-1-0.png",
+    "original_canvas": [
+      256,
+      166
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-workshop-compact-1-1.png",
+    "output": "lower-revamp11-compact-workshop-compact-1-1.png",
+    "original_canvas": [
+      256,
+      166
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-workshop-compact-1-2.png",
+    "output": "lower-revamp11-compact-workshop-compact-1-2.png",
+    "original_canvas": [
+      256,
+      166
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-workshop-compact-2-0.png",
+    "output": "lower-revamp11-compact-workshop-compact-2-0.png",
+    "original_canvas": [
+      256,
+      192
+    ],
+    "output_canvas": [
+      256,
+      158
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-workshop-compact-2-1.png",
+    "output": "lower-revamp11-compact-workshop-compact-2-1.png",
+    "original_canvas": [
+      256,
+      192
+    ],
+    "output_canvas": [
+      256,
+      158
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-workshop-compact-2-2.png",
+    "output": "lower-revamp11-compact-workshop-compact-2-2.png",
+    "original_canvas": [
+      256,
+      192
+    ],
+    "output_canvas": [
+      256,
+      158
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-forestry-0-0.png",
+    "output": "lower-revamp11-compact-forestry-0-0.png",
+    "original_canvas": [
+      512,
+      337
+    ],
+    "output_canvas": [
+      512,
+      274
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp11-compact-forestry-0-1.png",
+    "output": "lower-revamp11-compact-forestry-0-1.png",
+    "original_canvas": [
+      512,
+      337
+    ],
+    "output_canvas": [
+      512,
+      274
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp11-compact-forestry-0-2.png",
+    "output": "lower-revamp11-compact-forestry-0-2.png",
+    "original_canvas": [
+      512,
+      337
+    ],
+    "output_canvas": [
+      512,
+      274
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-landfill-00.png",
+    "output": "lower-revamp10-landfill-00.png",
+    "original_canvas": [
+      512,
+      352
+    ],
+    "output_canvas": [
+      512,
+      286
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-landfill-01.png",
+    "output": "lower-revamp10-landfill-01.png",
+    "original_canvas": [
+      512,
+      352
+    ],
+    "output_canvas": [
+      512,
+      286
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-landfill-02.png",
+    "output": "lower-revamp10-landfill-02.png",
+    "original_canvas": [
+      512,
+      352
+    ],
+    "output_canvas": [
+      512,
+      286
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-port-00.png",
+    "output": "lower-revamp10-port-00.png",
+    "original_canvas": [
+      512,
+      343
+    ],
+    "output_canvas": [
+      512,
+      279
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-sports-00.png",
+    "output": "lower-revamp10-sports-00.png",
+    "original_canvas": [
+      256,
+      227
+    ],
+    "output_canvas": [
+      256,
+      186
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-sports-01.png",
+    "output": "lower-revamp10-sports-01.png",
+    "original_canvas": [
+      256,
+      227
+    ],
+    "output_canvas": [
+      256,
+      186
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-sports-02.png",
+    "output": "lower-revamp10-sports-02.png",
+    "original_canvas": [
+      256,
+      227
+    ],
+    "output_canvas": [
+      256,
+      186
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-monument-05.png",
+    "output": "lower-revamp10-monument-05.png",
+    "original_canvas": [
+      256,
+      250
+    ],
+    "output_canvas": [
+      256,
+      205
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-monument-00.png",
+    "output": "lower-revamp10-monument-00.png",
+    "original_canvas": [
+      256,
+      250
+    ],
+    "output_canvas": [
+      256,
+      205
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-monument-01.png",
+    "output": "lower-revamp10-monument-01.png",
+    "original_canvas": [
+      256,
+      250
+    ],
+    "output_canvas": [
+      256,
+      205
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-monument-02.png",
+    "output": "lower-revamp10-monument-02.png",
+    "original_canvas": [
+      256,
+      250
+    ],
+    "output_canvas": [
+      256,
+      205
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-monument-03.png",
+    "output": "lower-revamp10-monument-03.png",
+    "original_canvas": [
+      256,
+      250
+    ],
+    "output_canvas": [
+      256,
+      205
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-monument-04.png",
+    "output": "lower-revamp10-monument-04.png",
+    "original_canvas": [
+      256,
+      250
+    ],
+    "output_canvas": [
+      256,
+      205
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-rocket-00.png",
+    "output": "lower-revamp10-rocket-00.png",
+    "original_canvas": [
+      512,
+      493
+    ],
+    "output_canvas": [
+      512,
+      399
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-rocket-01.png",
+    "output": "lower-revamp10-rocket-01.png",
+    "original_canvas": [
+      512,
+      493
+    ],
+    "output_canvas": [
+      512,
+      399
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-rocket-02.png",
+    "output": "lower-revamp10-rocket-02.png",
+    "original_canvas": [
+      512,
+      493
+    ],
+    "output_canvas": [
+      512,
+      399
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-rocket-03.png",
+    "output": "lower-revamp10-rocket-03.png",
+    "original_canvas": [
+      512,
+      493
+    ],
+    "output_canvas": [
+      512,
+      399
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-rocket-04.png",
+    "output": "lower-revamp10-rocket-04.png",
+    "original_canvas": [
+      512,
+      493
+    ],
+    "output_canvas": [
+      512,
+      399
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-rocket-05.png",
+    "output": "lower-revamp10-rocket-05.png",
+    "original_canvas": [
+      512,
+      493
+    ],
+    "output_canvas": [
+      512,
+      399
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-rocket-06.png",
+    "output": "lower-revamp10-rocket-06.png",
+    "original_canvas": [
+      512,
+      493
+    ],
+    "output_canvas": [
+      512,
+      399
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-rocket-07.png",
+    "output": "lower-revamp10-rocket-07.png",
+    "original_canvas": [
+      512,
+      493
+    ],
+    "output_canvas": [
+      512,
+      399
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-park-00.png",
+    "output": "lower-revamp10-park-00.png",
+    "original_canvas": [
+      128,
+      103
+    ],
+    "output_canvas": [
+      128,
+      86
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 1
+  },
+  {
+    "input": "revamp10-park-lake-00.png",
+    "output": "lower-revamp10-park-lake-00.png",
+    "original_canvas": [
+      128,
+      110
+    ],
+    "output_canvas": [
+      128,
+      93
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 1
+  },
+  {
+    "input": "revamp10-shanty-00.png",
+    "output": "lower-revamp10-shanty-00.png",
+    "original_canvas": [
+      128,
+      124
+    ],
+    "output_canvas": [
+      128,
+      104
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 1
+  },
+  {
+    "input": "revamp10-coal-mine-00.png",
+    "output": "lower-revamp10-coal-mine-00.png",
+    "original_canvas": [
+      512,
+      477
+    ],
+    "output_canvas": [
+      512,
+      386
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-ore-mine-00.png",
+    "output": "lower-revamp10-ore-mine-00.png",
+    "original_canvas": [
+      512,
+      469
+    ],
+    "output_canvas": [
+      512,
+      379
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-ore-mine-01.png",
+    "output": "lower-revamp10-ore-mine-01.png",
+    "original_canvas": [
+      512,
+      469
+    ],
+    "output_canvas": [
+      512,
+      379
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-ore-mine-02.png",
+    "output": "lower-revamp10-ore-mine-02.png",
+    "original_canvas": [
+      512,
+      469
+    ],
+    "output_canvas": [
+      512,
+      379
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp10-school-01.png",
+    "output": "lower-revamp10-school-01.png",
+    "original_canvas": [
+      256,
+      252
+    ],
+    "output_canvas": [
+      256,
+      206
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp10-school-02.png",
+    "output": "lower-revamp10-school-02.png",
+    "original_canvas": [
+      256,
+      252
+    ],
+    "output_canvas": [
+      256,
+      206
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-church.png",
+    "output": "lower-revamp11-church.png",
+    "original_canvas": [
+      384,
+      372
+    ],
+    "output_canvas": [
+      384,
+      302
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 3
+  },
+  {
+    "input": "revamp11-compact-forestry-1-0.png",
+    "output": "lower-revamp11-compact-forestry-1-0.png",
+    "original_canvas": [
+      512,
+      329
+    ],
+    "output_canvas": [
+      512,
+      268
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp11-compact-forestry-1-1.png",
+    "output": "lower-revamp11-compact-forestry-1-1.png",
+    "original_canvas": [
+      512,
+      329
+    ],
+    "output_canvas": [
+      512,
+      268
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp11-compact-forestry-1-2.png",
+    "output": "lower-revamp11-compact-forestry-1-2.png",
+    "original_canvas": [
+      512,
+      329
+    ],
+    "output_canvas": [
+      512,
+      268
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp11-compact-forestry-2-0.png",
+    "output": "lower-revamp11-compact-forestry-2-0.png",
+    "original_canvas": [
+      512,
+      338
+    ],
+    "output_canvas": [
+      512,
+      275
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp11-compact-forestry-2-1.png",
+    "output": "lower-revamp11-compact-forestry-2-1.png",
+    "original_canvas": [
+      512,
+      338
+    ],
+    "output_canvas": [
+      512,
+      275
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp11-compact-forestry-2-2.png",
+    "output": "lower-revamp11-compact-forestry-2-2.png",
+    "original_canvas": [
+      512,
+      338
+    ],
+    "output_canvas": [
+      512,
+      275
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 4
+  },
+  {
+    "input": "revamp11-compact-housing-compact-0-alt-0.png",
+    "output": "lower-revamp11-compact-housing-compact-0-alt-0.png",
+    "original_canvas": [
+      256,
+      139
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-housing-compact-1-alt-0.png",
+    "output": "lower-revamp11-compact-housing-compact-1-alt-0.png",
+    "original_canvas": [
+      256,
+      149
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-housing-compact-2-alt-0.png",
+    "output": "lower-revamp11-compact-housing-compact-2-alt-0.png",
+    "original_canvas": [
+      256,
+      148
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-housing-compact-3-alt-0.png",
+    "output": "lower-revamp11-compact-housing-compact-3-alt-0.png",
+    "original_canvas": [
+      256,
+      149
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-housing-compact-4-alt-0.png",
+    "output": "lower-revamp11-compact-housing-compact-4-alt-0.png",
+    "original_canvas": [
+      256,
+      147
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  },
+  {
+    "input": "revamp11-compact-housing-compact-5-alt-0.png",
+    "output": "lower-revamp11-compact-housing-compact-5-alt-0.png",
+    "original_canvas": [
+      256,
+      148
+    ],
+    "output_canvas": [
+      256,
+      140
+    ],
+    "sprite_scale": 0.8,
+    "footprint": 2
+  }
+]

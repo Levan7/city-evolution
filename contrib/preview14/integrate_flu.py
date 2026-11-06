@@ -1,0 +1,16 @@
+from pathlib import Path
+s=Path('preview14-work/CityEvolution-Preview-14-Source')
+def edit(f,a,b):
+ p=s/f;t=p.read_text();assert a in t,(f,a);p.write_text(t.replace(a,b))
+edit('src/lincity/CMakeLists.txt','  civic_services.cpp','  flu.cpp\n  flu.hpp\n  civic_services.cpp')
+edit('src/lincity/world.hpp','#include "civic_services.hpp"','#include "civic_services.hpp"\n#include "flu.hpp"');edit('src/lincity/world.hpp','  CivicServices civic;','  FluSystem flu;\n  CivicServices civic;')
+edit('src/lincity/simulate.cpp','    civic.update(*this);','    flu.update(*this);\n    civic.update(*this);')
+edit('src/lincity/modules/residence.cpp','world.civic.illAt(point.y*world.map.len()+point.x)','(world.civic.illAt(point.y*world.map.len()+point.x)+world.flu.infectiousAt(point.y*world.map.len()+point.x))')
+edit('src/lincity/xmlloadsave.cpp','  if(!world->civic.pendingLoad.empty())','  if(!world->flu.pendingLoad.empty()){auto state=std::move(world->flu.pendingLoad);world->flu.load(state,world->map.len());}\n  if(!world->civic.pendingLoad.empty())')
+edit('src/lincity/xmlloadsave.cpp','  xmlTextWriterWriteElement(xmlWriter,(xmlStr)"civic_state"','  xmlTextWriterWriteElement(xmlWriter,(xmlStr)"flu_state",(xmlStr)world.flu.save().c_str());\n  xmlTextWriterWriteElement(xmlWriter,(xmlStr)"civic_state"')
+edit('src/lincity/xmlloadsave.cpp','else if(xml_tag == "civic_state")','else if(xml_tag == "flu_state") world.flu.pendingLoad=xmlReader.read_string2().value_or("");\n    else if(xml_tag == "civic_state")')
+edit('src/lincity/civic_services.cpp','illAt(c.target)<=0','illAt(c.target)+w.flu.infectiousAt(c.target)<=0')
+edit('src/lincity/civic_services.cpp','sickTotal>pop/20','sickTotal+w.flu.active>pop/20')
+edit('src/lincity/civic_services.cpp','if(u.kind==MEDICAL_CALL){auto i=sick.find(call->target);','if(u.kind==MEDICAL_CALL){w.flu.treat(call->target,1);auto i=sick.find(call->target);')
+p=s/'data/gui/publicservices.xml';t=p.read_text();old='<cell row="9" col="1" colspan="2" halign="center" valign="center"><Paragraph color="#edf0df" font-size="15">Mayor automation requires the mayor to be ON.</Paragraph></cell>';assert old in t;new='<cell row="9" col="1" halign="center" valign="center"><Button name="FluToggle" width="320" height="34"><image src="images/readable/plate-320-normal.png" resizable="yes"/><image-hover src="images/readable/plate-320-hover.png" resizable="yes"/><text-caption color="#ffffff" halign="center" font-size="16">Flu transmission: ON</text-caption></Button></cell><cell row="9" col="2"><Paragraph color="#edf0df" font-size="14">Mayor automation needs the mayor ON.</Paragraph></cell>';p.write_text(t.replace(old,new))
+p=s/'src/lincity-ng/Game.cpp';t=p.read_text();t=t.replace('"Pollution illness: "+std::to_string(c.sickTotal)','"Flu: "+std::to_string(world->flu.active)+" | Pollution illness: "+std::to_string(c.sickTotal)');t=t.replace('    getButton(*w,"AutoTax")->setCaptionText','    getButton(*w,"FluToggle")->setCaptionText(world->flu.enabled?"Flu transmission: ON":"Flu transmission: OFF");\n    getButton(*w,"AutoTax")->setCaptionText');t=t.replace('  bind("AutoTax",','  bind("FluToggle",[this](){world->flu.enabled=!world->flu.enabled;if(!world->flu.enabled)world->flu.clear();});\n  bind("AutoTax",');p.write_text(t)

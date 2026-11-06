@@ -1,0 +1,29 @@
+[startup] XML parser initialization
+[startup] reading configuration
+[startup] configuration loaded
+starting City Evolution 2.15.0-Preview-15 ...
+[startup] SDL and font initialization
+[video] driver x11
+
+SDL Mode 1920x1080
+[video] logical UI 1920x1080; scale 1
+[startup] video ready
+[startup] game modules ready
+Audio unavailable: Audio target 'nonexistent' not available
+[startup] sound ready; loading menus
+[startup] parsing main menu
+[startup] main menu parsed
+[startup] new-world controls ready
+[startup] menus ready
+[smoke] captured main
+loaded game from "/workspace/scratch/085b248c71d7/preview15-work/ui-user/9_currentGameNG.scn.gz"
+[smoke] captured city-hud
+[smoke] captured budget
+[smoke] captured homes
+[smoke] captured services
+[smoke] captured industry
+[smoke] captured civic
+[smoke] captured church-help
+[smoke] captured stats
+saved game to '"/workspace/scratch/085b248c71d7/preview15-work/ui-user/9_currentGameNG.scn.gz"'
+[smoke] captured finished

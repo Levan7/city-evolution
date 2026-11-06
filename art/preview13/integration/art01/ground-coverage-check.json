@@ -1,0 +1,156 @@
+[
+  {
+    "resource_id": "ResidentialLowLow",
+    "frame": 0,
+    "footprint_tiles": 3,
+    "opaque_ground_fraction": 1.0,
+    "width": 384,
+    "anchor": [
+      192,
+      200
+    ]
+  },
+  {
+    "resource_id": "ResidentialMedLow",
+    "frame": 0,
+    "footprint_tiles": 3,
+    "opaque_ground_fraction": 1.0,
+    "width": 384,
+    "anchor": [
+      192,
+      200
+    ]
+  },
+  {
+    "resource_id": "ResidentialHighLow",
+    "frame": 0,
+    "footprint_tiles": 3,
+    "opaque_ground_fraction": 1.0,
+    "width": 384,
+    "anchor": [
+      192,
+      200
+    ]
+  },
+  {
+    "resource_id": "ResidentialLow",
+    "frame": 0,
+    "footprint_tiles": 3,
+    "opaque_ground_fraction": 1.0,
+    "width": 384,
+    "anchor": [
+      192,
+      200
+    ]
+  },
+  {
+    "resource_id": "ResidentialMedHigh",
+    "frame": 0,
+    "footprint_tiles": 3,
+    "opaque_ground_fraction": 1.0,
+    "width": 384,
+    "anchor": [
+      192,
+      200
+    ]
+  },
+  {
+    "resource_id": "ResidentialHighHigh",
+    "frame": 0,
+    "footprint_tiles": 3,
+    "opaque_ground_fraction": 1.0,
+    "width": 384,
+    "anchor": [
+      192,
+      200
+    ]
+  },
+  {
+    "resource_id": "ResidentialLowLowVariant1",
+    "frame": 0,
+    "footprint_tiles": 3,
+    "opaque_ground_fraction": 1.0,
+    "width": 384,
+    "anchor": [
+      192,
+      200
+    ]
+  },
+  {
+    "resource_id": "ResidentialMedLowVariant1",
+    "frame": 0,
+    "footprint_tiles": 3,
+    "opaque_ground_fraction": 1.0,
+    "width": 384,
+    "anchor": [
+      192,
+      200
+    ]
+  },
+  {
+    "resource_id": "ResidentialHighLowVariant1",
+    "frame": 0,
+    "footprint_tiles": 3,
+    "opaque_ground_fraction": 1.0,
+    "width": 384,
+    "anchor": [
+      192,
+      200
+    ]
+  },
+  {
+    "resource_id": "ResidentialLowVariant1",
+    "frame": 0,
+    "footprint_tiles": 3,
+    "opaque_ground_fraction": 1.0,
+    "width": 384,
+    "anchor": [
+      192,
+      200
+    ]
+  },
+  {
+    "resource_id": "ResidentialMedHighVariant1",
+    "frame": 0,
+    "footprint_tiles": 3,
+    "opaque_ground_fraction": 1.0,
+    "width": 384,
+    "anchor": [
+      192,
+      200
+    ]
+  },
+  {
+    "resource_id": "ResidentialHighHighVariant1",
+    "frame": 0,
+    "footprint_tiles": 3,
+    "opaque_ground_fraction": 1.0,
+    "width": 384,
+    "anchor": [
+      192,
+      200
+    ]
+  },
+  {
+    "resource_id": "Shanty",
+    "frame": 0,
+    "footprint_tiles": 2,
+    "opaque_ground_fraction": 1.0,
+    "width": 256,
+    "anchor": [
+      128,
+      136
+    ]
+  },
+  {
+    "resource_id": "Waterwell",
+    "frame": 0,
+    "footprint_tiles": 2,
+    "opaque_ground_fraction": 1.0,
+    "width": 256,
+    "anchor": [
+      128,
+      155
+    ]
+  }
+]

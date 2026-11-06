@@ -1,0 +1,21 @@
+{
+  "data/gui/minimap.xml": "ade5eb7f192dd117ab8280cf2b73378f81508c2b3466f46b1aa9721a39c446e6",
+  "data/gui/buttonpanel.xml": "6cb32b1b8b684b171d2a3ffb4f69a6866d1a1096bb46c4b204591c42f14f1013",
+  "data/gui/options.xml": "ba7ba8de4b670f239f32cf7e00829f7e90b17afbfc418695eeffab16e0eed534",
+  "data/gui/savegame.xml": "79cd3dd1d3bee5f70def9f24742f742a9c803e54768d5f120dbeb3c1da533cbf",
+  "data/gui/loadgame.xml": "26d826099e9a4bd268ee1ffac2fcc538fbe8f050a69894ab28068ec3ac782a53",
+  "data/gui/transport.xml": "cd3a532a1714c294cfe74276d38d6baa0951a3f376665ba7aa6776aadf5d3377",
+  "data/gui/newgame.xml": "09948f5e92599b62a8b3569696278207f54367f86b5f5443a1f0d65a492edaad",
+  "data/gui/dialog.xml": "8d23081da1dc7777e99f33a17277f9d8bbc7803b0fafcf4641cdf00e460079ab",
+  "data/gui/speedpanel.xml": "83a28317e61eb211d5425d9afab2bf68dd600bc3d035a172d3e8d51dd00303e6",
+  "data/gui/credits.xml": "1a23f3ac4bfab8382c33cef24fadac3e45262f350e0145c1956efc7a320943ac",
+  "data/gui/pbar2nd.xml": "06b60170456c2356b7674e4d1e2daac51e88a3c9e77c6d564306232269ca5a1e",
+  "data/gui/pbar.xml": "8b4b9a34ab648e44137067403d9ae38f3af78a2e465821620ff1889df55c40b9",
+  "data/gui/app.xml": "664b294f407b0718908019044d4be9f9668e849edf578c50883ba7ef258bd7a9",
+  "data/gui/helpwindow.xml": "bc4ab0445e8e0735b1f0b95a3f18aaa378cb3a7475f3a22c5fa2741d4e9f583b",
+  "data/gui/mps.xml": "742cf2321a29ae56624306f66d603df296168b6fc2b0c0099d83d85270f56e9d",
+  "data/gui/minimapswitchbuttons.xml": "dda82a6000a5f9b00d267ec849de0d581428702cabbb57389989ef9b7f69db1e",
+  "data/gui/mainmenu.xml": "a43a67dafab7e7345259bf8b008b50e9e1a3c3513d84464fa2f3cc56df7890c0",
+  "data/images/gui/mapview/minimap_bg.png": "f9f302cd87d4d919c91170696619f6a8a92f2f0a808098a9249675bf78193d13",
+  "data/images/evolution/city-menu.png": "3766636cc16a8ffb29dc1389dd1605df35dffb3c6c11c4d629bebb67188ed1cb"
+}

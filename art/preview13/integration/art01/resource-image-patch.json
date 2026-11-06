@@ -1,0 +1,2066 @@
+{
+  "ResidentialLowLow": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp11-compact-housing-compact-0-0.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ground-ResidentialLowLow-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "footprint_tiles": 3
+  },
+  "ResidentialMedLow": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp11-compact-housing-compact-1-0.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ground-ResidentialMedLow-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "footprint_tiles": 3
+  },
+  "ResidentialHighLow": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp11-compact-housing-compact-2-0.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ground-ResidentialHighLow-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "footprint_tiles": 3
+  },
+  "ResidentialLow": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp11-compact-housing-compact-3-0.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ground-ResidentialLow-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "footprint_tiles": 3
+  },
+  "ResidentialMedHigh": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp11-compact-housing-compact-4-0.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ground-ResidentialMedHigh-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "footprint_tiles": 3
+  },
+  "ResidentialHighHigh": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp11-compact-housing-compact-5-0.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ground-ResidentialHighHigh-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "footprint_tiles": 3
+  },
+  "ResidentialLowLowVariant1": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp11-compact-housing-compact-0-alt-0.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ground-ResidentialLowLowVariant1-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "footprint_tiles": 3
+  },
+  "ResidentialMedLowVariant1": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp11-compact-housing-compact-1-alt-0.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ground-ResidentialMedLowVariant1-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "footprint_tiles": 3
+  },
+  "ResidentialHighLowVariant1": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp11-compact-housing-compact-2-alt-0.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ground-ResidentialHighLowVariant1-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "footprint_tiles": 3
+  },
+  "ResidentialLowVariant1": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp11-compact-housing-compact-3-alt-0.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ground-ResidentialLowVariant1-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "footprint_tiles": 3
+  },
+  "ResidentialMedHighVariant1": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp11-compact-housing-compact-4-alt-0.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ground-ResidentialMedHighVariant1-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "footprint_tiles": 3
+  },
+  "ResidentialHighHighVariant1": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp11-compact-housing-compact-5-alt-0.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ground-ResidentialHighHighVariant1-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "footprint_tiles": 3
+  },
+  "Shanty": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-shanty-00.png",
+        "x": "64",
+        "y": "100"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ground-Shanty-00.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "Waterwell": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp-water-well.png",
+        "x": "128",
+        "y": "151"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ground-Waterwell-00.png",
+        "x": "128",
+        "y": "155"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "Bluecar": {
+    "expected_frame_count": 16,
+    "before": [
+      {
+        "file": "revamp10-native-car-00.png",
+        "x": "25",
+        "y": "47"
+      },
+      {
+        "file": "revamp10-native-car-01.png",
+        "x": "24",
+        "y": "47"
+      },
+      {
+        "file": "revamp10-native-car-02.png",
+        "x": "24",
+        "y": "47"
+      },
+      {
+        "file": "revamp10-native-car-03.png",
+        "x": "23",
+        "y": "49"
+      },
+      {
+        "file": "revamp10-native-car-04.png",
+        "x": "24",
+        "y": "47"
+      },
+      {
+        "file": "revamp10-native-car-05.png",
+        "x": "23",
+        "y": "47"
+      },
+      {
+        "file": "revamp10-native-car-06.png",
+        "x": "25",
+        "y": "47"
+      },
+      {
+        "file": "revamp10-native-car-07.png",
+        "x": "26",
+        "y": "49"
+      },
+      {
+        "file": "revamp10-native-car-08.png",
+        "x": "24",
+        "y": "49"
+      },
+      {
+        "file": "revamp10-native-car-09.png",
+        "x": "26",
+        "y": "49"
+      },
+      {
+        "file": "revamp10-native-car-10.png",
+        "x": "25",
+        "y": "47"
+      },
+      {
+        "file": "revamp10-native-car-11.png",
+        "x": "23",
+        "y": "47"
+      },
+      {
+        "file": "revamp10-native-car-12.png",
+        "x": "27",
+        "y": "46"
+      },
+      {
+        "file": "revamp10-native-car-13.png",
+        "x": "22",
+        "y": "45"
+      },
+      {
+        "file": "revamp10-native-car-14.png",
+        "x": "22",
+        "y": "49"
+      },
+      {
+        "file": "revamp10-native-car-15.png",
+        "x": "27",
+        "y": "49"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-Bluecar-00.png",
+        "x": "21",
+        "y": "39"
+      },
+      {
+        "file": "art01-Bluecar-01.png",
+        "x": "20",
+        "y": "39"
+      },
+      {
+        "file": "art01-Bluecar-02.png",
+        "x": "20",
+        "y": "39"
+      },
+      {
+        "file": "art01-Bluecar-03.png",
+        "x": "19",
+        "y": "41"
+      },
+      {
+        "file": "art01-Bluecar-04.png",
+        "x": "20",
+        "y": "39"
+      },
+      {
+        "file": "art01-Bluecar-05.png",
+        "x": "19",
+        "y": "39"
+      },
+      {
+        "file": "art01-Bluecar-06.png",
+        "x": "21",
+        "y": "39"
+      },
+      {
+        "file": "art01-Bluecar-07.png",
+        "x": "22",
+        "y": "41"
+      },
+      {
+        "file": "art01-Bluecar-08.png",
+        "x": "20",
+        "y": "41"
+      },
+      {
+        "file": "art01-Bluecar-09.png",
+        "x": "22",
+        "y": "41"
+      },
+      {
+        "file": "art01-Bluecar-10.png",
+        "x": "21",
+        "y": "39"
+      },
+      {
+        "file": "art01-Bluecar-11.png",
+        "x": "19",
+        "y": "39"
+      },
+      {
+        "file": "art01-Bluecar-12.png",
+        "x": "23",
+        "y": "39"
+      },
+      {
+        "file": "art01-Bluecar-13.png",
+        "x": "18",
+        "y": "38"
+      },
+      {
+        "file": "art01-Bluecar-14.png",
+        "x": "18",
+        "y": "41"
+      },
+      {
+        "file": "art01-Bluecar-15.png",
+        "x": "23",
+        "y": "41"
+      }
+    ]
+  },
+  "HorseTraffic": {
+    "expected_frame_count": 16,
+    "before": [
+      {
+        "file": "revamp11-native-carriage-00.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-01.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-02.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-03.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-04.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-05.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-06.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-07.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-08.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-09.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-10.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-11.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-12.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-13.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-14.png",
+        "x": "32",
+        "y": "61"
+      },
+      {
+        "file": "revamp11-native-carriage-15.png",
+        "x": "32",
+        "y": "61"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-HorseTraffic-00.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-01.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-02.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-03.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-04.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-05.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-06.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-07.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-08.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-09.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-10.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-11.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-12.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-13.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-14.png",
+        "x": "25",
+        "y": "48"
+      },
+      {
+        "file": "art01-HorseTraffic-15.png",
+        "x": "25",
+        "y": "48"
+      }
+    ]
+  },
+  "WindMill": {
+    "expected_frame_count": 3,
+    "before": [
+      {
+        "file": "lower-revamp10-wind-turbine-00.png",
+        "x": "128",
+        "y": "349"
+      },
+      {
+        "file": "lower-revamp10-wind-turbine-01.png",
+        "x": "128",
+        "y": "349"
+      },
+      {
+        "file": "lower-revamp10-wind-turbine-02.png",
+        "x": "128",
+        "y": "349"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-scale-wind-turbine-00.png",
+        "x": "128",
+        "y": "280"
+      },
+      {
+        "file": "art01-scale-wind-turbine-01.png",
+        "x": "128",
+        "y": "280"
+      },
+      {
+        "file": "art01-scale-wind-turbine-02.png",
+        "x": "128",
+        "y": "280"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "WindMillHTech": {
+    "expected_frame_count": 3,
+    "before": [
+      {
+        "file": "lower-revamp10-wind-turbine-00.png",
+        "x": "128",
+        "y": "349"
+      },
+      {
+        "file": "lower-revamp10-wind-turbine-01.png",
+        "x": "128",
+        "y": "349"
+      },
+      {
+        "file": "lower-revamp10-wind-turbine-02.png",
+        "x": "128",
+        "y": "349"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-scale-wind-turbine-00.png",
+        "x": "128",
+        "y": "280"
+      },
+      {
+        "file": "art01-scale-wind-turbine-01.png",
+        "x": "128",
+        "y": "280"
+      },
+      {
+        "file": "art01-scale-wind-turbine-02.png",
+        "x": "128",
+        "y": "280"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "WindMillHTechRG": {
+    "expected_frame_count": 3,
+    "before": [
+      {
+        "file": "lower-revamp10-wind-turbine-00.png",
+        "x": "128",
+        "y": "349"
+      },
+      {
+        "file": "lower-revamp10-wind-turbine-01.png",
+        "x": "128",
+        "y": "349"
+      },
+      {
+        "file": "lower-revamp10-wind-turbine-02.png",
+        "x": "128",
+        "y": "349"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-scale-wind-turbine-00.png",
+        "x": "128",
+        "y": "280"
+      },
+      {
+        "file": "art01-scale-wind-turbine-01.png",
+        "x": "128",
+        "y": "280"
+      },
+      {
+        "file": "art01-scale-wind-turbine-02.png",
+        "x": "128",
+        "y": "280"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "WindMillHTechG": {
+    "expected_frame_count": 3,
+    "before": [
+      {
+        "file": "lower-revamp10-wind-turbine-00.png",
+        "x": "128",
+        "y": "349"
+      },
+      {
+        "file": "lower-revamp10-wind-turbine-01.png",
+        "x": "128",
+        "y": "349"
+      },
+      {
+        "file": "lower-revamp10-wind-turbine-02.png",
+        "x": "128",
+        "y": "349"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-scale-wind-turbine-00.png",
+        "x": "128",
+        "y": "280"
+      },
+      {
+        "file": "art01-scale-wind-turbine-01.png",
+        "x": "128",
+        "y": "280"
+      },
+      {
+        "file": "art01-scale-wind-turbine-02.png",
+        "x": "128",
+        "y": "280"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "Monument": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-monument-05.png",
+        "x": "128",
+        "y": "201"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-scale-monument-00.png",
+        "x": "128",
+        "y": "181"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "MonumentConstruction": {
+    "expected_frame_count": 5,
+    "before": [
+      {
+        "file": "lower-revamp10-monument-00.png",
+        "x": "128",
+        "y": "201"
+      },
+      {
+        "file": "lower-revamp10-monument-01.png",
+        "x": "128",
+        "y": "201"
+      },
+      {
+        "file": "lower-revamp10-monument-02.png",
+        "x": "128",
+        "y": "201"
+      },
+      {
+        "file": "lower-revamp10-monument-03.png",
+        "x": "128",
+        "y": "201"
+      },
+      {
+        "file": "lower-revamp10-monument-04.png",
+        "x": "128",
+        "y": "201"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-scale-monument-01.png",
+        "x": "128",
+        "y": "181"
+      },
+      {
+        "file": "art01-scale-monument-02.png",
+        "x": "128",
+        "y": "181"
+      },
+      {
+        "file": "art01-scale-monument-03.png",
+        "x": "128",
+        "y": "181"
+      },
+      {
+        "file": "art01-scale-monument-04.png",
+        "x": "128",
+        "y": "181"
+      },
+      {
+        "file": "art01-scale-monument-05.png",
+        "x": "128",
+        "y": "181"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "EvolutionTech": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp-tech-campus.png",
+        "x": "192",
+        "y": "246"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-scale-tech-campus-00.png",
+        "x": "192",
+        "y": "220"
+      }
+    ],
+    "footprint_tiles": 3
+  },
+  "PowerSolar": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp-solar-plant.png",
+        "x": "256",
+        "y": "264"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-scale-solar-plant-00.png",
+        "x": "256",
+        "y": "264"
+      }
+    ],
+    "footprint_tiles": 4
+  },
+  "Harbor": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-port-00.png",
+        "x": "256",
+        "y": "275"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-scale-port-00.png",
+        "x": "256",
+        "y": "264"
+      }
+    ],
+    "footprint_tiles": 4
+  },
+  "Rocket": {
+    "expected_frame_count": 8,
+    "before": [
+      {
+        "file": "lower-revamp10-rocket-00.png",
+        "x": "256",
+        "y": "395"
+      },
+      {
+        "file": "lower-revamp10-rocket-01.png",
+        "x": "256",
+        "y": "395"
+      },
+      {
+        "file": "lower-revamp10-rocket-02.png",
+        "x": "256",
+        "y": "395"
+      },
+      {
+        "file": "lower-revamp10-rocket-03.png",
+        "x": "256",
+        "y": "395"
+      },
+      {
+        "file": "lower-revamp10-rocket-04.png",
+        "x": "256",
+        "y": "395"
+      },
+      {
+        "file": "lower-revamp10-rocket-05.png",
+        "x": "256",
+        "y": "395"
+      },
+      {
+        "file": "lower-revamp10-rocket-06.png",
+        "x": "256",
+        "y": "395"
+      },
+      {
+        "file": "lower-revamp10-rocket-07.png",
+        "x": "256",
+        "y": "395"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-scale-rocket-00.png",
+        "x": "256",
+        "y": "352"
+      },
+      {
+        "file": "art01-scale-rocket-01.png",
+        "x": "256",
+        "y": "352"
+      },
+      {
+        "file": "art01-scale-rocket-02.png",
+        "x": "256",
+        "y": "352"
+      },
+      {
+        "file": "art01-scale-rocket-03.png",
+        "x": "256",
+        "y": "352"
+      },
+      {
+        "file": "art01-scale-rocket-04.png",
+        "x": "256",
+        "y": "352"
+      },
+      {
+        "file": "art01-scale-rocket-05.png",
+        "x": "256",
+        "y": "352"
+      },
+      {
+        "file": "art01-scale-rocket-06.png",
+        "x": "256",
+        "y": "352"
+      },
+      {
+        "file": "art01-scale-rocket-07.png",
+        "x": "256",
+        "y": "352"
+      }
+    ],
+    "footprint_tiles": 4
+  },
+  "OreMine": {
+    "expected_frame_count": 8,
+    "before": [
+      {
+        "file": "lower-revamp10-ore-mine-00.png",
+        "x": "256",
+        "y": "375"
+      },
+      {
+        "file": "lower-revamp10-ore-mine-01.png",
+        "x": "256",
+        "y": "375"
+      },
+      {
+        "file": "lower-revamp10-ore-mine-01.png",
+        "x": "256",
+        "y": "375"
+      },
+      {
+        "file": "lower-revamp10-ore-mine-02.png",
+        "x": "256",
+        "y": "375"
+      },
+      {
+        "file": "lower-revamp10-ore-mine-02.png",
+        "x": "256",
+        "y": "375"
+      },
+      {
+        "file": "lower-revamp10-ore-mine-01.png",
+        "x": "256",
+        "y": "375"
+      },
+      {
+        "file": "lower-revamp10-ore-mine-01.png",
+        "x": "256",
+        "y": "375"
+      },
+      {
+        "file": "lower-revamp10-ore-mine-00.png",
+        "x": "256",
+        "y": "375"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-ore-mine-00.png",
+        "x": "256",
+        "y": "286"
+      },
+      {
+        "file": "art01-ore-mine-00.png",
+        "x": "256",
+        "y": "286"
+      },
+      {
+        "file": "art01-ore-mine-01.png",
+        "x": "256",
+        "y": "286"
+      },
+      {
+        "file": "art01-ore-mine-01.png",
+        "x": "256",
+        "y": "286"
+      },
+      {
+        "file": "art01-ore-mine-02.png",
+        "x": "256",
+        "y": "286"
+      },
+      {
+        "file": "art01-ore-mine-02.png",
+        "x": "256",
+        "y": "286"
+      },
+      {
+        "file": "art01-ore-mine-01.png",
+        "x": "256",
+        "y": "286"
+      },
+      {
+        "file": "art01-ore-mine-01.png",
+        "x": "256",
+        "y": "286"
+      }
+    ],
+    "footprint_tiles": 4
+  },
+  "CoalMine": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-coal-mine-00.png",
+        "x": "256",
+        "y": "382"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-coal-mine-00.png",
+        "x": "256",
+        "y": "318"
+      }
+    ],
+    "footprint_tiles": 4
+  },
+  "CoalMineLow": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-coal-mine-00.png",
+        "x": "256",
+        "y": "382"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-coal-mine-00.png",
+        "x": "256",
+        "y": "318"
+      }
+    ],
+    "footprint_tiles": 4
+  },
+  "CoalMineMed": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-coal-mine-00.png",
+        "x": "256",
+        "y": "382"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-coal-mine-01.png",
+        "x": "256",
+        "y": "318"
+      }
+    ],
+    "footprint_tiles": 4
+  },
+  "CoalMineFull": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-coal-mine-00.png",
+        "x": "256",
+        "y": "382"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-coal-mine-02.png",
+        "x": "256",
+        "y": "318"
+      }
+    ],
+    "footprint_tiles": 4
+  },
+  "IndustryHigh": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-heavy-factory-00.png",
+        "x": "256",
+        "y": "422"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-steel-works-00.png",
+        "x": "256",
+        "y": "324"
+      }
+    ],
+    "footprint_tiles": 4
+  },
+  "IndustryHighL": {
+    "expected_frame_count": 8,
+    "before": [
+      {
+        "file": "lower-revamp10-heavy-factory-00.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-00.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-00.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-00.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-01.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-01.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-02.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-02.png",
+        "x": "256",
+        "y": "422"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-steel-works-00.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-00.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-02.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-02.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      }
+    ],
+    "footprint_tiles": 4
+  },
+  "IndustryHighM": {
+    "expected_frame_count": 8,
+    "before": [
+      {
+        "file": "lower-revamp10-heavy-factory-00.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-00.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-00.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-00.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-01.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-01.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-02.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-02.png",
+        "x": "256",
+        "y": "422"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-steel-works-00.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-00.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-02.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-02.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      }
+    ],
+    "footprint_tiles": 4
+  },
+  "IndustryHighH": {
+    "expected_frame_count": 8,
+    "before": [
+      {
+        "file": "lower-revamp10-heavy-factory-00.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-00.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-00.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-00.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-01.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-01.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-02.png",
+        "x": "256",
+        "y": "422"
+      },
+      {
+        "file": "lower-revamp10-heavy-factory-02.png",
+        "x": "256",
+        "y": "422"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-steel-works-00.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-00.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-02.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-02.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      }
+    ],
+    "footprint_tiles": 4
+  },
+  "SubstationOff": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp-substation.png",
+        "x": "128",
+        "y": "187"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-substation-00.png",
+        "x": "128",
+        "y": "157"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "Substation": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp-substation.png",
+        "x": "128",
+        "y": "187"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-substation-01.png",
+        "x": "128",
+        "y": "157"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "SubstationOn": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp-substation.png",
+        "x": "128",
+        "y": "187"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-substation-02.png",
+        "x": "128",
+        "y": "157"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "FireStation": {
+    "expected_frame_count": 10,
+    "before": [
+      {
+        "file": "lower-revamp10-fire-station-00.png",
+        "x": "128",
+        "y": "206"
+      },
+      {
+        "file": "lower-revamp10-fire-station-00.png",
+        "x": "128",
+        "y": "206"
+      },
+      {
+        "file": "lower-revamp10-fire-station-01.png",
+        "x": "128",
+        "y": "206"
+      },
+      {
+        "file": "lower-revamp10-fire-station-01.png",
+        "x": "128",
+        "y": "206"
+      },
+      {
+        "file": "lower-revamp10-fire-station-02.png",
+        "x": "128",
+        "y": "206"
+      },
+      {
+        "file": "lower-revamp10-fire-station-02.png",
+        "x": "128",
+        "y": "206"
+      },
+      {
+        "file": "lower-revamp10-fire-station-01.png",
+        "x": "128",
+        "y": "206"
+      },
+      {
+        "file": "lower-revamp10-fire-station-01.png",
+        "x": "128",
+        "y": "206"
+      },
+      {
+        "file": "lower-revamp10-fire-station-00.png",
+        "x": "128",
+        "y": "206"
+      },
+      {
+        "file": "lower-revamp10-fire-station-00.png",
+        "x": "128",
+        "y": "206"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-fire-station-00.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-00.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-00.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-01.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-01.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-02.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-02.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-02.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-01.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-01.png",
+        "x": "128",
+        "y": "152"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "School": {
+    "expected_frame_count": 2,
+    "before": [
+      {
+        "file": "lower-revamp10-school-00.png",
+        "x": "128",
+        "y": "202"
+      },
+      {
+        "file": "revamp-clear.png",
+        "x": "0",
+        "y": "0"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-school-00.png",
+        "x": "128",
+        "y": "149"
+      },
+      {
+        "file": "revamp-clear.png",
+        "x": "0",
+        "y": "0"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "ChildOnSwing": {
+    "expected_frame_count": 11,
+    "before": [
+      {
+        "file": "lower-revamp10-school-00.png",
+        "x": "128",
+        "y": "202"
+      },
+      {
+        "file": "lower-revamp10-school-00.png",
+        "x": "128",
+        "y": "202"
+      },
+      {
+        "file": "lower-revamp10-school-01.png",
+        "x": "128",
+        "y": "202"
+      },
+      {
+        "file": "lower-revamp10-school-01.png",
+        "x": "128",
+        "y": "202"
+      },
+      {
+        "file": "lower-revamp10-school-02.png",
+        "x": "128",
+        "y": "202"
+      },
+      {
+        "file": "lower-revamp10-school-02.png",
+        "x": "128",
+        "y": "202"
+      },
+      {
+        "file": "lower-revamp10-school-02.png",
+        "x": "128",
+        "y": "202"
+      },
+      {
+        "file": "lower-revamp10-school-01.png",
+        "x": "128",
+        "y": "202"
+      },
+      {
+        "file": "lower-revamp10-school-01.png",
+        "x": "128",
+        "y": "202"
+      },
+      {
+        "file": "lower-revamp10-school-00.png",
+        "x": "128",
+        "y": "202"
+      },
+      {
+        "file": "lower-revamp10-school-00.png",
+        "x": "128",
+        "y": "202"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-school-00.png",
+        "x": "128",
+        "y": "149"
+      },
+      {
+        "file": "art01-school-00.png",
+        "x": "128",
+        "y": "149"
+      },
+      {
+        "file": "art01-school-00.png",
+        "x": "128",
+        "y": "149"
+      },
+      {
+        "file": "art01-school-01.png",
+        "x": "128",
+        "y": "149"
+      },
+      {
+        "file": "art01-school-01.png",
+        "x": "128",
+        "y": "149"
+      },
+      {
+        "file": "art01-school-01.png",
+        "x": "128",
+        "y": "149"
+      },
+      {
+        "file": "art01-school-02.png",
+        "x": "128",
+        "y": "149"
+      },
+      {
+        "file": "art01-school-02.png",
+        "x": "128",
+        "y": "149"
+      },
+      {
+        "file": "art01-school-02.png",
+        "x": "128",
+        "y": "149"
+      },
+      {
+        "file": "art01-school-01.png",
+        "x": "128",
+        "y": "149"
+      },
+      {
+        "file": "art01-school-01.png",
+        "x": "128",
+        "y": "149"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "Health": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp-clinic.png",
+        "x": "128",
+        "y": "182"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-clinic-00.png",
+        "x": "128",
+        "y": "153"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "University": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp-university.png",
+        "x": "192",
+        "y": "254"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-university-00.png",
+        "x": "192",
+        "y": "213"
+      }
+    ],
+    "footprint_tiles": 3
+  },
+  "EvolutionWarehouse": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp-warehouse.png",
+        "x": "128",
+        "y": "186"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-warehouse-00.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "EvolutionCafe": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp-cafe.png",
+        "x": "64",
+        "y": "115"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-cafe-00.png",
+        "x": "64",
+        "y": "75"
+      }
+    ],
+    "footprint_tiles": 1
+  },
+  "EvolutionFoodhall": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp-food-hall.png",
+        "x": "128",
+        "y": "169"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-food-hall-00.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "Recycle": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp-recycling-center.png",
+        "x": "128",
+        "y": "185"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-recycling-center-00.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "footprint_tiles": 2
+  },
+  "PowerCoalEmpty": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-coal-plant-00.png",
+        "x": "256",
+        "y": "342"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-coal-plant-00.png",
+        "x": "256",
+        "y": "288"
+      }
+    ],
+    "footprint_tiles": 4,
+    "requires_renderer_integration": "smoke-emitter-mapping.json"
+  },
+  "PowerCoalLow": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-coal-plant-00.png",
+        "x": "256",
+        "y": "342"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-coal-plant-00.png",
+        "x": "256",
+        "y": "288"
+      }
+    ],
+    "footprint_tiles": 4,
+    "requires_renderer_integration": "smoke-emitter-mapping.json"
+  },
+  "PowerCoalMed": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-coal-plant-00.png",
+        "x": "256",
+        "y": "342"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-coal-plant-00.png",
+        "x": "256",
+        "y": "288"
+      }
+    ],
+    "footprint_tiles": 4,
+    "requires_renderer_integration": "smoke-emitter-mapping.json"
+  },
+  "PowerCoalFull": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-coal-plant-00.png",
+        "x": "256",
+        "y": "342"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-coal-plant-00.png",
+        "x": "256",
+        "y": "288"
+      }
+    ],
+    "footprint_tiles": 4,
+    "requires_renderer_integration": "smoke-emitter-mapping.json"
+  },
+  "IndustryLight": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-factory-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-factory-00.png",
+        "x": "192",
+        "y": "215"
+      }
+    ],
+    "footprint_tiles": 3,
+    "requires_renderer_integration": "smoke-emitter-mapping.json"
+  },
+  "IndustryLightL": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-factory-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-factory-00.png",
+        "x": "192",
+        "y": "215"
+      }
+    ],
+    "footprint_tiles": 3,
+    "requires_renderer_integration": "smoke-emitter-mapping.json"
+  },
+  "IndustryLightM": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-factory-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-factory-00.png",
+        "x": "192",
+        "y": "215"
+      }
+    ],
+    "footprint_tiles": 3,
+    "requires_renderer_integration": "smoke-emitter-mapping.json"
+  },
+  "IndustryLightH": {
+    "expected_frame_count": 1,
+    "before": [
+      {
+        "file": "lower-revamp10-factory-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-factory-00.png",
+        "x": "192",
+        "y": "215"
+      }
+    ],
+    "footprint_tiles": 3,
+    "requires_renderer_integration": "smoke-emitter-mapping.json"
+  },
+  "Tip": {
+    "expected_frame_count": 9,
+    "before": [
+      {
+        "file": "lower-revamp10-landfill-00.png",
+        "x": "256",
+        "y": "282"
+      },
+      {
+        "file": "lower-revamp10-landfill-00.png",
+        "x": "256",
+        "y": "282"
+      },
+      {
+        "file": "lower-revamp10-landfill-00.png",
+        "x": "256",
+        "y": "282"
+      },
+      {
+        "file": "lower-revamp10-landfill-01.png",
+        "x": "256",
+        "y": "282"
+      },
+      {
+        "file": "lower-revamp10-landfill-01.png",
+        "x": "256",
+        "y": "282"
+      },
+      {
+        "file": "lower-revamp10-landfill-01.png",
+        "x": "256",
+        "y": "282"
+      },
+      {
+        "file": "lower-revamp10-landfill-02.png",
+        "x": "256",
+        "y": "282"
+      },
+      {
+        "file": "lower-revamp10-landfill-02.png",
+        "x": "256",
+        "y": "282"
+      },
+      {
+        "file": "lower-revamp10-landfill-02.png",
+        "x": "256",
+        "y": "282"
+      }
+    ],
+    "images": [
+      {
+        "file": "art01-landfill-00.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-00.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-00.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-01.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-01.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-02.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-02.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-01.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-01.png",
+        "x": "256",
+        "y": "264"
+      }
+    ],
+    "footprint_tiles": 4
+  }
+}

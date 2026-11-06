@@ -1,0 +1,18 @@
+{
+  "src/lincity/modules/church.cpp": {
+    "before_sha256": "f771e9be25d223a8b7d64730852f30a804e9966da9ef41144fe7a89edf00d62a",
+    "after_sha256": "19bbf37efd9a8826a0b441c004723b1982faaac2bc6c2004fcbb769f7b6cd6c8"
+  },
+  "data/help/en/church.xml": {
+    "before_sha256": "5bd6568da4177ad9e7619c6141a270c5e37d868718a0e9b72bf8a10eba249e52",
+    "after_sha256": "4aa4d9dbb1cb4b0bb87f3659fbec4485907dcb83986b59dadd2dc89ceda7137f"
+  },
+  "README.md": {
+    "before_sha256": "2e92404662c1aef7735a17323e815fe626966760536335ce727fd358722c12fa",
+    "after_sha256": "0e65c8e48593da37fd324d84999f79a5d0f37c552e3ad40da14588ea2a218da2"
+  },
+  "CHANGELOG-Preview-11.md": {
+    "before_sha256": "97861a615c9bbcc2148463e75e1b041e9a5ea38871b550f6735eca29dca1e7e4",
+    "after_sha256": "3324d46b63a8647dcc56b5035baac4acb4db5b595c239de09ad5d63939145a7a"
+  }
+}

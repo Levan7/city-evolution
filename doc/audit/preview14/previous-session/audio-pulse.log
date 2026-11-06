@@ -1,0 +1,5 @@
+Couldn't find audio file 'Click'
+PASS working-device playback, completion queue and track changes; 1,000 volume changes
+ [audio] driver pulseaudio; music/effect tracks ready
+
+PASS real PulseAudio protocol playback and volume changes with null output sink

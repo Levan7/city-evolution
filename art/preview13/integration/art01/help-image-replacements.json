@@ -1,0 +1,4875 @@
+{
+  "files": [
+    {
+      "file": "help/nl/industryl.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryl-low.png",
+          "new": "images/help-art01/IndustryLightL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/lightindustry.png",
+          "new": "images/help-art01/IndustryLightL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/industryh.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryhl1.png",
+          "new": "images/help-art01/IndustryHighL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/heavyindustry2.png",
+          "new": "images/help-art01/IndustryHighL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/park.xml",
+      "replace": [
+        {
+          "old": "images/tiles/parkland-plane.png",
+          "new": "images/help-art01/ParklandPlane.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/tree.png",
+          "new": "images/help-art01/ParklandPlane-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/oremine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/oremine1.png",
+          "new": "images/help-art01/OreMine.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/oremine.png",
+          "new": "images/help-art01/OreMine-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/health.xml",
+      "replace": [
+        {
+          "old": "images/tiles/health.png",
+          "new": "images/help-art01/Health.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/health.png",
+          "new": "images/help-art01/Health-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/tip.xml",
+      "replace": [
+        {
+          "old": "images/tiles/tip0.png",
+          "new": "images/help-art01/Tip.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/trash.png",
+          "new": "images/help-art01/Tip-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/substation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/farm.xml",
+      "replace": [
+        {
+          "old": "images/tiles/farm0.png",
+          "new": "images/help-art01/Farm.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/farm.png",
+          "new": "images/help-art01/Farm-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/cricket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/cricket1.png",
+          "new": "images/help-art01/SportsCroud.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/sports.png",
+          "new": "images/help-art01/SportsCroud-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/powerssolar.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerssolar.png",
+          "new": "images/help-art01/PowerSolar.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/solarpower.png",
+          "new": "images/help-art01/PowerSolar-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/coalmine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/coalmine-full.png",
+          "new": "images/help-art01/CoalMineFull.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/coalmine.png",
+          "new": "images/help-art01/CoalMineFull-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/firestation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/firestation1.png",
+          "new": "images/help-art01/FireStation.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/fire.png",
+          "new": "images/help-art01/FireStation-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/university.xml",
+      "replace": [
+        {
+          "old": "images/tiles/university.png",
+          "new": "images/help-art01/University.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/university.png",
+          "new": "images/help-art01/University-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/commune.xml",
+      "replace": [
+        {
+          "old": "images/tiles/commune1.png",
+          "new": "images/help-art01/Commune.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/commune.png",
+          "new": "images/help-art01/Commune-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/powerscoal.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerscoal-empty.png",
+          "new": "images/help-art01/PowerCoalEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/coalpower.png",
+          "new": "images/help-art01/PowerCoalEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/recycle.xml",
+      "replace": [
+        {
+          "old": "images/tiles/recycle-centre.png",
+          "new": "images/help-art01/Recycle.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/recycling.png",
+          "new": "images/help-art01/Recycle-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/mill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/mill1.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/tiles/mill0.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/mills.png",
+          "new": "images/help-art01/Mill-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/rocket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/rocket5.png",
+          "new": "images/help-art01/Rocket.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/rocket.png",
+          "new": "images/help-art01/Rocket-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/monument.xml",
+      "replace": [
+        {
+          "old": "images/tiles/monument5.png",
+          "new": "images/help-art01/Monument.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/monument.png",
+          "new": "images/help-art01/Monument-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/pottery.xml",
+      "replace": [
+        {
+          "old": "images/tiles/pottery0.png",
+          "new": "images/help-art01/Pottery.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/pottery.png",
+          "new": "images/help-art01/Pottery-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/port.xml",
+      "replace": [
+        {
+          "old": "images/tiles/ex_port.png",
+          "new": "images/help-art01/Harbor.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/port.png",
+          "new": "images/help-art01/Harbor-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/residential.xml",
+      "replace": [
+        {
+          "old": "images/tiles/reslowhi.png",
+          "new": "images/help-art01/ResidentialLow.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-lo.png",
+          "new": "images/help-art01/ResidentialLow-icon.png"
+        },
+        {
+          "old": "images/tiles/resmedhi.png",
+          "new": "images/help-art01/ResidentialMedHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-med.png",
+          "new": "images/help-art01/ResidentialMedHigh-icon.png"
+        },
+        {
+          "old": "images/tiles/reshihi.png",
+          "new": "images/help-art01/ResidentialHighHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-high.png",
+          "new": "images/help-art01/ResidentialHighHigh-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/windmill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/windmill1w.png",
+          "new": "images/help-art01/WindMill.png"
+        },
+        {
+          "old": "images/tiles/windmill1g.png",
+          "new": "images/help-art01/WindMillHTechG.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/blacksmith.xml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/nl/market.xml",
+      "replace": [
+        {
+          "old": "images/tiles/market-empty.png",
+          "new": "images/help-art01/MarketEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/market.png",
+          "new": "images/help-art01/MarketEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/industryl.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryl-low.png",
+          "new": "images/help-art01/IndustryLightL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/lightindustry.png",
+          "new": "images/help-art01/IndustryLightL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/industryh.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryhl1.png",
+          "new": "images/help-art01/IndustryHighL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/heavyindustry2.png",
+          "new": "images/help-art01/IndustryHighL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/park.xml",
+      "replace": [
+        {
+          "old": "images/tiles/parkland-plane.png",
+          "new": "images/help-art01/ParklandPlane.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/tree.png",
+          "new": "images/help-art01/ParklandPlane-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/oremine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/oremine1.png",
+          "new": "images/help-art01/OreMine.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/oremine.png",
+          "new": "images/help-art01/OreMine-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/health.xml",
+      "replace": [
+        {
+          "old": "images/tiles/health.png",
+          "new": "images/help-art01/Health.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/health.png",
+          "new": "images/help-art01/Health-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/tip.xml",
+      "replace": [
+        {
+          "old": "images/tiles/tip0.png",
+          "new": "images/help-art01/Tip.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/trash.png",
+          "new": "images/help-art01/Tip-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/substation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/farm.xml",
+      "replace": [
+        {
+          "old": "images/tiles/farm0.png",
+          "new": "images/help-art01/Farm.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/farm.png",
+          "new": "images/help-art01/Farm-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/cricket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/cricket1.png",
+          "new": "images/help-art01/SportsCroud.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/sports.png",
+          "new": "images/help-art01/SportsCroud-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/powerssolar.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerssolar.png",
+          "new": "images/help-art01/PowerSolar.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/solarpower.png",
+          "new": "images/help-art01/PowerSolar-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/coalmine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/coalmine-full.png",
+          "new": "images/help-art01/CoalMineFull.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/coalmine.png",
+          "new": "images/help-art01/CoalMineFull-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/firestation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/firestation1.png",
+          "new": "images/help-art01/FireStation.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/fire.png",
+          "new": "images/help-art01/FireStation-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/university.xml",
+      "replace": [
+        {
+          "old": "images/tiles/university.png",
+          "new": "images/help-art01/University.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/university.png",
+          "new": "images/help-art01/University-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/commune.xml",
+      "replace": [
+        {
+          "old": "images/tiles/commune1.png",
+          "new": "images/help-art01/Commune.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/commune.png",
+          "new": "images/help-art01/Commune-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/powerscoal.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerscoal-empty.png",
+          "new": "images/help-art01/PowerCoalEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/coalpower.png",
+          "new": "images/help-art01/PowerCoalEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/recycle.xml",
+      "replace": [
+        {
+          "old": "images/tiles/recycle-centre.png",
+          "new": "images/help-art01/Recycle.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/recycling.png",
+          "new": "images/help-art01/Recycle-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/mill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/mill1.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/tiles/mill0.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/mills.png",
+          "new": "images/help-art01/Mill-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/rocket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/rocket5.png",
+          "new": "images/help-art01/Rocket.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/rocket.png",
+          "new": "images/help-art01/Rocket-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/monument.xml",
+      "replace": [
+        {
+          "old": "images/tiles/monument5.png",
+          "new": "images/help-art01/Monument.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/monument.png",
+          "new": "images/help-art01/Monument-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/pottery.xml",
+      "replace": [
+        {
+          "old": "images/tiles/pottery0.png",
+          "new": "images/help-art01/Pottery.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/pottery.png",
+          "new": "images/help-art01/Pottery-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/port.xml",
+      "replace": [
+        {
+          "old": "images/tiles/ex_port.png",
+          "new": "images/help-art01/Harbor.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/port.png",
+          "new": "images/help-art01/Harbor-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/residential.xml",
+      "replace": [
+        {
+          "old": "images/tiles/reslowhi.png",
+          "new": "images/help-art01/ResidentialLow.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-lo.png",
+          "new": "images/help-art01/ResidentialLow-icon.png"
+        },
+        {
+          "old": "images/tiles/resmedhi.png",
+          "new": "images/help-art01/ResidentialMedHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-med.png",
+          "new": "images/help-art01/ResidentialMedHigh-icon.png"
+        },
+        {
+          "old": "images/tiles/reshihi.png",
+          "new": "images/help-art01/ResidentialHighHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-high.png",
+          "new": "images/help-art01/ResidentialHighHigh-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/windmill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/windmill1w.png",
+          "new": "images/help-art01/WindMill.png"
+        },
+        {
+          "old": "images/tiles/windmill1g.png",
+          "new": "images/help-art01/WindMillHTechG.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/blacksmith.xml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gd/market.xml",
+      "replace": [
+        {
+          "old": "images/tiles/market-empty.png",
+          "new": "images/help-art01/MarketEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/market.png",
+          "new": "images/help-art01/MarketEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/industryl.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryl-low.png",
+          "new": "images/help-art01/IndustryLightL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/lightindustry.png",
+          "new": "images/help-art01/IndustryLightL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/industryh.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryhl1.png",
+          "new": "images/help-art01/IndustryHighL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/heavyindustry2.png",
+          "new": "images/help-art01/IndustryHighL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/park.xml",
+      "replace": [
+        {
+          "old": "images/tiles/parkland-plane.png",
+          "new": "images/help-art01/ParklandPlane.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/tree.png",
+          "new": "images/help-art01/ParklandPlane-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/oremine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/oremine1.png",
+          "new": "images/help-art01/OreMine.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/oremine.png",
+          "new": "images/help-art01/OreMine-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/health.xml",
+      "replace": [
+        {
+          "old": "images/tiles/health.png",
+          "new": "images/help-art01/Health.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/health.png",
+          "new": "images/help-art01/Health-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/tip.xml",
+      "replace": [
+        {
+          "old": "images/tiles/tip0.png",
+          "new": "images/help-art01/Tip.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/trash.png",
+          "new": "images/help-art01/Tip-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/substation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/farm.xml",
+      "replace": [
+        {
+          "old": "images/tiles/farm0.png",
+          "new": "images/help-art01/Farm.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/farm.png",
+          "new": "images/help-art01/Farm-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/cricket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/cricket1.png",
+          "new": "images/help-art01/SportsCroud.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/sports.png",
+          "new": "images/help-art01/SportsCroud-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/powerssolar.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerssolar.png",
+          "new": "images/help-art01/PowerSolar.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/solarpower.png",
+          "new": "images/help-art01/PowerSolar-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/coalmine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/coalmine-full.png",
+          "new": "images/help-art01/CoalMineFull.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/coalmine.png",
+          "new": "images/help-art01/CoalMineFull-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/firestation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/firestation1.png",
+          "new": "images/help-art01/FireStation.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/fire.png",
+          "new": "images/help-art01/FireStation-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/university.xml",
+      "replace": [
+        {
+          "old": "images/tiles/university.png",
+          "new": "images/help-art01/University.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/university.png",
+          "new": "images/help-art01/University-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/commune.xml",
+      "replace": [
+        {
+          "old": "images/tiles/commune1.png",
+          "new": "images/help-art01/Commune.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/commune.png",
+          "new": "images/help-art01/Commune-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/powerscoal.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerscoal-empty.png",
+          "new": "images/help-art01/PowerCoalEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/coalpower.png",
+          "new": "images/help-art01/PowerCoalEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/recycle.xml",
+      "replace": [
+        {
+          "old": "images/tiles/recycle-centre.png",
+          "new": "images/help-art01/Recycle.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/recycling.png",
+          "new": "images/help-art01/Recycle-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/mill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/mill1.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/tiles/mill0.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/mills.png",
+          "new": "images/help-art01/Mill-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/rocket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/rocket5.png",
+          "new": "images/help-art01/Rocket.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/rocket.png",
+          "new": "images/help-art01/Rocket-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/monument.xml",
+      "replace": [
+        {
+          "old": "images/tiles/monument5.png",
+          "new": "images/help-art01/Monument.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/monument.png",
+          "new": "images/help-art01/Monument-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/pottery.xml",
+      "replace": [
+        {
+          "old": "images/tiles/pottery0.png",
+          "new": "images/help-art01/Pottery.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/pottery.png",
+          "new": "images/help-art01/Pottery-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/port.xml",
+      "replace": [
+        {
+          "old": "images/tiles/ex_port.png",
+          "new": "images/help-art01/Harbor.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/port.png",
+          "new": "images/help-art01/Harbor-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/residential.xml",
+      "replace": [
+        {
+          "old": "images/tiles/reslowhi.png",
+          "new": "images/help-art01/ResidentialLow.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-lo.png",
+          "new": "images/help-art01/ResidentialLow-icon.png"
+        },
+        {
+          "old": "images/tiles/resmedhi.png",
+          "new": "images/help-art01/ResidentialMedHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-med.png",
+          "new": "images/help-art01/ResidentialMedHigh-icon.png"
+        },
+        {
+          "old": "images/tiles/reshihi.png",
+          "new": "images/help-art01/ResidentialHighHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-high.png",
+          "new": "images/help-art01/ResidentialHighHigh-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/windmill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/windmill1w.png",
+          "new": "images/help-art01/WindMill.png"
+        },
+        {
+          "old": "images/tiles/windmill1g.png",
+          "new": "images/help-art01/WindMillHTechG.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/blacksmith.xml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/sv/market.xml",
+      "replace": [
+        {
+          "old": "images/tiles/market-empty.png",
+          "new": "images/help-art01/MarketEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/market.png",
+          "new": "images/help-art01/MarketEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/cs/substation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/cs/blacksmith.xml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/industryl.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryl-low.png",
+          "new": "images/help-art01/IndustryLightL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/lightindustry.png",
+          "new": "images/help-art01/IndustryLightL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/industryh.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryhl1.png",
+          "new": "images/help-art01/IndustryHighL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/heavyindustry2.png",
+          "new": "images/help-art01/IndustryHighL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/park.xml",
+      "replace": [
+        {
+          "old": "images/tiles/parkland-plane.png",
+          "new": "images/help-art01/ParklandPlane.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/tree.png",
+          "new": "images/help-art01/ParklandPlane-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/oremine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/oremine1.png",
+          "new": "images/help-art01/OreMine.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/oremine.png",
+          "new": "images/help-art01/OreMine-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/health.xml",
+      "replace": [
+        {
+          "old": "images/tiles/health.png",
+          "new": "images/help-art01/Health.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/health.png",
+          "new": "images/help-art01/Health-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/tip.xml",
+      "replace": [
+        {
+          "old": "images/tiles/tip0.png",
+          "new": "images/help-art01/Tip.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/trash.png",
+          "new": "images/help-art01/Tip-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/substation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/farm.xml",
+      "replace": [
+        {
+          "old": "images/tiles/farm0.png",
+          "new": "images/help-art01/Farm.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/farm.png",
+          "new": "images/help-art01/Farm-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/cricket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/cricket1.png",
+          "new": "images/help-art01/SportsCroud.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/sports.png",
+          "new": "images/help-art01/SportsCroud-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/powerssolar.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerssolar.png",
+          "new": "images/help-art01/PowerSolar.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/solarpower.png",
+          "new": "images/help-art01/PowerSolar-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/coalmine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/coalmine-full.png",
+          "new": "images/help-art01/CoalMineFull.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/coalmine.png",
+          "new": "images/help-art01/CoalMineFull-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/firestation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/firestation1.png",
+          "new": "images/help-art01/FireStation.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/fire.png",
+          "new": "images/help-art01/FireStation-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/university.xml",
+      "replace": [
+        {
+          "old": "images/tiles/university.png",
+          "new": "images/help-art01/University.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/university.png",
+          "new": "images/help-art01/University-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/commune.xml",
+      "replace": [
+        {
+          "old": "images/tiles/commune1.png",
+          "new": "images/help-art01/Commune.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/commune.png",
+          "new": "images/help-art01/Commune-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/powerscoal.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerscoal-empty.png",
+          "new": "images/help-art01/PowerCoalEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/coalpower.png",
+          "new": "images/help-art01/PowerCoalEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/recycle.xml",
+      "replace": [
+        {
+          "old": "images/tiles/recycle-centre.png",
+          "new": "images/help-art01/Recycle.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/recycling.png",
+          "new": "images/help-art01/Recycle-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/mill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/mill1.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/tiles/mill0.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/mills.png",
+          "new": "images/help-art01/Mill-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/rocket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/rocket5.png",
+          "new": "images/help-art01/Rocket.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/rocket.png",
+          "new": "images/help-art01/Rocket-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/monument.xml",
+      "replace": [
+        {
+          "old": "images/tiles/monument5.png",
+          "new": "images/help-art01/Monument.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/monument.png",
+          "new": "images/help-art01/Monument-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/pottery.xml",
+      "replace": [
+        {
+          "old": "images/tiles/pottery0.png",
+          "new": "images/help-art01/Pottery.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/pottery.png",
+          "new": "images/help-art01/Pottery-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/port.xml",
+      "replace": [
+        {
+          "old": "images/tiles/ex_port.png",
+          "new": "images/help-art01/Harbor.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/port.png",
+          "new": "images/help-art01/Harbor-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/residential.xml",
+      "replace": [
+        {
+          "old": "images/tiles/reslowhi.png",
+          "new": "images/help-art01/ResidentialLow.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-lo.png",
+          "new": "images/help-art01/ResidentialLow-icon.png"
+        },
+        {
+          "old": "images/tiles/resmedhi.png",
+          "new": "images/help-art01/ResidentialMedHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-med.png",
+          "new": "images/help-art01/ResidentialMedHigh-icon.png"
+        },
+        {
+          "old": "images/tiles/reshihi.png",
+          "new": "images/help-art01/ResidentialHighHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-high.png",
+          "new": "images/help-art01/ResidentialHighHigh-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/windmill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/windmill1w.png",
+          "new": "images/help-art01/WindMill.png"
+        },
+        {
+          "old": "images/tiles/windmill1g.png",
+          "new": "images/help-art01/WindMillHTechG.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/blacksmith.xml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/el/market.xml",
+      "replace": [
+        {
+          "old": "images/tiles/market-empty.png",
+          "new": "images/help-art01/MarketEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/market.png",
+          "new": "images/help-art01/MarketEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/industryl.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryl-low.png",
+          "new": "images/help-art01/IndustryLightL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/lightindustry.png",
+          "new": "images/help-art01/IndustryLightL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/industryh.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryhl1.png",
+          "new": "images/help-art01/IndustryHighL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/heavyindustry2.png",
+          "new": "images/help-art01/IndustryHighL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/park.xml",
+      "replace": [
+        {
+          "old": "images/tiles/parkland-plane.png",
+          "new": "images/help-art01/ParklandPlane.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/tree.png",
+          "new": "images/help-art01/ParklandPlane-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/oremine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/oremine1.png",
+          "new": "images/help-art01/OreMine.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/oremine.png",
+          "new": "images/help-art01/OreMine-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/health.xml",
+      "replace": [
+        {
+          "old": "images/tiles/health.png",
+          "new": "images/help-art01/Health.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/health.png",
+          "new": "images/help-art01/Health-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/tip.xml",
+      "replace": [
+        {
+          "old": "images/tiles/tip0.png",
+          "new": "images/help-art01/Tip.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/trash.png",
+          "new": "images/help-art01/Tip-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/substation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/farm.xml",
+      "replace": [
+        {
+          "old": "images/tiles/farm0.png",
+          "new": "images/help-art01/Farm.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/farm.png",
+          "new": "images/help-art01/Farm-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/cricket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/cricket1.png",
+          "new": "images/help-art01/SportsCroud.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/sports.png",
+          "new": "images/help-art01/SportsCroud-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/powerssolar.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerssolar.png",
+          "new": "images/help-art01/PowerSolar.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/solarpower.png",
+          "new": "images/help-art01/PowerSolar-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/coalmine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/coalmine-full.png",
+          "new": "images/help-art01/CoalMineFull.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/coalmine.png",
+          "new": "images/help-art01/CoalMineFull-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/firestation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/firestation1.png",
+          "new": "images/help-art01/FireStation.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/fire.png",
+          "new": "images/help-art01/FireStation-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/university.xml",
+      "replace": [
+        {
+          "old": "images/tiles/university.png",
+          "new": "images/help-art01/University.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/university.png",
+          "new": "images/help-art01/University-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/commune.xml",
+      "replace": [
+        {
+          "old": "images/tiles/commune1.png",
+          "new": "images/help-art01/Commune.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/commune.png",
+          "new": "images/help-art01/Commune-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/powerscoal.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerscoal-empty.png",
+          "new": "images/help-art01/PowerCoalEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/coalpower.png",
+          "new": "images/help-art01/PowerCoalEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/recycle.xml",
+      "replace": [
+        {
+          "old": "images/tiles/recycle-centre.png",
+          "new": "images/help-art01/Recycle.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/recycling.png",
+          "new": "images/help-art01/Recycle-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/mill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/mill1.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/tiles/mill0.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/mills.png",
+          "new": "images/help-art01/Mill-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/rocket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/rocket5.png",
+          "new": "images/help-art01/Rocket.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/rocket.png",
+          "new": "images/help-art01/Rocket-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/monument.xml",
+      "replace": [
+        {
+          "old": "images/tiles/monument5.png",
+          "new": "images/help-art01/Monument.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/monument.png",
+          "new": "images/help-art01/Monument-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/pottery.xml",
+      "replace": [
+        {
+          "old": "images/tiles/pottery0.png",
+          "new": "images/help-art01/Pottery.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/pottery.png",
+          "new": "images/help-art01/Pottery-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/port.xml",
+      "replace": [
+        {
+          "old": "images/tiles/ex_port.png",
+          "new": "images/help-art01/Harbor.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/port.png",
+          "new": "images/help-art01/Harbor-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/residential.xml",
+      "replace": [
+        {
+          "old": "images/tiles/reslowhi.png",
+          "new": "images/help-art01/ResidentialLow.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-lo.png",
+          "new": "images/help-art01/ResidentialLow-icon.png"
+        },
+        {
+          "old": "images/tiles/resmedhi.png",
+          "new": "images/help-art01/ResidentialMedHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-med.png",
+          "new": "images/help-art01/ResidentialMedHigh-icon.png"
+        },
+        {
+          "old": "images/tiles/reshihi.png",
+          "new": "images/help-art01/ResidentialHighHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-high.png",
+          "new": "images/help-art01/ResidentialHighHigh-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/windmill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/windmill1w.png",
+          "new": "images/help-art01/WindMill.png"
+        },
+        {
+          "old": "images/tiles/windmill1g.png",
+          "new": "images/help-art01/WindMillHTechG.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/blacksmith.xml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ru/market.xml",
+      "replace": [
+        {
+          "old": "images/tiles/market-empty.png",
+          "new": "images/help-art01/MarketEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/market.png",
+          "new": "images/help-art01/MarketEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/industryl.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryl-low.png",
+          "new": "images/help-art01/IndustryLightL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/lightindustry.png",
+          "new": "images/help-art01/IndustryLightL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/industryh.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryhl1.png",
+          "new": "images/help-art01/IndustryHighL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/heavyindustry2.png",
+          "new": "images/help-art01/IndustryHighL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/park.xml",
+      "replace": [
+        {
+          "old": "images/tiles/parkland-plane.png",
+          "new": "images/help-art01/ParklandPlane.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/tree.png",
+          "new": "images/help-art01/ParklandPlane-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/oremine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/oremine1.png",
+          "new": "images/help-art01/OreMine.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/oremine.png",
+          "new": "images/help-art01/OreMine-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/health.xml",
+      "replace": [
+        {
+          "old": "images/tiles/health.png",
+          "new": "images/help-art01/Health.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/health.png",
+          "new": "images/help-art01/Health-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/tip.xml",
+      "replace": [
+        {
+          "old": "images/tiles/tip0.png",
+          "new": "images/help-art01/Tip.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/trash.png",
+          "new": "images/help-art01/Tip-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/substation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/farm.xml",
+      "replace": [
+        {
+          "old": "images/tiles/farm0.png",
+          "new": "images/help-art01/Farm.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/farm.png",
+          "new": "images/help-art01/Farm-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/cricket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/cricket1.png",
+          "new": "images/help-art01/SportsCroud.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/sports.png",
+          "new": "images/help-art01/SportsCroud-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/powerssolar.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerssolar.png",
+          "new": "images/help-art01/PowerSolar.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/solarpower.png",
+          "new": "images/help-art01/PowerSolar-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/coalmine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/coalmine-full.png",
+          "new": "images/help-art01/CoalMineFull.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/coalmine.png",
+          "new": "images/help-art01/CoalMineFull-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/firestation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/firestation1.png",
+          "new": "images/help-art01/FireStation.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/fire.png",
+          "new": "images/help-art01/FireStation-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/university.xml",
+      "replace": [
+        {
+          "old": "images/tiles/university.png",
+          "new": "images/help-art01/University.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/university.png",
+          "new": "images/help-art01/University-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/commune.xml",
+      "replace": [
+        {
+          "old": "images/tiles/commune1.png",
+          "new": "images/help-art01/Commune.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/commune.png",
+          "new": "images/help-art01/Commune-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/powerscoal.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerscoal-empty.png",
+          "new": "images/help-art01/PowerCoalEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/coalpower.png",
+          "new": "images/help-art01/PowerCoalEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/recycle.xml",
+      "replace": [
+        {
+          "old": "images/tiles/recycle-centre.png",
+          "new": "images/help-art01/Recycle.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/recycling.png",
+          "new": "images/help-art01/Recycle-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/mill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/mill1.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/tiles/mill0.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/mills.png",
+          "new": "images/help-art01/Mill-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/rocket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/rocket5.png",
+          "new": "images/help-art01/Rocket.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/rocket.png",
+          "new": "images/help-art01/Rocket-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/monument.xml",
+      "replace": [
+        {
+          "old": "images/tiles/monument5.png",
+          "new": "images/help-art01/Monument.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/monument.png",
+          "new": "images/help-art01/Monument-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/pottery.xml",
+      "replace": [
+        {
+          "old": "images/tiles/pottery0.png",
+          "new": "images/help-art01/Pottery.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/pottery.png",
+          "new": "images/help-art01/Pottery-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/port.xml",
+      "replace": [
+        {
+          "old": "images/tiles/ex_port.png",
+          "new": "images/help-art01/Harbor.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/port.png",
+          "new": "images/help-art01/Harbor-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/residential.xml",
+      "replace": [
+        {
+          "old": "images/tiles/reslowhi.png",
+          "new": "images/help-art01/ResidentialLow.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-lo.png",
+          "new": "images/help-art01/ResidentialLow-icon.png"
+        },
+        {
+          "old": "images/tiles/resmedhi.png",
+          "new": "images/help-art01/ResidentialMedHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-med.png",
+          "new": "images/help-art01/ResidentialMedHigh-icon.png"
+        },
+        {
+          "old": "images/tiles/reshihi.png",
+          "new": "images/help-art01/ResidentialHighHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-high.png",
+          "new": "images/help-art01/ResidentialHighHigh-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/windmill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/windmill1w.png",
+          "new": "images/help-art01/WindMill.png"
+        },
+        {
+          "old": "images/tiles/windmill1g.png",
+          "new": "images/help-art01/WindMillHTechG.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/blacksmith.xml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/fr/market.xml",
+      "replace": [
+        {
+          "old": "images/tiles/market-empty.png",
+          "new": "images/help-art01/MarketEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/market.png",
+          "new": "images/help-art01/MarketEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/industryl.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryl-low.png",
+          "new": "images/help-art01/IndustryLightL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/lightindustry.png",
+          "new": "images/help-art01/IndustryLightL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/industryh.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryhl1.png",
+          "new": "images/help-art01/IndustryHighL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/heavyindustry2.png",
+          "new": "images/help-art01/IndustryHighL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/park.xml",
+      "replace": [
+        {
+          "old": "images/tiles/parkland-plane.png",
+          "new": "images/help-art01/ParklandPlane.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/tree.png",
+          "new": "images/help-art01/ParklandPlane-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/oremine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/oremine1.png",
+          "new": "images/help-art01/OreMine.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/oremine.png",
+          "new": "images/help-art01/OreMine-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/health.xml",
+      "replace": [
+        {
+          "old": "images/tiles/health.png",
+          "new": "images/help-art01/Health.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/health.png",
+          "new": "images/help-art01/Health-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/tip.xml",
+      "replace": [
+        {
+          "old": "images/tiles/tip0.png",
+          "new": "images/help-art01/Tip.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/trash.png",
+          "new": "images/help-art01/Tip-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/substation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/farm.xml",
+      "replace": [
+        {
+          "old": "images/tiles/farm0.png",
+          "new": "images/help-art01/Farm.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/farm.png",
+          "new": "images/help-art01/Farm-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/cricket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/cricket1.png",
+          "new": "images/help-art01/SportsCroud.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/sports.png",
+          "new": "images/help-art01/SportsCroud-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/powerssolar.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerssolar.png",
+          "new": "images/help-art01/PowerSolar.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/solarpower.png",
+          "new": "images/help-art01/PowerSolar-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/coalmine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/coalmine-full.png",
+          "new": "images/help-art01/CoalMineFull.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/coalmine.png",
+          "new": "images/help-art01/CoalMineFull-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/firestation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/firestation1.png",
+          "new": "images/help-art01/FireStation.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/fire.png",
+          "new": "images/help-art01/FireStation-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/university.xml",
+      "replace": [
+        {
+          "old": "images/tiles/university.png",
+          "new": "images/help-art01/University.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/university.png",
+          "new": "images/help-art01/University-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/commune.xml",
+      "replace": [
+        {
+          "old": "images/tiles/commune1.png",
+          "new": "images/help-art01/Commune.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/commune.png",
+          "new": "images/help-art01/Commune-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/powerscoal.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerscoal-empty.png",
+          "new": "images/help-art01/PowerCoalEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/coalpower.png",
+          "new": "images/help-art01/PowerCoalEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/recycle.xml",
+      "replace": [
+        {
+          "old": "images/tiles/recycle-centre.png",
+          "new": "images/help-art01/Recycle.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/recycling.png",
+          "new": "images/help-art01/Recycle-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/mill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/mill1.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/tiles/mill0.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/mills.png",
+          "new": "images/help-art01/Mill-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/rocket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/rocket5.png",
+          "new": "images/help-art01/Rocket.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/rocket.png",
+          "new": "images/help-art01/Rocket-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/monument.xml",
+      "replace": [
+        {
+          "old": "images/tiles/monument5.png",
+          "new": "images/help-art01/Monument.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/monument.png",
+          "new": "images/help-art01/Monument-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/pottery.xml",
+      "replace": [
+        {
+          "old": "images/tiles/pottery0.png",
+          "new": "images/help-art01/Pottery.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/pottery.png",
+          "new": "images/help-art01/Pottery-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/port.xml",
+      "replace": [
+        {
+          "old": "images/tiles/ex_port.png",
+          "new": "images/help-art01/Harbor.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/port.png",
+          "new": "images/help-art01/Harbor-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/residential.xml",
+      "replace": [
+        {
+          "old": "images/tiles/reslowhi.png",
+          "new": "images/help-art01/ResidentialLow.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-lo.png",
+          "new": "images/help-art01/ResidentialLow-icon.png"
+        },
+        {
+          "old": "images/tiles/resmedhi.png",
+          "new": "images/help-art01/ResidentialMedHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-med.png",
+          "new": "images/help-art01/ResidentialMedHigh-icon.png"
+        },
+        {
+          "old": "images/tiles/reshihi.png",
+          "new": "images/help-art01/ResidentialHighHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-high.png",
+          "new": "images/help-art01/ResidentialHighHigh-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/windmill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/windmill1w.png",
+          "new": "images/help-art01/WindMill.png"
+        },
+        {
+          "old": "images/tiles/windmill1g.png",
+          "new": "images/help-art01/WindMillHTechG.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/blacksmith.xml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/es/market.xml",
+      "replace": [
+        {
+          "old": "images/tiles/market-empty.png",
+          "new": "images/help-art01/MarketEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/market.png",
+          "new": "images/help-art01/MarketEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/industryl.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryl-low.png",
+          "new": "images/help-art01/IndustryLightL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/lightindustry.png",
+          "new": "images/help-art01/IndustryLightL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/industryh.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryhl1.png",
+          "new": "images/help-art01/IndustryHighL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/heavyindustry2.png",
+          "new": "images/help-art01/IndustryHighL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/park.xml",
+      "replace": [
+        {
+          "old": "images/tiles/parkland-plane.png",
+          "new": "images/help-art01/ParklandPlane.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/tree.png",
+          "new": "images/help-art01/ParklandPlane-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/oremine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/oremine1.png",
+          "new": "images/help-art01/OreMine.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/oremine.png",
+          "new": "images/help-art01/OreMine-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/health.xml",
+      "replace": [
+        {
+          "old": "images/tiles/health.png",
+          "new": "images/help-art01/Health.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/health.png",
+          "new": "images/help-art01/Health-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/tip.xml",
+      "replace": [
+        {
+          "old": "images/tiles/tip0.png",
+          "new": "images/help-art01/Tip.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/trash.png",
+          "new": "images/help-art01/Tip-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/substation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/farm.xml",
+      "replace": [
+        {
+          "old": "images/tiles/farm0.png",
+          "new": "images/help-art01/Farm.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/farm.png",
+          "new": "images/help-art01/Farm-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/cricket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/cricket1.png",
+          "new": "images/help-art01/SportsCroud.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/sports.png",
+          "new": "images/help-art01/SportsCroud-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/powerssolar.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerssolar.png",
+          "new": "images/help-art01/PowerSolar.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/solarpower.png",
+          "new": "images/help-art01/PowerSolar-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/coalmine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/coalmine-full.png",
+          "new": "images/help-art01/CoalMineFull.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/coalmine.png",
+          "new": "images/help-art01/CoalMineFull-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/firestation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/firestation1.png",
+          "new": "images/help-art01/FireStation.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/fire.png",
+          "new": "images/help-art01/FireStation-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/university.xml",
+      "replace": [
+        {
+          "old": "images/tiles/university.png",
+          "new": "images/help-art01/University.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/university.png",
+          "new": "images/help-art01/University-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/commune.xml",
+      "replace": [
+        {
+          "old": "images/tiles/commune1.png",
+          "new": "images/help-art01/Commune.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/commune.png",
+          "new": "images/help-art01/Commune-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/powerscoal.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerscoal-empty.png",
+          "new": "images/help-art01/PowerCoalEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/coalpower.png",
+          "new": "images/help-art01/PowerCoalEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/recycle.xml",
+      "replace": [
+        {
+          "old": "images/tiles/recycle-centre.png",
+          "new": "images/help-art01/Recycle.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/recycling.png",
+          "new": "images/help-art01/Recycle-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/mill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/mill1.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/tiles/mill0.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/mills.png",
+          "new": "images/help-art01/Mill-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/rocket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/rocket5.png",
+          "new": "images/help-art01/Rocket.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/rocket.png",
+          "new": "images/help-art01/Rocket-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/monument.xml",
+      "replace": [
+        {
+          "old": "images/tiles/monument5.png",
+          "new": "images/help-art01/Monument.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/monument.png",
+          "new": "images/help-art01/Monument-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/pottery.xml",
+      "replace": [
+        {
+          "old": "images/tiles/pottery0.png",
+          "new": "images/help-art01/Pottery.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/pottery.png",
+          "new": "images/help-art01/Pottery-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/port.xml",
+      "replace": [
+        {
+          "old": "images/tiles/ex_port.png",
+          "new": "images/help-art01/Harbor.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/port.png",
+          "new": "images/help-art01/Harbor-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/residential.xml",
+      "replace": [
+        {
+          "old": "images/tiles/reslowhi.png",
+          "new": "images/help-art01/ResidentialLow.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-lo.png",
+          "new": "images/help-art01/ResidentialLow-icon.png"
+        },
+        {
+          "old": "images/tiles/resmedhi.png",
+          "new": "images/help-art01/ResidentialMedHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-med.png",
+          "new": "images/help-art01/ResidentialMedHigh-icon.png"
+        },
+        {
+          "old": "images/tiles/reshihi.png",
+          "new": "images/help-art01/ResidentialHighHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-high.png",
+          "new": "images/help-art01/ResidentialHighHigh-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/windmill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/windmill1w.png",
+          "new": "images/help-art01/WindMill.png"
+        },
+        {
+          "old": "images/tiles/windmill1g.png",
+          "new": "images/help-art01/WindMillHTechG.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/blacksmith.xml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/tr/market.xml",
+      "replace": [
+        {
+          "old": "images/tiles/market-empty.png",
+          "new": "images/help-art01/MarketEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/market.png",
+          "new": "images/help-art01/MarketEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/industryl.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryl-low.png",
+          "new": "images/help-art01/IndustryLightL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/lightindustry.png",
+          "new": "images/help-art01/IndustryLightL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/industryh.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryhl1.png",
+          "new": "images/help-art01/IndustryHighL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/heavyindustry2.png",
+          "new": "images/help-art01/IndustryHighL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/park.xml",
+      "replace": [
+        {
+          "old": "images/tiles/parkland-plane.png",
+          "new": "images/help-art01/ParklandPlane.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/tree.png",
+          "new": "images/help-art01/ParklandPlane-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/oremine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/oremine1.png",
+          "new": "images/help-art01/OreMine.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/oremine.png",
+          "new": "images/help-art01/OreMine-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/health.xml",
+      "replace": [
+        {
+          "old": "images/tiles/health.png",
+          "new": "images/help-art01/Health.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/health.png",
+          "new": "images/help-art01/Health-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/tip.xml",
+      "replace": [
+        {
+          "old": "images/tiles/tip0.png",
+          "new": "images/help-art01/Tip.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/trash.png",
+          "new": "images/help-art01/Tip-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/substation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/farm.xml",
+      "replace": [
+        {
+          "old": "images/tiles/farm0.png",
+          "new": "images/help-art01/Farm.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/farm.png",
+          "new": "images/help-art01/Farm-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/cricket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/cricket1.png",
+          "new": "images/help-art01/SportsCroud.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/sports.png",
+          "new": "images/help-art01/SportsCroud-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/powerssolar.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerssolar.png",
+          "new": "images/help-art01/PowerSolar.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/solarpower.png",
+          "new": "images/help-art01/PowerSolar-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/coalmine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/coalmine-full.png",
+          "new": "images/help-art01/CoalMineFull.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/coalmine.png",
+          "new": "images/help-art01/CoalMineFull-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/firestation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/firestation1.png",
+          "new": "images/help-art01/FireStation.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/fire.png",
+          "new": "images/help-art01/FireStation-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/university.xml",
+      "replace": [
+        {
+          "old": "images/tiles/university.png",
+          "new": "images/help-art01/University.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/university.png",
+          "new": "images/help-art01/University-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/commune.xml",
+      "replace": [
+        {
+          "old": "images/tiles/commune1.png",
+          "new": "images/help-art01/Commune.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/commune.png",
+          "new": "images/help-art01/Commune-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/powerscoal.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerscoal-empty.png",
+          "new": "images/help-art01/PowerCoalEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/coalpower.png",
+          "new": "images/help-art01/PowerCoalEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/recycle.xml",
+      "replace": [
+        {
+          "old": "images/tiles/recycle-centre.png",
+          "new": "images/help-art01/Recycle.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/recycling.png",
+          "new": "images/help-art01/Recycle-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/mill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/mill1.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/tiles/mill0.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/mills.png",
+          "new": "images/help-art01/Mill-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/rocket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/rocket5.png",
+          "new": "images/help-art01/Rocket.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/rocket.png",
+          "new": "images/help-art01/Rocket-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/monument.xml",
+      "replace": [
+        {
+          "old": "images/tiles/monument5.png",
+          "new": "images/help-art01/Monument.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/monument.png",
+          "new": "images/help-art01/Monument-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/pottery.xml",
+      "replace": [
+        {
+          "old": "images/tiles/pottery0.png",
+          "new": "images/help-art01/Pottery.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/pottery.png",
+          "new": "images/help-art01/Pottery-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/port.xml",
+      "replace": [
+        {
+          "old": "images/tiles/ex_port.png",
+          "new": "images/help-art01/Harbor.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/port.png",
+          "new": "images/help-art01/Harbor-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/residential.xml",
+      "replace": [
+        {
+          "old": "images/tiles/reslowhi.png",
+          "new": "images/help-art01/ResidentialLow.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-lo.png",
+          "new": "images/help-art01/ResidentialLow-icon.png"
+        },
+        {
+          "old": "images/tiles/resmedhi.png",
+          "new": "images/help-art01/ResidentialMedHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-med.png",
+          "new": "images/help-art01/ResidentialMedHigh-icon.png"
+        },
+        {
+          "old": "images/tiles/reshihi.png",
+          "new": "images/help-art01/ResidentialHighHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-high.png",
+          "new": "images/help-art01/ResidentialHighHigh-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/windmill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/windmill1w.png",
+          "new": "images/help-art01/WindMill.png"
+        },
+        {
+          "old": "images/tiles/windmill1g.png",
+          "new": "images/help-art01/WindMillHTechG.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/blacksmith.xml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/ca/market.xml",
+      "replace": [
+        {
+          "old": "images/tiles/market-empty.png",
+          "new": "images/help-art01/MarketEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/market.png",
+          "new": "images/help-art01/MarketEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/industryl.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryl-low.png",
+          "new": "images/help-art01/IndustryLightL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/lightindustry.png",
+          "new": "images/help-art01/IndustryLightL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/industryh.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryhl1.png",
+          "new": "images/help-art01/IndustryHighL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/heavyindustry2.png",
+          "new": "images/help-art01/IndustryHighL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/park.xml",
+      "replace": [
+        {
+          "old": "images/tiles/parkland-plane.png",
+          "new": "images/help-art01/ParklandPlane.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/tree.png",
+          "new": "images/help-art01/ParklandPlane-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/oremine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/oremine1.png",
+          "new": "images/help-art01/OreMine.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/oremine.png",
+          "new": "images/help-art01/OreMine-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/health.xml",
+      "replace": [
+        {
+          "old": "images/tiles/health.png",
+          "new": "images/help-art01/Health.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/health.png",
+          "new": "images/help-art01/Health-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/tip.xml",
+      "replace": [
+        {
+          "old": "images/tiles/tip0.png",
+          "new": "images/help-art01/Tip.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/trash.png",
+          "new": "images/help-art01/Tip-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/substation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/farm.xml",
+      "replace": [
+        {
+          "old": "images/tiles/farm0.png",
+          "new": "images/help-art01/Farm.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/farm.png",
+          "new": "images/help-art01/Farm-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/cricket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/cricket1.png",
+          "new": "images/help-art01/SportsCroud.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/sports.png",
+          "new": "images/help-art01/SportsCroud-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/powerssolar.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerssolar.png",
+          "new": "images/help-art01/PowerSolar.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/solarpower.png",
+          "new": "images/help-art01/PowerSolar-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/coalmine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/coalmine-full.png",
+          "new": "images/help-art01/CoalMineFull.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/coalmine.png",
+          "new": "images/help-art01/CoalMineFull-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/firestation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/firestation1.png",
+          "new": "images/help-art01/FireStation.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/fire.png",
+          "new": "images/help-art01/FireStation-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/university.xml",
+      "replace": [
+        {
+          "old": "images/tiles/university.png",
+          "new": "images/help-art01/University.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/university.png",
+          "new": "images/help-art01/University-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/commune.xml",
+      "replace": [
+        {
+          "old": "images/tiles/commune1.png",
+          "new": "images/help-art01/Commune.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/commune.png",
+          "new": "images/help-art01/Commune-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/powerscoal.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerscoal-empty.png",
+          "new": "images/help-art01/PowerCoalEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/coalpower.png",
+          "new": "images/help-art01/PowerCoalEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/recycle.xml",
+      "replace": [
+        {
+          "old": "images/tiles/recycle-centre.png",
+          "new": "images/help-art01/Recycle.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/recycling.png",
+          "new": "images/help-art01/Recycle-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/mill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/mill1.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/tiles/mill0.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/mills.png",
+          "new": "images/help-art01/Mill-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/rocket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/rocket5.png",
+          "new": "images/help-art01/Rocket.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/rocket.png",
+          "new": "images/help-art01/Rocket-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/monument.xml",
+      "replace": [
+        {
+          "old": "images/tiles/monument5.png",
+          "new": "images/help-art01/Monument.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/monument.png",
+          "new": "images/help-art01/Monument-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/pottery.xml",
+      "replace": [
+        {
+          "old": "images/tiles/pottery0.png",
+          "new": "images/help-art01/Pottery.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/pottery.png",
+          "new": "images/help-art01/Pottery-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/port.xml",
+      "replace": [
+        {
+          "old": "images/tiles/ex_port.png",
+          "new": "images/help-art01/Harbor.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/port.png",
+          "new": "images/help-art01/Harbor-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/residential.xml",
+      "replace": [
+        {
+          "old": "images/tiles/reslowhi.png",
+          "new": "images/help-art01/ResidentialLow.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-lo.png",
+          "new": "images/help-art01/ResidentialLow-icon.png"
+        },
+        {
+          "old": "images/tiles/resmedhi.png",
+          "new": "images/help-art01/ResidentialMedHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-med.png",
+          "new": "images/help-art01/ResidentialMedHigh-icon.png"
+        },
+        {
+          "old": "images/tiles/reshihi.png",
+          "new": "images/help-art01/ResidentialHighHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-high.png",
+          "new": "images/help-art01/ResidentialHighHigh-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/windmill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/windmill1w.png",
+          "new": "images/help-art01/WindMill.png"
+        },
+        {
+          "old": "images/tiles/windmill1g.png",
+          "new": "images/help-art01/WindMillHTechG.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/blacksmith.xml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/gl/market.xml",
+      "replace": [
+        {
+          "old": "images/tiles/market-empty.png",
+          "new": "images/help-art01/MarketEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/market.png",
+          "new": "images/help-art01/MarketEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/industryl.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryl-low.png",
+          "new": "images/help-art01/IndustryLightL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/lightindustry.png",
+          "new": "images/help-art01/IndustryLightL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/industryh.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryhl1.png",
+          "new": "images/help-art01/IndustryHighL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/heavyindustry2.png",
+          "new": "images/help-art01/IndustryHighL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/park.xml",
+      "replace": [
+        {
+          "old": "images/tiles/parkland-plane.png",
+          "new": "images/help-art01/ParklandPlane.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/tree.png",
+          "new": "images/help-art01/ParklandPlane-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/oremine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/oremine1.png",
+          "new": "images/help-art01/OreMine.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/oremine.png",
+          "new": "images/help-art01/OreMine-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/health.xml",
+      "replace": [
+        {
+          "old": "images/tiles/health.png",
+          "new": "images/help-art01/Health.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/health.png",
+          "new": "images/help-art01/Health-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/tip.xml",
+      "replace": [
+        {
+          "old": "images/tiles/tip0.png",
+          "new": "images/help-art01/Tip.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/trash.png",
+          "new": "images/help-art01/Tip-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/substation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/farm.xml",
+      "replace": [
+        {
+          "old": "images/tiles/farm0.png",
+          "new": "images/help-art01/Farm.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/farm.png",
+          "new": "images/help-art01/Farm-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/cricket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/cricket1.png",
+          "new": "images/help-art01/SportsCroud.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/sports.png",
+          "new": "images/help-art01/SportsCroud-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/powerssolar.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerssolar.png",
+          "new": "images/help-art01/PowerSolar.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/solarpower.png",
+          "new": "images/help-art01/PowerSolar-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/coalmine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/coalmine-full.png",
+          "new": "images/help-art01/CoalMineFull.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/coalmine.png",
+          "new": "images/help-art01/CoalMineFull-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/firestation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/firestation1.png",
+          "new": "images/help-art01/FireStation.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/fire.png",
+          "new": "images/help-art01/FireStation-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/university.xml",
+      "replace": [
+        {
+          "old": "images/tiles/university.png",
+          "new": "images/help-art01/University.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/university.png",
+          "new": "images/help-art01/University-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/commune.xml",
+      "replace": [
+        {
+          "old": "images/tiles/commune1.png",
+          "new": "images/help-art01/Commune.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/commune.png",
+          "new": "images/help-art01/Commune-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/powerscoal.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerscoal-empty.png",
+          "new": "images/help-art01/PowerCoalEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/coalpower.png",
+          "new": "images/help-art01/PowerCoalEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/recycle.xml",
+      "replace": [
+        {
+          "old": "images/tiles/recycle-centre.png",
+          "new": "images/help-art01/Recycle.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/recycling.png",
+          "new": "images/help-art01/Recycle-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/mill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/mill1.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/tiles/mill0.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/mills.png",
+          "new": "images/help-art01/Mill-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/rocket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/rocket5.png",
+          "new": "images/help-art01/Rocket.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/rocket.png",
+          "new": "images/help-art01/Rocket-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/monument.xml",
+      "replace": [
+        {
+          "old": "images/tiles/monument5.png",
+          "new": "images/help-art01/Monument.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/monument.png",
+          "new": "images/help-art01/Monument-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/pottery.xml",
+      "replace": [
+        {
+          "old": "images/tiles/pottery0.png",
+          "new": "images/help-art01/Pottery.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/pottery.png",
+          "new": "images/help-art01/Pottery-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/port.xml",
+      "replace": [
+        {
+          "old": "images/tiles/ex_port.png",
+          "new": "images/help-art01/Harbor.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/port.png",
+          "new": "images/help-art01/Harbor-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/residential.xml",
+      "replace": [
+        {
+          "old": "images/tiles/reslowhi.png",
+          "new": "images/help-art01/ResidentialLow.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-lo.png",
+          "new": "images/help-art01/ResidentialLow-icon.png"
+        },
+        {
+          "old": "images/tiles/resmedhi.png",
+          "new": "images/help-art01/ResidentialMedHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-med.png",
+          "new": "images/help-art01/ResidentialMedHigh-icon.png"
+        },
+        {
+          "old": "images/tiles/reshihi.png",
+          "new": "images/help-art01/ResidentialHighHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-high.png",
+          "new": "images/help-art01/ResidentialHighHigh-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/windmill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/windmill1w.png",
+          "new": "images/help-art01/WindMill.png"
+        },
+        {
+          "old": "images/tiles/windmill1g.png",
+          "new": "images/help-art01/WindMillHTechG.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/blacksmith.xml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/de/market.xml",
+      "replace": [
+        {
+          "old": "images/tiles/market-empty.png",
+          "new": "images/help-art01/MarketEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/market.png",
+          "new": "images/help-art01/MarketEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/industryl.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryl-low.png",
+          "new": "images/help-art01/IndustryLightL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/lightindustry.png",
+          "new": "images/help-art01/IndustryLightL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/industryh.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryhl1.png",
+          "new": "images/help-art01/IndustryHighL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/heavyindustry2.png",
+          "new": "images/help-art01/IndustryHighL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/park.xml",
+      "replace": [
+        {
+          "old": "images/tiles/parkland-plane.png",
+          "new": "images/help-art01/ParklandPlane.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/tree.png",
+          "new": "images/help-art01/ParklandPlane-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/oremine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/oremine1.png",
+          "new": "images/help-art01/OreMine.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/oremine.png",
+          "new": "images/help-art01/OreMine-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/health.xml",
+      "replace": [
+        {
+          "old": "images/tiles/health.png",
+          "new": "images/help-art01/Health.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/health.png",
+          "new": "images/help-art01/Health-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/tip.xml",
+      "replace": [
+        {
+          "old": "images/tiles/tip0.png",
+          "new": "images/help-art01/Tip.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/trash.png",
+          "new": "images/help-art01/Tip-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/substation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/farm.xml",
+      "replace": [
+        {
+          "old": "images/tiles/farm0.png",
+          "new": "images/help-art01/Farm.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/farm.png",
+          "new": "images/help-art01/Farm-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/cricket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/cricket1.png",
+          "new": "images/help-art01/SportsCroud.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/sports.png",
+          "new": "images/help-art01/SportsCroud-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/powerssolar.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerssolar.png",
+          "new": "images/help-art01/PowerSolar.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/solarpower.png",
+          "new": "images/help-art01/PowerSolar-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/coalmine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/coalmine-full.png",
+          "new": "images/help-art01/CoalMineFull.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/coalmine.png",
+          "new": "images/help-art01/CoalMineFull-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/firestation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/firestation1.png",
+          "new": "images/help-art01/FireStation.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/fire.png",
+          "new": "images/help-art01/FireStation-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/university.xml",
+      "replace": [
+        {
+          "old": "images/tiles/university.png",
+          "new": "images/help-art01/University.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/university.png",
+          "new": "images/help-art01/University-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/commune.xml",
+      "replace": [
+        {
+          "old": "images/tiles/commune1.png",
+          "new": "images/help-art01/Commune.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/commune.png",
+          "new": "images/help-art01/Commune-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/powerscoal.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerscoal-empty.png",
+          "new": "images/help-art01/PowerCoalEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/coalpower.png",
+          "new": "images/help-art01/PowerCoalEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/recycle.xml",
+      "replace": [
+        {
+          "old": "images/tiles/recycle-centre.png",
+          "new": "images/help-art01/Recycle.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/recycling.png",
+          "new": "images/help-art01/Recycle-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/mill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/mill1.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/tiles/mill0.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/mills.png",
+          "new": "images/help-art01/Mill-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/rocket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/rocket5.png",
+          "new": "images/help-art01/Rocket.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/rocket.png",
+          "new": "images/help-art01/Rocket-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/monument.xml",
+      "replace": [
+        {
+          "old": "images/tiles/monument5.png",
+          "new": "images/help-art01/Monument.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/monument.png",
+          "new": "images/help-art01/Monument-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/pottery.xml",
+      "replace": [
+        {
+          "old": "images/tiles/pottery0.png",
+          "new": "images/help-art01/Pottery.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/pottery.png",
+          "new": "images/help-art01/Pottery-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/port.xml",
+      "replace": [
+        {
+          "old": "images/tiles/ex_port.png",
+          "new": "images/help-art01/Harbor.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/port.png",
+          "new": "images/help-art01/Harbor-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/residential.xml",
+      "replace": [
+        {
+          "old": "images/tiles/reslowhi.png",
+          "new": "images/help-art01/ResidentialLow.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-lo.png",
+          "new": "images/help-art01/ResidentialLow-icon.png"
+        },
+        {
+          "old": "images/tiles/resmedhi.png",
+          "new": "images/help-art01/ResidentialMedHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-med.png",
+          "new": "images/help-art01/ResidentialMedHigh-icon.png"
+        },
+        {
+          "old": "images/tiles/reshihi.png",
+          "new": "images/help-art01/ResidentialHighHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-high.png",
+          "new": "images/help-art01/ResidentialHighHigh-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/windmill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/windmill1w.png",
+          "new": "images/help-art01/WindMill.png"
+        },
+        {
+          "old": "images/tiles/windmill1g.png",
+          "new": "images/help-art01/WindMillHTechG.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/blacksmith.xml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/en/market.xml",
+      "replace": [
+        {
+          "old": "images/tiles/market-empty.png",
+          "new": "images/help-art01/MarketEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/market.png",
+          "new": "images/help-art01/MarketEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/industryl.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryl-low.png",
+          "new": "images/help-art01/IndustryLightL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/lightindustry.png",
+          "new": "images/help-art01/IndustryLightL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/industryh.xml",
+      "replace": [
+        {
+          "old": "images/tiles/industryhl1.png",
+          "new": "images/help-art01/IndustryHighL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/heavyindustry2.png",
+          "new": "images/help-art01/IndustryHighL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/park.xml",
+      "replace": [
+        {
+          "old": "images/tiles/parkland-plane.png",
+          "new": "images/help-art01/ParklandPlane.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/tree.png",
+          "new": "images/help-art01/ParklandPlane-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/oremine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/oremine1.png",
+          "new": "images/help-art01/OreMine.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/oremine.png",
+          "new": "images/help-art01/OreMine-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/health.xml",
+      "replace": [
+        {
+          "old": "images/tiles/health.png",
+          "new": "images/help-art01/Health.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/health.png",
+          "new": "images/help-art01/Health-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/tip.xml",
+      "replace": [
+        {
+          "old": "images/tiles/tip0.png",
+          "new": "images/help-art01/Tip.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/trash.png",
+          "new": "images/help-art01/Tip-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/substation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/farm.xml",
+      "replace": [
+        {
+          "old": "images/tiles/farm0.png",
+          "new": "images/help-art01/Farm.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/farm.png",
+          "new": "images/help-art01/Farm-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/cricket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/cricket1.png",
+          "new": "images/help-art01/SportsCroud.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/sports.png",
+          "new": "images/help-art01/SportsCroud-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/powerssolar.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerssolar.png",
+          "new": "images/help-art01/PowerSolar.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/solarpower.png",
+          "new": "images/help-art01/PowerSolar-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/coalmine.xml",
+      "replace": [
+        {
+          "old": "images/tiles/coalmine-full.png",
+          "new": "images/help-art01/CoalMineFull.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/coalmine.png",
+          "new": "images/help-art01/CoalMineFull-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/firestation.xml",
+      "replace": [
+        {
+          "old": "images/tiles/firestation1.png",
+          "new": "images/help-art01/FireStation.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/fire.png",
+          "new": "images/help-art01/FireStation-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/university.xml",
+      "replace": [
+        {
+          "old": "images/tiles/university.png",
+          "new": "images/help-art01/University.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/university.png",
+          "new": "images/help-art01/University-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/commune.xml",
+      "replace": [
+        {
+          "old": "images/tiles/commune1.png",
+          "new": "images/help-art01/Commune.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/commune.png",
+          "new": "images/help-art01/Commune-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/powerscoal.xml",
+      "replace": [
+        {
+          "old": "images/tiles/powerscoal-empty.png",
+          "new": "images/help-art01/PowerCoalEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/coalpower.png",
+          "new": "images/help-art01/PowerCoalEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/recycle.xml",
+      "replace": [
+        {
+          "old": "images/tiles/recycle-centre.png",
+          "new": "images/help-art01/Recycle.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/recycling.png",
+          "new": "images/help-art01/Recycle-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/mill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/mill1.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/tiles/mill0.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/mills.png",
+          "new": "images/help-art01/Mill-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/rocket.xml",
+      "replace": [
+        {
+          "old": "images/tiles/rocket5.png",
+          "new": "images/help-art01/Rocket.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/rocket.png",
+          "new": "images/help-art01/Rocket-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/monument.xml",
+      "replace": [
+        {
+          "old": "images/tiles/monument5.png",
+          "new": "images/help-art01/Monument.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/monument.png",
+          "new": "images/help-art01/Monument-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/pottery.xml",
+      "replace": [
+        {
+          "old": "images/tiles/pottery0.png",
+          "new": "images/help-art01/Pottery.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/pottery.png",
+          "new": "images/help-art01/Pottery-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/port.xml",
+      "replace": [
+        {
+          "old": "images/tiles/ex_port.png",
+          "new": "images/help-art01/Harbor.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/port.png",
+          "new": "images/help-art01/Harbor-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/residential.xml",
+      "replace": [
+        {
+          "old": "images/tiles/reslowhi.png",
+          "new": "images/help-art01/ResidentialLow.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-lo.png",
+          "new": "images/help-art01/ResidentialLow-icon.png"
+        },
+        {
+          "old": "images/tiles/resmedhi.png",
+          "new": "images/help-art01/ResidentialMedHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-med.png",
+          "new": "images/help-art01/ResidentialMedHigh-icon.png"
+        },
+        {
+          "old": "images/tiles/reshihi.png",
+          "new": "images/help-art01/ResidentialHighHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-high.png",
+          "new": "images/help-art01/ResidentialHighHigh-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/windmill.xml",
+      "replace": [
+        {
+          "old": "images/tiles/windmill1w.png",
+          "new": "images/help-art01/WindMill.png"
+        },
+        {
+          "old": "images/tiles/windmill1g.png",
+          "new": "images/help-art01/WindMillHTechG.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/blacksmith.xml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help/pt_BR/market.xml",
+      "replace": [
+        {
+          "old": "images/tiles/market-empty.png",
+          "new": "images/help-art01/MarketEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/market.png",
+          "new": "images/help-art01/MarketEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/farm.tml",
+      "replace": [
+        {
+          "old": "images/tiles/farm0.png",
+          "new": "images/help-art01/Farm.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/farm.png",
+          "new": "images/help-art01/Farm-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/cricket.tml",
+      "replace": [
+        {
+          "old": "images/tiles/cricket1.png",
+          "new": "images/help-art01/SportsCroud.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/sports.png",
+          "new": "images/help-art01/SportsCroud-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/tip.tml",
+      "replace": [
+        {
+          "old": "images/tiles/tip0.png",
+          "new": "images/help-art01/Tip.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/trash.png",
+          "new": "images/help-art01/Tip-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/powerscoal.tml",
+      "replace": [
+        {
+          "old": "images/tiles/powerscoal-empty.png",
+          "new": "images/help-art01/PowerCoalEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/coalpower.png",
+          "new": "images/help-art01/PowerCoalEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/firestation.tml",
+      "replace": [
+        {
+          "old": "images/tiles/firestation1.png",
+          "new": "images/help-art01/FireStation.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/fire.png",
+          "new": "images/help-art01/FireStation-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/market.tml",
+      "replace": [
+        {
+          "old": "images/tiles/market-empty.png",
+          "new": "images/help-art01/MarketEmpty.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/market.png",
+          "new": "images/help-art01/MarketEmpty-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/windmill.tml",
+      "replace": [
+        {
+          "old": "images/tiles/windmill1w.png",
+          "new": "images/help-art01/WindMill.png"
+        },
+        {
+          "old": "images/tiles/windmill1g.png",
+          "new": "images/help-art01/WindMillHTechG.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/blacksmith.tml",
+      "replace": [
+        {
+          "old": "images/tiles/blacksmith0.png",
+          "new": "images/help-art01/Blacksmith.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/blacksmith.png",
+          "new": "images/help-art01/Blacksmith-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/mill.tml",
+      "replace": [
+        {
+          "old": "images/tiles/mill1.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/tiles/mill0.png",
+          "new": "images/help-art01/Mill.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/mills.png",
+          "new": "images/help-art01/Mill-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/park.tml",
+      "replace": [
+        {
+          "old": "images/tiles/parkland-plane.png",
+          "new": "images/help-art01/ParklandPlane.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/tree.png",
+          "new": "images/help-art01/ParklandPlane-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/recycle.tml",
+      "replace": [
+        {
+          "old": "images/tiles/recycle-centre.png",
+          "new": "images/help-art01/Recycle.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/recycling.png",
+          "new": "images/help-art01/Recycle-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/commune.tml",
+      "replace": [
+        {
+          "old": "images/tiles/commune1.png",
+          "new": "images/help-art01/Commune.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/commune.png",
+          "new": "images/help-art01/Commune-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/industryl.tml",
+      "replace": [
+        {
+          "old": "images/tiles/industryl-low.png",
+          "new": "images/help-art01/IndustryLightL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/lightindustry.png",
+          "new": "images/help-art01/IndustryLightL-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/oremine.tml",
+      "replace": [
+        {
+          "old": "images/tiles/oremine1.png",
+          "new": "images/help-art01/OreMine.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/oremine.png",
+          "new": "images/help-art01/OreMine-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/pottery.tml",
+      "replace": [
+        {
+          "old": "images/tiles/pottery0.png",
+          "new": "images/help-art01/Pottery.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/pottery.png",
+          "new": "images/help-art01/Pottery-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/coalmine.tml",
+      "replace": [
+        {
+          "old": "images/tiles/coalmine-full.png",
+          "new": "images/help-art01/CoalMineFull.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/mining/coalmine.png",
+          "new": "images/help-art01/CoalMineFull-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/health.tml",
+      "replace": [
+        {
+          "old": "images/tiles/health.png",
+          "new": "images/help-art01/Health.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/health.png",
+          "new": "images/help-art01/Health-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/residential.tml",
+      "replace": [
+        {
+          "old": "images/tiles/reslowhi.png",
+          "new": "images/help-art01/ResidentialLow.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-lo.png",
+          "new": "images/help-art01/ResidentialLow-icon.png"
+        },
+        {
+          "old": "images/tiles/resmedhi.png",
+          "new": "images/help-art01/ResidentialMedHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-med.png",
+          "new": "images/help-art01/ResidentialMedHigh-icon.png"
+        },
+        {
+          "old": "images/tiles/reshihi.png",
+          "new": "images/help-art01/ResidentialHighHigh.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/residence/residence-hightec-high.png",
+          "new": "images/help-art01/ResidentialHighHigh-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/powerssolar.tml",
+      "replace": [
+        {
+          "old": "images/tiles/powerssolar.png",
+          "new": "images/help-art01/PowerSolar.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/solarpower.png",
+          "new": "images/help-art01/PowerSolar-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/rocket.tml",
+      "replace": [
+        {
+          "old": "images/tiles/rocket5.png",
+          "new": "images/help-art01/Rocket.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/rocket.png",
+          "new": "images/help-art01/Rocket-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/university.tml",
+      "replace": [
+        {
+          "old": "images/tiles/university.png",
+          "new": "images/help-art01/University.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/misc/university.png",
+          "new": "images/help-art01/University-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/monument.tml",
+      "replace": [
+        {
+          "old": "images/tiles/monument5.png",
+          "new": "images/help-art01/Monument.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/parks/monument.png",
+          "new": "images/help-art01/Monument-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/port.tml",
+      "replace": [
+        {
+          "old": "images/tiles/ex_port.png",
+          "new": "images/help-art01/Harbor.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/transport/port.png",
+          "new": "images/help-art01/Harbor-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/substation.tml",
+      "replace": [
+        {
+          "old": "images/tiles/substation-G.png",
+          "new": "images/help-art01/SubstationOn.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/power/substation.png",
+          "new": "images/help-art01/SubstationOn-icon.png"
+        }
+      ]
+    },
+    {
+      "file": "help_templates/orig/industryh.tml",
+      "replace": [
+        {
+          "old": "images/tiles/industryhl1.png",
+          "new": "images/help-art01/IndustryHighL.png"
+        },
+        {
+          "old": "images/gui/buttonpanel/industry/heavyindustry2.png",
+          "new": "images/help-art01/IndustryHighL-icon.png"
+        }
+      ]
+    }
+  ],
+  "append_galleries": {
+    "help/en/evolution.xml": [
+      "images/help-art01/EvolutionWarehouse.png",
+      "images/help-art01/EvolutionTech.png",
+      "images/help-art01/EvolutionCafe.png",
+      "images/help-art01/EvolutionFoodhall.png"
+    ],
+    "help/en/public-transport.xml": [
+      "images/help-art01/TransitBusStop.png",
+      "images/help-art01/TransitBusTerminal.png",
+      "images/help-art01/TransitRail.png",
+      "images/help-art01/TransitMetro.png",
+      "images/help-art01/TransitElevated.png"
+    ]
+  }
+}

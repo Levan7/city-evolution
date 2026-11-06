@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="identity.xsl" type="text/xsl"?>
+<Panel width="264" height="300">
+  <FilledRectangle color="#14252de8" />
+  <TableLayout rows="4" cols="1">
+    <rowsize row="1" fixed="32" />
+    <rowsize row="2" fixed="204" />
+    <rowsize row="3" fixed="24" />
+    <rowsize row="4" fixed="40" />
+    <cell row="1" col="1">
+      <TableLayout rows="1" cols="4">
+        <cell row="1" col="1">
+          <CheckButton width="66" height="32" name="SwitchMiniMap" checked="true">
+            <image src="images/gui/buttons/tabbed/tabbed-50.png" width="66" height="32" resizable="yes" />
+            <image-hover src="images/gui/buttons/tabbed/tabbed-hover-50.png" width="66" height="32" resizable="yes" />
+            <image-clicked src="images/gui/buttons/tabbed/tabbed-clicked-50.png" width="66" height="32" resizable="yes" />
+            <image-checked src="images/gui/buttons/tabbed/tabbed-clicked-50.png" width="66" height="32" resizable="yes" />
+            <text-caption font-size="14" translatable="yes" halign="center" color="#ffffff">Map</text-caption>
+            <tooltip translatable="yes">Show the MiniMap</tooltip>
+          </CheckButton>
+        </cell>
+        <cell row="1" col="2">
+          <CheckButton width="66" height="32" name="SwitchPBar">
+            <image src="images/gui/buttons/tabbed/tabbed-50.png" width="66" height="32" resizable="yes" />
+            <image-hover src="images/gui/buttons/tabbed/tabbed-hover-50.png" width="66" height="32" resizable="yes" />
+            <image-clicked src="images/gui/buttons/tabbed/tabbed-clicked-50.png" width="66" height="32" resizable="yes" />
+            <image-checked src="images/gui/buttons/tabbed/tabbed-clicked-50.png" width="66" height="32" resizable="yes" />
+            <text-caption font-size="13" translatable="yes" halign="center" color="#ffffff">Stats</text-caption>
+            <tooltip translatable="yes">Show resources. Use scroll buttons to cycle through views.</tooltip>
+          </CheckButton>
+        </cell>
+        <cell row="1" col="3">
+          <CheckButton width="66" height="32" name="SwitchGlobalMPS">
+            <image src="images/gui/buttons/tabbed/tabbed-50.png" width="66" height="32" resizable="yes" />
+            <image-hover src="images/gui/buttons/tabbed/tabbed-hover-50.png" width="66" height="32" resizable="yes" />
+            <image-clicked src="images/gui/buttons/tabbed/tabbed-clicked-50.png" width="66" height="32" resizable="yes" />
+            <image-checked src="images/gui/buttons/tabbed/tabbed-clicked-50.png" width="66" height="32" resizable="yes" />
+            <text-caption font-size="14" translatable="yes" halign="center" color="#ffffff">$</text-caption>
+            <tooltip translatable="yes">Show Income and Expenses. Use scroll buttons to cylce through views.</tooltip>
+          </CheckButton>
+        </cell>
+        <cell row="1" col="4">
+          <CheckButton width="66" height="32" name="SwitchEconomyGraph">
+            <image src="images/gui/buttons/tabbed/tabbed-50.png" width="66" height="32" resizable="yes" />
+            <image-hover src="images/gui/buttons/tabbed/tabbed-hover-50.png" width="66" height="32" resizable="yes" />
+            <image-clicked src="images/gui/buttons/tabbed/tabbed-clicked-50.png" width="66" height="32" resizable="yes" />
+            <image-checked src="images/gui/buttons/tabbed/tabbed-clicked-50.png" width="66" height="32" resizable="yes" />
+            <text-caption font-size="13" translatable="yes" halign="center" color="#ffffff">Eco</text-caption>
+            <tooltip translatable="yes">Show economy graphs.</tooltip>
+          </CheckButton>
+        </cell>
+      </TableLayout>
+    </cell>
+    <cell row="2" col="1" halign="center" valign="center">
+      <SwitchComponent name="MiniMapSwitch">
+        <MiniMap name="MiniMap" width="200" height="200" tilesize="2" />
+        <Import src="gui/pbar.xml" />
+        <Import src="gui/pbar2nd.xml" />
+        <MpsFinance name="GlobalMPS">
+          <Import src="gui/mps.xml" />
+        </MpsFinance>
+        <MpsMap name="MapMPS">
+          <Import src="gui/mps.xml" />
+        </MpsMap>
+        <EconomyGraph name="EconomyGraph" width="200" height="200" />
+      </SwitchComponent>
+    </cell>
+    <cell row="3" col="1">
+      <Import src="gui/minimapswitchbuttons.xml" />
+    </cell>
+    <cell row="4" col="1">
+      <TableLayout rows="1" cols="9">
+        <colsize col="1" fixed="32" />
+        <cell row="1" col="1" valign="center" halign="center">
+          <Button name="ZoomOutButton" width="32" height="32">
+            <image src="images/gui/buttons/round/button-round-40.png" width="32" height="32" resizable="yes" />
+            <image-hover src="images/gui/buttons/round/button-round-hover-40.png" width="32" height="32" resizable="yes" />
+            <image-clicked src="images/gui/buttons/round/button-round-clicked-40.png" width="32" height="32" resizable="yes" />
+            <image-caption src="images/gui/zoom/zoomout.png" width="32" height="32" resizable="yes" />
+            <tooltip translatable="yes">[-] Zoom out</tooltip>
+          </Button>
+        </cell>
+        <colsize col="2" fixed="32" />
+        <cell row="1" col="2" valign="center" halign="center">
+          <Button name="ZoomInButton" width="32" height="32">
+            <image src="images/gui/buttons/round/button-round-40.png" width="32" height="32" resizable="yes" />
+            <image-hover src="images/gui/buttons/round/button-round-hover-40.png" width="32" height="32" resizable="yes" />
+            <image-clicked src="images/gui/buttons/round/button-round-clicked-40.png" width="32" height="32" resizable="yes" />
+            <image-caption src="images/gui/zoom/zoomin.png" width="32" height="32" resizable="yes" />
+            <tooltip translatable="yes">[+] Zoom in view so that less buildings but more details are visible</tooltip>
+          </Button>
+        </cell>
+        <colsize col="3" fixed="32" />
+        <cell row="1" col="3" valign="center" halign="center">
+          <Button name="HelpButton" width="32" height="32">
+            <image src="images/gui/buttons/round/button-round-40.png" width="32" height="32" resizable="yes" />
+            <image-hover src="images/gui/buttons/round/button-round-hover-40.png" width="32" height="32" resizable="yes" />
+            <image-clicked src="images/gui/buttons/round/button-round-clicked-40.png" width="32" height="32" resizable="yes" />
+            <image-caption src="images/gui/info/info.png" width="32" height="32" resizable="yes" />
+            <tooltip translatable="yes">[F1] Press this button to get help</tooltip>
+          </Button>
+        </cell>
+        <colsize col="4" fixed="32" />
+        <cell row="1" col="4" valign="center" halign="center">
+          <Button name="showTerrainHeight" width="32" height="32">
+            <image src="images/gui/buttons/round/button-round-20.png" width="32" height="32" resizable="yes" />
+            <image-hover src="images/gui/buttons/round/button-round-hover-20.png" width="32" height="32" resizable="yes" />
+            <image-clicked src="images/gui/buttons/round/button-round-clicked-20.png" width="32" height="32" resizable="yes" />
+            <image-caption src="images/gui/info/terrainheight.png" width="32" height="32" resizable="yes" />
+            <tooltip translatable="yes">toggle terrain height rendering</tooltip>
+          </Button>
+        </cell>
+        <colsize col="5" fixed="32" />
+        <cell row="1" col="5" valign="center" halign="center">
+          <Button name="hideHighBuildings" width="32" height="32">
+            <image src="images/gui/buttons/round/button-round-40.png" width="32" height="32" resizable="yes" />
+            <image-hover src="images/gui/buttons/round/button-round-hover-40.png" width="32" height="32" resizable="yes" />
+            <image-clicked src="images/gui/buttons/round/button-round-clicked-40.png" width="32" height="32" resizable="yes" />
+            <image-caption src="images/gui/info/hidehigh.png" width="32" height="32" resizable="yes" />
+            <tooltip translatable="yes">[h] Hide high buildings.</tooltip>
+          </Button>
+        </cell>
+        <colsize col="6" fixed="32" />
+        <cell row="1" col="6" valign="center" halign="center">
+          <Button name="StatButton" width="32" height="32">
+            <image src="images/gui/buttons/round/button-round-40.png" width="32" height="32" resizable="yes" />
+            <image-hover src="images/gui/buttons/round/button-round-hover-40.png" width="32" height="32" resizable="yes" />
+            <image-clicked src="images/gui/buttons/round/button-round-clicked-40.png" width="32" height="32" resizable="yes" />
+            <image-caption src="images/gui/info/statistics.png" width="32" height="32" resizable="yes" />
+            <tooltip translatable="yes">Press this button to show statistics</tooltip>
+          </Button>
+        </cell>
+        <colsize col="7" fixed="32" />
+        <cell row="1" col="7" valign="center" halign="center">
+          <Button name="mapOverlay" width="32" height="32">
+            <image src="images/gui/buttons/round/button-round-40.png" width="32" height="32" resizable="yes" />
+            <image-hover src="images/gui/buttons/round/button-round-hover-40.png" width="32" height="32" resizable="yes" />
+            <image-clicked src="images/gui/buttons/round/button-round-clicked-40.png" width="32" height="32" resizable="yes" />
+            <image-caption src="images/gui/info/mapoverlay.png" width="32" height="32" resizable="yes" />
+            <tooltip translatable="yes">[v] Cycle through MiniMap overlay modes.</tooltip>
+          </Button>
+        </cell>
+        <colsize col="8" fixed="20" />
+        <cell row="1" col="8" valign="center" halign="center">
+          <Button name="ScrollPageUp" width="20" height="32">
+            <image src="images/gui/buttons/round/button-round-20.png" width="20" height="32" resizable="yes" />
+            <image-hover src="images/gui/buttons/round/button-round-hover-20.png" width="20" height="32" resizable="yes" />
+            <image-clicked src="images/gui/buttons/round/button-round-clicked-20.png" width="20" height="32" resizable="yes" />
+            <image-caption src="images/gui/scrollbar/arrow_up.png" width="20" height="32" resizable="yes" />
+            <tooltip translatable="yes">[m] Scroll up.</tooltip>
+          </Button>
+        </cell>
+        <colsize col="9" fixed="20" />
+        <cell row="1" col="9" valign="center" halign="center">
+          <Button name="ScrollPageDown" width="20" height="32">
+            <image src="images/gui/buttons/round/button-round-20.png" width="20" height="32" resizable="yes" />
+            <image-hover src="images/gui/buttons/round/button-round-hover-20.png" width="20" height="32" resizable="yes" />
+            <image-clicked src="images/gui/buttons/round/button-round-clicked-20.png" width="20" height="32" resizable="yes" />
+            <image-caption src="images/gui/scrollbar/arrow_down.png" width="20" height="32" resizable="yes" />
+            <tooltip translatable="yes">[n] Scroll down.</tooltip>
+          </Button>
+        </cell>
+      </TableLayout>
+    </cell>
+  </TableLayout>
+</Panel>

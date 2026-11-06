@@ -1,0 +1,647 @@
+{
+  "housing-compact-0": {
+    "resource_id": "ResidentialLowLow",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-ground-ResidentialLowLow-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "housing-compact-1": {
+    "resource_id": "ResidentialMedLow",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-ground-ResidentialMedLow-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "housing-compact-2": {
+    "resource_id": "ResidentialHighLow",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-ground-ResidentialHighLow-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "housing-compact-3": {
+    "resource_id": "ResidentialLow",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-ground-ResidentialLow-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "housing-compact-4": {
+    "resource_id": "ResidentialMedHigh",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-ground-ResidentialMedHigh-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "housing-compact-5": {
+    "resource_id": "ResidentialHighHigh",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-ground-ResidentialHighHigh-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "housing-compact-0-alt": {
+    "resource_id": "ResidentialLowLowVariant1",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-ground-ResidentialLowLowVariant1-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "housing-compact-1-alt": {
+    "resource_id": "ResidentialMedLowVariant1",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-ground-ResidentialMedLowVariant1-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "housing-compact-2-alt": {
+    "resource_id": "ResidentialHighLowVariant1",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-ground-ResidentialHighLowVariant1-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "housing-compact-3-alt": {
+    "resource_id": "ResidentialLowVariant1",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-ground-ResidentialLowVariant1-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "housing-compact-4-alt": {
+    "resource_id": "ResidentialMedHighVariant1",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-ground-ResidentialMedHighVariant1-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "housing-compact-5-alt": {
+    "resource_id": "ResidentialHighHighVariant1",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-ground-ResidentialHighHighVariant1-00.png",
+        "x": "192",
+        "y": "200"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "shanty": {
+    "resource_id": "Shanty",
+    "footprint_tiles": 2,
+    "frames": [
+      {
+        "file": "art01-ground-Shanty-00.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "water-well": {
+    "resource_id": "Waterwell",
+    "footprint_tiles": 2,
+    "frames": [
+      {
+        "file": "art01-ground-Waterwell-00.png",
+        "x": "128",
+        "y": "155"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "wind-turbine": {
+    "resource_id": "WindMillHTechG",
+    "footprint_tiles": 2,
+    "frames": [
+      {
+        "file": "art01-scale-wind-turbine-00.png",
+        "x": "128",
+        "y": "280"
+      },
+      {
+        "file": "art01-scale-wind-turbine-01.png",
+        "x": "128",
+        "y": "280"
+      },
+      {
+        "file": "art01-scale-wind-turbine-02.png",
+        "x": "128",
+        "y": "280"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "monument": {
+    "resource_id": "MonumentConstruction",
+    "footprint_tiles": 2,
+    "frames": [
+      {
+        "file": "art01-scale-monument-01.png",
+        "x": "128",
+        "y": "181"
+      },
+      {
+        "file": "art01-scale-monument-02.png",
+        "x": "128",
+        "y": "181"
+      },
+      {
+        "file": "art01-scale-monument-03.png",
+        "x": "128",
+        "y": "181"
+      },
+      {
+        "file": "art01-scale-monument-04.png",
+        "x": "128",
+        "y": "181"
+      },
+      {
+        "file": "art01-scale-monument-05.png",
+        "x": "128",
+        "y": "181"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "tech-campus": {
+    "resource_id": "EvolutionTech",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-scale-tech-campus-00.png",
+        "x": "192",
+        "y": "220"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "solar-plant": {
+    "resource_id": "PowerSolar",
+    "footprint_tiles": 4,
+    "frames": [
+      {
+        "file": "art01-scale-solar-plant-00.png",
+        "x": "256",
+        "y": "264"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "port": {
+    "resource_id": "Harbor",
+    "footprint_tiles": 4,
+    "frames": [
+      {
+        "file": "art01-scale-port-00.png",
+        "x": "256",
+        "y": "264"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "rocket": {
+    "resource_id": "Rocket",
+    "footprint_tiles": 4,
+    "frames": [
+      {
+        "file": "art01-scale-rocket-00.png",
+        "x": "256",
+        "y": "352"
+      },
+      {
+        "file": "art01-scale-rocket-01.png",
+        "x": "256",
+        "y": "352"
+      },
+      {
+        "file": "art01-scale-rocket-02.png",
+        "x": "256",
+        "y": "352"
+      },
+      {
+        "file": "art01-scale-rocket-03.png",
+        "x": "256",
+        "y": "352"
+      },
+      {
+        "file": "art01-scale-rocket-04.png",
+        "x": "256",
+        "y": "352"
+      },
+      {
+        "file": "art01-scale-rocket-05.png",
+        "x": "256",
+        "y": "352"
+      },
+      {
+        "file": "art01-scale-rocket-06.png",
+        "x": "256",
+        "y": "352"
+      },
+      {
+        "file": "art01-scale-rocket-07.png",
+        "x": "256",
+        "y": "352"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "ore-mine": {
+    "resource_id": "OreMine",
+    "footprint_tiles": 4,
+    "frames": [
+      {
+        "file": "art01-ore-mine-00.png",
+        "x": "256",
+        "y": "286"
+      },
+      {
+        "file": "art01-ore-mine-00.png",
+        "x": "256",
+        "y": "286"
+      },
+      {
+        "file": "art01-ore-mine-01.png",
+        "x": "256",
+        "y": "286"
+      },
+      {
+        "file": "art01-ore-mine-01.png",
+        "x": "256",
+        "y": "286"
+      },
+      {
+        "file": "art01-ore-mine-02.png",
+        "x": "256",
+        "y": "286"
+      },
+      {
+        "file": "art01-ore-mine-02.png",
+        "x": "256",
+        "y": "286"
+      },
+      {
+        "file": "art01-ore-mine-01.png",
+        "x": "256",
+        "y": "286"
+      },
+      {
+        "file": "art01-ore-mine-01.png",
+        "x": "256",
+        "y": "286"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "coal-mine": {
+    "resource_id": "CoalMineFull",
+    "footprint_tiles": 4,
+    "frames": [
+      {
+        "file": "art01-coal-mine-02.png",
+        "x": "256",
+        "y": "318"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "heavy-factory": {
+    "resource_id": "IndustryHighH",
+    "footprint_tiles": 4,
+    "frames": [
+      {
+        "file": "art01-steel-works-00.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-00.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-02.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-02.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      },
+      {
+        "file": "art01-steel-works-01.png",
+        "x": "256",
+        "y": "324"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "substation": {
+    "resource_id": "SubstationOn",
+    "footprint_tiles": 2,
+    "frames": [
+      {
+        "file": "art01-substation-02.png",
+        "x": "128",
+        "y": "157"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "fire-station": {
+    "resource_id": "FireStation",
+    "footprint_tiles": 2,
+    "frames": [
+      {
+        "file": "art01-fire-station-00.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-00.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-00.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-01.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-01.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-02.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-02.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-02.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-01.png",
+        "x": "128",
+        "y": "152"
+      },
+      {
+        "file": "art01-fire-station-01.png",
+        "x": "128",
+        "y": "152"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "school": {
+    "resource_id": "School",
+    "footprint_tiles": 2,
+    "frames": [
+      {
+        "file": "art01-school-00.png",
+        "x": "128",
+        "y": "149"
+      },
+      {
+        "file": "revamp-clear.png",
+        "x": "0",
+        "y": "0"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "clinic": {
+    "resource_id": "Health",
+    "footprint_tiles": 2,
+    "frames": [
+      {
+        "file": "art01-clinic-00.png",
+        "x": "128",
+        "y": "153"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "university": {
+    "resource_id": "University",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-university-00.png",
+        "x": "192",
+        "y": "213"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "warehouse": {
+    "resource_id": "EvolutionWarehouse",
+    "footprint_tiles": 2,
+    "frames": [
+      {
+        "file": "art01-warehouse-00.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "cafe": {
+    "resource_id": "EvolutionCafe",
+    "footprint_tiles": 1,
+    "frames": [
+      {
+        "file": "art01-cafe-00.png",
+        "x": "64",
+        "y": "75"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "food-hall": {
+    "resource_id": "EvolutionFoodhall",
+    "footprint_tiles": 2,
+    "frames": [
+      {
+        "file": "art01-food-hall-00.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "recycling-center": {
+    "resource_id": "Recycle",
+    "footprint_tiles": 2,
+    "frames": [
+      {
+        "file": "art01-recycling-center-00.png",
+        "x": "128",
+        "y": "136"
+      }
+    ],
+    "requires_renderer_integration": null
+  },
+  "coal-plant": {
+    "resource_id": "PowerCoalFull",
+    "footprint_tiles": 4,
+    "frames": [
+      {
+        "file": "art01-coal-plant-00.png",
+        "x": "256",
+        "y": "288"
+      }
+    ],
+    "requires_renderer_integration": "smoke-emitter-mapping.json"
+  },
+  "factory": {
+    "resource_id": "IndustryLightH",
+    "footprint_tiles": 3,
+    "frames": [
+      {
+        "file": "art01-factory-00.png",
+        "x": "192",
+        "y": "215"
+      }
+    ],
+    "requires_renderer_integration": "smoke-emitter-mapping.json"
+  },
+  "landfill": {
+    "resource_id": "Tip",
+    "footprint_tiles": 4,
+    "frames": [
+      {
+        "file": "art01-landfill-00.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-00.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-00.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-01.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-01.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-02.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-02.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-01.png",
+        "x": "256",
+        "y": "264"
+      },
+      {
+        "file": "art01-landfill-01.png",
+        "x": "256",
+        "y": "264"
+      }
+    ],
+    "requires_renderer_integration": null
+  }
+}

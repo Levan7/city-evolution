@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Document style="helpdocument">
+  <Paragraph style="htitle">Church</Paragraph>
+  <img src="images/help-art01/GeorgianChurch.png" width="180" height="130" />
+  <Paragraph style="hp">Costs $6,000; 3×3 tiles. Uses 2 labor and 1 goods/day; upkeep $8/day. While operating, improves nearby wellbeing and learning. Benefits do not stack. Schools train skilled workers.</Paragraph>
+</Document>

@@ -1,0 +1,65 @@
+{
+  "method": "Built-in image generation; one independent call per asset.",
+  "shared_spec": "Transparent alpha; isolated complete object; orthographic 2:1 isometric requested; warm cream, terracotta, teal and brick; hand-painted miniature 3D; afternoon light from upper-left; no lettering or scenery. Generated camera/pixel geometry needs in-engine QA.",
+  "subjects": [
+    {
+      "name": "house",
+      "subject": "A modest two-storey Georgian courtyard house, cream plaster, warm terracotta pitched roof, wooden balcony, small fenced garden. Footprint 1x1 square isometric tile.",
+      "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-989be402-b98d-4b2f-9eb9-741b4952766d.png"
+    },
+    {
+      "name": "warehouse",
+      "subject": "A freight warehouse of red brick and cream concrete, corrugated teal roof, loading doors, small pallets, rooftop vents. Footprint 2x2 square isometric tiles.",
+      "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-441c1d5d-ef5c-4300-b4a8-72e0347fda83.png"
+    },
+    {
+      "name": "tech-campus",
+      "subject": "A modern technology campus, glass and warm stone low-rise buildings, teal green roofs, rooftop solar panels, central courtyard. Footprint 3x3 square isometric tiles.",
+      "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-a4024a25-4b65-4bbe-8b1b-674fe1047dd2.png"
+    },
+    {
+      "name": "cafe",
+      "subject": "A charming neighborhood cafe, cream plaster and brick, green striped awning, outdoor tables, terracotta roof. Footprint 1x1 square isometric tile.",
+      "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-fd528be0-4b09-40b0-acab-98afd9fd6f65.png"
+    },
+    {
+      "name": "school",
+      "subject": "A neighborhood school, cream stone, teal pitched roof, sunny courtyard, modest trees, red front door. Footprint 2x2 square isometric tiles.",
+      "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-9d6e5e58-b0e1-4ef1-870b-6a74bba31e3a.png"
+    },
+    {
+      "name": "clinic",
+      "subject": "A small neighborhood clinic, pale stone, teal roof, subtle medical cross plaque and an accessible entrance. Footprint 2x2 square isometric tiles.",
+      "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-a92cc69e-4480-4a71-8a46-2d49c9254993.png"
+    },
+    {
+      "name": "factory",
+      "subject": "A compact working factory, weathered red brick, sawtooth teal metal roof, two short chimneys, loading bay. Footprint 2x2 square isometric tiles.",
+      "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-1f9c1fd4-0659-470c-886d-cde677e40f45.png"
+    },
+    {
+      "name": "farm",
+      "subject": "A small farm with terracotta-roof farmhouse, wooden barn, orderly crop patches and a tiny greenhouse. Footprint 2x2 square isometric tiles.",
+      "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-8832cef1-be02-43c0-95f0-4b1ecd29dff1.png"
+    },
+    {
+      "name": "car",
+      "subject": "One small teal compact passenger car, front and left side visible, nose facing lower-left. No tile or ground base.",
+      "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-95375da1-646c-4d25-9c63-60540001b10b.png"
+    },
+    {
+      "name": "horse",
+      "subject": "One anatomically correct chestnut working horse, neutral standing pose, front and left side visible, head facing lower-left. No rider, no cart, no ground tile.",
+      "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-37ebc6db-2516-42b3-9b45-b61593f0f658.png"
+    },
+    {
+      "name": "horse-cart",
+      "subject": "One chestnut horse harnessed correctly in front of a small wooden four-wheeled cargo cart with sacks and crates, horse walking toward lower-left. Whole horse and whole cart fully visible and connected by realistic shafts. No ground tile.",
+      "path": "/workspace/scratch/34992a73ecf7/generated_images/exec-d8dbaa17-dcbf-4829-a691-b2ed92e5c738.png"
+    },
+    {
+      "name": "truck",
+      "prompt": "Use case: stylized-concept. Asset type: city-builder vehicle sprite PNG. One small cream and teal delivery truck with a wooden-sided cargo bed and neatly stacked crates. Elegant hand-painted miniature 3D render, clean readable silhouette, same terracotta cream teal brick palette as a Georgian-inspired city-builder. Orthographic 2:1 isometric projection, ground axes 26.565 degrees, front and left side visible, nose facing lower-left. Neutral soft afternoon light from upper-left. Entire truck centered with transparent padding, no ground tile, no labels or logos, genuine transparent alpha background. Static single pose, square canvas."
+    }
+  ]
+}

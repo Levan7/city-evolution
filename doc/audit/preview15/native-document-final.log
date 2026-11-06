@@ -1,0 +1,13 @@
+[0/2] Re-checking globbed directories...
+[1/12] Building CXX object src/gui/CMakeFiles/lincity_gui.dir/DocumentImage.cpp.o
+[2/12] Linking CXX static library src/gui/liblincity_gui.a
+[3/12] Linking CXX executable tests/city-evolution/city-evolution-checks
+[4/12] Linking CXX executable tests/city-evolution/transit-checks
+[5/12] Linking CXX executable tests/city-evolution/mayor-checks
+[6/12] Linking CXX executable bin/lincity-ng
+[7/12] Linking CXX executable tests/city-evolution/community-checks
+[8/12] Linking CXX executable tests/city-evolution/services-checks
+[9/12] Linking CXX executable tests/city-evolution/flu-checks
+[10/12] Linking CXX executable tests/city-evolution/audio-checks
+[11/12] Linking CXX executable tests/city-evolution/street-routes-checks
+[12/12] Linking CXX executable tests/city-evolution/autonomy-checks

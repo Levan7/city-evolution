@@ -1,0 +1,107 @@
+[
+  {
+    "name": "libicu-dev_74.2-1ubuntu3_amd64.deb",
+    "sha256": "18dc7c1730ad8006167f0e25289adc824b11b4cfce1baef0a1c1fb8dc044d945",
+    "bytes": 11893158
+  },
+  {
+    "name": "libxml2-dev_2.9.14+dfsg-1.3ubuntu3_amd64.deb",
+    "sha256": "3fbacd7593d9be3ab3e6e08e60a08d13e24dccabdcb956fc7ab980ac56707890",
+    "bytes": 780458
+  },
+  {
+    "name": "llvm-mingw-20261104-ucrt-ubuntu-22.04-x86_64.tar.xz",
+    "sha256": "919380403de87dca3c581c2053230cd298af5e891286628ba0613b7fed370926",
+    "bytes": 84104244
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-brotli-1.2.1-1-any.pkg.tar.zst",
+    "sha256": "e3257d4303fc0aca4c64f702d4c8cd766a321351c5e61927631c30bfdf2e7536",
+    "bytes": 448753
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-bzip2-1.0.8-4-any.pkg.tar.zst",
+    "sha256": "f03a2174034ddd2d96cecd34f617c5f8e2ef86c812b8d2bb3b8875257f2c8bfa",
+    "bytes": 94396
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-freetype-2.15.0-1-any.pkg.tar.zst",
+    "sha256": "a9a691f71d1a553099c54ca666e611abfb2b4ff08dae24f2a5af72e22a7e5feb",
+    "bytes": 640235
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-glib2-2.90.1-1-any.pkg.tar.zst",
+    "sha256": "9a7826349279bcca0c935b01880d812be9de9609aef2205be68fd7a6128c1695",
+    "bytes": 5467018
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-graphite2-1.3.15-1-any.pkg.tar.zst",
+    "sha256": "34ca1f88bff10ef182a6b1c8e5622d5029f13b05748e361af13b552b422ea849",
+    "bytes": 152553
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-harfbuzz-15.0.0-1-any.pkg.tar.zst",
+    "sha256": "3f9abf2efe4e0380291b48583551475031f5da524b2d60962d8e3c479505c4cd",
+    "bytes": 2749022
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-libiconv-1.19-1-any.pkg.tar.zst",
+    "sha256": "9a500f38c2b91808741c62fae746b3e9110b33a1ecf5c30fa0c66dbedddf7e16",
+    "bytes": 744750
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-libjpeg-turbo-3.2.1-1-any.pkg.tar.zst",
+    "sha256": "8eed77c1e0d6de7f8822687f7b1dfa32cda09394806ef67b23399e63de1a92a6",
+    "bytes": 788153
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-libogg-1.3.6-1-any.pkg.tar.zst",
+    "sha256": "110a34239e8f122da15e041b2601e2f3c6d4c909d738bdf978700601e0f64449",
+    "bytes": 216262
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-libpng-1.6.59-2-any.pkg.tar.zst",
+    "sha256": "6cc296f5029220e1a226c4bc50294212b20ab8fcabeb00b5a002667f4a882edc",
+    "bytes": 401066
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-libvorbis-1.3.7-3-any.pkg.tar.zst",
+    "sha256": "d013d2c7489b175299f9ea8bd9b70cf456337943b0f13e6eb470beb6c3fc251f",
+    "bytes": 367465
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-libxml2-2.15.4-3-any.pkg.tar.zst",
+    "sha256": "e774c85139c004ce9b4085474d6b3450526c718d2e8c555a87e47adc11f376b1",
+    "bytes": 1003188
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-pcre2-10.49-1-any.pkg.tar.zst",
+    "sha256": "63172179db724ac71e2439a7981134c1bcab8049bdddfd349b32b8f76ed52d1e",
+    "bytes": 1445467
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-sdl3-3.4.18-1-any.pkg.tar.zst",
+    "sha256": "f9f8e2fe9858868e7653b24c973bcc8c19dea1096afc8c905bf1cd1a87960442",
+    "bytes": 2497713
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-sdl3-image-3.4.8-1-any.pkg.tar.zst",
+    "sha256": "e47005fe8055b6f8bacb5cf3c778e13d452406b0f10e5beddefd0de29fe58894",
+    "bytes": 192298
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-sdl3-mixer-3.2.4-1-any.pkg.tar.zst",
+    "sha256": "7643fa44ade72214f7478bad505e633d5fb0eed2b9bf01f622bf8c92eda291f7",
+    "bytes": 1124828
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-sdl3-ttf-3.2.2-3-any.pkg.tar.zst",
+    "sha256": "a1cab94de3659790ee2f6deee6bdfe9e407e380f5d3df32464b11ca0b5071d0e",
+    "bytes": 114353
+  },
+  {
+    "name": "mingw-w64-ucrt-x86_64-zlib-1.3.2-3-any.pkg.tar.zst",
+    "sha256": "130e6ef04c654fc2150a177600aa5ed0035087665a893479d2c85ba7485d5704",
+    "bytes": 108848
+  }
+]

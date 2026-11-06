@@ -1,0 +1,3 @@
+# Preview 14 art
+
+The woman atlas and inventory-prop atlas were generated for City Evolution. Runtime exports are 16 woman sprites and 12 small material-stock sprites. Existing artwork remains licensed/credited as before. Source export script: contrib/preview14/integrate_art.py. Raw atlas names in this directory identify their generation. Women use a green jacket, burgundy trousers and ponytail; directions are SE, SW, NW, NE. Inventory rows progress low to full for food, goods, ore and coal, with a single scale per material. No daytime building sprite or old animation slot was removed for these additions.

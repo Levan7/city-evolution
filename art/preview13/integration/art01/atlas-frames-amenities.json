@@ -1,0 +1,70 @@
+{
+  "warehouse": [
+    {
+      "file": "art01-warehouse-00.png",
+      "x": "128",
+      "y": "136"
+    },
+    {
+      "file": "art01-warehouse-01.png",
+      "x": "128",
+      "y": "136"
+    },
+    {
+      "file": "art01-warehouse-02.png",
+      "x": "128",
+      "y": "136"
+    }
+  ],
+  "cafe": [
+    {
+      "file": "art01-cafe-00.png",
+      "x": "64",
+      "y": "75"
+    },
+    {
+      "file": "art01-cafe-01.png",
+      "x": "64",
+      "y": "75"
+    },
+    {
+      "file": "art01-cafe-02.png",
+      "x": "64",
+      "y": "75"
+    }
+  ],
+  "food-hall": [
+    {
+      "file": "art01-food-hall-00.png",
+      "x": "128",
+      "y": "136"
+    },
+    {
+      "file": "art01-food-hall-01.png",
+      "x": "128",
+      "y": "136"
+    },
+    {
+      "file": "art01-food-hall-02.png",
+      "x": "128",
+      "y": "136"
+    }
+  ],
+  "recycling-center": [
+    {
+      "file": "art01-recycling-center-00.png",
+      "x": "128",
+      "y": "136"
+    },
+    {
+      "file": "art01-recycling-center-01.png",
+      "x": "128",
+      "y": "136"
+    },
+    {
+      "file": "art01-recycling-center-02.png",
+      "x": "128",
+      "y": "136"
+    }
+  ]
+}

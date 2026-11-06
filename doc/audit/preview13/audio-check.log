@@ -1,0 +1,1 @@
+PASS Ogg music decodes using packaged SDL mixer and dummy audio device; no physical speaker test

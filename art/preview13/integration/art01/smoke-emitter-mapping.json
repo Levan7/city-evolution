@@ -1,0 +1,100 @@
+{
+  "units": "native PNG pixels at zoom 1; screen x right, y down",
+  "integration_required": true,
+  "existing_renderer_multiplier": 0.8,
+  "instruction": "Attach the smoke texture origin to each listed chimney tip. Direct offsets are relative to building anchor. If retaining the Preview11 0.8 smoke move multiplier, use legacy_move_xy instead. Do not multiply both values again. Check all poses in the final renderer.",
+  "families": {
+    "coal-plant": {
+      "resource_family": "PowerCoalEmpty",
+      "png": "art01-coal-plant-00.png",
+      "building_anchor": [
+        256,
+        288
+      ],
+      "emitters": [
+        {
+          "tip_in_png": [
+            188,
+            28
+          ],
+          "offset_from_building_anchor": [
+            -68,
+            -260
+          ],
+          "legacy_move_xy": [
+            -85,
+            -325
+          ]
+        },
+        {
+          "tip_in_png": [
+            215,
+            17
+          ],
+          "offset_from_building_anchor": [
+            -41,
+            -271
+          ],
+          "legacy_move_xy": [
+            -51,
+            -339
+          ]
+        },
+        {
+          "tip_in_png": [
+            240,
+            7
+          ],
+          "offset_from_building_anchor": [
+            -16,
+            -281
+          ],
+          "legacy_move_xy": [
+            -20,
+            -351
+          ]
+        }
+      ],
+      "legacy_slot_note": "Existing coal module has eight emitter slots; prefer three active slots, one per chimney, deactivate the other five. Retain emission/production rules."
+    },
+    "factory": {
+      "resource_family": "IndustryLight",
+      "png": "art01-factory-00.png",
+      "building_anchor": [
+        192,
+        215
+      ],
+      "emitters": [
+        {
+          "tip_in_png": [
+            129,
+            17
+          ],
+          "offset_from_building_anchor": [
+            -63,
+            -198
+          ],
+          "legacy_move_xy": [
+            -79,
+            -248
+          ]
+        },
+        {
+          "tip_in_png": [
+            151,
+            7
+          ],
+          "offset_from_building_anchor": [
+            -41,
+            -208
+          ],
+          "legacy_move_xy": [
+            -51,
+            -260
+          ]
+        }
+      ],
+      "legacy_slot_note": "Existing module already has two emitter slots. Update both offsets only."
+    }
+  }
+}

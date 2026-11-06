@@ -1,0 +1,528 @@
+<?xml version="1.0"?>
+<resources>
+  <group>
+    <resourceID name="Green" />
+    <image file="green.png" x="64" y="70" />
+    <resourceID name="Tree" />
+    <image file="tree.png" x="64" y="126" />
+    <resourceID name="Tree2" />
+    <image file="tree2.png" x="64" y="128" />
+    <resourceID name="Tree3" />
+    <image file="tree3.png" x="65" y="143" />
+  </group>
+  <group>
+    <resourceID name="Desert" />
+    <image file="desert_0.png" x="65" y="70" />
+    <image file="desert_1d.png" x="65" y="68" />
+    <image file="desert_1r.png" x="65" y="69" />
+    <image file="desert_2rd.png" x="65" y="69" />
+    <image file="desert_1l.png" x="65" y="68" />
+    <image file="desert_2ld.png" x="65" y="68" />
+    <image file="desert_2lr.png" x="65" y="70" />
+    <image file="desert_3lrd.png" x="65" y="69" />
+    <image file="desert_1u.png" x="65" y="70" />
+    <image file="desert_2ud.png" x="65" y="70" />
+    <image file="desert_2ru.png" x="65" y="70" />
+    <image file="desert_3rud.png" x="65" y="69" />
+    <image file="desert_2lu.png" x="65" y="65" />
+    <image file="desert_3lud.png" x="65" y="65" />
+    <image file="desert_3lru.png" x="65" y="65" />
+    <image file="desert.png" x="65" y="65" />
+  </group>
+  <group>
+    <resourceID name="Water" />
+    <image file="water.png" x="64" y="70" />
+    <image file="waterd.png" x="64" y="68" />
+    <image file="waterr.png" x="64" y="66" />
+    <image file="waterrd.png" x="64" y="69" />
+    <image file="waterl.png" x="64" y="69" />
+    <image file="waterld.png" x="64" y="69" />
+    <image file="waterlr.png" x="64" y="69" />
+    <image file="waterlrd.png" x="64" y="69" />
+    <image file="wateru.png" x="64" y="69" />
+    <image file="waterud.png" x="64" y="68" />
+    <image file="waterur.png" x="64" y="69" />
+    <image file="waterurd.png" x="64" y="68" />
+    <image file="waterlu.png" x="64" y="65" />
+    <image file="waterlud.png" x="64" y="65" />
+    <image file="waterlur.png" x="64" y="65" />
+    <image file="waterlurd.png" x="64" y="65" />
+  </group>
+  <group>
+    <resourceID name="PowerLine" />
+    <image file="powerlhd.png" x="46" y="106" />
+    <image file="powerlvd.png" x="45" y="106" />
+    <image file="powerlrdd.png" x="45" y="112" />
+    <image file="powerlldd.png" x="45" y="102" />
+    <image file="powerlldrd.png" x="45" y="112" />
+    <image file="powerlrud.png" x="29" y="102" />
+    <image file="powerludrd.png" x="45" y="112" />
+    <image file="powerllud.png" x="46" y="112" />
+    <image file="powerlldud.png" x="46" y="112" />
+    <image file="powerllurd.png" x="46" y="112" />
+    <image file="powerlludrd.png" x="46" y="112" />
+    <image file="powerlhl.png" x="46" y="109" />
+    <image file="powerlvl.png" x="45" y="109" />
+    <image file="powerlrdl.png" x="45" y="114" />
+    <image file="powerlldl.png" x="45" y="102" />
+    <image file="powerlldrl.png" x="45" y="114" />
+    <image file="powerlrul.png" x="42" y="102" />
+    <image file="powerludrl.png" x="45" y="114" />
+    <image file="powerllul.png" x="46" y="115" />
+    <image file="powerlldul.png" x="46" y="114" />
+    <image file="powerllurl.png" x="46" y="114" />
+    <image file="powerlludrl.png" x="46" y="114" />
+    <image file="powerl-suspended90.png" x="45" y="102" />
+    <image file="powerl-suspended0.png" x="45" y="102" />
+  </group>
+  <group>
+    <resourceID name="Track" />
+    <image file="tracklr.png" x="64" y="65" />
+    <image file="trackud.png" x="64" y="65" />
+    <image file="tracklu.png" x="64" y="74" />
+    <image file="trackur.png" x="64" y="79" />
+    <image file="tracklur.png" x="64" y="65" />
+    <image file="trackld.png" x="64" y="97" />
+    <image file="tracklud.png" x="64" y="65" />
+    <image file="trackdr.png" x="64" y="105" />
+    <image file="trackldr.png" x="64" y="65" />
+    <image file="trackudr.png" x="64" y="65" />
+    <image file="trackludr.png" x="64" y="65" />
+    
+    <image file="bridge_track_90.png" x="64" y="98" />
+    <image file="bridge_track_0.png" x="64" y="98" />
+    
+    <image file="bridge_track_slope1_270.png" x="64" y="98" />
+    <image file="bridge_track_slope1_0.png" x="64" y="98" />
+    <image file="bridge_track_slope1_90.png" x="64" y="85" />
+    <image file="bridge_track_slope1_180.png" x="64" y="85" />
+  </group>
+  <group>
+    <resourceID name="TrackBridge" />
+    <image file="bridge_track_90.png" x="64" y="98" />
+    <image file="bridge_track_0.png" x="64" y="98" />
+    
+  </group>
+  <group>
+    <resourceID name="Road" />
+    <image file="roadlr.png" x="64" y="66" />
+    <image file="roadud.png" x="64" y="66" />
+    <image file="roadlu.png" x="64" y="66" />
+    <image file="roadur.png" x="64" y="66" />
+    <image file="roadlur.png" x="64" y="66" />
+    <image file="roadld.png" x="64" y="66" />
+    <image file="roadlud.png" x="64" y="66" />
+    <image file="roaddr.png" x="64" y="66" />
+    <image file="roadldr.png" x="64" y="66" />
+    <image file="roadudr.png" x="64" y="66" />
+    <image file="roadludr.png" x="64" y="66" />
+    
+    <image file="bridge_road_90.png" x="64" y="119" />
+    <image file="bridge_road_0.png" x="64" y="119" />
+    
+    <image file="bridge_road_slope2_270.png" x="64" y="119" />
+    <image file="bridge_road_slope2_0.png" x="64" y="119" />
+    <image file="bridge_road_slope2_90.png" x="64" y="98" />
+    <image file="bridge_road_slope2_180.png" x="64" y="99" />
+    
+    <image file="bridge_road_slope1_270.png" x="64" y="97" />
+    <image file="bridge_road_slope1_0.png" x="64" y="97" />
+    <image file="bridge_road_slope1_90.png" x="64" y="76" />
+    <image file="bridge_road_slope1_180.png" x="64" y="76" />
+  </group>
+  <group>
+    <resourceID name="RoadBridge" />
+    <image file="bridge_road_90.png" x="64" y="119" />
+    <image file="bridge_road_0.png" x="64" y="119" />
+    
+  </group>
+  <group>
+    <resourceID name="Rail" />
+    <image file="raillr.png" x="66" y="69" />
+    <image file="railud.png" x="66" y="69" />
+    <image file="raillu.png" x="66" y="69" />
+    <image file="railur.png" x="66" y="67" />
+    <image file="raillur.png" x="66" y="68" />
+    <image file="railld.png" x="66" y="69" />
+    <image file="raillud.png" x="66" y="69" />
+    <image file="raildr.png" x="66" y="68" />
+    <image file="railldr.png" x="66" y="68" />
+    <image file="railudr.png" x="66" y="69" />
+    <image file="railludr.png" x="66" y="70" />
+    
+    <image file="bridge_rail_90.png" x="64" y="119" />
+    <image file="bridge_rail_0.png" x="64" y="118" />
+    
+    <image file="bridge_rail_slope2_270.png" x="64" y="119" />
+    <image file="bridge_rail_slope2_0.png" x="64" y="119" />
+    <image file="bridge_rail_slope2_90.png" x="64" y="103" />
+    <image file="bridge_rail_slope2_180.png" x="64" y="103" />
+    
+    <image file="bridge_rail_slope1_270.png" x="64" y="103" />
+    <image file="bridge_rail_slope1_0.png" x="64" y="103" />
+    <image file="bridge_rail_slope1_90.png" x="64" y="75" />
+    <image file="bridge_rail_slope1_180.png" x="64" y="75" />
+    <image file="crossing_rail_track0.png" x="64" y="94" />
+    <image file="crossing_rail_track90.png" x="64" y="67" />
+    <image file="crossing_rail_road0.png" x="64" y="108" />
+    <image file="crossing_rail_road90.png" x="64" y="81" />
+  </group>
+  <group>
+    <resourceID name="RailBridge" />
+    
+    <image file="bridge_rail_90.png" x="64" y="119" />
+    <image file="bridge_rail_0.png" x="64" y="118" />
+  </group>
+  <group>
+    <resourceID name="Waterwell" />
+    <image file="art01-ground-Waterwell-00.png" x="128" y="155" />
+  </group>
+  <group>
+    <resourceID name="Tip" />
+    <image file="art01-landfill-00.png" x="256" y="264" />
+    <image file="art01-landfill-00.png" x="256" y="264" />
+    <image file="art01-landfill-00.png" x="256" y="264" />
+    <image file="art01-landfill-01.png" x="256" y="264" />
+    <image file="art01-landfill-01.png" x="256" y="264" />
+    <image file="art01-landfill-02.png" x="256" y="264" />
+    <image file="art01-landfill-02.png" x="256" y="264" />
+    <image file="art01-landfill-01.png" x="256" y="264" />
+    <image file="art01-landfill-01.png" x="256" y="264" />
+  </group>
+  <group>
+    <resourceID name="PowerSolar" />
+    <image file="art01-scale-solar-plant-00.png" x="256" y="264" />
+  </group>
+  <group>
+    <resourceID name="Pottery" />
+    <image file="lower-revamp11-compact-workshop-compact-0-0.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-0-0.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-0-1.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-0-1.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-0-2.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-0-2.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-0-2.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-0-1.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-0-1.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-0-0.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-0-0.png" x="128" y="136" />
+  </group>
+  <group>
+    <resourceID name="Blacksmith" />
+    <image file="lower-revamp11-compact-workshop-compact-1-0.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-1-1.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-1-1.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-1-2.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-1-1.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-1-1.png" x="128" y="136" />
+    <image file="lower-revamp11-compact-workshop-compact-1-0.png" x="128" y="136" />
+  </group>
+  <group>
+    <resourceID name="Commune" />
+    <image file="lower-revamp11-compact-forestry-0-0.png" x="256" y="270" />
+    <image file="lower-revamp11-compact-forestry-0-0.png" x="256" y="270" />
+    <image file="lower-revamp11-compact-forestry-0-1.png" x="256" y="270" />
+    <image file="lower-revamp11-compact-forestry-0-1.png" x="256" y="270" />
+    <image file="lower-revamp11-compact-forestry-0-2.png" x="256" y="270" />
+    <image file="lower-revamp11-compact-forestry-0-2.png" x="256" y="270" />
+    <image file="lower-revamp11-compact-forestry-0-2.png" x="256" y="270" />
+    <image file="lower-revamp11-compact-forestry-0-1.png" x="256" y="270" />
+    <image file="lower-revamp11-compact-forestry-0-1.png" x="256" y="270" />
+    <image file="lower-revamp11-compact-forestry-0-0.png" x="256" y="270" />
+    <image file="lower-revamp11-compact-forestry-0-0.png" x="256" y="270" />
+  </group>
+  <group>
+    <resourceID name="CoalMine" />
+    <image file="art01-coal-mine-00.png" x="256" y="318" />
+    <resourceID name="CoalMineLow" />
+    <image file="art01-coal-mine-00.png" x="256" y="318" />
+    <resourceID name="CoalMineMed" />
+    <image file="art01-coal-mine-01.png" x="256" y="318" />
+    <resourceID name="CoalMineFull" />
+    <image file="art01-coal-mine-02.png" x="256" y="318" />
+  </group>
+  <group>
+    <resourceID name="MarketEmpty" />
+    <image file="lower-revamp11-compact-workshop-compact-3-0.png" x="128" y="141" />
+    <resourceID name="MarketLow" />
+    <image file="lower-revamp11-compact-workshop-compact-market-0.png" x="128" y="141" />
+    <resourceID name="MarketMed" />
+    <image file="lower-revamp11-compact-workshop-compact-market-0.png" x="128" y="141" />
+    <resourceID name="MarketFull" />
+    <image file="lower-revamp11-compact-workshop-compact-market-0.png" x="128" y="141" />
+  </group>
+  <group>
+    <resourceID name="OreMine" />
+    <image file="art01-ore-mine-00.png" x="256" y="286" />
+    <image file="art01-ore-mine-00.png" x="256" y="286" />
+    <image file="art01-ore-mine-01.png" x="256" y="286" />
+    <image file="art01-ore-mine-01.png" x="256" y="286" />
+    <image file="art01-ore-mine-02.png" x="256" y="286" />
+    <image file="art01-ore-mine-02.png" x="256" y="286" />
+    <image file="art01-ore-mine-01.png" x="256" y="286" />
+    <image file="art01-ore-mine-01.png" x="256" y="286" />
+  </group>
+  <group>
+    <resourceID name="IndustryHigh" />
+    <image file="art01-steel-works-00.png" x="256" y="324" />
+    <resourceID name="IndustryHighL" />
+    <image file="art01-steel-works-00.png" x="256" y="324" />
+    <image file="art01-steel-works-00.png" x="256" y="324" />
+    <image file="art01-steel-works-01.png" x="256" y="324" />
+    <image file="art01-steel-works-01.png" x="256" y="324" />
+    <image file="art01-steel-works-02.png" x="256" y="324" />
+    <image file="art01-steel-works-02.png" x="256" y="324" />
+    <image file="art01-steel-works-01.png" x="256" y="324" />
+    <image file="art01-steel-works-01.png" x="256" y="324" />
+    <resourceID name="IndustryHighM" />
+    <image file="art01-steel-works-00.png" x="256" y="324" />
+    <image file="art01-steel-works-00.png" x="256" y="324" />
+    <image file="art01-steel-works-01.png" x="256" y="324" />
+    <image file="art01-steel-works-01.png" x="256" y="324" />
+    <image file="art01-steel-works-02.png" x="256" y="324" />
+    <image file="art01-steel-works-02.png" x="256" y="324" />
+    <image file="art01-steel-works-01.png" x="256" y="324" />
+    <image file="art01-steel-works-01.png" x="256" y="324" />
+    <resourceID name="IndustryHighH" />
+    <image file="art01-steel-works-00.png" x="256" y="324" />
+    <image file="art01-steel-works-00.png" x="256" y="324" />
+    <image file="art01-steel-works-01.png" x="256" y="324" />
+    <image file="art01-steel-works-01.png" x="256" y="324" />
+    <image file="art01-steel-works-02.png" x="256" y="324" />
+    <image file="art01-steel-works-02.png" x="256" y="324" />
+    <image file="art01-steel-works-01.png" x="256" y="324" />
+    <image file="art01-steel-works-01.png" x="256" y="324" />
+  </group>
+  <group>
+    <resourceID name="IndustryLight" />
+    <image file="art01-factory-00.png" x="192" y="215" />
+    <resourceID name="IndustryLightL" />
+    <image file="art01-factory-00.png" x="192" y="215" />
+    <resourceID name="IndustryLightM" />
+    <image file="art01-factory-00.png" x="192" y="215" />
+    <resourceID name="IndustryLightH" />
+    <image file="art01-factory-00.png" x="192" y="215" />
+  </group>
+  <group>
+    <resourceID name="GraySmoke" />
+    <image file="lower-industryl-smoke0080.png" x="44" y="94" />
+    <image file="lower-industryl-smoke0082.png" x="44" y="93" />
+    <image file="lower-industryl-smoke0084.png" x="44" y="91" />
+    <image file="lower-industryl-smoke0086.png" x="45" y="91" />
+    <image file="lower-industryl-smoke0088.png" x="45" y="89" />
+    <image file="lower-industryl-smoke0090.png" x="43" y="88" />
+    <image file="lower-industryl-smoke0092.png" x="43" y="86" />
+    <image file="lower-industryl-smoke0094.png" x="45" y="89" />
+    <image file="lower-industryl-smoke0096.png" x="44" y="90" />
+    <image file="lower-industryl-smoke0098.png" x="44" y="93" />
+  </group>
+  <group>
+    <resourceID name="PowerCoalEmpty" />
+    <image file="art01-coal-plant-00.png" x="256" y="288" />
+    <resourceID name="PowerCoalLow" />
+    <image file="art01-coal-plant-00.png" x="256" y="288" />
+    <resourceID name="PowerCoalMed" />
+    <image file="art01-coal-plant-00.png" x="256" y="288" />
+    <resourceID name="PowerCoalFull" />
+    <image file="art01-coal-plant-00.png" x="256" y="288" />
+  </group>
+  <group>
+    <resourceID name="BlackSmoke" />
+    <image file="lower-powerscoal-smoke0080.png" x="44" y="94" />
+    <image file="lower-powerscoal-smoke0082.png" x="44" y="93" />
+    <image file="lower-powerscoal-smoke0084.png" x="44" y="91" />
+    <image file="lower-powerscoal-smoke0086.png" x="45" y="91" />
+    <image file="lower-powerscoal-smoke0088.png" x="45" y="89" />
+    <image file="lower-powerscoal-smoke0090.png" x="43" y="88" />
+    <image file="lower-powerscoal-smoke0092.png" x="43" y="86" />
+    <image file="lower-powerscoal-smoke0094.png" x="45" y="89" />
+    <image file="lower-powerscoal-smoke0096.png" x="44" y="90" />
+    <image file="lower-powerscoal-smoke0098.png" x="44" y="93" />
+    <image file="lower-powerscoal-smoke0100.png" x="44" y="94" />
+  </group>
+  <group>
+    <resourceID name="WindMill" />
+    <image file="art01-scale-wind-turbine-00.png" x="128" y="280" />
+    <image file="art01-scale-wind-turbine-01.png" x="128" y="280" />
+    <image file="art01-scale-wind-turbine-02.png" x="128" y="280" />
+  </group>
+  <group>
+    <resourceID name="WindMillHTech" />
+    <image file="art01-scale-wind-turbine-00.png" x="128" y="280" />
+    <image file="art01-scale-wind-turbine-01.png" x="128" y="280" />
+    <image file="art01-scale-wind-turbine-02.png" x="128" y="280" />
+    <resourceID name="WindMillHTechRG" />
+    <image file="art01-scale-wind-turbine-00.png" x="128" y="280" />
+    <image file="art01-scale-wind-turbine-01.png" x="128" y="280" />
+    <image file="art01-scale-wind-turbine-02.png" x="128" y="280" />
+    <resourceID name="WindMillHTechG" />
+    <image file="art01-scale-wind-turbine-00.png" x="128" y="280" />
+    <image file="art01-scale-wind-turbine-01.png" x="128" y="280" />
+    <image file="art01-scale-wind-turbine-02.png" x="128" y="280" />
+  </group>
+  <group>
+    <resourceID name="FireStation" />
+    <image file="art01-fire-station-00.png" x="128" y="152" />
+    <image file="art01-fire-station-00.png" x="128" y="152" />
+    <image file="art01-fire-station-00.png" x="128" y="152" />
+    <image file="art01-fire-station-01.png" x="128" y="152" />
+    <image file="art01-fire-station-01.png" x="128" y="152" />
+    <image file="art01-fire-station-02.png" x="128" y="152" />
+    <image file="art01-fire-station-02.png" x="128" y="152" />
+    <image file="art01-fire-station-02.png" x="128" y="152" />
+    <image file="art01-fire-station-01.png" x="128" y="152" />
+    <image file="art01-fire-station-01.png" x="128" y="152" />
+  </group>
+  <group>
+    <resourceID name="Fire" />
+    <image file="fire1.png" x="101" y="191" />
+    <image file="fire2.png" x="101" y="195" />
+    <image file="fire3.png" x="101" y="197" />
+    <image file="fire4.png" x="101" y="200" />
+    <image file="fire5.png" x="101" y="205" />
+    <resourceID name="FireWasteLand" />
+    <image file="firedone1.png" x="66" y="206" />
+    <image file="firedone2.png" x="66" y="65" />
+    <image file="firedone3.png" x="66" y="65" />
+    <image file="firedone4.png" x="66" y="65" />
+  </group>
+  <group>
+    <resourceID name="Monument" />
+    <image file="art01-scale-monument-00.png" x="128" y="181" />
+    <resourceID name="MonumentConstruction" />
+    <image file="art01-scale-monument-01.png" x="128" y="181" />
+    <image file="art01-scale-monument-02.png" x="128" y="181" />
+    <image file="art01-scale-monument-03.png" x="128" y="181" />
+    <image file="art01-scale-monument-04.png" x="128" y="181" />
+    <image file="art01-scale-monument-05.png" x="128" y="181" />
+  </group>
+  <group>
+    <resourceID name="Harbor" />
+    <image file="art01-scale-port-00.png" x="256" y="264" />
+  </group>
+  <group>
+    <resourceID name="Rocket" />
+    <image file="art01-scale-rocket-00.png" x="256" y="352" />
+    <image file="art01-scale-rocket-01.png" x="256" y="352" />
+    <image file="art01-scale-rocket-02.png" x="256" y="352" />
+    <image file="art01-scale-rocket-03.png" x="256" y="352" />
+    <image file="art01-scale-rocket-04.png" x="256" y="352" />
+    <image file="art01-scale-rocket-05.png" x="256" y="352" />
+    <image file="art01-scale-rocket-06.png" x="256" y="352" />
+    <image file="art01-scale-rocket-07.png" x="256" y="352" />
+  </group>
+  <group>
+    <resourceID name="University" />
+    <image file="art01-university-00.png" x="192" y="213" />
+  </group>
+  <group>
+    <resourceID name="School" />
+    <image file="art01-school-00.png" x="128" y="149" />
+    <image file="revamp-clear.png" x="0" y="0" />
+  </group>
+  <group>
+    <resourceID name="ChildOnSwing" />
+    <image file="art01-school-00.png" x="128" y="149" />
+    <image file="art01-school-00.png" x="128" y="149" />
+    <image file="art01-school-00.png" x="128" y="149" />
+    <image file="art01-school-01.png" x="128" y="149" />
+    <image file="art01-school-01.png" x="128" y="149" />
+    <image file="art01-school-01.png" x="128" y="149" />
+    <image file="art01-school-02.png" x="128" y="149" />
+    <image file="art01-school-02.png" x="128" y="149" />
+    <image file="art01-school-02.png" x="128" y="149" />
+    <image file="art01-school-01.png" x="128" y="149" />
+    <image file="art01-school-01.png" x="128" y="149" />
+  </group>
+  <group>
+    <resourceID name="Shanty" />
+    <image file="art01-ground-Shanty-00.png" x="128" y="136" />
+  </group>
+  <group>
+    <resourceID name="SubstationOff" />
+    <image file="art01-substation-00.png" x="128" y="157" />
+    <resourceID name="Substation" />
+    <image file="art01-substation-01.png" x="128" y="157" />
+    <resourceID name="SubstationOn" />
+    <image file="art01-substation-02.png" x="128" y="157" />
+  </group>
+  <group>
+    <resourceID name="ParklandPlane" />
+    <image file="lower-revamp10-park-00.png" x="64" y="82" />
+    <resourceID name="ParklandLake" />
+    <image file="lower-revamp10-park-lake-00.png" x="64" y="89" />
+  </group>
+  <group>
+    <resourceID name="Recycle" />
+    <image file="art01-recycling-center-00.png" x="128" y="136" />
+  </group>
+  <group>
+    <resourceID name="Health" />
+    <image file="art01-clinic-00.png" x="128" y="153" />
+  </group>
+  <group>
+    <resourceID name="Farm" />
+    <image file="lower-revamp11-compact-farm-fields-0.png" x="256" y="264" />
+    <image file="lower-revamp11-compact-farm-fields-1.png" x="256" y="264" />
+    <image file="lower-revamp11-compact-farm-fields-2.png" x="256" y="264" />
+    <image file="lower-revamp11-compact-farm-fields-3.png" x="256" y="264" />
+    <image file="lower-revamp11-compact-farm-fields-4.png" x="256" y="264" />
+  </group>
+  <group>
+    <resourceID name="Mill" />
+    <image file="lower-revamp11-compact-workshop-compact-2-0.png" x="128" y="154" />
+    <image file="lower-revamp11-compact-workshop-compact-2-1.png" x="128" y="154" />
+    <image file="lower-revamp11-compact-workshop-compact-2-1.png" x="128" y="154" />
+    <image file="lower-revamp11-compact-workshop-compact-2-2.png" x="128" y="154" />
+    <image file="lower-revamp11-compact-workshop-compact-2-1.png" x="128" y="154" />
+    <image file="lower-revamp11-compact-workshop-compact-2-1.png" x="128" y="154" />
+    <image file="lower-revamp11-compact-workshop-compact-2-0.png" x="128" y="154" />
+  </group>
+  <group>
+    <resourceID name="ResidentialLowLow" />
+    <image file="art01-ground-ResidentialLowLow-00.png" x="192" y="200" />
+    <resourceID name="ResidentialMedLow" />
+    <image file="art01-ground-ResidentialMedLow-00.png" x="192" y="200" />
+    <resourceID name="ResidentialHighLow" />
+    <image file="art01-ground-ResidentialHighLow-00.png" x="192" y="200" />
+    <resourceID name="ResidentialLow" />
+    <image file="art01-ground-ResidentialLow-00.png" x="192" y="200" />
+    <resourceID name="ResidentialMedHigh" />
+    <image file="art01-ground-ResidentialMedHigh-00.png" x="192" y="200" />
+    <resourceID name="ResidentialHighHigh" />
+    <image file="art01-ground-ResidentialHighHigh-00.png" x="192" y="200" />
+  </group>
+  <group>
+    <resourceID name="SportsCroud" />
+    <image file="lower-revamp10-sports-00.png" x="128" y="182" />
+    <image file="lower-revamp10-sports-01.png" x="128" y="182" />
+    <image file="lower-revamp10-sports-01.png" x="128" y="182" />
+    <image file="lower-revamp10-sports-02.png" x="128" y="182" />
+    <image file="lower-revamp10-sports-01.png" x="128" y="182" />
+    <image file="lower-revamp10-sports-01.png" x="128" y="182" />
+    <image file="lower-revamp10-sports-00.png" x="128" y="182" />
+  </group>
+  <group>
+    <resourceID name="Bluecar" />
+    <image file="art01-Bluecar-00.png" x="21" y="39" />
+    <image file="art01-Bluecar-01.png" x="20" y="39" />
+    <image file="art01-Bluecar-02.png" x="20" y="39" />
+    <image file="art01-Bluecar-03.png" x="19" y="41" />
+    <image file="art01-Bluecar-04.png" x="20" y="39" />
+    <image file="art01-Bluecar-05.png" x="19" y="39" />
+    <image file="art01-Bluecar-06.png" x="21" y="39" />
+    <image file="art01-Bluecar-07.png" x="22" y="41" />
+    <image file="art01-Bluecar-08.png" x="20" y="41" />
+    <image file="art01-Bluecar-09.png" x="22" y="41" />
+    <image file="art01-Bluecar-10.png" x="21" y="39" />
+    <image file="art01-Bluecar-11.png" x="19" y="39" />
+    <image file="art01-Bluecar-12.png" x="23" y="39" />
+    <image file="art01-Bluecar-13.png" x="18" y="38" />
+    <image file="art01-Bluecar-14.png" x="18" y="41" />
+    <image file="art01-Bluecar-15.png" x="23" y="41" />
+  </group>
+  <group><resourceID name="EvolutionWarehouse" /><image file="art01-warehouse-00.png" x="128" y="136" /></group>
+  <group><resourceID name="EvolutionTech" /><image file="art01-scale-tech-campus-00.png" x="192" y="220" /></group>
+  <group><resourceID name="EvolutionCafe" /><image file="art01-cafe-00.png" x="64" y="75" /></group>
+  <group><resourceID name="EvolutionFoodhall" /><image file="art01-food-hall-00.png" x="128" y="136" /></group>
+<group><resourceID name="TransitBusStop" /><image file="lower-revamp-bus-stop.png" x="64" y="85" /></group><group><resourceID name="TransitBusTerminal" /><image file="lower-revamp-bus-terminal.png" x="128" y="136" /></group><group><resourceID name="TransitRail" /><image file="lower-revamp-rail-station.png" x="192" y="202" /></group><group><resourceID name="TransitMetro" /><image file="lower-revamp-metro-entrance.png" x="64" y="98" /></group><group><resourceID name="TransitElevated" /><image file="lower-revamp-elevated-station.png" x="128" y="142" /></group><group><resourceID name="TransitTunnel" /><image file="revamp-clear.png" x="0" y="0" /></group><group><resourceID name="TransitViaduct" /><image file="revamp-clear.png" x="0" y="0" /></group><group><resourceID name="GeorgianChurch" /><image file="lower-revamp11-church.png" x="192" y="298" /></group><group><resourceID name="HorseTraffic" /><image file="art01-HorseTraffic-00.png" x="25" y="48" /><image file="art01-HorseTraffic-01.png" x="25" y="48" /><image file="art01-HorseTraffic-02.png" x="25" y="48" /><image file="art01-HorseTraffic-03.png" x="25" y="48" /><image file="art01-HorseTraffic-04.png" x="25" y="48" /><image file="art01-HorseTraffic-05.png" x="25" y="48" /><image file="art01-HorseTraffic-06.png" x="25" y="48" /><image file="art01-HorseTraffic-07.png" x="25" y="48" /><image file="art01-HorseTraffic-08.png" x="25" y="48" /><image file="art01-HorseTraffic-09.png" x="25" y="48" /><image file="art01-HorseTraffic-10.png" x="25" y="48" /><image file="art01-HorseTraffic-11.png" x="25" y="48" /><image file="art01-HorseTraffic-12.png" x="25" y="48" /><image file="art01-HorseTraffic-13.png" x="25" y="48" /><image file="art01-HorseTraffic-14.png" x="25" y="48" /><image file="art01-HorseTraffic-15.png" x="25" y="48" /></group><group><resourceID name="CommuneVariant1" /><image file="lower-revamp11-compact-forestry-1-0.png" x="256" y="264" /><image file="lower-revamp11-compact-forestry-1-0.png" x="256" y="264" /><image file="lower-revamp11-compact-forestry-1-1.png" x="256" y="264" /><image file="lower-revamp11-compact-forestry-1-1.png" x="256" y="264" /><image file="lower-revamp11-compact-forestry-1-2.png" x="256" y="264" /><image file="lower-revamp11-compact-forestry-1-2.png" x="256" y="264" /><image file="lower-revamp11-compact-forestry-1-2.png" x="256" y="264" /><image file="lower-revamp11-compact-forestry-1-1.png" x="256" y="264" /><image file="lower-revamp11-compact-forestry-1-1.png" x="256" y="264" /><image file="lower-revamp11-compact-forestry-1-0.png" x="256" y="264" /><image file="lower-revamp11-compact-forestry-1-0.png" x="256" y="264" /></group><group><resourceID name="CommuneVariant2" /><image file="lower-revamp11-compact-forestry-2-0.png" x="256" y="271" /><image file="lower-revamp11-compact-forestry-2-0.png" x="256" y="271" /><image file="lower-revamp11-compact-forestry-2-1.png" x="256" y="271" /><image file="lower-revamp11-compact-forestry-2-1.png" x="256" y="271" /><image file="lower-revamp11-compact-forestry-2-2.png" x="256" y="271" /><image file="lower-revamp11-compact-forestry-2-2.png" x="256" y="271" /><image file="lower-revamp11-compact-forestry-2-2.png" x="256" y="271" /><image file="lower-revamp11-compact-forestry-2-1.png" x="256" y="271" /><image file="lower-revamp11-compact-forestry-2-1.png" x="256" y="271" /><image file="lower-revamp11-compact-forestry-2-0.png" x="256" y="271" /><image file="lower-revamp11-compact-forestry-2-0.png" x="256" y="271" /></group><group><resourceID name="ResidentialLowLowVariant1" /><image file="art01-ground-ResidentialLowLowVariant1-00.png" x="192" y="200" /></group><group><resourceID name="ResidentialMedLowVariant1" /><image file="art01-ground-ResidentialMedLowVariant1-00.png" x="192" y="200" /></group><group><resourceID name="ResidentialHighLowVariant1" /><image file="art01-ground-ResidentialHighLowVariant1-00.png" x="192" y="200" /></group><group><resourceID name="ResidentialLowVariant1" /><image file="art01-ground-ResidentialLowVariant1-00.png" x="192" y="200" /></group><group><resourceID name="ResidentialMedHighVariant1" /><image file="art01-ground-ResidentialMedHighVariant1-00.png" x="192" y="200" /></group><group><resourceID name="ResidentialHighHighVariant1" /><image file="art01-ground-ResidentialHighHighVariant1-00.png" x="192" y="200" /></group><group><resourceID name="residential-ivory-blue" /><image file="../skyscrapers/residential-ivory-blue.png" x="192" y="472" /></group><group><resourceID name="residential-red-brick" /><image file="../skyscrapers/residential-red-brick.png" x="192" y="455" /></group><group><resourceID name="residential-sand-green" /><image file="../skyscrapers/residential-sand-green.png" x="192" y="452" /></group><group><resourceID name="office-cyan-glass" /><image file="../skyscrapers/office-cyan-glass.png" x="192" y="462" /></group><group><resourceID name="office-charcoal-bronze" /><image file="../skyscrapers/office-charcoal-bronze.png" x="192" y="459" /></group><group><resourceID name="office-art-deco" /><image file="../skyscrapers/office-art-deco.png" x="192" y="460" /></group><group><resourceID name="PoliceStation" /><image file="../emergency/police-station.png" x="128" y="200" /></group></resources>

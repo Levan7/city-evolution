@@ -1,0 +1,7 @@
+[wrap-git]
+url = https://gitlab.gnome.org/GNOME/libxml2.git
+revision = master
+depth = 1
+
+[provide]
+dependency_names = libxml-2.0

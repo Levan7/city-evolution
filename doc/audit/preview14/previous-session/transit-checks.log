@@ -1,0 +1,6 @@
+PASS transit mode 0: network, ridership, coverage, fares, costs, save/load, route cut, staffing
+PASS transit mode 1: network, ridership, coverage, fares, costs, save/load, route cut, staffing
+PASS transit mode 2: network, ridership, coverage, fares, costs, save/load, route cut, staffing
+PASS transit mode 3: network, ridership, coverage, fares, costs, save/load, route cut, staffing
+PASS one-transfer underground/elevated interchange and disruption
+PASS independent layers preserve buildings and reject duplicates
