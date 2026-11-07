@@ -67,19 +67,9 @@ void CivicServices::monthly(World& w){
  if(!homes.empty()&&random()%1000<unsigned(crime)){int id=homes[random()%homes.size()];if(addIncident(CRIME_CALL,id,5)){auto* c=at(w,id);c->commodityCount[STUFF_GOODS]-=std::min(5,c->commodityCount[STUFF_GOODS]);}}
  exposureMonths=pop>=100&&extreme*2>=pop?exposureMonths+1:std::max(0,exposureMonths-2);if(zombieCooldown>0)--zombieCooldown;
  if(zombiesEnabled&&exposureMonths>=24&&w.total_time>=5*NUMOF_DAYS_IN_YEAR&&zombieCooldown==0&&worst>=0&&random()%240==0){addIncident(ZOMBIE_CALL,worst,8);zombieCooldown=120;zombieNoticePending=true;w.evolution.headline("Your city was so polluted that zombies appeared. S.T.A.R.S. report for duty!");}
- if(w.evolution.mayorMode){
-  const auto& in=w.stats.income;const auto& ex=w.stats.expenses;
-  long long revenue=static_cast<long long>(in.income_tax.stat)+in.goods_tax.stat+in.coal_tax.stat+in.export_tax.stat+in.transit_fares.stat;
-  long long operating=static_cast<long long>(ex.unemployment.stat)+ex.transport.stat+ex.windmill.stat+ex.university.stat+ex.recycle.stat+ex.deaths.stat+ex.health.stat+ex.school.stat+ex.police.stat+ex.church.stat+ex.firestation.stat+ex.cricket.stat+ex.interest.stat;
-  bool deficit=w.evolution.fullAutonomy&&revenue>0&&operating>revenue;
-  if(autoTax){int ceiling=std::clamp(taxCeiling,1,30);
-   if(w.money_rates.income_tax>ceiling)w.money_rates.income_tax=ceiling;
-   else if((w.total_money<reserve||deficit)&&w.money_rates.income_tax<ceiling)++w.money_rates.income_tax;
-   else if(w.total_money>4*reserve&&!deficit&&w.money_rates.income_tax>8)--w.money_rates.income_tax;
-   if(deficit&&w.money_rates.income_tax>=ceiling&&w.money_rates.goods_tax<5)++w.money_rates.goods_tax;
-  }
-  if(autoBudget)for(int s=0;s<4;++s){int desired=w.total_money<reserve||deficit?75:100;if(s==HEALTH&&pop&&sickTotal+w.flu.active>pop/20&&w.total_money>=reserve)desired=125;budget[s]+=std::clamp(desired-budget[s],-10,10);}
- }
+ if(autoTax)adjustTaxes(w);
+ if(autoBudget)for(int s=0;s<4;++s){int desired=w.total_money<reserve?75:100;if(s==HEALTH&&pop&&sickTotal+w.flu.active>pop/20&&w.total_money>=reserve)desired=125;budget[s]+=std::clamp(desired-budget[s],-10,10);}
+
 
 }
 void CivicServices::update(World& w){
@@ -108,4 +98,35 @@ std::string CivicServices::save()const{
 }
 void CivicServices::load(const std::string& text,int side){
  CivicServices v;std::istringstream in(text);int version;auto require=[&](bool ok){if(!ok)throw std::runtime_error("Invalid civic service save state");};require(bool(in>>version)&&version==1);for(int& b:v.budget){in>>b;require(b>=0&&b<=150);}in>>v.autoBudget>>v.autoTax>>v.zombiesEnabled>>v.zombieNoticePending>>v.taxCeiling>>v.reserve>>v.education>>v.crime>>v.sickTotal>>v.exposureMonths>>v.zombieCooldown>>v.nextId>>v.resolved>>v.rng;require(bool(in)&&v.taxCeiling>=1&&v.taxCeiling<=30&&v.reserve>=0&&v.reserve<=1000000&&v.education>=0&&v.education<=1000&&v.crime>=0&&v.crime<=200&&v.exposureMonths>=0&&v.zombieCooldown>=0&&v.nextId>0&&v.resolved>=0);int cells=side*side,n;auto valid=[&](int id){return id>=0&&id<cells;};in>>n;require(bool(in)&&n>=0&&n<=cells);for(int j=0;j<n;++j){int id,count;in>>id>>count;require(bool(in)&&valid(id)&&count>=0&&count<=100000);v.sick[id]=count;}in>>n;require(bool(in)&&n>=0&&n<=64);std::set<int> ids;for(int j=0;j<n;++j){Incident c;in>>c.id>>c.kind>>c.target>>c.severity>>c.age;require(bool(in)&&c.id>0&&c.id<v.nextId&&ids.insert(c.id).second&&c.kind>=0&&c.kind<=3&&valid(c.target)&&c.severity>=-3&&c.severity<=100&&c.age>=0);v.incidents.push_back(c);}in>>n;require(bool(in)&&n>=0&&n<=128);for(int j=0;j<n;++j){Unit u;int steps;in>>u.kind>>u.home>>u.call>>u.step>>u.credit>>u.working>>u.returning>>steps;require(bool(in)&&u.kind>=0&&u.kind<=3&&valid(u.home)&&steps>0&&steps<=cells&&u.step>=0&&u.step<steps&&u.credit>=0&&u.credit<=100&&u.working>=0);for(int k=0;k<steps;++k){int id;in>>id;require(bool(in)&&valid(id));if(k){int prev=u.path.back();require(std::abs(prev%side-id%side)+std::abs(prev/side-id/side)==1);}u.path.push_back(id);}v.units.push_back(std::move(u));}in>>std::ws;require(in.eof());*this=std::move(v);
+}
+
+void CivicServices::adjustTaxes(World& w) {
+ if(taxReviewedDay>=0 && taxReviewedDay/NUMOF_DAYS_IN_MONTH==w.total_time/NUMOF_DAYS_IN_MONTH)return;
+ taxReviewedDay=w.total_time;
+ const auto& in=w.stats.income; const auto& ex=w.stats.expenses;
+ long long revenue=1LL*in.income_tax.stat+in.goods_tax.stat+in.coal_tax.stat+in.export_tax.stat+in.transit_fares.stat;
+ long long operating=1LL*ex.import.stat+ex.unemployment.stat+ex.transport.stat+ex.windmill.stat+ex.university.stat+ex.recycle.stat+ex.deaths.stat+ex.health.stat+ex.school.stat+ex.police.stat+ex.church.stat+ex.firestation.stat+ex.cricket.stat+ex.interest.stat;
+ const bool deficit=(revenue!=0||operating>0)&&operating>revenue;
+ int population=0; for(auto*c:w.map.constructions)if(auto*r=dynamic_cast<Residence*>(c))population+=r->local_population;
+ int& rate=w.money_rates.income_tax; int ceiling=std::clamp(taxCeiling,1,30);
+ if(rate>ceiling) --rate;
+ else if(population>0&&(w.total_money<reserve||deficit)&&rate<ceiling)++rate;
+ else if(w.total_money>4LL*reserve&&!deficit&&rate>8)--rate;
+ // Goods taxes and service funding have their own explicit controls.
+}
+std::string CivicServices::financialAdvice(const World& w) const {
+ const auto& in=w.stats.income;const auto& ex=w.stats.expenses;
+ long long revenue=1LL*in.income_tax.stat+in.goods_tax.stat+in.coal_tax.stat+in.export_tax.stat+in.transit_fares.stat;
+ long long costs=1LL*ex.import.stat+ex.unemployment.stat+ex.transport.stat+ex.windmill.stat+ex.university.stat+ex.recycle.stat+ex.deaths.stat+ex.health.stat+ex.school.stat+ex.police.stat+ex.church.stat+ex.firestation.stat+ex.cricket.stat+ex.interest.stat;
+ int farms=0,markets=0,workshops=0;
+ for(auto*c:w.map.constructions){int g=c->constructionGroup->group;farms+=g==GROUP_ORGANIC_FARM;markets+=g==GROUP_MARKET;workshops+=g==GROUP_POTTERY||g==GROUP_INDUSTRY_L;}
+ std::string result="Last completed year: revenue $"+std::to_string(revenue)+", operating costs $"+std::to_string(costs)+". Construction is excluded. ";
+ result+=revenue==0?"No established tax base yet: connect occupied housing to food, water, markets and working jobs before raising taxes. ":costs>revenue?"Operating deficit: check idle services and missing workers/supplies before adding new buildings. ":"Operating income covers costs: preserve essential services and grow only where demand exists. ";
+ if(!farms)result+="Build a farm on suitable land to establish local food supply. ";
+ if(!markets)result+="Add a connected market to distribute food and goods. ";
+ if(!workshops)result+="Consider a pottery workshop once workers, ore and coal are available; connect it to distribution. ";
+ if(ex.unemployment.stat>in.income_tax.stat/2)result+="Social support is a large expense: supply existing workplaces and connect homes to jobs. ";
+ if(w.total_money<reserve)result+="Cash is below your reserve: defer optional projects. ";
+ result+="Auto tax works independently of building autonomy, changes income tax by at most one percentage point per monthly review, and respects the ceiling. It does not change goods tax or service budgets. Manual tax changes turn auto tax off.";
+ return result;
 }

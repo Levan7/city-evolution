@@ -193,7 +193,7 @@ void Game::showTransport() {
   auto refresh=[this,w]() {
     world->transit.update(*world,false);auto& t=world->transit;
     const char* labels[]={"Bus","Rail","Underground","Elevated"};
-    for(int i=0;i<4;++i)getParagraph(*w,("TransitMode"+std::to_string(i)).c_str())->setText(std::string(labels[i])+": "+std::to_string(t.passengers[i])+" trips/month | "+std::to_string(t.running[i])+" stops | "+std::to_string(t.disconnected[i])+" disconnected");
+    for(int i=0;i<4;++i)getParagraph(*w,("TransitMode"+std::to_string(i)).c_str())->setText(std::string(labels[i])+": "+std::to_string(t.passengers[i])+" trips/month | "+std::to_string(t.connected[i])+" connected | "+std::to_string(t.disconnected[i])+" disconnected | "+std::to_string(t.unstaffed[i])+" unstaffed");
     getParagraph(*w,"TransitSummary")->setText(std::to_string(t.servedHomes.size())+" housing buildings served | Fares about $"+std::to_string(t.faresMonth)+"/month");
     const char* views[]={"Normal city view","Show all transit","Underground track view","Elevated track view"};
     getButton(*w,"TransitView")->setCaptionText(views[std::clamp(t.view,0,3)]);
@@ -216,6 +216,9 @@ void Game::showCityHall(bool mayor, const char* page) {
   Window* w = hall.get();
   auto refresh = [this, w]() {
     const auto& e = world->evolution;
+    const char* focus=e.planFocus==1?"Livable city":e.planFocus==2?"Skills / education":e.planFocus==3?"Technology hub":"None";
+    getButton(*w,"PlanFocus")->setCaptionText(e.planState==CityEvolution::PLAN_PROPOSED ? std::string("Change focus: ")+focus : std::string("Focus locked: ")+focus);
+    getButton(*w,"PedestrianControl")->setCaptionText(e.pedestrians?"People visible - hide":"People hidden - show");
     getParagraph(*w,"CivicSummary")->setText("Happy people: " + std::to_string(e.approval)
       + "% | Homes with electricity: " + std::to_string(e.poweredHomes) + "/" + std::to_string(e.homes));
     getParagraph(*w,"ElectionSummary")->setText("Past elections: " + std::to_string(e.electionCount)
@@ -231,11 +234,13 @@ void Game::showCityHall(bool mayor, const char* page) {
       getParagraph(*w,"MayorScopeText")->setText("Works in: "+e.mayorScopeText()+(e.mayorScope==0?"":". Outlined in pink on the map."));
       static const char* paceNames[]={"careful","normal","fast"};
       getParagraph(*w,"MayorBudgetText")->setText(e.fullAutonomy
-        ? "Full control: available cash $"+std::to_string(world->total_money)
+        ? "Full control (annual cap inactive): cash $"+std::to_string(world->total_money)
           +"; adaptive reserve; up to 6 buildings and 30 street tiles per month."
         : "Budget: $"+std::to_string(e.mayorBudget)+" a year (spent $"+std::to_string(e.mayorSpent)
           +"). Pace "+paceNames[std::clamp(e.mayorPace,1,3)-1]+": up to "+std::to_string(e.mayorBuildingsPerMonth())+" buildings and "
           +std::to_string(e.mayorRoadTilesPerMonth())+" road tiles a month. Keeps $25,000 safe.");
+      getButton(*w,"MayorBudgetDown")->setCaptionText(e.fullAutonomy?"Annual cap inactive (full control)":"Lower annual cap: $"+std::to_string(e.mayorBudget));
+      getButton(*w,"MayorBudgetUp")->setCaptionText(e.fullAutonomy?"Uses cash minus reserve":"Raise annual cap: $"+std::to_string(e.mayorBudget));
       getButton(*w,"MayorFullAutonomy")->setCaptionText(e.fullAutonomy&&e.mayorMode?"Full autonomy: ON":"Full autonomy: OFF");
       getParagraph(*w,"MayorReport")->setText(e.mayorReport);
       getButton(*w,"MayorPace")->setCaptionText(std::string("Pace: ")+paceNames[std::clamp(e.mayorPace,1,3)-1]);
@@ -325,7 +330,11 @@ void Game::showCityHall(bool mayor, const char* page) {
     world->evolution.removeDistrict(distSel); distSel=std::max(0,distSel-1); refresh(); getGameView().setDirty();});
   getButton(*w,"PlanApprove")->clicked.connect([this,refresh](Button*) {world->evolution.approvePlan(*world);refresh();});
   getButton(*w,"PlanReject")->clicked.connect([this,refresh](Button*) {world->evolution.rejectPlan(*world);refresh();});
-  getButton(*w,"PlanFocus")->clicked.connect([this,refresh](Button*) {world->evolution.changePlanFocus(*world);refresh();});
+  getButton(*w,"PlanFocus")->clicked.connect([this,refresh](Button*) {auto& e=world->evolution;
+    if(e.planState!=CityEvolution::PLAN_PROPOSED)
+      getGameView().printStatusMessage("Focus changes apply to a proposed plan. The active plan keeps its agreed targets.");
+    else { e.changePlanFocus(*world); getGameView().printStatusMessage("Plan focus changed; review the new targets before approval."); }
+    refresh();});
   getButton(*w,"PlanAuto")->clicked.connect([this,refresh](Button*) {auto& e=world->evolution;e.planAuto=!e.planAuto;if(e.planAuto&&e.planState==CityEvolution::PLAN_PROPOSED)e.approvePlan(*world);refresh();});
   getButton(*w,"PlanBudgetDown")->clicked.connect([this,refresh](Button*) {auto& e=world->evolution;e.adjustPlanBudget(*world,-std::max(5000,e.planBudgetYear/10));refresh();});
   getButton(*w,"PlanBudgetUp")->clicked.connect([this,refresh](Button*) {auto& e=world->evolution;e.adjustPlanBudget(*world,std::max(5000,e.planBudgetYear/10));refresh();});
@@ -349,10 +358,10 @@ void Game::showCityHall(bool mayor, const char* page) {
   });
   getButton(*w,"MayorPace")->clicked.connect([this,refresh](Button*) {auto& e=world->evolution;e.mayorPace=e.mayorPace%3+1;refresh();});
   getButton(*w,"MayorBudgetDown")->clicked.connect([this,refresh](Button*) {
-    auto& e=world->evolution; static const int steps[]={5000,10000,25000,50000,100000,250000,500000,1000000};
+    auto& e=world->evolution; if(e.fullAutonomy){getGameView().printStatusMessage("Annual cap applies in limited control. Full autonomy uses available cash minus its reserve.");return;} static const int steps[]={5000,10000,25000,50000,100000,250000,500000,1000000};
     int i=0; for(int k=0;k<8;++k) if(steps[k]<e.mayorBudget) i=k; e.mayorBudget=steps[std::max(0,i)]; if(e.mayorBudget>=steps[0]&&steps[0]>=e.mayorBudget) e.mayorBudget=steps[0]; refresh(); });
   getButton(*w,"MayorBudgetUp")->clicked.connect([this,refresh](Button*) {
-    auto& e=world->evolution; static const int steps[]={5000,10000,25000,50000,100000,250000,500000,1000000};
+    auto& e=world->evolution; if(e.fullAutonomy){getGameView().printStatusMessage("Annual cap applies in limited control. Full autonomy uses available cash minus its reserve.");return;} static const int steps[]={5000,10000,25000,50000,100000,250000,500000,1000000};
     for(int k=0;k<8;++k) if(steps[k]>e.mayorBudget) {e.mayorBudget=steps[k];break;} refresh(); });
   getButton(*w,"MayorServices")->clicked.connect([this,refresh](Button*) {world->evolution.mayorServices=!world->evolution.mayorServices;refresh();});
   getButton(*w,"MayorParks")->clicked.connect([this,refresh](Button*) {world->evolution.mayorParks=!world->evolution.mayorParks;refresh();});
@@ -965,7 +974,7 @@ Game::run() {
             next_gui = tick + 1000/30; // 30 FPS
             prev_gui = tick;
         }
-        if(tick >= next_execute) { // execute
+        if(tick >= next_execute && simDelay != SIM_DELAY_PAUSE && !blockingDialogIsOpen && !windowmanager->hasOpenWindows()) { // execute
             // simulation timestep
             int previousElection = world->evolution.electionCount;
             world->do_time_step();
@@ -1015,7 +1024,7 @@ Game::run() {
         }
 
         // this is kind of janky, but it works for now
-        if( simDelay == SIM_DELAY_PAUSE || blockingDialogIsOpen ) {
+        if( simDelay == SIM_DELAY_PAUSE || blockingDialogIsOpen || windowmanager->hasOpenWindows() ) {
           // deschedule execute and animate
           next_execute = ~0;
           next_animate = ~0;
@@ -1350,21 +1359,23 @@ void Game::showPublicServices() {
   auto refresh=[this,w](){auto& c=world->civic;auto& r=world->money_rates;
     getParagraph(*w,"ServiceSummary")->setText("Income tax "+std::to_string(r.income_tax)+"% | Goods "+std::to_string(r.goods_tax)+"% | Reserve $"+std::to_string(c.reserve)+" | Crews "+std::to_string(c.units.size()));
     getParagraph(*w,"ServiceHealth")->setText("Flu: "+std::to_string(world->flu.active)+" | Pollution illness: "+std::to_string(c.sickTotal)+" | Education "+std::to_string(c.education/10)+"% | Incident risk "+std::to_string(c.crime/10)+"% | Social "+std::to_string(r.dole));
-    const char* names[]={"EducationBudget","HealthBudget","FireBudget","PoliceBudget"};const char* captions[]={"Education","Healthcare","Fire service","Police"};for(int i=0;i<4;++i)getButton(*w,names[i])->setCaptionText(std::string(captions[i])+": "+std::to_string(c.budget[i])+"%");
+    const char* names[]={"EducationBudget","HealthBudget","FireBudget","PoliceBudget"};const char* captions[]={"Education","Healthcare","Fire service","Police"};for(int i=0;i<4;++i)getButton(*w,names[i])->setCaptionText(std::string(captions[i])+" funding: "+std::to_string(c.budget[i])+"%");
     getButton(*w,"FluToggle")->setCaptionText(world->flu.enabled?"Flu transmission: ON":"Flu transmission: OFF");
-    getButton(*w,"AutoTax")->setCaptionText(c.autoTax?"Mayor taxes: ON":"Mayor taxes: OFF");getButton(*w,"AutoBudget")->setCaptionText(c.autoBudget?"Mayor budgets: ON":"Mayor budgets: OFF");getButton(*w,"FullAutonomy")->setCaptionText(world->evolution.fullAutonomy&&world->evolution.mayorMode?"Full autonomy: ON":"Full autonomy: OFF");getButton(*w,"TaxCeiling")->setCaptionText("Tax ceiling: "+std::to_string(c.taxCeiling)+"%");
+    getButton(*w,"AutoTax")->setCaptionText(c.autoTax?"[ON] Auto-adjust taxes":"Auto-adjust taxes: OFF");getButton(*w,"AutoBudget")->setCaptionText(c.autoBudget?"Auto funding: ON":"Auto funding: OFF");getButton(*w,"FullAutonomy")->setCaptionText(world->evolution.fullAutonomy&&world->evolution.mayorMode?"Full autonomy: ON":"Full autonomy: OFF");getButton(*w,"TaxCeiling")->setCaptionText("Tax ceiling: "+std::to_string(c.taxCeiling)+"%");
+    getParagraph(*w,"ServiceNote")->setText(c.autoTax?"Auto tax: income tax only. Full autonomy also builds. Funding buttons: +5% (0-150%), not geographic coverage.":"Funding buttons: +5% (0-150%), not map coverage. Full autonomy builds; auto tax only adjusts income tax.");
     getGameView().setMapDirty();
   };
   auto bind=[w,refresh](const char* name,std::function<void()> fn){getButton(*w,name)->clicked.connect([fn,refresh](Button*){fn();refresh();});};
-  bind("TaxDown",[this](){world->money_rates.income_tax=std::max(0,world->money_rates.income_tax-1);});bind("TaxUp",[this](){world->money_rates.income_tax=std::min(30,world->money_rates.income_tax+1);});
-  bind("BusinessDown",[this](){world->money_rates.goods_tax=std::max(0,world->money_rates.goods_tax-1);});bind("BusinessUp",[this](){world->money_rates.goods_tax=std::min(20,world->money_rates.goods_tax+1);});
+  bind("TaxDown",[this](){world->civic.autoTax=false;world->money_rates.income_tax=std::max(0,world->money_rates.income_tax-1);});bind("TaxUp",[this](){world->civic.autoTax=false;world->money_rates.income_tax=std::min(30,world->money_rates.income_tax+1);});
+  bind("BusinessDown",[this](){world->civic.autoTax=false;world->money_rates.goods_tax=std::max(0,world->money_rates.goods_tax-1);});bind("BusinessUp",[this](){world->civic.autoTax=false;world->money_rates.goods_tax=std::min(20,world->money_rates.goods_tax+1);});
   bind("SocialDown",[this](){world->money_rates.dole=std::max(0,world->money_rates.dole-5);});bind("SocialUp",[this](){world->money_rates.dole=std::min(100,world->money_rates.dole+5);});
   bind("FluToggle",[this](){world->flu.enabled=!world->flu.enabled;if(!world->flu.enabled)world->flu.clear();});
-  bind("AutoTax",[this](){world->civic.autoTax=!world->civic.autoTax;});bind("AutoBudget",[this](){world->civic.autoBudget=!world->civic.autoBudget;});
+  bind("AutoTax",[this](){auto& c=world->civic;c.autoTax=!c.autoTax;if(c.autoTax)c.adjustTaxes(*world);});
+  bind("FinancialAdvice",[this](){DialogBuilder().titleText("Financial advisor").messageAddText(world->civic.financialAdvice(*world)).buttonSet(DialogBuilder::ButtonSet::OK).build();});bind("AutoBudget",[this](){world->civic.autoBudget=!world->civic.autoBudget;});
   bind("FullAutonomy",[this](){auto& e=world->evolution;e.setFullAutonomy(*world,!(e.fullAutonomy&&e.mayorMode));});
   getButton(*w,"OpenMayorArea")->clicked.connect([this,w](Button*){windowmanager->removeWindow(w);showCityHall(true);});
   bind("TaxCeiling",[this](){world->civic.taxCeiling=world->civic.taxCeiling>=30?10:world->civic.taxCeiling+5;});
   bind("ReserveDown",[this](){world->civic.reserve=std::max(25000,world->civic.reserve-25000);});bind("ReserveUp",[this](){world->civic.reserve=std::min(1000000,world->civic.reserve+25000);});
-  const char* names[]={"EducationBudget","HealthBudget","FireBudget","PoliceBudget"};for(int i=0;i<4;++i)bind(names[i],[this,i](){int& b=world->civic.budget[i];b=b<50?50:b<75?75:b<100?100:b<125?125:b<150?150:0;});
+  const char* names[]={"EducationBudget","HealthBudget","FireBudget","PoliceBudget"};for(int i=0;i<4;++i)bind(names[i],[this,i](){world->civic.autoBudget=false;int& b=world->civic.budget[i];b=(b+5)%155;});
   getButton(*w,"ServicesClose")->clicked.connect([this,w](Button*){windowmanager->removeWindow(w);});windowmanager->addWindow(std::move(panel));refresh();
 }

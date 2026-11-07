@@ -6,6 +6,15 @@
 #include <queue>
 #include <algorithm>
 #include <map>
+namespace {
+int walkDistance(const World& w,const Construction& a,const Construction& b,int limit){
+ int n=w.map.len();std::map<int,int>d;std::queue<MapPoint> q;
+ for(int y=0;y<a.constructionGroup->size;++y)for(int x=0;x<a.constructionGroup->size;++x){auto p=a.point.e(x).s(y);d[p.y*n+p.x]=0;q.push(p);}
+ while(!q.empty()){auto p=q.front();q.pop();int dist=d[p.y*n+p.x];if(p.x>=b.point.x&&p.y>=b.point.y&&p.x<b.point.x+b.constructionGroup->size&&p.y<b.point.y+b.constructionGroup->size)return dist;if(dist>=limit)continue;
+ for(auto z:{p.n(),p.e(),p.s(),p.w()}){if(!w.map.is_visible(z)||d.count(z.y*n+z.x))continue;auto* tile=w.map(z);auto*c=tile->reportingConstruction;if(c&&c!=&a&&c!=&b&&!(c->flags&FLAG_IS_TRANSPORT))continue;if(tile->is_water()&&(!c||!(c->flags&FLAG_IS_TRANSPORT)))continue;d[z.y*n+z.x]=dist+1;q.push(z);}}
+ return limit+1;
+}
+}
 bool TransitSystem::place(World& w,MapPoint p,bool elevated){
  auto& group=elevated?elevatedTrackGroup:metroTrackGroup;Message::ptr msg;
  if(!group.can_build(w,msg)||!group.can_build_here(w,p,msg))return false;
@@ -14,7 +23,7 @@ bool TransitSystem::place(World& w,MapPoint p,bool elevated){
 bool TransitSystem::remove(World& w,MapPoint p,bool elevated){auto& set=elevated?viaducts:tunnels;if(!set.erase(p.y*w.map.len()+p.x))return false;w.expense(100,w.stats.expenses.construction);update(w,false);return true;}
 void TransitSystem::update(World& w,bool account){
  const int month=w.total_time/NUMOF_DAYS_IN_MONTH;if(account&&assessedMonth==month)return;
- int length=w.map.len(),cells=length*length;routes.clear();servedHomes.clear();passengers.fill(0);running.fill(0);disconnected.fill(0);faresMonth=0;
+ int length=w.map.len(),cells=length*length;routes.clear();servedHomes.clear();passengers.fill(0);running.fill(0);disconnected.fill(0);connected.fill(0);unstaffed.fill(0);faresMonth=0;
  struct Hub {int mode,remaining,riders;std::vector<TransitFacility*> stops;std::vector<bool> jobs;TransitRoute route;};
  std::vector<Hub> hubs;
  std::vector<TransitFacility*> stations;std::vector<Construction*> homes,jobs;
@@ -29,7 +38,7 @@ void TransitSystem::update(World& w,bool account){
   if(count<2){disconnected[mode]=count;continue;}
   std::vector<unsigned char> links(cells);std::vector<int> comp(cells,-1),parents(cells,-1);
   for(int y=1;y<length-1;++y)for(int x=1;x<length-1;++x){int id=y*length+x;auto* tile=w.map(MapPoint(x,y));int g=tile->reportingConstruction ? tile->reportingConstruction->constructionGroup->group : tile->group;
-   links[id]=mode==BUS?(g==GROUP_ROAD||g==GROUP_ROAD_BRIDGE):mode==RAIL?(g==GROUP_RAIL||g==GROUP_RAIL_BRIDGE):mode==METRO?tunnels.count(id):viaducts.count(id);
+   links[id]=mode==BUS?(g==GROUP_ROAD||g==GROUP_ROAD_BRIDGE||g==GROUP_TRACK||g==GROUP_TRACK_BRIDGE):mode==RAIL?(g==GROUP_RAIL||g==GROUP_RAIL_BRIDGE):mode==METRO?tunnels.count(id):viaducts.count(id);
   }
   // Multi-tile stations connect to every orthogonally touching track tile.
   std::map<TransitFacility*,std::vector<int>> touches;
@@ -48,19 +57,26 @@ void TransitSystem::update(World& w,bool account){
   }
   std::map<int,std::vector<TransitFacility*>> groups;
   for(auto& entry:touches){auto* s=entry.first;
-   if(entry.second.empty()||!s->active){++disconnected[mode];continue;}
+   if(entry.second.empty()){++disconnected[mode];continue;}
    // A station may serve several components, but it never joins unrelated tracks.
    std::set<int> unique;for(int id:entry.second)unique.insert(comp[id]);for(int c:unique)groups[c].push_back(s);
   }
   for(auto& entry:groups){auto& ss=entry.second;if(ss.size()<2){++disconnected[mode];continue;}
    std::sort(ss.begin(),ss.end(),[](auto* a,auto* b){return a->point.y!=b->point.y?a->point.y<b->point.y:a->point.x<b->point.x;});
+   connected[mode]+=ss.size();for(auto* stop:ss)if(!stop->active)++unstaffed[mode];
    int radius=mode==BUS?6:10;std::vector<bool> work(ss.size(),false);
-   for(size_t i=0;i<ss.size();++i)for(auto* job:jobs)if(distance(job->point,ss[i]->point)<=radius){work[i]=true;break;}
+   std::vector<int> jobWalk(ss.size(),radius+1);
+   for(size_t i=0;i<ss.size();++i)for(auto* job:jobs)jobWalk[i]=std::min(jobWalk[i],walkDistance(w,*ss[i],*job,radius));
+   std::vector<std::vector<int>> ride(ss.size(),std::vector<int>(ss.size(),cells));
+   for(size_t i=0;i<ss.size();++i){std::vector<int> d(cells,-1);std::queue<int> q;for(int v:touches[ss[i]])if(comp[v]==entry.first){d[v]=0;q.push(v);}while(!q.empty()){int v=q.front();q.pop();for(int z:{v-1,v+1,v-length,v+length})if(z>=0&&z<cells&&std::abs(z%length-v%length)+std::abs(z/length-v/length)==1&&links[z]&&d[z]<0){d[z]=d[v]+1;q.push(z);}}for(size_t j=0;j<ss.size();++j)for(int v:touches[ss[j]])if(d[v]>=0)ride[i][j]=std::min(ride[i][j],d[v]);}
+   for(size_t i=0;i<ss.size();++i)for(auto* job:jobs)if(jobWalk[i]<=radius){work[i]=true;break;}
    int groupRiders=0,capacity=0;for(auto* stop:ss) capacity+=mode==BUS?(stop->constructionGroup->group==GROUP_BUS_TERMINAL?1000:200):800;
    for(auto* h:homes){int id=h->point.y*length+h->point.x;if(servedHomes.count(id))continue;int origin=-1,destination=-1;
-    for(size_t i=0;i<ss.size();++i)if(distance(h->point,ss[i]->point)<=radius){for(size_t j=0;j<ss.size();++j)if(j!=i&&work[j]){origin=int(i);destination=int(j);break;}if(origin>=0)break;}
+    int journey=cells;
+    for(size_t i=0;i<ss.size();++i){int walk=walkDistance(w,*h,*ss[i],radius);if(walk>radius||!ss[i]->active)continue;for(size_t j=0;j<ss.size();++j)if(j!=i&&work[j]&&ss[j]->active&&ride[i][j]<cells){int cost=3*(walk+jobWalk[j])+ride[i][j];if(cost<journey){journey=cost;origin=i;destination=j;}}}
     if(origin<0)continue;auto* residence=dynamic_cast<Residence*>(h);int people=residence?residence->local_population:0;
-    int days=std::min(ss[origin]->busy,ss[destination]->busy);int riders=std::min(capacity-groupRiders,std::max(0,people)*2*std::clamp(days,0,100)/100);if(riders<=0)continue;
+    int days=std::min(ss[origin]->busy,ss[destination]->busy);int demand=std::max(0,people)*2*60/(60+journey);
+    int riders=std::min(capacity-groupRiders,demand*std::clamp(days,0,100)/100);if(riders<=0)continue;
     servedHomes.insert(id);groupRiders+=riders;ss[origin]->riders+=riders;
    }
    hubs.push_back(Hub{mode,capacity-groupRiders,groupRiders,ss,work,TransitRoute{}});auto& hub=hubs.back();
@@ -81,9 +97,9 @@ void TransitSystem::update(World& w,bool account){
  }
  for(auto* home:homes){int id=home->point.y*length+home->point.x;if(servedHomes.count(id))continue;bool served=false;
   for(size_t i=0;i<hubs.size()&&!served;++i){auto& origin=hubs[i];if(origin.remaining<=0)continue;
-   for(size_t a=0;a<origin.stops.size()&&!served;++a){if(distance(home->point,origin.stops[a]->point)>(origin.mode==BUS?6:10))continue;
+   for(size_t a=0;a<origin.stops.size()&&!served;++a){if(!origin.stops[a]->active||walkDistance(w,*home,*origin.stops[a],origin.mode==BUS?6:10)>(origin.mode==BUS?6:10))continue;
     for(size_t j:interchange[i]){auto& destination=hubs[j];if(destination.remaining<=0)continue;
-     for(size_t b=0;b<destination.stops.size();++b)if(destination.jobs[b]){auto* res=dynamic_cast<Residence*>(home);int people=res?res->local_population:0;
+     for(size_t b=0;b<destination.stops.size();++b)if(destination.jobs[b]&&destination.stops[b]->active){auto* res=dynamic_cast<Residence*>(home);int people=res?res->local_population:0;
       int days=std::min(origin.stops[a]->busy,destination.stops[b]->busy);int trips=std::min({origin.remaining,destination.remaining,std::max(0,people)*2*std::clamp(days,0,100)/100});if(trips<=0)continue;
       origin.remaining-=trips;destination.remaining-=trips;origin.riders+=trips;destination.riders+=trips;origin.stops[a]->riders+=trips;destination.stops[b]->riders+=trips;servedHomes.insert(id);served=true;break;
      }

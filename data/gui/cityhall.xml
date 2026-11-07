@@ -2,7 +2,7 @@
 <?xml-stylesheet href="identity.xsl" type="text/xsl"?>
 <Window name="CityHall" width="800" height="660" border="12" titlesize="30" resizable="no">
   <title>
-    <Paragraph name="HallTitle" color="#ffffff" font-size="18">CITY HALL</Paragraph>
+    <Paragraph name="HallTitle" color="#ffffff" font-size="18">CITY HALL (CITY PAUSED)</Paragraph>
   </title>
   <background>
     <FilledRectangle color="#14252dff" />

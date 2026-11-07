@@ -46,6 +46,7 @@
 #include "stats.hpp"                       // for Stats, Stat
 #include "sustainable.hpp"                 // for SUST_FIRE_YEARS_NEEDED, SUST...
 #include "world.hpp"
+#include "road_power.hpp"
 #include "modules/residence.hpp"                       // for World, Map, MapTile
 
 /* ---------------------------------------------------------------------- *
@@ -64,6 +65,7 @@ World::do_time_step(void) {
       stats.yearly();
 
     /* Run through simulation equations for each farm, residence, etc. */
+    distributeRoadPower(*this);
     simulate_mappoints();
 
     /* Now do the stuff that happens once a year, once a month, etc. */

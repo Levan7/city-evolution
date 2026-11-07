@@ -10,7 +10,7 @@ struct TransitSystem {
  enum Mode {BUS=0, RAIL=1, METRO=2, ELEVATED=3};
  std::set<int> tunnels, viaducts, servedHomes;
  std::vector<TransitRoute> routes;
- std::array<int,4> passengers{}, running{}, disconnected{};
+ std::array<int,4> passengers{}, running{}, disconnected{}, connected{}, unstaffed{};
  int view=0, assessedMonth=-1, faresMonth=0, upkeepMonth=0;
  bool place(World&,MapPoint,bool elevated);
  bool remove(World&,MapPoint,bool elevated);

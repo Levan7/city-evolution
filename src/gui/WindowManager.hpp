@@ -43,6 +43,7 @@ public:
   void event(const Event& event) override;
   bool opaque(const Vector2& pos) const override;
 
+  bool hasOpenWindows() const { return !childs.empty() || !addQueue.empty(); }
   void addWindow(std::unique_ptr<Window>&& window);
   void removeWindow(Window *window);
 

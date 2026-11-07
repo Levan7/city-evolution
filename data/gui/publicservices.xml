@@ -2,7 +2,7 @@
 <?xml-stylesheet href="identity.xsl" type="text/xsl"?>
 <Window name="PublicServices" width="760" height="600" border="12" titlesize="30" resizable="no">
   <title>
-    <Paragraph color="#ffffff" font-size="21">BUDGET / PUBLIC SERVICES</Paragraph>
+    <Paragraph color="#ffffff" font-size="21">BUDGET / PUBLIC SERVICES (CITY PAUSED)</Paragraph>
   </title>
   <background>
     <FilledRectangle color="#14252dff" />
@@ -64,7 +64,7 @@
                 <Button name="AutoTax" width="320" height="34">
                   <image src="images/readable/plate-320-normal.png" resizable="yes" />
                   <image-hover src="images/readable/plate-320-hover.png" resizable="yes" />
-                  <text-caption color="#ffffff" halign="center" font-size="16">Mayor taxes: OFF</text-caption>
+                  <text-caption color="#ffe39a" halign="center" font-size="16">Auto-adjust taxes: OFF</text-caption>
                 </Button>
               </cell>
               <cell row="2" col="2" colspan="1" halign="center" valign="center">
@@ -166,7 +166,7 @@
                 </Button>
               </cell>
               <cell row="9" col="2">
-                <Paragraph color="#edf0df" font-size="14">Full autonomy controls building and funding.</Paragraph>
+                <Button name="FinancialAdvice" width="320" height="34"><image src="images/readable/plate-320-normal.png" resizable="yes"/><image-hover src="images/readable/plate-320-hover.png" resizable="yes"/><text-caption color="#ffe39a" halign="center" font-size="16">Financial advisor</text-caption></Button>
               </cell>
             </TableLayout>
           </Panel>

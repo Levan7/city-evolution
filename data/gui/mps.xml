@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<?xml-stylesheet href="identity.xsl" type="text/xsl"?><Panel width="260" height="272" background="images/evolution/mps-frame.png">
+<?xml-stylesheet href="identity.xsl" type="text/xsl"?><Panel width="264" height="240" background="images/evolution/mps-frame.png">
     <DefineStyle name="mps_text" color="#eceddd" font-size="14" halign="left" margin-left="0" margin-right="0"/>
     <DefineStyle name="mps_title" color="#eceddd" font-size="14" halign="left" font-style="normal" margin-left="0" margin-right="0"/>
     <TableLayout rows="3" cols="3">

@@ -1,0 +1,10 @@
+from pathlib import Path
+s=Path('review16/city-evolution')
+p=s/'src/lincity-ng/GameView.cpp';t=p.read_text().replace('const float sx=key.rfind("Traffic:",0)==0?zoom:zoom*.8f;','const float sx=zoom;');t=t.replace('    if(layer.electric&&!powered)continue;','    const bool lantern=key.rfind("Residential",0)==0 || key.rfind("Commune",0)==0;\n    if(layer.electric&&!powered&&!lantern)continue;');t=t.replace('if(alpha<=0)continue;','if(layer.electric&&!powered)alpha*=.45f; if(alpha<=0)continue;');p.write_text(t)
+p=s/'src/gui/Component.cpp';t=p.read_text().replace('if(visible && child.component->opaque(ev.mousepos))','if(visible && (!child.useClipRect || child.clipRect.inside(event.mousepos)) && child.component->opaque(ev.mousepos))');p.write_text(t)
+p=s/'src/lincity/civic_services.hpp';t=p.read_text().replace(' int taxCeiling=15,',' int taxReviewedDay=-1;\n int taxCeiling=15,');p.write_text(t)
+p=s/'src/lincity/civic_services.cpp';t=p.read_text().replace('void CivicServices::adjustTaxes(World& w) {','void CivicServices::adjustTaxes(World& w) {\n if(taxReviewedDay==w.total_time)return;\n taxReviewedDay=w.total_time;');p.write_text(t)
+p=s/'src/lincity/xmlloadsave.cpp';t=p.read_text().replace('  xmlTextWriterWriteElement(xmlWriter,(xmlStr)"civic_state",','  xmlTextWriterWriteElement(xmlWriter,(xmlStr)"civic_taxReviewedDay", f(world.civic.taxReviewedDay));\n  xmlTextWriterWriteElement(xmlWriter,(xmlStr)"civic_state",');t=t.replace('    else if(xml_tag == "civic_state")','    else if(xml_tag == "civic_taxReviewedDay") world.civic.taxReviewedDay = p<int>(xmlReader.read_inner_xml());\n    else if(xml_tag == "civic_state")');t=t.replace('world->civic.load(state,world->map.len());','int reviewed=world->civic.taxReviewedDay;world->civic.load(state,world->map.len());world->civic.taxReviewedDay=reviewed;');p.write_text(t)
+# Preview identifier in the build, and current menus. No other layout changes.
+p=s/'src/lincity-ng/main.cpp';t=p.read_text().replace('2.15.0','2.16.0');p.write_text(t)
+p=s/'data/gui/mainmenu.xml';p.write_text(p.read_text().replace('Preview 15','Preview 16'))

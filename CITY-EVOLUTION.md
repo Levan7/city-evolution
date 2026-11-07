@@ -1,3 +1,11 @@
+# Current release: Preview 17
+
+See CHANGELOG-Preview-17.md and README-Preview17.txt.
+
+# Current release: Preview 16
+
+See CHANGELOG-Preview-16.md, README-Preview16.txt and doc/AUDIT-Preview-16.md.
+
 # City Evolution — current release: Preview 15
 
 Read [CHANGELOG-Preview-15.md](CHANGELOG-Preview-15.md), [doc/AUDIT-Preview-15.md](doc/AUDIT-Preview-15.md) and README-Preview15.txt. Earlier release notes below are historical.

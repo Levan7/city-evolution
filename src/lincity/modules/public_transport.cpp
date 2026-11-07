@@ -30,7 +30,7 @@ void TransitFacility::update(){
 void TransitFacility::report(Mps& m,bool production)const{
  m.add_s(constructionGroup->name);m.add_s(active?"Running":"Needs staff / power");
  m.add_sfp("Days active",busy);m.add_sfp("Journeys / month",riders);
- m.add_s("Needs 2 connected stops.");
+ m.add_s("Street link and staffing differ.");
  m.add_s("Top-right: Transport");list_commodities(m,production);
 }
 void TransitFacility::save(xmlTextWriterPtr w)const{Construction::save(w);xmlTextWriterWriteElement(w,(xmlStr)"transit_days",xmlFormat<int>(workingDays));xmlTextWriterWriteElement(w,(xmlStr)"transit_busy",xmlFormat<int>(busy));}

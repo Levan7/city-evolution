@@ -111,6 +111,7 @@ private:
     void updateStreetActors();
     void drawEmergencyActors(Painter& painter,MapPoint tile);
   void drawNightLayers(Painter& painter, const std::string& key, const Rect2D& rect, bool occupied, bool powered);
+  void drawStreetLamps(Painter&, MapPoint);
   void drawStreetActors(Painter& painter, MapPoint tile);
     void connectButtons();
     void updateBuildingViewIndicator();

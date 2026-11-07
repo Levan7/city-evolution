@@ -99,7 +99,7 @@ Component::eventChild(Child& child, const Event& event, bool visible)
         || event.type == Event::MOUSEBUTTONUP
         || event.type == Event::MOUSEWHEEL) {
         ev.mousepos -= child.position;
-        if(visible && child.component->opaque(ev.mousepos))
+        if(visible && (!child.useClipRect || child.clipRect.inside(event.mousepos)) && child.component->opaque(ev.mousepos))
             ev.inside = true;
         else
             ev.inside = false;

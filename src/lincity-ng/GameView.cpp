@@ -24,6 +24,7 @@
 #include "GameView.hpp"
 #include "lincity/street_routes.hpp"
 #include "NightCrops.hpp"
+#include <cmath>
 #include "lincity/building_visual_state.hpp"
 #include "lincity/modules/health_centre.hpp"
 #include "lincity/modules/firestation.hpp"
@@ -1228,7 +1229,7 @@ void GameView::drawTexture(Painter& painter, const MapPoint &tile, GraphicsInfo 
             ? bool(c->flags & FLAG_HAD_POWER) : c->commodityCount[STUFF_LOVOLT] > 0;
         }
         const int cloud = e.currentWeather() ? 10 : 0;
-        const int strength = powered ? 110 : 148;
+        const int strength = powered ? 80 : 110;
         graphicsInfo->texture->setLighting(255 - dark*strength/1000 - cloud,
           255 - dark*(strength-12)/1000 - cloud,
           255 - dark*(strength-35)/1000 - cloud);
@@ -1555,7 +1556,10 @@ void GameView::draw(Painter& painter)
       refreshMap = false;
     }
     painter.drawTexture(mapTexture.get(), Vector2(0,0));
-    if(mapOverlay != overlayOnly) {drawTransit(painter,1);drawCityLife(painter);}
+    if(mapOverlay != overlayOnly) {
+      drawTransit(painter,1);drawCityLife(painter);
+      if(getWorld().evolution.darkness()>50)for(auto*c:getWorld().map.constructions){int g=c->constructionGroup->group;if(g==GROUP_ROAD||g==GROUP_TRACK||g==GROUP_ROAD_BRIDGE||g==GROUP_TRACK_BRIDGE)drawStreetLamps(painter,c->point);}
+    }
 
     int cost = 0;
     //display commodities continously
@@ -1968,17 +1972,22 @@ IMPLEMENT_COMPONENT_FACTORY(GameView)
 
 void GameView::drawNightLayers(Painter& painter,const std::string& key,const Rect2D& rect,bool occupied,bool powered) {
   if(!occupied) return;
-  auto it=nightCrops.find(key); if(it==nightCrops.end()) return;
+  auto it=nightCrops.find(key);
+  if(it==nightCrops.end()) {auto fallback=key;auto variant=fallback.find("Variant");auto colon=fallback.find(":");if(variant!=std::string::npos&&colon!=std::string::npos)fallback.erase(variant,colon-variant);it=nightCrops.find(fallback);}
+  if(it==nightCrops.end())return;
   const auto& e=getWorld().evolution; float amount=e.darkness()/1000.f;
   if(amount<=0) return;
   float late=0;
   if(e.skyPhase==2) late=std::clamp(float(e.skyElapsed)/std::max(1,e.skyDuration)*2.f-.6f,0.f,1.f);
   for(const auto& layer:it->second) {
-    if(layer.electric&&!powered)continue;
-    float alpha=amount*(layer.evening?1-late:1); if(alpha<=0)continue;
+    const bool lantern=key.rfind("Residential",0)==0 || key.rfind("Commune",0)==0;
+    if(layer.electric&&!powered&&!lantern)continue;
+    float alpha=std::min(1.f,amount*1.25f)*(layer.evening?1-late*.35f:1); if(layer.electric&&!powered)alpha*=.45f; if(alpha<=0)continue;
     auto tx=texture_manager->load(layer.file);tx->setOpacity(static_cast<unsigned char>(255*alpha));
-    Vector2 p=rect.p1+Vector2(layer.x*zoom,layer.y*zoom);
-    painter.drawStretchTexture(tx,Rect2D(p.x,p.y,p.x+tx->getWidth()*zoom,p.y+tx->getHeight()*zoom));tx->setOpacity(255);
+    const float sx=zoom;
+    const float sy=sx;
+    Vector2 p=rect.p1+Vector2(layer.x*sx,layer.y*sy);
+    painter.drawStretchTexture(tx,Rect2D(p.x,p.y,p.x+tx->getWidth()*sx,p.y+tx->getHeight()*sy));tx->setOpacity(255);
   }
 }
 
@@ -1998,4 +2007,18 @@ void GameView::drawEmergencyActors(Painter& painter,MapPoint tile) {
   if(c.kind==CivicServices::FIRE_CALL&&building->constructionGroup->group!=GROUP_FIRE){auto* rg=ResourceGroup::resMap["Fire"];if(rg&&!rg->graphicsInfoVector.empty())drawTexture(painter,tile.e(building->constructionGroup->size-1),&rg->graphicsInfoVector[(w.evolution.visualTime/100)%rg->graphicsInfoVector.size()]);}
   if(c.kind==CivicServices::ZOMBIE_CALL){painter.setFillColor(Color(133,180,102));for(int i=0;i<std::min(4,c.severity);++i)painter.fillRectangle(Rect2D(p.x+i*4*zoom,p.y-10*zoom,p.x+(i*4+3)*zoom,p.y));}
  }
+}
+
+void GameView::drawStreetLamps(Painter& painter,MapPoint tile) {
+ auto& w=getWorld();float night=w.evolution.darkness()/1000.f;
+ if(night<=.05f||(tile.x+tile.y)%4)return;
+ auto visible=getScreenPoint(tile);if(visible.x<0||visible.y<0||visible.x>getWidth()||visible.y>getHeight())return;
+ bool settled=false;for(int dy=-3;dy<=3&&!settled;++dy)for(int dx=-3;dx<=3;++dx){MapPoint q(tile.x+dx,tile.y+dy);if(!w.map.is_visible(q))continue;auto*c=w.map(q)->reportingConstruction;if(c&&!(c->flags&FLAG_IS_TRANSPORT)){settled=true;break;}}
+ if(!settled)return;
+ auto base=getScreenPoint(tile)+Vector2(tileWidth*.25f,-tileHeight*.55f);
+ auto lamp=base-Vector2(0,28*zoom);
+ for(int radius=30;radius>=6;radius-=6){Vector2 points[12];for(int k=0;k<12;++k){float angle=k*6.2831853f/12;points[k]=base+Vector2(std::cos(angle)*radius*zoom,std::sin(angle)*radius*zoom*.45f);}painter.setFillColor(Color(255,190,85,int(night*18)));painter.fillPolygon(12,points);}
+ for(int radius=9;radius>=3;radius-=3){Vector2 points[12];for(int k=0;k<12;++k){float angle=k*6.2831853f/12;points[k]=lamp+Vector2(std::cos(angle)*radius*zoom,std::sin(angle)*radius*zoom);}painter.setFillColor(Color(255,195,90,int(night*25)));painter.fillPolygon(12,points);}
+ painter.setLineColor(Color(100,90,68,255));painter.drawLine(base,lamp);
+ painter.setFillColor(Color(255,205,115,int(230*night)));painter.fillRectangle(Rect2D(lamp.x-2*zoom,lamp.y-2*zoom,lamp.x+2*zoom,lamp.y+3*zoom));
 }

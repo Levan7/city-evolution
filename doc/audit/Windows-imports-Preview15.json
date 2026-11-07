@@ -1,27 +1,7 @@
 {
   "imports": {
-    "Game/bin/SDL3_image.dll": [
+    "Game/bin/SDL3_ttf.dll": [
       "SDL3.dll",
-      "KERNEL32.dll",
-      "msvcrt.dll"
-    ],
-    "Game/bin/libzlib.dll": [
-      "KERNEL32.dll",
-      "msvcrt.dll"
-    ],
-    "Game/bin/SDL3_mixer.dll": [
-      "SDL3.dll",
-      "KERNEL32.dll",
-      "msvcrt.dll"
-    ],
-    "Game/bin/libobjc-4.dll": [
-      "libgcc_s_seh-1.dll",
-      "KERNEL32.dll",
-      "msvcrt.dll",
-      "libwinpthread-1.dll"
-    ],
-    "Game/bin/libquadmath-0.dll": [
-      "libgcc_s_seh-1.dll",
       "KERNEL32.dll",
       "msvcrt.dll"
     ],
@@ -30,19 +10,11 @@
       "KERNEL32.dll",
       "msvcrt.dll"
     ],
-    "Game/bin/libgomp-1.dll": [
+    "Game/bin/libobjc-4.dll": [
       "libgcc_s_seh-1.dll",
       "KERNEL32.dll",
       "msvcrt.dll",
       "libwinpthread-1.dll"
-    ],
-    "Game/bin/libwinpthread-1.dll": [
-      "KERNEL32.dll",
-      "msvcrt.dll"
-    ],
-    "Game/bin/libxml2.dll": [
-      "KERNEL32.dll",
-      "msvcrt.dll"
     ],
     "Game/bin/libatomic-1.dll": [
       "KERNEL32.dll",
@@ -63,21 +35,45 @@
       "VERSION.dll",
       "WINMM.dll"
     ],
+    "Game/bin/libgcc_s_seh-1.dll": [
+      "KERNEL32.dll",
+      "msvcrt.dll",
+      "libwinpthread-1.dll"
+    ],
+    "Game/bin/SDL3_mixer.dll": [
+      "SDL3.dll",
+      "KERNEL32.dll",
+      "msvcrt.dll"
+    ],
     "Game/bin/libstdc++-6.dll": [
       "libgcc_s_seh-1.dll",
       "KERNEL32.dll",
       "msvcrt.dll",
       "libwinpthread-1.dll"
     ],
-    "Game/bin/SDL3_ttf.dll": [
+    "Game/bin/libquadmath-0.dll": [
+      "libgcc_s_seh-1.dll",
+      "KERNEL32.dll",
+      "msvcrt.dll"
+    ],
+    "Game/bin/libzlib.dll": [
+      "KERNEL32.dll",
+      "msvcrt.dll"
+    ],
+    "Game/bin/libgomp-1.dll": [
+      "libgcc_s_seh-1.dll",
+      "KERNEL32.dll",
+      "msvcrt.dll",
+      "libwinpthread-1.dll"
+    ],
+    "Game/bin/SDL3_image.dll": [
       "SDL3.dll",
       "KERNEL32.dll",
       "msvcrt.dll"
     ],
-    "Game/bin/libgcc_s_seh-1.dll": [
+    "Game/bin/libxml2.dll": [
       "KERNEL32.dll",
-      "msvcrt.dll",
-      "libwinpthread-1.dll"
+      "msvcrt.dll"
     ],
     "Game/bin/libgfortran-5.dll": [
       "libquadmath-0.dll",
@@ -86,6 +82,10 @@
       "KERNEL32.dll",
       "msvcrt.dll",
       "libwinpthread-1.dll"
+    ],
+    "Game/bin/libwinpthread-1.dll": [
+      "KERNEL32.dll",
+      "msvcrt.dll"
     ],
     "Game/bin/lincity-ng.exe": [
       "SDL3.dll",
@@ -99,21 +99,7 @@
       "libgcc_s_seh-1.dll",
       "libstdc++-6.dll"
     ],
-    "Game/diagnostics/transit-checks.exe": [
-      "libxml2.dll",
-      "KERNEL32.dll",
-      "msvcrt.dll",
-      "libgcc_s_seh-1.dll",
-      "libstdc++-6.dll"
-    ],
-    "Game/diagnostics/community-checks.exe": [
-      "libxml2.dll",
-      "KERNEL32.dll",
-      "msvcrt.dll",
-      "libgcc_s_seh-1.dll",
-      "libstdc++-6.dll"
-    ],
-    "Game/diagnostics/services-checks.exe": [
+    "Game/diagnostics/street-routes-checks.exe": [
       "libxml2.dll",
       "KERNEL32.dll",
       "msvcrt.dll",
@@ -127,7 +113,7 @@
       "libgcc_s_seh-1.dll",
       "libstdc++-6.dll"
     ],
-    "Game/diagnostics/flu-checks.exe": [
+    "Game/diagnostics/mayor-checks.exe": [
       "libxml2.dll",
       "KERNEL32.dll",
       "msvcrt.dll",
@@ -144,7 +130,7 @@
       "libgcc_s_seh-1.dll",
       "libstdc++-6.dll"
     ],
-    "Game/diagnostics/mayor-checks.exe": [
+    "Game/diagnostics/network-checks.exe": [
       "libxml2.dll",
       "KERNEL32.dll",
       "msvcrt.dll",
@@ -158,7 +144,35 @@
       "libgcc_s_seh-1.dll",
       "libstdc++-6.dll"
     ],
-    "Game/diagnostics/street-routes-checks.exe": [
+    "Game/diagnostics/transit-checks.exe": [
+      "libxml2.dll",
+      "KERNEL32.dll",
+      "msvcrt.dll",
+      "libgcc_s_seh-1.dll",
+      "libstdc++-6.dll"
+    ],
+    "Game/diagnostics/finance-checks.exe": [
+      "libxml2.dll",
+      "KERNEL32.dll",
+      "msvcrt.dll",
+      "libgcc_s_seh-1.dll",
+      "libstdc++-6.dll"
+    ],
+    "Game/diagnostics/services-checks.exe": [
+      "libxml2.dll",
+      "KERNEL32.dll",
+      "msvcrt.dll",
+      "libgcc_s_seh-1.dll",
+      "libstdc++-6.dll"
+    ],
+    "Game/diagnostics/flu-checks.exe": [
+      "libxml2.dll",
+      "KERNEL32.dll",
+      "msvcrt.dll",
+      "libgcc_s_seh-1.dll",
+      "libstdc++-6.dll"
+    ],
+    "Game/diagnostics/community-checks.exe": [
       "libxml2.dll",
       "KERNEL32.dll",
       "msvcrt.dll",

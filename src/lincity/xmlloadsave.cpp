@@ -251,7 +251,7 @@ World::load(const std::filesystem::path& filename) {
   }
 
   if(!world->flu.pendingLoad.empty()){auto state=std::move(world->flu.pendingLoad);world->flu.load(state,world->map.len());}
-  if(!world->civic.pendingLoad.empty()) { auto state=std::move(world->civic.pendingLoad);world->civic.load(state,world->map.len()); }
+  if(!world->civic.pendingLoad.empty()) { auto state=std::move(world->civic.pendingLoad);int reviewed=world->civic.taxReviewedDay;world->civic.load(state,world->map.len());world->civic.taxReviewedDay=reviewed; }
   for(auto* cells:{&world->transit.tunnels,&world->transit.viaducts}) for(auto it=cells->begin();it!=cells->end();) { int n=world->map.len(),id=*it;if(id<0||id>=n*n||!world->map.is_visible(MapPoint(id%n,id/n)))it=cells->erase(it);else ++it; }
   // Extension fields are optional in older cities and validated before rendering.
   auto& e = world->evolution;
@@ -277,6 +277,7 @@ World::load(const std::filesystem::path& filename) {
 
 static void saveGlobals(xmlTextWriterPtr xmlWriter, const World& world) {
   xmlTextWriterWriteElement(xmlWriter,(xmlStr)"flu_state",(xmlStr)world.flu.save().c_str());
+  xmlTextWriterWriteElement(xmlWriter,(xmlStr)"civic_taxReviewedDay", f(world.civic.taxReviewedDay));
   xmlTextWriterWriteElement(xmlWriter,(xmlStr)"civic_state",(xmlStr)world.civic.save().c_str());
   for(int id:world.transit.tunnels) xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_tunnel",f(id));
   for(int id:world.transit.viaducts) xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_viaduct",f(id));
@@ -658,6 +659,7 @@ static void loadGlobals(xmlpp::TextReader& xmlReader, World& world,
       }
     }
     else if(xml_tag == "flu_state") world.flu.pendingLoad=xmlReader.read_string2().value_or("");
+    else if(xml_tag == "civic_taxReviewedDay") world.civic.taxReviewedDay = p<int>(xmlReader.read_inner_xml());
     else if(xml_tag == "civic_state") world.civic.pendingLoad=xmlReader.read_string2().value_or("");
     else if(xml_tag == "transit_tunnel" || xml_tag=="transit_viaduct") {int id=p<int>(xmlReader.read_inner_xml());int len=world.map.len();if(id>=0&&id<160000) (xml_tag=="transit_tunnel"?world.transit.tunnels:world.transit.viaducts).insert(id);}
     else if(xml_tag=="transit_fares_ly") world.stats.income.transit_fares.stat=p<int>(xmlReader.read_inner_xml());

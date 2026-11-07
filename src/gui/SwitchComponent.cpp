@@ -23,6 +23,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
 #include "SwitchComponent.hpp"
+#include "Rect2D.hpp"
 
 #include <libxml++/parsers/textreader.h>  // for TextReader
 #include <libxml++/ustring.h>             // for ustring
@@ -91,6 +92,7 @@ SwitchComponent::resize(float width, float height)
 #endif
             continue;
         }
+        child.setClipRect(Rect2D(0,0,width,height));
         if(! (child.getComponent()->getFlags() & FLAG_RESIZABLE))
             continue;
 
@@ -160,6 +162,7 @@ SwitchComponent::getActiveComponent()
 bool
 SwitchComponent::opaque(const Vector2& pos) const
 {
+    if(pos.x<0 || pos.y<0 || pos.x>=width || pos.y>=height) return false;
     for(Childs::const_iterator i = childs.begin(); i != childs.end(); ++i) {
         const Child& child = *i;
         if(child.getComponent() == 0 || !child.isEnabled())

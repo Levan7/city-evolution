@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="identity.xsl" type="text/xsl"?>
-<Panel width="264" height="300">
+<Panel width="264" height="336">
   <FilledRectangle color="#14252de8" />
   <TableLayout rows="4" cols="1">
     <rowsize row="1" fixed="32" />
-    <rowsize row="2" fixed="204" />
+    <rowsize row="2" fixed="240" />
     <rowsize row="3" fixed="24" />
     <rowsize row="4" fixed="40" />
     <cell row="1" col="1">

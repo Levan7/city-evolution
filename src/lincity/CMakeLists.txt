@@ -10,6 +10,7 @@ add_library(lincity_lib  STATIC
   transit.cpp
   transit.hpp
   traffic_era.hpp
+  road_power.cpp
   street_routes.cpp
   autonomous_mayor.cpp
   mayor_plan.cpp

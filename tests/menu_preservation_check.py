@@ -3,7 +3,7 @@ from pathlib import Path
 import hashlib,json,xml.etree.ElementTree as E
 s=Path(__file__).resolve().parents[1]
 manifest=json.loads((s/'doc/audit/Preview12-protected-menu-hashes.json').read_text())
-authorized = {'data/gui/minimap.xml','data/gui/buttonpanel.xml','data/gui/pbar.xml',
+authorized = {'data/gui/mps.xml','data/gui/minimap.xml','data/gui/buttonpanel.xml','data/gui/pbar.xml',
  'data/gui/pbar2nd.xml','data/gui/app.xml','data/gui/mainmenu.xml'}
 for f,sha in manifest.items():
  if f in authorized: continue

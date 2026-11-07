@@ -14,3 +14,10 @@ target_include_directories(expanded_xmlpp SYSTEM PUBLIC
   "${CMAKE_CURRENT_SOURCE_DIR}/libxmlplusplus")
 target_compile_definitions(expanded_xmlpp PUBLIC LIBXMLXX_STATIC=1)
 target_link_libraries(expanded_xmlpp PUBLIC LibXml2::LibXml2)
+
+# Generate this header in the build tree: upstream's ignore rules exclude the
+# generated source-tree copy from a fresh Git checkout.
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/libxmlplusplus/libxml++config.h.in" XMLPP_CONFIG)
+string(REPLACE "#undef LIBXMLXX_HAVE_EXCEPTION_PTR" "#define LIBXMLXX_HAVE_EXCEPTION_PTR 1" XMLPP_CONFIG "${XMLPP_CONFIG}")
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/libxml++config.h" "${XMLPP_CONFIG}")
+target_include_directories(expanded_xmlpp SYSTEM PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
