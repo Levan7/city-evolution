@@ -2,7 +2,7 @@
 
 **Build a settlement. Connect its people. Shape its future.**
 
-City Evolution is an experimental city-building simulation fork of **LinCity-NG**, developed by **Levan Chelidze**. It combines the original simulation with refreshed isometric artwork, public transport, city-management tools and an optional autonomous mayor.
+City Evolution is an experimental city-building simulation fork of **LinCity-NG**, developed by **Levan**. It combines the original simulation with refreshed isometric artwork, public transport, city-management tools and an optional autonomous mayor.
 
 [Download the game](https://github.com/Levan7/city-evolution/releases) · [Report a bug](https://github.com/Levan7/city-evolution/issues) · [Support development](https://ko-fi.com/levan4kgaming)
 
@@ -107,4 +107,4 @@ City Evolution builds on the work of the **LinCity-NG contributors**. Original a
 
 See `COPYING.txt`, `COPYING-data.txt`, `COPYING-fonts.txt` and `COPYING-dll.txt` for the applicable terms. Code, artwork, fonts and dependencies may have different licensing requirements.
 
-City Evolution development: **Levan Chelidze** · **studio76@mail.com**
+City Evolution development: **Levan** · **studio76@mail.com**
