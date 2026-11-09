@@ -63,6 +63,8 @@ public:
     void playASound(MIX_Audio *chunk);
     void playMusic();
     void update();
+    void setRainAmbience(float intensity);
+    void stopRainAmbience();
     bool isAudioOpen() const { return audioOpen; }
     static void musicHalted(void *userdate, MIX_Track *track);
     void changeTrack(MusicTransport command);
@@ -98,6 +100,10 @@ private:
 
     MIX_Track *musicTrack=nullptr;
     MIX_Track *soundTrack=nullptr;
+    MIX_Track *rainTrack=nullptr;
+    float rainGain = 0.f;
+    Uint64 lastRainUpdate = 0;
+    Uint64 lastBell = 0;
     MIX_Mixer *mixer=nullptr;
 };
 

@@ -1,7 +1,6 @@
-# Build Files
-/build/
-
+# Local builds and release archives
 /build/
 *.AppImage
 /*.zip
 /*.tar.xz
+/world-checks/

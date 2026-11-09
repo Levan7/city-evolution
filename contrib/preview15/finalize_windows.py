@@ -12,7 +12,7 @@ shutil.copytree(s/'tests/audio-fixture',game/'diagnostics/audio-fixture',dirs_ex
 (out/'Verify-Simulation.cmd').write_text('@echo off\nsetlocal\nset "PATH=%~dp0Game\\bin;%PATH%"\ncd /d "%~dp0PortableData"\nfor %%T in (flu services community mayor transit city-evolution autonomy street-routes) do (\n "%~dp0Game\\diagnostics\\%%T-checks.exe" > "%%T-checks.log" 2>&1\n if errorlevel 1 (echo FAIL %%T. See PortableData\\%%T-checks.log & pause & exit /b 1)\n)\necho All simulation checks passed.\npause\n',newline='\r\n')
 (out/'Verify-Audio.cmd').write_text('@echo off\nsetlocal\nset "PATH=%~dp0Game\\bin;%PATH%"\nset "SDL_AUDIO_DRIVER=dummy"\n"%~dp0Game\\diagnostics\\audio-checks.exe" "%~dp0Game\\diagnostics\\audio-fixture" working\nif errorlevel 1 (pause & exit /b 1)\nset "SDL_AUDIO_DRIVER=nonexistent"\n"%~dp0Game\\diagnostics\\audio-checks.exe" "%~dp0Game\\diagnostics\\audio-fixture" missing\npause\n',newline='\r\n')
 (out/'README.txt').write_text('''City Evolution - Preview 15 (64-bit Windows)
-By Levan Chelidze | studio76@mail.com
+By Levan | studio76@mail.com
 A fork of LinCity-NG. Original contributors and licenses are retained.
 
 Extract the ENTIRE ZIP to a writable folder. Double-click City Evolution.exe.

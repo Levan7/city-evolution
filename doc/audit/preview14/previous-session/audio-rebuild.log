@@ -1,3 +1,0 @@
-[0/2] Re-checking globbed directories...
-[1/2] Building CXX object tests/city-evolution/CMakeFiles/audio-checks.dir/__/audio_integration.cpp.o
-[2/2] Linking CXX executable tests/city-evolution/audio-checks

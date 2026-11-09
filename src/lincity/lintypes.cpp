@@ -935,8 +935,9 @@ ConstructionGroup::can_build(const World& world, Message::ptr& message) const {
     return false;
   }
 
-  if(no_credit && world.total_money < getCosts(world)) {
-    message = OutOfMoneyMessage::create(false);
+  const long long balance = 1LL * world.total_money - getCosts(world);
+  if(balance < (no_credit ? 0 : -2000000000)) {
+    message = OutOfMoneyMessage::create(!no_credit);
     return false;
   }
 

@@ -212,7 +212,12 @@ public:
     int local_population;
     int max_population;
     int desireability;
+    bool hasElectricity() const { return poweredToday; }
+    std::string foodSupplyAdvice() const;
     int births, deaths, pol_deaths;
+
+private:
+    bool poweredToday = false;
 };
 
 #endif // __LINCITYNG_LINCITY_MODULES_RESIDENCE_HPP__

@@ -1,8 +1,0 @@
-PASS final Linux AppImage launched without development LD_LIBRARY_PATH.
-PASS new world creation and starter village.
-PASS supplied review city load and night windows.
-PASS City Hall compact pages and footer extension.
-PASS public services and development tabs, readable labels.
-PASS original developer logo and retained Credits.
-Physical audio, real Windows and Fedora hardware were not tested.
-Review screenshots are in the separate Claude audit ZIP.

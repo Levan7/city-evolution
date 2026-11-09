@@ -2,7 +2,7 @@
 <Document style="helpdocument">
   <p style="htitle">City Evolution buildings</p>
   <img src="images/readable/BPMCafeButton-building.png" width="208" height="180" />
-  <p style="hp">The top teal toolbar category contains the warehouse, technology campus, cafe and food hall. Select an icon and place the building on clear land. Locked buildings need more technology, housing or a university.</p>
-  <p style="hp">Connect both road and rail to the warehouse edges. The technology campus uses steel, labor, water and electricity to produce goods and research. Cafes and food halls use food, goods, labor, water and electricity.</p>
+  <p style="hp">Select Freight for the warehouse, or browse the building categories for the technology campus, cafe and food hall. Locked buildings may need more technology, housing or a university.</p>
+  <p style="hp">Build a warehouse from the start, even with a negative treasury. Connect a dirt track or road to share freight with the local network. A warehouse can also exchange goods with a nearby market. Add rail at its edge to transfer freight between rail and road. The technology campus uses steel, labor, water and electricity to produce goods and research. Cafes and food halls use food, goods, labor, water and electricity.</p>
   <p style="hp">City hall opens elections, approval, news, weather controls and shortage advice. Sky periods follow real play time rather than simulation days.</p>
 </Document>

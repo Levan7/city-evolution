@@ -293,7 +293,7 @@ std::vector<Advice> CityEvolution::advise(World& w) const {
   int darkHomes = 0, jammed = 0; std::string jamWhere;
   for(const Construction* c : w.map.constructions) {
     const int g = c->constructionGroup->group;
-    if(GROUP_IS_RESIDENCE(g) && !(c->flags & FLAG_HAD_POWER)) ++darkHomes;
+    if(GROUP_IS_RESIDENCE(g) && !static_cast<const Residence*>(c)->hasElectricity()) ++darkHomes;
     if(g == GROUP_INDUSTRY_L || g == GROUP_INDUSTRY_H || g == GROUP_PORT || g == GROUP_WAREHOUSE) {
       bool linked = false; for(const Construction* n : c->neighbors) linked |= bool(n->flags & FLAG_IS_TRANSPORT);
       if(!linked && !jammed++) jamWhere = c->constructionGroup->name + " at " + num(c->point.x) + "," + num(c->point.y);

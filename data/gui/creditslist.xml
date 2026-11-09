@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="identity.xsl" type="text/xsl"?>
 <Document style="creditsdoc">
-<Paragraph style="person">City Evolution by Levan Chelidze</Paragraph><Paragraph style="email">studio76@mail.com</Paragraph><img src="images/biscuit-maker-games-logo.png" />
+<Paragraph style="person">City Evolution by Levan</Paragraph><Paragraph style="email">studio76@mail.com</Paragraph><img src="images/biscuit-maker-games-logo.png" />
 <p style="person">City Evolution - Biscuit Maker Games</p>
 <p style="person">A fork of LinCity-NG. Original project credits and licenses follow.</p>
 

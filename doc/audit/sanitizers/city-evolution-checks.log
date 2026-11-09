@@ -1,0 +1,1254 @@
+PASS skilled workforce model
+PASS factories work poorly without skilled staff
+PASS districts: zones, names, clusters, farm warning, training boost, persistence
+PASS retirement model
+PASS barren generation/save/load/simulation 50 x 50
+PASS barren generation/save/load/simulation 100 x 100
+PASS barren generation/save/load/simulation 150 x 150
+PASS barren generation/save/load/simulation 200 x 200
+PASS barren generation/save/load/simulation 300 x 300
+PASS barren generation/save/load/simulation 400 x 400
+carving river ...
+river first fork end at (56,93)
+starting river seg at (55,93) with length 46
+river seg end at (29,47)
+forking left at (29,47)
+starting river seg at (29,47) with length 40
+river seg end at (8,9)
+forking right at (29,47)
+starting river seg at (29,47) with length 28
+river seg end at (37,19)
+starting river seg at (56,93) with length 33
+river seg end at (78,60)
+forking left at (78,60)
+starting river seg at (78,60) with length 28
+river seg end at (63,32)
+forking left at (63,32)
+starting river seg at (63,32) with length 45
+river seg end at (57,9)
+forking right at (63,32)
+starting river seg at (63,32) with length 22
+forking right at (78,60)
+starting river seg at (78,60) with length 22
+river seg end at (85,38)
+forking left at (85,38)
+starting river seg at (85,38) with length 32
+river seg end at (77,9)
+forking right at (85,38)
+starting river seg at (85,38) with length 47
+ done
+setting up ecology ... done
+ alt min = 0; max = 11006
+PASS empty natural world 100 biome 0
+pooring 2 lakes ...
+river starting at (48,22)
+river ending at (54,0) alt 4927
+river starting at (73,8)
+river ending at (99,62) alt 383
+ done
+setting up ecology ... done
+ alt min = 0; max = 12248
+PASS empty natural world 100 biome 1
+pooring 7 lakes ...
+river starting at (63,86)
+river ending at (99,85) alt 130
+river starting at (44,8)
+river ending at (50,0) alt 6284
+river starting at (60,48)
+river ending at (66,82) alt 1438 at river
+river starting at (80,43)
+river ending at (83,76) alt 1036 at river
+river starting at (63,38)
+river ending at (54,3) alt 6281 at river
+river starting at (54,23)
+river ending at (61,12) alt 6328 at river
+river starting at (87,61)
+river ending at (84,75) alt 1036 at river
+ done
+setting up ecology ... done
+ alt min = 0; max = 1791
+PASS empty natural world 100 biome 2
+pooring 12 lakes ...
+river starting at (82,86)
+river ending at (99,73) alt 2
+river starting at (39,26)
+river ending at (99,20) alt 579
+river starting at (12,12)
+river ending at (0,26) alt 886
+river starting at (84,62)
+river ending at (98,73) alt 2 at river
+river starting at (33,39)
+river ending at (44,25) alt 652 at river
+river starting at (63,67)
+river ending at (0,81) alt 462
+river starting at (48,36)
+river ending at (46,25) alt 652 at river
+river starting at (29,97)
+river ending at (19,87) alt 461 at river
+river starting at (68,64)
+river ending at (99,59) alt 211
+river starting at (82,50)
+river ending at (83,58) alt 611 at river
+river starting at (75,92)
+river ending at (84,86) alt 264 at river
+river starting at (75,9)
+river ending at (74,12) alt 645 at river
+ done
+setting up ecology ... done
+PASS empty natural world 100 biome 3
+carving river ...
+river first fork end at (132,169)
+starting river seg at (131,169) with length 40
+river seg end at (101,129)
+forking left at (101,129)
+starting river seg at (101,129) with length 100
+river seg end at (44,29)
+forking left at (44,29)
+starting river seg at (44,29) with length 60
+river seg end at (36,9)
+forking right at (44,29)
+starting river seg at (44,29) with length 56
+forking right at (101,129)
+starting river seg at (101,129) with length 43
+river seg end at (129,86)
+forking left at (129,86)
+starting river seg at (129,86) with length 93
+river seg end at (84,9)
+forking right at (129,86)
+starting river seg at (129,86) with length 57
+starting river seg at (132,169) with length 47
+river seg end at (162,122)
+forking left at (162,122)
+starting river seg at (162,122) with length 58
+forking right at (162,122)
+starting river seg at (162,122) with length 68
+river seg end at (191,54)
+forking left at (191,54)
+starting river seg at (191,54) with length 41
+river seg end at (170,13)
+forking right at (191,54)
+starting river seg at (191,54) with length 66
+ done
+setting up ecology ... done
+ alt min = 0; max = 4787
+PASS empty natural world 200 biome 0
+pooring 3 lakes ...
+river starting at (159,185)
+river ending at (199,196) alt 127
+river starting at (49,154)
+river ending at (33,199) alt 878
+river starting at (55,96)
+river ending at (0,80) alt 1994
+ done
+setting up ecology ... done
+ alt min = 0; max = 5695
+PASS empty natural world 200 biome 1
+pooring 43 lakes ...
+river starting at (56,112)
+river ending at (0,87) alt 1583
+river starting at (160,171)
+river ending at (199,174) alt 232
+river starting at (135,52)
+river ending at (130,182) alt 601 at river
+river starting at (99,41)
+river ending at (54,59) alt 1583 at river
+river starting at (65,119)
+river ending at (69,109) alt 1974 at river
+river starting at (47,171)
+river ending at (0,168) alt 1277
+river starting at (41,88)
+river ending at (41,88) alt 1583 at river
+river starting at (117,89)
+river ending at (135,96) alt 1933 at river
+river starting at (179,33)
+river ending at (199,29) alt 2138
+river starting at (83,88)
+river ending at (77,87) alt 1669 at river
+river starting at (148,189)
+river ending at (148,189) alt 601 at river
+river starting at (34,131)
+river ending at (36,108) alt 1583 at river
+river starting at (155,173)
+river ending at (155,173) alt 601 at river
+river starting at (194,38)
+river ending at (199,30) alt 2106
+river starting at (16,85)
+river ending at (16,85) alt 1583 at river
+river starting at (54,104)
+river ending at (41,105) alt 1583 at river
+river starting at (165,116)
+river ending at (165,116) alt 1697 at river
+river starting at (167,40)
+river ending at (187,30) alt 2490 at river
+river starting at (145,44)
+river ending at (142,63) alt 2379 at river
+river starting at (10,176)
+river ending at (9,176) alt 1859 at river
+river starting at (68,140)
+river ending at (69,117) alt 1978 at river
+river starting at (1,138)
+river ending at (0,138) alt 2617
+river starting at (109,154)
+river ending at (120,160) alt 649 at river
+river starting at (157,7)
+river ending at (190,21) alt 2150 at river
+river starting at (119,139)
+river ending at (129,152) alt 668 at river
+river starting at (177,137)
+river ending at (199,133) alt 972
+river starting at (23,82)
+river ending at (23,82) alt 1583 at river
+river starting at (75,187)
+river ending at (108,173) alt 649 at river
+river starting at (107,17)
+river ending at (143,77) alt 2149 at river
+river starting at (90,66)
+river ending at (87,57) alt 2343 at river
+river starting at (138,55)
+river ending at (138,55) alt 2921 at river
+river starting at (126,125)
+river ending at (134,130) alt 1544 at river
+river starting at (80,109)
+river ending at (70,100) alt 1864 at river
+river starting at (16,62)
+river ending at (17,63) alt 1583 at river
+river starting at (94,105)
+river ending at (71,96) alt 1669 at river
+river starting at (90,13)
+river ending at (41,34) alt 1583 at river
+river starting at (144,128)
+river ending at (144,124) alt 1697 at river
+river starting at (36,167)
+river ending at (36,177) alt 1859 at river
+river starting at (140,8)
+river ending at (136,31) alt 3351 at river
+river starting at (143,41)
+river ending at (142,47) alt 3528 at river
+river starting at (25,96)
+river ending at (29,90) alt 1583 at river
+river starting at (95,109)
+river ending at (85,105) alt 3124 at river
+river starting at (127,58)
+river ending at (131,67) alt 2382 at river
+ done
+setting up ecology ... done
+ alt min = 0; max = 1427
+PASS empty natural world 200 biome 2
+pooring 53 lakes ...
+river starting at (98,122)
+river ending at (199,163) alt 82
+river starting at (76,156)
+river ending at (147,155) alt 173 at river
+river starting at (121,121)
+river ending at (121,121) alt 629 at river
+river starting at (67,86)
+river ending at (199,65) alt 445
+river starting at (100,85)
+river ending at (124,66) alt 700 at river
+river starting at (4,25)
+river ending at (0,25) alt 1108
+river starting at (138,34)
+river ending at (142,59) alt 575 at river
+river starting at (12,40)
+river ending at (0,45) alt 1005
+river starting at (91,178)
+river ending at (150,165) alt 173 at river
+river starting at (19,69)
+river ending at (52,72) alt 947 at river
+river starting at (162,159)
+river ending at (162,159) alt 173 at river
+river starting at (68,154)
+river ending at (68,154) alt 755 at river
+river starting at (119,95)
+river ending at (122,79) alt 792 at river
+river starting at (31,117)
+river ending at (60,152) alt 755 at river
+river starting at (188,135)
+river ending at (199,134) alt 8
+river starting at (187,1)
+river ending at (188,0) alt 445
+river starting at (61,48)
+river ending at (65,57) alt 947 at river
+river starting at (148,100)
+river ending at (199,130) alt 39
+river starting at (27,44)
+river ending at (27,63) alt 1015 at river
+river starting at (118,177)
+river ending at (122,179) alt 358 at river
+river starting at (198,128)
+river ending at (198,129) alt 70 at river
+river starting at (121,171)
+river ending at (128,175) alt 323 at river
+river starting at (151,180)
+river ending at (152,166) alt 173 at river
+river starting at (106,47)
+river ending at (128,43) alt 576 at river
+river starting at (165,170)
+river ending at (165,167) alt 173 at river
+river starting at (98,67)
+river ending at (98,67) alt 947 at river
+river starting at (157,131)
+river ending at (157,141) alt 226 at river
+river starting at (135,192)
+river ending at (129,175) alt 315 at river
+river starting at (92,77)
+river ending at (90,77) alt 947 at river
+river starting at (146,24)
+river ending at (135,25) alt 576 at river
+river starting at (93,137)
+river ending at (98,139) alt 711 at river
+river starting at (152,155)
+river ending at (152,155) alt 173 at river
+river starting at (153,139)
+river ending at (156,139) alt 251 at river
+river starting at (136,55)
+river ending at (137,54) alt 576 at river
+river starting at (6,187)
+river ending at (0,169) alt 993
+river starting at (158,135)
+river ending at (158,145) alt 187 at river
+river starting at (37,125)
+river ending at (37,148) alt 798 at river
+river starting at (17,120)
+river ending at (33,145) alt 834 at river
+river starting at (52,139)
+river ending at (60,149) alt 755 at river
+river starting at (89,152)
+river ending at (89,152) alt 742 at river
+river starting at (150,153)
+river ending at (150,153) alt 173 at river
+river starting at (8,80)
+river ending at (27,69) alt 1020 at river
+river starting at (66,163)
+river ending at (65,160) alt 755 at river
+river starting at (50,196)
+river ending at (51,199) alt 756
+river starting at (173,109)
+river ending at (173,109) alt 414 at river
+river starting at (190,4)
+river ending at (199,5) alt 422
+river starting at (6,85)
+river ending at (15,80) alt 1124 at river
+river starting at (78,134)
+river ending at (77,147) alt 755 at river
+river starting at (24,79)
+river ending at (24,79) alt 1094 at river
+river starting at (198,144)
+river ending at (199,137) alt 27
+river starting at (97,125)
+river ending at (105,124) alt 761 at river
+river starting at (35,151)
+river ending at (38,152) alt 791 at river
+river starting at (15,188)
+river ending at (41,158) alt 771 at river
+ done
+setting up ecology ... done
+PASS empty natural world 200 biome 3
+carving river ...
+river first fork end at (258,346)
+starting river seg at (257,346) with length 86
+river seg end at (206,260)
+forking left at (206,260)
+starting river seg at (206,260) with length 110
+river seg end at (140,150)
+forking left at (140,150)
+starting river seg at (140,150) with length 78
+river seg end at (105,72)
+forking left at (105,72)
+starting river seg at (105,72) with length 170
+river seg end at (72,9)
+forking right at (105,72)
+starting river seg at (105,72) with length 180
+river seg end at (135,9)
+forking right at (140,150)
+starting river seg at (140,150) with length 83
+river seg end at (185,67)
+forking left at (185,67)
+starting river seg at (185,67) with length 66
+river seg end at (155,9)
+forking right at (185,67)
+starting river seg at (185,67) with length 141
+river seg end at (213,9)
+forking right at (206,260)
+starting river seg at (206,260) with length 95
+river seg end at (261,165)
+forking left at (261,165)
+starting river seg at (261,165) with length 177
+forking right at (261,165)
+starting river seg at (261,165) with length 143
+river seg end at (337,22)
+forking left at (337,22)
+starting river seg at (337,22) with length 131
+river seg end at (328,9)
+forking right at (337,22)
+starting river seg at (337,22) with length 166
+river seg end at (343,9)
+starting river seg at (258,346) with length 172
+river seg end at (367,174)
+forking left at (367,174)
+starting river seg at (367,174) with length 110
+forking right at (367,174)
+starting river seg at (367,174) with length 146
+ done
+setting up ecology ... done
+ alt min = 0; max = 7427
+PASS empty natural world 400 biome 0
+pooring 49 lakes ...
+river starting at (232,398)
+river ending at (231,399) alt 3198
+river starting at (262,122)
+river ending at (399,72) alt 1583
+river starting at (217,326)
+river ending at (197,399) alt 1899
+river starting at (112,269)
+river ending at (198,356) alt 2195 at river
+river starting at (262,6)
+river ending at (264,0) alt 6199
+river starting at (76,167)
+river ending at (65,0) alt 1722
+river starting at (11,155)
+river ending at (0,142) alt 4364
+river starting at (357,147)
+river ending at (399,170) alt 2103
+river starting at (20,222)
+river ending at (0,168) alt 3669
+river starting at (90,85)
+river ending at (90,85) alt 3568 at river
+river starting at (113,129)
+river ending at (100,95) alt 3568 at river
+river starting at (0,397)
+river ending at (0,397) alt 1974
+river starting at (266,130)
+river ending at (262,116) alt 5146 at river
+river starting at (122,361)
+river ending at (121,350) alt 3660 at river
+river starting at (110,327)
+river ending at (106,326) alt 3660 at river
+river starting at (90,115)
+river ending at (93,95) alt 3568 at river
+river starting at (396,292)
+river ending at (399,321) alt 1674
+river starting at (338,5)
+river ending at (331,46) alt 4275 at river
+river starting at (369,142)
+river ending at (374,151) alt 2894 at river
+river starting at (88,272)
+river ending at (89,301) alt 3660 at river
+river starting at (69,28)
+river ending at (72,22) alt 2165 at river
+river starting at (66,267)
+river ending at (85,272) alt 4595 at river
+river starting at (288,352)
+river ending at (399,362) alt 972
+river starting at (122,143)
+river ending at (122,143) alt 4836 at river
+river starting at (228,110)
+river ending at (228,110) alt 4836 at river
+river starting at (176,181)
+river ending at (176,181) alt 4836 at river
+river starting at (363,250)
+river ending at (371,318) alt 2239 at river
+river starting at (306,376)
+river ending at (359,360) alt 1230 at river
+river starting at (218,142)
+river ending at (218,142) alt 4836 at river
+river starting at (354,208)
+river ending at (356,262) alt 3879 at river
+river starting at (116,169)
+river ending at (116,169) alt 4836 at river
+river starting at (393,158)
+river ending at (397,168) alt 2102 at river
+river starting at (182,95)
+river ending at (182,95) alt 4836 at river
+river starting at (399,141)
+river ending at (399,141) alt 2884
+river starting at (312,174)
+river ending at (251,151) alt 4836 at river
+river starting at (185,39)
+river ending at (185,42) alt 4836 at river
+river starting at (323,317)
+river ending at (317,323) alt 2978 at river
+river starting at (250,83)
+river ending at (253,90) alt 5146 at river
+river starting at (213,180)
+river ending at (213,180) alt 4836 at river
+river starting at (84,153)
+river ending at (84,153) alt 4836 at river
+river starting at (317,191)
+river ending at (366,168) alt 2510 at river
+river starting at (58,230)
+river ending at (86,266) alt 4595 at river
+river starting at (13,265)
+river ending at (0,312) alt 1459
+river starting at (236,144)
+river ending at (236,144) alt 4836 at river
+river starting at (315,58)
+river ending at (324,58) alt 4275 at river
+river starting at (63,36)
+river ending at (71,24) alt 2245 at river
+river starting at (320,286)
+river ending at (339,309) alt 2978 at river
+river starting at (29,98)
+river ending at (63,0) alt 1729
+river starting at (174,258)
+river ending at (307,316) alt 2978 at river
+ done
+setting up ecology ... done
+ alt min = 0; max = 2316
+PASS empty natural world 400 biome 1
+pooring 120 lakes ...
+river starting at (229,39)
+river ending at (252,0) alt 558
+river starting at (370,256)
+river ending at (399,265) alt 2
+river starting at (221,71)
+river ending at (249,46) alt 640 at river
+river starting at (166,53)
+river ending at (244,17) alt 594 at river
+river starting at (246,47)
+river ending at (246,47) alt 640 at river
+river starting at (140,315)
+river ending at (0,93) alt 604
+river starting at (311,85)
+river ending at (276,16) alt 594 at river
+river starting at (314,271)
+river ending at (288,399) alt 193
+river starting at (225,57)
+river ending at (245,46) alt 640 at river
+river starting at (148,73)
+river ending at (188,21) alt 1348 at river
+river starting at (194,396)
+river ending at (206,399) alt 384
+river starting at (8,43)
+river ending at (0,51) alt 747
+river starting at (284,272)
+river ending at (250,399) alt 74
+river starting at (280,338)
+river ending at (282,384) alt 193 at river
+river starting at (121,65)
+river ending at (72,0) alt 738
+river starting at (299,104)
+river ending at (295,96) alt 1028 at river
+river starting at (7,232)
+river ending at (7,232) alt 808 at river
+river starting at (57,20)
+river ending at (63,17) alt 738 at river
+river starting at (261,204)
+river ending at (245,282) alt 619 at river
+river starting at (54,318)
+river ending at (0,289) alt 1042
+river starting at (343,103)
+river ending at (296,98) alt 1037 at river
+river starting at (68,0)
+river ending at (68,0) alt 777
+river starting at (392,156)
+river ending at (399,156) alt 870
+river starting at (31,103)
+river ending at (30,97) alt 604 at river
+river starting at (46,253)
+river ending at (43,232) alt 808 at river
+river starting at (208,164)
+river ending at (92,174) alt 808 at river
+river starting at (113,32)
+river ending at (75,18) alt 738 at river
+river starting at (315,50)
+river ending at (399,37) alt 789
+river starting at (312,66)
+river ending at (294,65) alt 799 at river
+river starting at (175,340)
+river ending at (193,323) alt 619 at river
+river starting at (294,196)
+river ending at (265,209) alt 1200 at river
+river starting at (58,101)
+river ending at (33,93) alt 604 at river
+river starting at (60,19)
+river ending at (62,18) alt 753 at river
+river starting at (368,333)
+river ending at (325,326) alt 649 at river
+river starting at (25,232)
+river ending at (25,232) alt 808 at river
+river starting at (317,368)
+river ending at (307,372) alt 309 at river
+river starting at (377,92)
+river ending at (399,118) alt 869
+river starting at (4,278)
+river ending at (4,286) alt 1042 at river
+river starting at (239,44)
+river ending at (244,44) alt 640 at river
+river starting at (138,97)
+river ending at (115,147) alt 1255 at river
+river starting at (388,385)
+river ending at (399,396) alt 194
+river starting at (15,200)
+river ending at (16,200) alt 808 at river
+river starting at (367,316)
+river ending at (366,318) alt 854 at river
+river starting at (375,160)
+river ending at (399,190) alt 931
+river starting at (332,65)
+river ending at (338,61) alt 1138 at river
+river starting at (352,302)
+river ending at (352,302) alt 854 at river
+river starting at (333,354)
+river ending at (333,354) alt 527 at river
+river starting at (211,282)
+river ending at (220,296) alt 619 at river
+river starting at (225,361)
+river ending at (235,356) alt 435 at river
+river starting at (50,133)
+river ending at (28,142) alt 697 at river
+river starting at (23,106)
+river ending at (22,104) alt 689 at river
+river starting at (370,227)
+river ending at (366,233) alt 574 at river
+river starting at (81,192)
+river ending at (85,192) alt 808 at river
+river starting at (377,331)
+river ending at (377,330) alt 854 at river
+river starting at (11,256)
+river ending at (24,245) alt 808 at river
+river starting at (337,95)
+river ending at (337,95) alt 1347 at river
+river starting at (124,36)
+river ending at (128,30) alt 1420 at river
+river starting at (308,327)
+river ending at (312,321) alt 765 at river
+river starting at (218,269)
+river ending at (213,278) alt 668 at river
+river starting at (353,352)
+river ending at (333,354) alt 527 at river
+river starting at (17,211)
+river ending at (17,211) alt 808 at river
+river starting at (255,388)
+river ending at (249,395) alt 99 at river
+river starting at (240,236)
+river ending at (232,269) alt 754 at river
+river starting at (308,331)
+river ending at (322,335) alt 648 at river
+river starting at (165,113)
+river ending at (158,135) alt 1270 at river
+river starting at (180,192)
+river ending at (197,274) alt 668 at river
+river starting at (357,123)
+river ending at (399,120) alt 859
+river starting at (52,245)
+river ending at (52,245) alt 855 at river
+river starting at (390,338)
+river ending at (399,328) alt 750
+river starting at (248,15)
+river ending at (248,15) alt 594 at river
+river starting at (203,54)
+river ending at (252,65) alt 834 at river
+river starting at (36,182)
+river ending at (27,159) alt 697 at river
+river starting at (34,140)
+river ending at (33,142) alt 773 at river
+river starting at (80,299)
+river ending at (77,244) alt 808 at river
+river starting at (131,49)
+river ending at (138,37) alt 1420 at river
+river starting at (212,151)
+river ending at (198,160) alt 1614 at river
+river starting at (96,17)
+river ending at (84,19) alt 920 at river
+river starting at (328,150)
+river ending at (377,132) alt 1176 at river
+river starting at (34,344)
+river ending at (40,322) alt 1046 at river
+river starting at (334,386)
+river ending at (367,399) alt 561
+river starting at (255,49)
+river ending at (255,51) alt 728 at river
+river starting at (361,301)
+river ending at (359,301) alt 854 at river
+river starting at (122,12)
+river ending at (128,18) alt 1420 at river
+river starting at (278,302)
+river ending at (280,338) alt 652 at river
+river starting at (351,152)
+river ending at (371,171) alt 1006 at river
+river starting at (129,6)
+river ending at (132,14) alt 1420 at river
+river starting at (232,192)
+river ending at (229,225) alt 902 at river
+river starting at (70,130)
+river ending at (27,123) alt 697 at river
+river starting at (146,97)
+river ending at (138,97) alt 1853 at river
+river starting at (154,205)
+river ending at (106,209) alt 808 at river
+river starting at (366,234)
+river ending at (366,234) alt 574 at river
+river starting at (123,182)
+river ending at (105,200) alt 808 at river
+river starting at (115,334)
+river ending at (198,389) alt 387 at river
+river starting at (136,263)
+river ending at (114,247) alt 948 at river
+river starting at (59,56)
+river ending at (72,31) alt 798 at river
+river starting at (288,52)
+river ending at (288,52) alt 799 at river
+river starting at (356,215)
+river ending at (358,230) alt 574 at river
+river starting at (203,40)
+river ending at (204,32) alt 1348 at river
+river starting at (146,353)
+river ending at (146,353) alt 1164 at river
+river starting at (206,300)
+river ending at (208,301) alt 619 at river
+river starting at (393,104)
+river ending at (399,106) alt 959
+river starting at (277,120)
+river ending at (278,86) alt 987 at river
+river starting at (362,334)
+river ending at (362,333) alt 854 at river
+river starting at (205,104)
+river ending at (235,74) alt 962 at river
+river starting at (36,48)
+river ending at (6,0) alt 158
+river starting at (158,210)
+river ending at (120,209) alt 944 at river
+river starting at (256,336)
+river ending at (245,348) alt 435 at river
+river starting at (344,278)
+river ending at (361,262) alt 574 at river
+river starting at (230,220)
+river ending at (230,224) alt 902 at river
+river starting at (349,258)
+river ending at (356,255) alt 574 at river
+river starting at (254,244)
+river ending at (255,246) alt 827 at river
+river starting at (228,209)
+river ending at (228,214) alt 1131 at river
+river starting at (177,384)
+river ending at (178,386) alt 811 at river
+river starting at (131,325)
+river ending at (137,341) alt 1164 at river
+river starting at (32,248)
+river ending at (31,245) alt 808 at river
+river starting at (214,133)
+river ending at (270,118) alt 1180 at river
+river starting at (314,18)
+river ending at (275,14) alt 594 at river
+river starting at (196,159)
+river ending at (193,159) alt 1584 at river
+river starting at (382,104)
+river ending at (383,112) alt 1218 at river
+river starting at (157,323)
+river ending at (193,318) alt 619 at river
+ done
+setting up ecology ... done
+ alt min = 0; max = 2534
+PASS empty natural world 400 biome 2
+pooring 236 lakes ...
+river starting at (195,209)
+river ending at (399,302) alt 152
+river starting at (6,110)
+river ending at (0,76) alt 1864
+river starting at (274,246)
+river ending at (325,259) alt 222 at river
+river starting at (159,71)
+river ending at (143,0) alt 1653
+river starting at (186,143)
+river ending at (197,213) alt 1299 at river
+river starting at (149,312)
+river ending at (182,303) alt 1198 at river
+river starting at (369,181)
+river ending at (386,223) alt 222 at river
+river starting at (196,317)
+river ending at (196,307) alt 1198 at river
+river starting at (216,204)
+river ending at (270,229) alt 593 at river
+river starting at (282,37)
+river ending at (277,0) alt 1186
+river starting at (344,153)
+river ending at (360,224) alt 222 at river
+river starting at (174,343)
+river ending at (168,315) alt 1236 at river
+river starting at (6,149)
+river ending at (0,169) alt 1660
+river starting at (326,329)
+river ending at (326,329) alt 289 at river
+river starting at (334,209)
+river ending at (344,209) alt 386 at river
+river starting at (348,341)
+river ending at (346,337) alt 287 at river
+river starting at (376,307)
+river ending at (376,307) alt 152 at river
+river starting at (360,172)
+river ending at (355,192) alt 486 at river
+river starting at (18,261)
+river ending at (0,229) alt 1456
+river starting at (122,231)
+river ending at (148,264) alt 1198 at river
+river starting at (178,42)
+river ending at (178,51) alt 1892 at river
+river starting at (219,126)
+river ending at (263,37) alt 1344 at river
+river starting at (48,231)
+river ending at (34,235) alt 1607 at river
+river starting at (216,3)
+river ending at (217,0) alt 1300
+river starting at (278,266)
+river ending at (321,276) alt 222 at river
+river starting at (261,76)
+river ending at (251,72) alt 1752 at river
+river starting at (223,358)
+river ending at (255,318) alt 937 at river
+river starting at (345,91)
+river ending at (399,72) alt 1142
+river starting at (127,69)
+river ending at (126,49) alt 1794 at river
+river starting at (390,168)
+river ending at (382,203) alt 241 at river
+river starting at (353,123)
+river ending at (376,164) alt 634 at river
+river starting at (312,79)
+river ending at (303,0) alt 1226
+river starting at (15,6)
+river ending at (51,0) alt 1777
+river starting at (280,45)
+river ending at (275,37) alt 1371 at river
+river starting at (189,24)
+river ending at (202,0) alt 1470
+river starting at (378,219)
+river ending at (379,221) alt 222 at river
+river starting at (215,392)
+river ending at (399,390) alt 319
+river starting at (155,80)
+river ending at (155,80) alt 2091 at river
+river starting at (276,202)
+river ending at (287,221) alt 536 at river
+river starting at (46,75)
+river ending at (45,58) alt 1780 at river
+river starting at (361,278)
+river ending at (361,278) alt 222 at river
+river starting at (176,30)
+river ending at (189,24) alt 1778 at river
+river starting at (356,218)
+river ending at (359,225) alt 222 at river
+river starting at (312,55)
+river ending at (362,60) alt 1143 at river
+river starting at (172,198)
+river ending at (166,229) alt 1198 at river
+river starting at (273,399)
+river ending at (273,399) alt 1118
+river starting at (216,277)
+river ending at (192,280) alt 1198 at river
+river starting at (398,27)
+river ending at (399,26) alt 1656
+river starting at (177,258)
+river ending at (174,258) alt 1198 at river
+river starting at (180,379)
+river ending at (234,313) alt 961 at river
+river starting at (106,321)
+river ending at (84,301) alt 1476 at river
+river starting at (363,123)
+river ending at (369,158) alt 758 at river
+river starting at (233,354)
+river ending at (230,347) alt 1318 at river
+river starting at (340,179)
+river ending at (354,190) alt 507 at river
+river starting at (120,7)
+river ending at (122,0) alt 1802
+river starting at (62,108)
+river ending at (46,75) alt 1959 at river
+river starting at (347,173)
+river ending at (347,179) alt 734 at river
+river starting at (390,194)
+river ending at (391,197) alt 340 at river
+river starting at (299,66)
+river ending at (299,66) alt 1637 at river
+river starting at (209,285)
+river ending at (206,287) alt 1198 at river
+river starting at (235,195)
+river ending at (235,222) alt 899 at river
+river starting at (283,228)
+river ending at (283,228) alt 577 at river
+river starting at (333,248)
+river ending at (341,250) alt 222 at river
+river starting at (110,131)
+river ending at (120,104) alt 2091 at river
+river starting at (259,256)
+river ending at (276,264) alt 691 at river
+river starting at (383,188)
+river ending at (380,199) alt 241 at river
+river starting at (291,31)
+river ending at (291,36) alt 1504 at river
+river starting at (281,19)
+river ending at (271,6) alt 1205 at river
+river starting at (214,0)
+river ending at (214,0) alt 1336
+river starting at (121,366)
+river ending at (163,307) alt 1236 at river
+river starting at (88,385)
+river ending at (70,399) alt 1732
+river starting at (56,26)
+river ending at (55,26) alt 1777 at river
+river starting at (216,193)
+river ending at (231,218) alt 964 at river
+river starting at (149,188)
+river ending at (161,237) alt 1198 at river
+river starting at (309,236)
+river ending at (308,237) alt 493 at river
+river starting at (366,9)
+river ending at (369,0) alt 1050
+river starting at (34,249)
+river ending at (34,249) alt 1607 at river
+river starting at (69,110)
+river ending at (67,109) alt 2059 at river
+river starting at (36,135)
+river ending at (13,114) alt 2029 at river
+river starting at (31,283)
+river ending at (23,259) alt 1607 at river
+river starting at (153,322)
+river ending at (159,311) alt 1347 at river
+river starting at (325,241)
+river ending at (342,245) alt 222 at river
+river starting at (124,24)
+river ending at (125,31) alt 1794 at river
+river starting at (81,215)
+river ending at (84,217) alt 1476 at river
+river starting at (6,286)
+river ending at (18,283) alt 1639 at river
+river starting at (386,213)
+river ending at (387,215) alt 225 at river
+river starting at (336,20)
+river ending at (343,0) alt 1087
+river starting at (208,392)
+river ending at (213,389) alt 1407 at river
+river starting at (255,353)
+river ending at (274,319) alt 744 at river
+river starting at (57,233)
+river ending at (66,245) alt 1476 at river
+river starting at (363,50)
+river ending at (363,59) alt 1143 at river
+river starting at (337,348)
+river ending at (341,340) alt 287 at river
+river starting at (264,108)
+river ending at (291,221) alt 536 at river
+river starting at (321,217)
+river ending at (328,230) alt 361 at river
+river starting at (142,296)
+river ending at (141,299) alt 1466 at river
+river starting at (231,369)
+river ending at (231,369) alt 1395 at river
+river starting at (240,164)
+river ending at (283,182) alt 967 at river
+river starting at (14,195)
+river ending at (88,210) alt 1476 at river
+river starting at (89,350)
+river ending at (73,361) alt 1761 at river
+river starting at (346,39)
+river ending at (346,39) alt 1263 at river
+river starting at (219,108)
+river ending at (213,106) alt 1853 at river
+river starting at (195,29)
+river ending at (198,20) alt 1687 at river
+river starting at (268,193)
+river ending at (272,226) alt 593 at river
+river starting at (154,183)
+river ending at (147,191) alt 1576 at river
+river starting at (9,86)
+river ending at (0,84) alt 1864
+river starting at (194,355)
+river ending at (201,353) alt 1502 at river
+river starting at (199,135)
+river ending at (200,156) alt 1768 at river
+river starting at (206,363)
+river ending at (201,362) alt 1530 at river
+river starting at (289,233)
+river ending at (294,236) alt 493 at river
+river starting at (202,80)
+river ending at (202,81) alt 1853 at river
+river starting at (384,273)
+river ending at (387,273) alt 153 at river
+river starting at (193,120)
+river ending at (199,118) alt 1853 at river
+river starting at (175,227)
+river ending at (175,230) alt 1198 at river
+river starting at (58,345)
+river ending at (69,305) alt 1476 at river
+river starting at (271,317)
+river ending at (271,317) alt 744 at river
+river starting at (301,142)
+river ending at (301,184) alt 834 at river
+river starting at (28,168)
+river ending at (87,208) alt 1496 at river
+river starting at (222,305)
+river ending at (229,305) alt 961 at river
+river starting at (283,203)
+river ending at (287,220) alt 539 at river
+river starting at (192,225)
+river ending at (192,225) alt 1198 at river
+river starting at (348,186)
+river ending at (348,186) alt 622 at river
+river starting at (46,120)
+river ending at (45,120) alt 2059 at river
+river starting at (271,319)
+river ending at (271,319) alt 744 at river
+river starting at (163,231)
+river ending at (164,232) alt 1198 at river
+river starting at (158,33)
+river ending at (158,33) alt 1794 at river
+river starting at (117,349)
+river ending at (140,323) alt 1604 at river
+river starting at (28,306)
+river ending at (28,306) alt 1833 at river
+river starting at (2,348)
+river ending at (0,347) alt 1750
+river starting at (235,247)
+river ending at (255,231) alt 719 at river
+river starting at (202,22)
+river ending at (206,0) alt 1410
+river starting at (387,206)
+river ending at (382,207) alt 241 at river
+river starting at (55,37)
+river ending at (51,31) alt 1777 at river
+river starting at (214,254)
+river ending at (213,250) alt 1198 at river
+river starting at (303,285)
+river ending at (315,277) alt 269 at river
+river starting at (363,397)
+river ending at (363,399) alt 481
+river starting at (60,378)
+river ending at (68,381) alt 1761 at river
+river starting at (245,283)
+river ending at (269,313) alt 744 at river
+river starting at (21,315)
+river ending at (22,315) alt 1833 at river
+river starting at (309,78)
+river ending at (302,74) alt 1638 at river
+river starting at (21,107)
+river ending at (19,99) alt 2023 at river
+river starting at (39,61)
+river ending at (41,56) alt 1780 at river
+river starting at (257,164)
+river ending at (257,174) alt 1325 at river
+river starting at (173,114)
+river ending at (161,105) alt 2091 at river
+river starting at (47,202)
+river ending at (54,202) alt 1558 at river
+river starting at (373,196)
+river ending at (373,196) alt 259 at river
+river starting at (169,91)
+river ending at (166,82) alt 2091 at river
+river starting at (320,109)
+river ending at (305,142) alt 1385 at river
+river starting at (120,113)
+river ending at (120,110) alt 2146 at river
+river starting at (388,305)
+river ending at (388,305) alt 152 at river
+river starting at (14,159)
+river ending at (1,169) alt 1668 at river
+river starting at (230,226)
+river ending at (236,223) alt 889 at river
+river starting at (377,250)
+river ending at (376,251) alt 222 at river
+river starting at (5,368)
+river ending at (0,355) alt 1859
+river starting at (8,139)
+river ending at (0,145) alt 2008
+river starting at (234,57)
+river ending at (249,25) alt 1249 at river
+river starting at (64,124)
+river ending at (82,112) alt 2059 at river
+river starting at (166,121)
+river ending at (156,117) alt 2091 at river
+river starting at (180,385)
+river ending at (184,399) alt 1545
+river starting at (346,215)
+river ending at (346,215) alt 386 at river
+river starting at (38,240)
+river ending at (38,240) alt 1607 at river
+river starting at (125,189)
+river ending at (111,177) alt 1573 at river
+river starting at (96,250)
+river ending at (96,250) alt 1476 at river
+river starting at (30,255)
+river ending at (30,255) alt 1607 at river
+river starting at (48,259)
+river ending at (62,264) alt 1476 at river
+river starting at (243,103)
+river ending at (250,73) alt 1752 at river
+river starting at (204,293)
+river ending at (204,293) alt 1198 at river
+river starting at (15,359)
+river ending at (8,361) alt 1918 at river
+river starting at (52,395)
+river ending at (66,393) alt 1759 at river
+river starting at (53,244)
+river ending at (58,244) alt 1617 at river
+river starting at (169,85)
+river ending at (168,82) alt 2091 at river
+river starting at (273,129)
+river ending at (273,151) alt 1313 at river
+river starting at (184,295)
+river ending at (184,295) alt 1198 at river
+river starting at (253,283)
+river ending at (310,282) alt 331 at river
+river starting at (331,218)
+river ending at (330,232) alt 361 at river
+river starting at (334,151)
+river ending at (345,177) alt 779 at river
+river starting at (116,334)
+river ending at (120,332) alt 1664 at river
+river starting at (91,171)
+river ending at (91,171) alt 1573 at river
+river starting at (75,125)
+river ending at (76,120) alt 2131 at river
+river starting at (17,189)
+river ending at (4,169) alt 1698 at river
+river starting at (40,32)
+river ending at (44,32) alt 1777 at river
+river starting at (9,191)
+river ending at (0,175) alt 1681
+river starting at (47,285)
+river ending at (62,283) alt 1476 at river
+river starting at (62,21)
+river ending at (60,20) alt 1777 at river
+river starting at (257,169)
+river ending at (257,169) alt 1417 at river
+river starting at (149,349)
+river ending at (153,322) alt 1522 at river
+river starting at (184,246)
+river ending at (184,241) alt 1198 at river
+river starting at (160,57)
+river ending at (157,42) alt 1794 at river
+river starting at (100,77)
+river ending at (125,32) alt 1794 at river
+river starting at (91,105)
+river ending at (88,105) alt 2059 at river
+river starting at (96,294)
+river ending at (100,294) alt 1541 at river
+river starting at (333,138)
+river ending at (304,163) alt 1202 at river
+river starting at (395,140)
+river ending at (399,162) alt 712
+river starting at (102,396)
+river ending at (102,399) alt 2025
+river starting at (80,315)
+river ending at (77,304) alt 1476 at river
+river starting at (389,37)
+river ending at (373,40) alt 1263 at river
+river starting at (311,34)
+river ending at (303,34) alt 1504 at river
+river starting at (336,180)
+river ending at (346,198) alt 386 at river
+river starting at (397,215)
+river ending at (389,216) alt 225 at river
+river starting at (210,78)
+river ending at (210,78) alt 1853 at river
+river starting at (211,314)
+river ending at (231,310) alt 961 at river
+river starting at (68,36)
+river ending at (55,36) alt 1847 at river
+river starting at (35,352)
+river ending at (38,346) alt 1833 at river
+river starting at (172,90)
+river ending at (172,80) alt 2091 at river
+river starting at (90,363)
+river ending at (74,362) alt 1761 at river
+river starting at (83,35)
+river ending at (52,30) alt 1777 at river
+river starting at (236,108)
+river ending at (271,146) alt 1336 at river
+river starting at (99,95)
+river ending at (87,92) alt 2059 at river
+river starting at (32,130)
+river ending at (31,129) alt 2111 at river
+river starting at (5,102)
+river ending at (9,105) alt 2029 at river
+river starting at (206,241)
+river ending at (206,241) alt 1198 at river
+river starting at (64,158)
+river ending at (71,161) alt 1573 at river
+river starting at (51,224)
+river ending at (54,211) alt 1558 at river
+river starting at (124,191)
+river ending at (120,188) alt 1665 at river
+river starting at (228,49)
+river ending at (236,34) alt 1470 at river
+river starting at (104,290)
+river ending at (104,290) alt 1541 at river
+river starting at (192,24)
+river ending at (193,22) alt 1718 at river
+river starting at (184,315)
+river ending at (184,305) alt 1198 at river
+river starting at (328,391)
+river ending at (338,393) alt 548 at river
+river starting at (5,64)
+river ending at (0,74) alt 1877
+river starting at (349,11)
+river ending at (349,9) alt 1087 at river
+river starting at (143,261)
+river ending at (143,261) alt 1271 at river
+river starting at (121,141)
+river ending at (120,176) alt 1617 at river
+river starting at (251,159)
+river ending at (250,171) alt 1372 at river
+river starting at (312,126)
+river ending at (306,134) alt 1443 at river
+river starting at (8,76)
+river ending at (4,76) alt 1918 at river
+river starting at (254,74)
+river ending at (253,73) alt 1775 at river
+river starting at (217,5)
+river ending at (229,0) alt 1203
+river starting at (291,123)
+river ending at (283,132) alt 1558 at river
+river starting at (347,236)
+river ending at (348,236) alt 222 at river
+river starting at (384,9)
+river ending at (371,6) alt 1050 at river
+river starting at (317,105)
+river ending at (317,105) alt 1804 at river
+river starting at (243,289)
+river ending at (243,294) alt 1070 at river
+river starting at (224,86)
+river ending at (224,86) alt 1853 at river
+river starting at (209,211)
+river ending at (224,217) alt 1095 at river
+river starting at (376,361)
+river ending at (383,375) alt 319 at river
+river starting at (195,330)
+river ending at (184,308) alt 1229 at river
+ done
+setting up ecology ... done
+PASS empty natural world 400 biome 3
+carving river ...
+river first fork end at (51,83)
+starting river seg at (50,83) with length 22
+river seg end at (41,61)
+forking left at (41,61)
+starting river seg at (41,61) with length 36
+river seg end at (27,25)
+forking left at (27,25)
+starting river seg at (27,25) with length 17
+river seg end at (17,9)
+forking right at (27,25)
+starting river seg at (27,25) with length 40
+forking right at (41,61)
+starting river seg at (41,61) with length 35
+river seg end at (64,26)
+forking left at (64,26)
+starting river seg at (64,26) with length 48
+river seg end at (50,9)
+forking right at (64,26)
+starting river seg at (64,26) with length 24
+river seg end at (74,9)
+starting river seg at (51,83) with length 47
+river seg end at (78,36)
+forking left at (78,36)
+starting river seg at (78,36) with length 39
+forking right at (78,36)
+starting river seg at (78,36) with length 21
+river seg end at (89,15)
+ done
+setting up ecology ... done
+random village watchdog = 459
+PASS starter-village regression
+PASS all 19 generated-world checks
+PASS: 168536 atmosphere, resource, demand, civic and save/load integration checks
+exit=0

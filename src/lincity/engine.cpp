@@ -54,8 +54,8 @@ World::income(int amt, Stat<int>& account) {
 void
 World::expense(int amt, Stat<int>& account, bool allowCredit) {
   assert(amt >= 0);
-  int newBal = total_money - amt;
-  if(newBal < (allowCredit ? -2000000000 : 0) || newBal > total_money)
+  const long long newBal = 1LL * total_money - amt;
+  if(newBal < (allowCredit ? -2000000000 : 0))
     throw OutOfMoneyMessage::create(allowCredit)->exception();
   total_money = newBal;
   account += amt;

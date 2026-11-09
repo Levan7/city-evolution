@@ -8,6 +8,8 @@
 
 
     <sound file="Click.wav" />
+    <sound file="ChurchBell.wav" />
+    <sound file="RainAmbience.wav" />
 <!--
     <sound file="WindowClose.wav" />
     <sound file="WindowOpen.wav" />

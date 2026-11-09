@@ -18,6 +18,6 @@ for tool in tools:
 church=named(cat,'BPMChurchButton')[-1];assert any((x.text or '').strip()=='Church' for x in church.iter('Paragraph'));assert 'Orthodox' not in E.tostring(church,encoding='unicode')
 services=E.parse(data/'gui/publicservices.xml').getroot();assert len(named(services,'FullAutonomy'))==1;assert not named(services,'ZombieToggle');assert not named(services,'BuildPolice');assert not named(services,'DevelopmentPage')
 city=E.parse(data/'gui/cityhall.xml').getroot();assert len(named(city,'MayorFullAutonomy'))==1
-credits=(data/'gui/creditslist.xml').read_text();assert 'Levan Chelidze' in credits and 'studio76@mail.com' in credits
+credits=(data/'gui/creditslist.xml').read_text();assert '>City Evolution by Levan</Paragraph>' in credits and 'studio76@mail.com' in credits
 for p in (data/'gui').glob('*.xml'):assert re.search(r'<\?xml-stylesheet',p.read_text()),p
 print('PASS compact HUD/navigation, dark statistics, 59 tools, seven new catalogue buildings, every construction Help illustration, Church text, autonomy controls, hidden event and owner credits')

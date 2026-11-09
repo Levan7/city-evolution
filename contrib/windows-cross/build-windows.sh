@@ -38,6 +38,6 @@ cp "$SRC/contrib/windows/default.xml" "$OUT/Settings/default.xml"
 (cd "$SRC/contrib/windows" && x86_64-w64-mingw32-windres launcher.rc -O coff -o "$OUT/launcher-resource.o")
 x86_64-w64-mingw32-g++-posix -static -municode -mwindows "$SRC/contrib/windows/launcher.cpp" "$OUT/launcher-resource.o" -o "$OUT/City Evolution.exe" -lshell32
 rm "$OUT/launcher-resource.o"
-cp "$SRC/README-Preview15.txt" "$OUT/README.txt"
+cp "$SRC/contrib/windows/README.txt" "$OUT/README.txt"
 (cd "$SRC/build" && zip -qr CityEvolution-Windows-x64.zip CityEvolution-Windows-x64)
 echo "Done: $SRC/build/CityEvolution-Windows-x64.zip (run City Evolution.exe)"

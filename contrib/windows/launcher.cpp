@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 // Native portable launcher; no command shell or script interpreter.
+#ifndef UNICODE
 #define UNICODE
+#endif
 #define _UNICODE
 #include <windows.h>
 #include <filesystem>

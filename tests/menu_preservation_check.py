@@ -2,7 +2,7 @@
 from pathlib import Path
 import hashlib,json,xml.etree.ElementTree as E
 s=Path(__file__).resolve().parents[1]
-manifest=json.loads((s/'doc/audit/Preview12-protected-menu-hashes.json').read_text())
+manifest=json.loads((s/'tests/fixtures/Preview12-protected-menu-hashes.json').read_text())
 authorized = {'data/gui/mps.xml','data/gui/minimap.xml','data/gui/buttonpanel.xml','data/gui/pbar.xml',
  'data/gui/pbar2nd.xml','data/gui/app.xml','data/gui/mainmenu.xml'}
 for f,sha in manifest.items():
@@ -10,7 +10,7 @@ for f,sha in manifest.items():
  data=(s/f).read_bytes()
  if f=='data/gui/mainmenu.xml':data=data.replace(b'Preview 14',b'Preview 12')
  assert hashlib.sha256(data).hexdigest()==sha,f+' changed'
-expected=json.loads((s/'doc/audit/Preview12-cityhall-pages.json').read_text())
+expected=json.loads((s/'tests/fixtures/Preview12-cityhall-pages.json').read_text())
 pages=E.parse(s/'data/gui/cityhall.xml').findall('.//SwitchComponent/Panel')
 def canonical(p):
  for x in p.iter():

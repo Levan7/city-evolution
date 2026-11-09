@@ -183,6 +183,11 @@ void Oremine::report(Mps& mps, bool production) const {
   mps.add_s(constructionGroup->name);
   mps.add_sfp(N_("busy"), busy);
   mps.add_sddp(N_("Deposits"), total_ore_reserve, (constructionGroup->size * constructionGroup->size * ORE_RESERVE));
+  if(total_ore_reserve == 0) mps.add_s("Ore deposits depleted");
+  else if(commodityCount[STUFF_ORE] > ORE_LEVEL_TARGET * (MAX_ORE_AT_MINE - ORE_PER_RESERVE) / 100)
+    mps.add_s("Ore stock full; connect a buyer");
+  else if(commodityCount[STUFF_LABOR] < OREMINE_LABOR)
+    mps.add_s("Needs workers from housing");
   list_commodities(mps, production);
 }
 

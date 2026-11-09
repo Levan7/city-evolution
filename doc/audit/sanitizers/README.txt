@@ -1,0 +1,1 @@
+AddressSanitizer + UndefinedBehaviorSanitizer (-O1 -g, vptr check off) run of the eleven simulation programs on the Preview 17 source before the Preview 18 changes. No sanitizer reports. audio-checks was run separately (working-device mode) and passed.

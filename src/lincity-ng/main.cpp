@@ -21,6 +21,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 ** ---------------------------------------------------------------------- */
 
+#include "release_label.hpp"
 #include "main.hpp"
 #include "../../tests/world_generation_checks.hpp"
 
@@ -144,7 +145,7 @@ void initVideo(int width, int height)
     if(getConfig()->useFullScreen.get())
         flags |= SDL_WINDOW_FULLSCREEN;
 
-    window = SDL_CreateWindow("City Evolution - Preview 15",
+    window = SDL_CreateWindow("City Evolution - " CE_RELEASE_LABEL,
                               width, height,
                               flags);
 

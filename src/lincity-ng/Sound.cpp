@@ -22,6 +22,8 @@
 ** ---------------------------------------------------------------------- */
 
 #include "Sound.hpp"
+#include <algorithm>
+#include "lincity/groups.hpp"
 
 #include <SDL3/SDL.h>                     // for SDL_GetError, SDL_CreateThread
 #include <SDL3_mixer/SDL_mixer.h>         // for Mix_Volume, Mix_FreeMusic
@@ -266,7 +268,7 @@ Sound::~Sound() {
   if(musicTrack){MIX_SetTrackStoppedCallback(musicTrack,nullptr,nullptr);MIX_StopTrack(musicTrack,0);MIX_SetTrackAudio(musicTrack,nullptr);}
   if(soundTrack){MIX_StopTrack(soundTrack,0);MIX_SetTrackAudio(soundTrack,nullptr);}
   if(mixer)MIX_DestroyMixer(mixer);
-  mixer=nullptr;musicTrack=nullptr;soundTrack=nullptr;
+  mixer=nullptr;musicTrack=nullptr;soundTrack=nullptr;rainTrack=nullptr;
   if(currentMusic)MIX_DestroyAudio(currentMusic);
   for(auto& item:waves)MIX_DestroyAudio(item.second);
   if(mixerInitialized)MIX_Quit();
@@ -308,6 +310,15 @@ Sound::playSound(const std::string& name) {
 
 void
 Sound::playSound(const MapTile& tile) {
+  if(tile.reportingConstruction &&
+     tile.reportingConstruction->constructionGroup->group == GROUP_CHURCH) {
+    const auto tick = SDL_GetTicks();
+    if(lastBell == 0 || tick - lastBell >= 1800) {
+      playSound("ChurchBell");
+      lastBell = tick;
+    }
+    return;
+  }
   ResourceGroup* resourceGroup;
   if(tile.reportingConstruction)
     resourceGroup = tile.reportingConstruction->soundGroup;
@@ -316,6 +327,40 @@ Sound::playSound(const MapTile& tile) {
   int count = resourceGroup->chunks.size();
   if(count)
     playASound(resourceGroup->chunks[rand() % count]);
+}
+
+void Sound::setRainAmbience(float intensity) {
+  if(!audioOpen) return;
+  const auto now = SDL_GetTicks();
+  const float step = lastRainUpdate ? std::min<Uint64>(now - lastRainUpdate, 100) / 600.f : 0.f;
+  lastRainUpdate = now;
+  const float target = getConfig()->soundEnabled.get()
+    ? intensity * getConfig()->soundVolume.get() * .01f : 0.f;
+  if(target <= 0 && rainGain <= 0) return;
+  if(!rainTrack) {
+    const auto sample = waves.find("RainAmbience");
+    if(sample == waves.end() || !sample->second) return;
+    rainTrack = MIX_CreateTrack(mixer);
+    if(!rainTrack) return;
+    MIX_SetTrackAudio(rainTrack, sample->second);
+  }
+  rainGain += std::clamp(target - rainGain, -step, step);
+  MIX_SetTrackGain(rainTrack, rainGain);
+  if(rainGain <= 0) {
+    if(MIX_TrackPlaying(rainTrack)) MIX_StopTrack(rainTrack, 0);
+  } else if(!MIX_TrackPlaying(rainTrack)) {
+    const auto props = SDL_CreateProperties();
+    if(!props) return;
+    SDL_SetNumberProperty(props, MIX_PROP_PLAY_LOOPS_NUMBER, -1);
+    MIX_PlayTrack(rainTrack, props);
+    SDL_DestroyProperties(props);
+  }
+}
+
+void Sound::stopRainAmbience() {
+  if(rainTrack) MIX_StopTrack(rainTrack, MIX_TrackMSToFrames(rainTrack, 250));
+  rainGain = 0.f;
+  lastRainUpdate = 0;
 }
 
 void Sound::playASound(MIX_Audio *chunk) {

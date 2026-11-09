@@ -26,7 +26,19 @@ struct CivicServices {
  std::vector<int> route(const World&,int home,int target) const;
  int terrainCost(const World&,int id,int home,int target) const;
  bool stationReady(const Construction&,int service) const;
- void adjustTaxes(World&); std::string financialAdvice(const World&) const;
+ // ---- Taxes -----------------------------------------------------------------------------
+ // fiscal(): last completed year's tax income and running costs (construction excluded).
+ struct Fiscal { long long revenue=0, operating=0, incomeTax=0; int population=0; };
+ Fiscal fiscal(const World&) const;
+ // The income-tax rate the financial advisor recommends, and why. Never above the ceiling.
+ int recommendedTax(const World&, std::string* why=nullptr) const;
+ // Button "Auto-adjust taxes": jump to the recommended rate right now (any month, any size of change).
+ std::string applyRecommendedTax(World&);
+ // Monthly automation while auto tax is ON: moves one point per month toward the recommended rate.
+ void adjustTaxes(World&);
+ std::string financialAdvice(const World&) const;
+ std::string debtAdvice(const World&) const;
+ std::string taxNote; // last automatic change and its reason (shown in the budget window, not saved)
  void update(World&); void monthly(World&);
  std::string save() const; void load(const std::string&,int side);
  unsigned random(){rng^=rng<<13;rng^=rng>>17;rng^=rng<<5;return rng;}

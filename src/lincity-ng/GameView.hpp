@@ -27,6 +27,7 @@
 #include <filesystem>             // for path
 #include <memory>                 // for unique_ptr
 #include <vector>
+#include <unordered_map>
 #include <string>                 // for string, basic_string
 
 #include "gui/Component.hpp"      // for Component
@@ -104,6 +105,7 @@ public:
 private:
     struct StreetActor { MapPoint point, next, previous; float progress; bool car; unsigned int style, appearance; std::vector<MapPoint> route; size_t routeIndex=0; };
     std::vector<StreetActor> streetActors;
+    std::unordered_multimap<int, size_t> streetActorsByTile;
     int lastAtmosphereTime = -1, trafficRefresh = 0;
     void drawCityLife(Painter& painter);
     void drawTransit(Painter&,int modeFilter=-1,MapPoint tile=MapPoint(-1,-1));

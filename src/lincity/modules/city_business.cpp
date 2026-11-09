@@ -10,7 +10,7 @@ CityBusinessGroup techCampusConstructionGroup("Technology campus", GROUP_TECH_CA
 CityBusinessGroup cafeConstructionGroup("Neighborhood cafe", GROUP_CAFE, 1, 3000, MAX_TECH_LEVEL/50);
 CityBusinessGroup foodHallConstructionGroup("Food hall and bar", GROUP_FOODHALL, 2, 8000, MAX_TECH_LEVEL*15/100);
 CityBusinessGroup::CityBusinessGroup(const std::string& n, int g, int s, int c, int t) :
-  ConstructionGroup(n, n, true, g, s, blue(22), 0, c/5, 20, c, t, 0) {
+  ConstructionGroup(n, n, g != GROUP_WAREHOUSE, g, s, blue(22), 0, c/5, 20, c, t, 0) {
   auto rule = [this](Commodity c, int capacity, bool take, bool give) {
     commodityRuleCount[c] = CommodityRule{capacity, take, give};
   };
@@ -60,7 +60,7 @@ void CityBusiness::update() {
   bool operated = false;
   if(g == GROUP_WAREHOUSE) {
     world.expense(6, world.stats.expenses.transport);
-    operated = !neighbors.empty(); // stock buffers connect road and rail through normal commodity flow
+    operated = !neighbors.empty() || !partners.empty();
   } else {
     const bool tech = g == GROUP_TECH_CAMPUS, cafe = g == GROUP_CAFE;
     const int labor = cafe ? 4 : 8, water = tech ? 2 : cafe ? 3 : 6;
@@ -96,7 +96,7 @@ void CityBusiness::update() {
 void CityBusiness::report(Mps& mps, bool production) const {
   mps.add_s(constructionGroup->name);
   mps.add_sfp("Operating days / month",busy);
-  if(constructionGroup->group == GROUP_WAREHOUSE) {mps.add_s("Road / rail commodity buffer");mps.add_s("$6/day; connect at the edges");}
+  if(constructionGroup->group == GROUP_WAREHOUSE) {mps.add_s("Road / rail commodity buffer");mps.add_s("$6/day; connect a track, road or rail");}
   else if(constructionGroup->group == GROUP_TECH_CAMPUS) {
     mps.add_s("Needs engineers and technicians, steel, labor, water, power.");
     mps.add_sfp("Staffed (% of full speed)", world.evolution.campusSpeed()/10);

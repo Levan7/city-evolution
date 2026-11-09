@@ -6,7 +6,7 @@
 #include <libxml++/parsers/textreader.h>
 #include <libxml/xmlwriter.h>
 TransitGroup busStopGroup("Bus stop",GROUP_BUS_STOP,1,800,0),busTerminalGroup("Bus terminal",GROUP_BUS_TERMINAL,2,7500,0),railStationGroup("Passenger railway station",GROUP_RAIL_STATION,3,15000,MAX_TECH_LEVEL/20),metroStationGroup("Underground metro station",GROUP_METRO_STATION,1,18000,MAX_TECH_LEVEL/10),elevatedStationGroup("Elevated metro station",GROUP_ELEVATED_STATION,2,22000,MAX_TECH_LEVEL/10),metroTrackGroup("Underground metro track",GROUP_METRO_TRACK,1,1000,MAX_TECH_LEVEL/10,true),elevatedTrackGroup("Elevated metro track",GROUP_ELEVATED_TRACK,1,1800,MAX_TECH_LEVEL/10,true);
-TransitGroup::TransitGroup(const char* n,int g,int sz,int c,int tech,bool l):ConstructionGroup(n,n,true,g,sz,blue(22),0,c/5,0,c,tech,0),layer(l) {
+TransitGroup::TransitGroup(const char* n,int g,int sz,int c,int tech,bool l):ConstructionGroup(n,n,false,g,sz,blue(22),0,c/5,0,c,tech,0),layer(l) {
  if(!l){commodityRuleCount[STUFF_LABOR]={2000,true,false};commodityRuleCount[STUFF_LOVOLT]={4000,true,false};}
 }
 Construction* TransitGroup::createConstruction(World& w){return new TransitFacility(w,this);}
@@ -19,6 +19,11 @@ bool TransitGroup::can_build_here(const World& w,MapPoint p,Message::ptr& msg)co
 }
 TransitFacility::TransitFacility(World& w,ConstructionGroup* g):Construction(w){constructionGroup=g;initialize_commodities();}
 int TransitFacility::mode()const{return constructionGroup->group==GROUP_RAIL_STATION?1:constructionGroup->group==GROUP_METRO_STATION?2:constructionGroup->group==GROUP_ELEVATED_STATION?3:0;}
+int TransitFacility::monthlyCapacity() const {
+ return constructionGroup->group==GROUP_BUS_STOP ? 200
+   : constructionGroup->group==GROUP_BUS_TERMINAL ? 1000 : 800;
+}
+
 void TransitFacility::update(){
  int m=mode(),staff=m==0?2:8,power=m==0?0:15;
  active=commodityCount[STUFF_LABOR]>=staff&&commodityCount[STUFF_LOVOLT]>=power;
@@ -30,6 +35,10 @@ void TransitFacility::update(){
 void TransitFacility::report(Mps& m,bool production)const{
  m.add_s(constructionGroup->name);m.add_s(active?"Running":"Needs staff / power");
  m.add_sfp("Days active",busy);m.add_sfp("Journeys / month",riders);
+ if(mode() == TransitSystem::BUS) {
+   m.add_sd("Trips through stop", endpointTrips);
+   if(overloaded()) m.add_s("Crowded: add bus capacity");
+ }
  m.add_s("Street link and staffing differ.");
  m.add_s("Top-right: Transport");list_commodities(m,production);
 }

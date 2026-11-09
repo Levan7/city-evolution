@@ -252,6 +252,8 @@ World::simulate_mappoints(void) {
     }
     if(civic.burningAt(cst->point.y*map.len()+cst->point.x) && cst->constructionGroup->group!=GROUP_FIRE) { if(GROUP_IS_RESIDENCE(cst->constructionGroup->group)){auto* r=static_cast<Residence*>(cst);stats.population.population_m+=r->local_population;stats.population.housed_m+=r->local_population;stats.population.housing_m+=r->max_population;} continue; }
     cst->trade();
+    cst->hadPowerInput = cst->commodityCount[STUFF_LOVOLT] > 0
+      || cst->commodityCount[STUFF_HIVOLT] > 0;
     cst->update();
   }
 }

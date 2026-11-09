@@ -1,1 +1,0 @@
-PASS packaged native Wayland game under Weston headless using inherited Wayland socket, 3072x1590, scale1.75, no DISPLAY or development library paths; safe audio failure, graphical volume controls and graceful exit

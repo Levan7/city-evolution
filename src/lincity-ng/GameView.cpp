@@ -1226,7 +1226,7 @@ void GameView::drawTexture(Painter& painter, const MapPoint &tile, GraphicsInfo 
         if(inCity(tile)) {
           auto* c = getWorld().map(tile)->reportingConstruction;
           if(c) powered = GROUP_IS_RESIDENCE(c->constructionGroup->group)
-            ? bool(c->flags & FLAG_HAD_POWER) : c->commodityCount[STUFF_LOVOLT] > 0;
+            ? static_cast<const Residence*>(c)->hasElectricity() : c->commodityCount[STUFF_LOVOLT] > 0;
         }
         const int cloud = e.currentWeather() ? 10 : 0;
         const int strength = powered ? 80 : 110;
@@ -1342,7 +1342,31 @@ void GameView::drawTile(Painter& painter, const MapPoint &tile)
 
                             }
                             else
-                            {   drawTexture(painter, lowerRightTile, graphicsInfo);}
+                            {
+                                drawTexture(painter, lowerRightTile, graphicsInfo);
+                                const auto* building = getWorld().map(upperLeft)->reportingConstruction;
+                                if(!hideHigh && building && graphicsInfo->texture
+                                   && frit == building->frameIt) {
+                                    const auto* home = dynamic_cast<const Residence*>(building);
+                                    const int group = building->constructionGroup->group;
+                                    const bool factory = group == GROUP_INDUSTRY_L
+                                      || group == GROUP_INDUSTRY_H || group == GROUP_TECH_CAMPUS;
+                                    const bool noPower = home ? home->local_population > 0 && !home->hasElectricity()
+                                      : factory && !building->hadPowerInput
+                                        && building->commodityCount[STUFF_LOVOLT] == 0
+                                        && building->commodityCount[STUFF_HIVOLT] == 0;
+                                    if(noPower) {
+                                        const auto top = getScreenPoint(lowerRightTile)
+                                          - Vector2(0, graphicsInfo->y * zoom + 10);
+                                        painter.setFillColor(Color(35, 29, 21, 225));
+                                        painter.fillRectangle(Rect2D(top.x-6, top.y-6, top.x+6, top.y+7));
+                                        painter.setLineColor(Color(255, 203, 86));
+                                        painter.drawLine(top + Vector2(1,-4), top + Vector2(-2,1));
+                                        painter.drawLine(top + Vector2(-2,1), top + Vector2(2,0));
+                                        painter.drawLine(top + Vector2(2,0), top + Vector2(-1,5));
+                                    }
+                                }
+                            }
                             graphicsInfo->x = old_x;
                             graphicsInfo->y = old_y;
                         }
@@ -1756,12 +1780,19 @@ void GameView::updateStreetActors() {
     a.progress += delta/(a.car?(motor?1900.f:3600.f):5200.f);
     ++it;
   }
+  streetActorsByTile.clear();
+  for(size_t i = 0; i < streetActors.size(); ++i) {
+    const auto& actor = streetActors[i];
+    const auto tile = actor.progress < .5f ? actor.point : actor.next;
+    streetActorsByTile.emplace(tile.y * world.map.len() + tile.x, i);
+  }
 }
 
 void GameView::drawStreetActors(Painter& painter, MapPoint tile) {
   const auto& e = getWorld().evolution;
-  for(const auto& a : streetActors) {
-    if((a.progress < .5f ? a.point : a.next) != tile) continue;
+  const auto actors = streetActorsByTile.equal_range(tile.y * getWorld().map.len() + tile.x);
+  for(auto it = actors.first; it != actors.second; ++it) {
+    const auto& a = streetActors[it->second];
     if((a.car && !getConfig()->carsEnabled.get()) || (!a.car && !e.pedestrians)) { continue; }
     auto from=getScreenPoint(a.point), to=getScreenPoint(a.next);
     auto p=from+(to-from)*std::min(1.f,a.progress);

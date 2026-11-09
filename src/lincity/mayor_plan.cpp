@@ -209,5 +209,6 @@ std::vector<std::string> CityEvolution::planLines(World& w) const {
   L.push_back("Goals in 5 years: " + (goals.empty() ? std::string("keep everything running well") : goals));
   L.push_back("Cost: about " + money(planEstimate) + " in total, " + money(planBudgetYear) + " a year. "
     + (planState == PLAN_ACTIVE ? "Spent so far: " + money(planSpent) + "." : "Nothing is built until you approve."));
+  L.push_back(planState == PLAN_PROPOSED ? "Focus button: Livable city (basics), Skills and education (schools, universities) or Technology hub (campus). Goals and cost change with it." : "The focus is locked while the plan runs; choose another after the five-year review.");
   return L;
 }

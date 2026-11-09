@@ -27,6 +27,7 @@
 
 #include <libxml++/parsers/textreader.h>  // for TextReader
 #include <libxml/xmlwriter.h>             // for xmlTextWriterWriteElement
+#include <algorithm>
 #include <stdlib.h>                       // for rand
 #include <iostream>                       // for basic_ostream, operator<<
 #include <string>                         // for basic_string, char_traits
@@ -241,7 +242,8 @@ void Residence::update()
     }
 
      /* now get power for nothing */
-    if (commodityCount[STUFF_LOVOLT] >= POWER_RES_OVERHEAD + (POWER_USE_PER_PERSON * local_population))
+    poweredToday = commodityCount[STUFF_LOVOLT] >= POWER_RES_OVERHEAD + POWER_USE_PER_PERSON * local_population;
+    if (poweredToday)
     {
         consumeStuff(STUFF_LOVOLT, POWER_RES_OVERHEAD + (POWER_USE_PER_PERSON * local_population));
         flags |= FLAG_HAD_POWER;
@@ -379,6 +381,26 @@ void Residence::update()
     bad += world.map(point)->pollution / 20;
     good += world.people_pool / 27; //27
     if(world.transit.covered(point,world.map.len())) good += 20;
+    // Nearby job openings help a supplied neighbourhood grow. Commodity flow
+    // still determines which employers actually receive labour.
+    auto hiring = [this](const Construction* building) {
+      const auto group = building->constructionGroup->group;
+      const auto& labour = building->constructionGroup->commodityRuleCount[STUFF_LABOR];
+      return !building->isDead() && !(building->flags & (FLAG_IS_TRANSPORT | FLAG_EVACUATE))
+        && group != GROUP_MARKET && !GROUP_IS_RESIDENCE(group)
+        && labour.take && !labour.give && labour.maxload > 0
+        && building->commodityCount[STUFF_LABOR] < labour.maxload / 2;
+    };
+    if(commodityCount[STUFF_FOOD] > 0 && commodityCount[STUFF_WATER] > 0) {
+      bool nearbyJobs = std::any_of(neighbors.begin(), neighbors.end(), hiring);
+      for(const auto* market : partners) {
+        if(nearbyJobs) break;
+        if(market->constructionGroup->group == GROUP_MARKET)
+          nearbyJobs = std::any_of(market->partners.begin(), market->partners.end(), hiring)
+            || std::any_of(market->neighbors.begin(), market->neighbors.end(), hiring);
+      }
+      if(nearbyJobs) good += 20;
+    }
     desireability = good-bad;
     r = rand() % ((good + bad) * RESIDENCE_PPM);
     if (r < bad || local_population > max_population)
@@ -417,9 +439,26 @@ Residence::torch() {
   Construction::torch();
 }
 
+std::string Residence::foodSupplyAdvice() const {
+  if(local_population <= 0 || flags & FLAG_FED) return {};
+  if(commodityCount[STUFF_FOOD] >= local_population)
+    return commodityCount[STUFF_WATER] < local_population ? "Connect a water supply" : "";
+  bool hasMarket = false;
+  for(const auto* links : {&neighbors, &partners})
+    for(const auto* building : *links) {
+      if(building->constructionGroup->group != GROUP_MARKET || building->isDead()) continue;
+      hasMarket = true;
+      if(building->commodityCount[STUFF_FOOD] > 0)
+        return "Check market workers and food trade";
+    }
+  return hasMarket ? "Supply the market with food" : "Connect to a market or farm";
+}
+
 void Residence::report(Mps& mps, bool production) const {
   mps.add_s(constructionGroup->name);
   mps.add_sddp(N_("Tenants"), local_population, max_population);
+  const auto foodAdvice = foodSupplyAdvice();
+  if(!foodAdvice.empty()) mps.add_s(foodAdvice);
   mps.add_sd(N_("Desireability"), desireability);
   mps.add_sf(N_("Births p.a."), (float)1200/births);
   mps.add_sf(N_("Death p.a."), (float)1200/deaths);
@@ -429,12 +468,14 @@ void Residence::report(Mps& mps, bool production) const {
 
 void Residence::save(xmlTextWriterPtr xmlWriter) const {
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"local_population", xmlFormat<int>(local_population));
+  xmlTextWriterWriteElement(xmlWriter, (xmlStr)"powered_today", xmlFormat<int>(poweredToday));
   Construction::save(xmlWriter);
 }
 
 bool Residence::loadMember(xmlpp::TextReader& xmlReader, unsigned int ldsv_version) {
   std::string name = xmlReader.get_name();
   if(name == "local_population") local_population = xmlParse<int>(xmlReader.read_inner_xml());
+  else if(name == "powered_today") poweredToday = xmlParse<int>(xmlReader.read_inner_xml()) != 0;
   else return Construction::loadMember(xmlReader, ldsv_version);
   return true;
 }

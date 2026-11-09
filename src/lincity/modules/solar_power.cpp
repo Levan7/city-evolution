@@ -39,7 +39,7 @@
 SolarPowerConstructionGroup solarPowerConstructionGroup(
     N_("Solar Power Plant"),
     N_("Solar Power Plants"),
-     TRUE,                     /* need credit? */
+     FALSE,                    /* need credit? */
      GROUP_SOLAR_POWER,
      GROUP_SOLAR_POWER_SIZE,
      GROUP_SOLAR_POWER_COLOUR,

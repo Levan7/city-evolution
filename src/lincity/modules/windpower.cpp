@@ -43,7 +43,7 @@
 WindpowerConstructionGroup windpowerConstructionGroup(
   N_("Wind Power"),
   N_("Wind Power"),
-  TRUE,                     /* need credit? */
+  FALSE,                    /* need credit? */
   GROUP_WIND_POWER,
   GROUP_WIND_POWER_SIZE,
   GROUP_WIND_POWER_COLOUR,

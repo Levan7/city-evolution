@@ -1,0 +1,11 @@
+day=1200 pop=94 cash=182696 buildings=27 tech=364 Waiting: Elementary School needs technology or $10091. Other priorities checked; treasury $182696.
+day=2400 pop=119 cash=171452 buildings=30 tech=1675 Monitoring supplies, housing demand and service operation. No justified affordable project this month.
+day=3600 pop=136 cash=170380 buildings=30 tech=3069 Monitoring supplies, housing demand and service operation. No justified affordable project this month.
+day=4800 pop=148 cash=170273 buildings=30 tech=4530 Monitoring supplies, housing demand and service operation. No justified affordable project this month.
+day=6000 pop=161 cash=171128 buildings=30 tech=6020 Waiting: Windmill needs technology or $23010. Other priorities checked; treasury $171128.
+day=7200 pop=172 cash=172474 buildings=30 tech=7498 Waiting: Windmill needs technology or $23749. Other priorities checked; treasury $172474.
+day=8400 pop=178 cash=173830 buildings=30 tech=8970 Waiting: Windmill needs technology or $24485. Other priorities checked; treasury $173830.
+day=9600 pop=157 cash=161965 buildings=30 tech=10470 Waiting: Windmill needs technology or $25235. Other priorities checked; treasury $161965.
+day=10800 pop=148 cash=154499 buildings=30 tech=11770 Monitoring supplies, housing demand and service operation. No justified affordable project this month.
+day=12000 pop=142 cash=152140 buildings=30 tech=12923 Monitoring supplies, housing demand and service operation. No justified affordable project this month.
+PASS autonomous settlement from empty land, 10-year real simulation, wooded-zone bootstrap, boundary enforcement, paid projects, save/load, OFF and insufficient funding
