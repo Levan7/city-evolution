@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 #include "city_business.hpp"
+#include <algorithm>
 #include "lincity/world.hpp"
 #include "lincity-ng/Mps.hpp"
 #include "util/xmlutil.hpp"
@@ -96,7 +97,19 @@ void CityBusiness::update() {
 void CityBusiness::report(Mps& mps, bool production) const {
   mps.add_s(constructionGroup->name);
   mps.add_sfp("Operating days / month",busy);
-  if(constructionGroup->group == GROUP_WAREHOUSE) {mps.add_s("Road / rail commodity buffer");mps.add_s("$6/day; connect a track, road or rail");}
+  if(constructionGroup->group == GROUP_WAREHOUSE) {
+    const bool connected = std::any_of(neighbors.begin(), neighbors.end(), [](const auto* neighbor) {
+      return !neighbor->isDead() && (neighbor->flags & FLAG_IS_TRANSPORT);
+    });
+    mps.add_s(connected ? "Freight link connected" : "No freight link");
+    mps.add_s("Upkeep: $6/day");
+    const bool hasStock = std::any_of(commodityCount.begin(), commodityCount.end(),
+      [](int amount) { return amount > 0; });
+    if(connected && freightSurveyed && !freightHasBuyer)
+      mps.add_s("No connected buyer");
+    else if(connected && !hasStock)
+      mps.add_s("Waiting for stock");
+  }
   else if(constructionGroup->group == GROUP_TECH_CAMPUS) {
     mps.add_s("Needs engineers and technicians, steel, labor, water, power.");
     mps.add_sfp("Staffed (% of full speed)", world.evolution.campusSpeed()/10);

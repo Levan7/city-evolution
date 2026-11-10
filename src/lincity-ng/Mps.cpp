@@ -485,7 +485,7 @@ MpsFinance::refreshPopulation() {
     / NUMOF_DAYS_IN_MONTH);
   add_sd(N_("Shanties"), stats.groupCount[GROUP_SHANTY]);
 
-  add_sddp(N_("Unemployment"),
+  add_sddp(N_("Unemployed (housed)"),
     stats.population.unemployed_m / NUMOF_DAYS_IN_MONTH,
     stats.population.housed_m / NUMOF_DAYS_IN_MONTH);
   add_sddp(N_("Starvation"),

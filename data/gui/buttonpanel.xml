@@ -22,8 +22,8 @@
     <tool name="BPMMarketButton" grpid="06" help="market" />
     <tool name="BPMFarmButton" grpid="05" help="farm" />
     <tool name="BPMWaterwellButton" grpid="41" help="waterwell" />
-    <tool name="BPMCafeButton" grpid="53" help="evolution" />
-    <tool name="BPMFoodHallButton" grpid="54" help="evolution" />
+    <tool name="BPMCafeButton" grpid="53" help="cafe" />
+    <tool name="BPMFoodHallButton" grpid="54" help="foodhall" />
   </menu>
   <menu button-name="BPSchoolButton" drawer-name="BPSchoolButtonDrawer" default="BPMSchoolButton">
     <tool name="BPMSchoolButton" grpid="26" help="school" />
@@ -55,7 +55,7 @@
   </menu>
   <menu button-name="BPFreightButton" drawer-name="BPFreightButtonDrawer" default="BPMPortButton">
     <tool name="BPMPortButton" grpid="17" help="port" />
-    <tool name="BPMWarehouseButton" grpid="51" help="evolution" />
+    <tool name="BPMWarehouseButton" grpid="51" help="warehouse" />
   </menu>
   <menu button-name="BPPowerButton" drawer-name="BPPowerButtonDrawer" default="BPMPowerLineButton">
     <tool name="BPMPowerLineButton" grpid="01" help="powerline" />
@@ -74,7 +74,7 @@
     <tool name="BPMMillButton" grpid="28" help="mill" />
     <tool name="BPMLIndustryButton" grpid="12" help="industryl" />
     <tool name="BPMHIndustryButton" grpid="18" help="industryh" />
-    <tool name="BPMTechCampusButton" grpid="52" help="evolution" />
+    <tool name="BPMTechCampusButton" grpid="52" help="technology-campus" />
     <tool name="BPMGlassButton" grpid="67" help="glass-offices" />
     <tool name="BPMBronzeButton" grpid="68" help="bronze-offices" />
     <tool name="BPMDecoButton" grpid="69" help="deco-offices" />

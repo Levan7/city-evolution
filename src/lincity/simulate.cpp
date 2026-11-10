@@ -47,6 +47,7 @@
 #include "sustainable.hpp"                 // for SUST_FIRE_YEARS_NEEDED, SUST...
 #include "world.hpp"
 #include "road_power.hpp"
+#include "freight.hpp"
 #include "modules/residence.hpp"                       // for World, Map, MapTile
 
 /* ---------------------------------------------------------------------- *
@@ -66,6 +67,8 @@ World::do_time_step(void) {
 
     /* Run through simulation equations for each farm, residence, etc. */
     distributeRoadPower(*this);
+    distributeWarehouseFreight(*this);
+    transit.deliver(*this);
     simulate_mappoints();
 
     /* Now do the stuff that happens once a year, once a month, etc. */
@@ -175,6 +178,39 @@ World::end_of_month_update(void) {
     cst->report_commodities();
   }
 
+  // Close the monthly tax ledger before the next month's policy review.
+  civic.lastLaborTaxBase = std::max(0, taxable.labor);
+  const auto incomeTax = (1LL * civic.lastLaborTaxBase * money_rates.income_tax
+    + taxable.laborRemainder);
+  income(incomeTax / 100, stats.income.income_tax);
+  taxable.laborRemainder = incomeTax % 100;
+  const auto coalTax = 1LL * taxable.coal * money_rates.coal_tax + taxable.coalRemainder;
+  income(coalTax / 10, stats.income.coal_tax);
+  taxable.coalRemainder = coalTax % 10;
+
+  const auto goodsTax = 1LL * taxable.goods * money_rates.goods_tax + taxable.goodsRemainder;
+  const auto goods = goodsTax / 100;
+  income(goods + goods * money_rates.goods_tax * tech_level / 2000000,
+    stats.income.goods_tax);
+  taxable.goodsRemainder = goodsTax % 100;
+
+  // Apply only the additional discount incurred this month. The export
+  // thresholds still apply to the full year, even though receipts are monthly.
+  auto discount = [](long long exports) {
+    long long total = 0;
+    for(int threshold : {25000, 50000, 100000, 200000, 400000, 800000})
+      total += std::max(0LL, exports - threshold) / 10;
+    return total;
+  };
+  const auto exports = taxable.exportsThisYear + taxable.trade_ex;
+  income(taxable.trade_ex - (discount(exports) - discount(taxable.exportsThisYear)),
+    stats.income.export_tax);
+  taxable.exportsThisYear = exports;
+  taxable.labor = taxable.coal = taxable.goods = taxable.trade_ex = 0;
+  civic.lastMonth = civic.monthToDate;
+  civic.monthToDate = {};
+  civic.hasMonthlyHistory = true;
+
   stats.total_money = total_money;
 
   if(stats.population.population_m.acc == 0 && !gameEnd) {
@@ -185,30 +221,7 @@ World::end_of_month_update(void) {
 
 void
 World::end_of_year_update(void) {
-  income(taxable.labor * money_rates.income_tax / 100,
-    stats.income.income_tax);
-  taxable.labor = 0;
-
-  income(taxable.coal * money_rates.coal_tax / 10,
-    stats.income.coal_tax);
-  taxable.coal = 0;
-
-  int goods_tax = (taxable.goods * money_rates.goods_tax) / 100;
-  goods_tax += (int)((float)(goods_tax * money_rates.goods_tax)
-    * (float)tech_level / 2000000.0);
-  income(goods_tax, stats.income.goods_tax);
-  taxable.goods = 0;
-
-  /* The price of exports on the world market drops as you export more.
-     The exporters have to discount there wares, therefore the
-     tax take is less.
-   */
-  int exDiscount = 0;
-  for(int trigger : {25000, 50000, 100000, 200000, 400000, 800000})
-    exDiscount += std::max(0, taxable.trade_ex - trigger) / 10;
-  income(taxable.trade_ex - exDiscount, stats.income.export_tax);
-  taxable.trade_ex = 0;
-
+  taxable.exportsThisYear = 0;
   try {
     if(total_money < 0)
       expense(std::min((-total_money / 1000) * INTEREST_RATE, 1000000),
@@ -252,8 +265,9 @@ World::simulate_mappoints(void) {
     }
     if(civic.burningAt(cst->point.y*map.len()+cst->point.x) && cst->constructionGroup->group!=GROUP_FIRE) { if(GROUP_IS_RESIDENCE(cst->constructionGroup->group)){auto* r=static_cast<Residence*>(cst);stats.population.population_m+=r->local_population;stats.population.housed_m+=r->local_population;stats.population.housing_m+=r->max_population;} continue; }
     cst->trade();
-    cst->hadPowerInput = cst->commodityCount[STUFF_LOVOLT] > 0
-      || cst->commodityCount[STUFF_HIVOLT] > 0;
+    const auto& rules = cst->constructionGroup->commodityRuleCount;
+    cst->hadPowerInput = (rules[STUFF_LOVOLT].take && cst->commodityCount[STUFF_LOVOLT] > 0)
+      || (rules[STUFF_HIVOLT].take && cst->commodityCount[STUFF_HIVOLT] > 0);
     cst->update();
   }
 }

@@ -89,7 +89,7 @@ School::~School() {
 
 void School::update() {
   try {
-    world.expense(world.civic.cost(CivicServices::EDUCATION,SCHOOL_RUNNING_COST),world.stats.expenses.school);
+    world.expense(world.civic.cost(CivicServices::EDUCATION,SCHOOL_RUNNING_COST, world.total_time, point.x + point.y),world.stats.expenses.school);
 
     if (world.civic.funded(CivicServices::EDUCATION,world.total_time,point.x+point.y) && commodityCount[STUFF_LABOR] >= LABOR_MAKE_TECH_SCHOOL
       &&  commodityCount[STUFF_GOODS] >= GOODS_MAKE_TECH_SCHOOL

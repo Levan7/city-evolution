@@ -6,4 +6,7 @@
   <Paragraph style="hp">Stations need workers. Rail and metro need electricity. Terminals offer more capacity than small bus stops. An isolated stop does not serve passengers.</Paragraph>
   <Paragraph style="hp">Transport earns fares and costs money to run. The report shows estimated journeys per month, not individually simulated citizens. Covered homes receive an attractiveness bonus.</Paragraph>
   <Paragraph style="hp">Use the Transport button at the top right. Select underground or elevated view before removing tracks; the bulldozer removes that layer first and keeps surface buildings.</Paragraph>
+  <p style="hp">Select or place a stop to see its walking catchment. Each shaded tile is reachable on foot. Water and buildings can block the walk.</p>
+  <p style="hp">On a direct service, workers can take jobs near the destination stop. Residents can also bring back food and goods from a stocked market. Shopping and commuting share available seats, and bus traffic uses road capacity.</p>
+  <p style="hp">Click a crowded stop in City Advisors to find it on the map and see its walking coverage.</p>
 </Document>

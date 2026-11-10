@@ -449,18 +449,18 @@ void Construction::neighborize()
         }
         else { // search full market range for constructions
           MapPoint nw(
-            std::max(1, point.x - GROUP_MARKET_RANGE - GROUP_MARKET_SIZE + 1),
-            std::max(1, point.y - GROUP_MARKET_RANGE - GROUP_MARKET_SIZE + 1)
+            std::max(1, point.x - GROUP_MARKET_RANGE),
+            std::max(1, point.y - GROUP_MARKET_RANGE)
           );
           MapPoint se(
-            std::min(world.map.len()-1, point.x + GROUP_MARKET_RANGE + 1),
-            std::min(world.map.len()-1, point.y + GROUP_MARKET_RANGE + 1)
+            std::min(world.map.len()-1, point.x + GROUP_MARKET_RANGE + constructionGroup->size),
+            std::min(world.map.len()-1, point.y + GROUP_MARKET_RANGE + constructionGroup->size)
           );
+          std::set<Construction*> linked;
           for(MapPoint p = nw; p.y < se.y; p.y++)
           for(p.x = nw.x; p.x < se.x; p.x++) {
-            if(p == point) continue;
-            Construction *cst = world.map(p)->construction;
-            if(!cst) continue;
+            Construction* cst = world.map(p)->reportingConstruction;
+            if(!cst || cst == this || !linked.insert(cst).second) continue;
             if(cst->constructionGroup->group == GROUP_FIRE
               || cst->constructionGroup->group == GROUP_POWER_LINE
             ) continue;
@@ -547,7 +547,13 @@ void Construction::link_to(Construction* other)
         //transport may never be a distant partner
         else if(! ((flags | other->flags) & FLAG_IS_TRANSPORT))
         {
-            if ((other->constructionGroup->group == GROUP_MARKET)^(constructionGroup->group == GROUP_MARKET))
+            const int group = constructionGroup->group, otherGroup = other->constructionGroup->group;
+            // Warehouses use the freight network outside immediate adjacency.
+            const bool market = (group == GROUP_MARKET) != (otherGroup == GROUP_MARKET);
+            const int gapX = std::max({0, vec_x-s+1, -vec_x-ns+1});
+            const int gapY = std::max({0, vec_y-s+1, -vec_y-ns+1});
+            if(market && group != GROUP_WAREHOUSE && otherGroup != GROUP_WAREHOUSE
+              && std::max(gapX,gapY) <= GROUP_MARKET_RANGE)
             {
                 partners.push_back(other);
                 other->partners.push_back(this);
@@ -648,6 +654,24 @@ int Construction::tellstuff(Commodity stuff_ID, int center_ratio) //called by Mi
     return -1;
 }
 
+bool Construction::missingElectricity() const {
+    const auto group = constructionGroup->group;
+    if(group == GROUP_BUS_STOP || group == GROUP_BUS_TERMINAL) return false;
+    const auto& low = constructionGroup->commodityRuleCount[STUFF_LOVOLT];
+    const auto& high = constructionGroup->commodityRuleCount[STUFF_HIVOLT];
+    const bool usesLow = low.take && !low.give;
+    const bool usesHigh = high.take && !high.give;
+    return (usesLow || usesHigh) && !hadPowerInput
+      && !(usesLow && commodityCount[STUFF_LOVOLT] > 0)
+      && !(usesHigh && commodityCount[STUFF_HIVOLT] > 0);
+}
+
+const CommodityRule& Construction::localTradeRule(Commodity stuff) const {
+    if(constructionGroup->group == GROUP_MARKET)
+      return static_cast<const Market*>(this)->commodityRuleCount[stuff];
+    return constructionGroup->commodityRuleCount[stuff];
+}
+
 void Construction::trade()
 {
     int ratio, cap, lvl, center_lvl, center_cap;
@@ -664,7 +688,7 @@ void Construction::trade()
     /*begin for over all different stuff*/
     for(stuff_ID = STUFF_INIT ; stuff_ID < STUFF_COUNT ; stuff_ID++ )
     {
-        const CommodityRule& center_rule = constructionGroup->commodityRuleCount[stuff_ID];
+        const CommodityRule& center_rule = localTradeRule(stuff_ID);
         if(!center_rule.maxload) continue;
         center_lvl = commodityCount[stuff_ID];
         center_cap = center_rule.maxload;
@@ -679,7 +703,7 @@ void Construction::trade()
         for(unsigned int i = 0; i < lvls.size(); ++i)
         {
             Construction *pear = neighbors[i];
-            CommodityRule& pearrule = pear->constructionGroup->commodityRuleCount[stuff_ID];
+            const CommodityRule& pearrule = pear->localTradeRule(stuff_ID);
             if(!pearrule.maxload) {
                 lvls[i] = false;
                 continue;
@@ -784,7 +808,7 @@ int Construction::equilibrate_stuff(int *rem_lvl, CommodityRule rem_rule, int ra
     int& rem_cap = rem_rule.maxload;
     int *loc_lvl;
     int loc_cap;
-    CommodityRule& loc_rule = constructionGroup->commodityRuleCount[stuff_ID];
+    const CommodityRule& loc_rule = localTradeRule(stuff_ID);
     loc_lvl = &(commodityCount[stuff_ID]);
     loc_cap = loc_rule.maxload;
     if (!(flags & FLAG_EVACUATE))

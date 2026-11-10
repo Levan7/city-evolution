@@ -1,5 +1,36 @@
 # Changelog
 
+## City Evolution — Preview 21
+
+### Freight and markets
+
+- Expanded the local market catchment from 9 to 14 tiles from its footprint. Staffed markets supply raw materials and workers to local businesses as well as food and goods to homes.
+- Freight warehouses collect surplus and deliver to connected buyers and markets up to 48 transport tiles away. A warehouse can transfer stock between its road and rail connections. Tracks, roads and rails have different freight capacities, and warehouse shipments sharing a tile draw from the same daily allowance.
+- A typical ore chain is mine, warehouse, market, then pottery. Direct delivery to a connected industrial buyer is also possible. A nearby staffed market can trade with the mine and pottery locally.
+- Market controls now say **Receive locally** and **Supply locally**, and the local settings also apply to adjoining streets. Port controls say **Import** and **Export** for outside trade. The English Help pages explain each building's role and how to connect the ore chain.
+- The warehouse inspector puts its connection status and daily upkeep on separate, short lines.
+
+### Passenger transport and street animation
+
+- Direct passenger services can transfer labor from homes to workplaces and move food and goods from a stocked market back to homes. Both ends of the trip must be within walking reach of supplied stops. Shopping uses the seats left after commuting and adds bus load to the road corridor.
+- Selecting or placing a stop displays its walking coverage on the map. Click a crowded stop in City Advisors to jump to it and inspect its coverage.
+- Horse and carriage leg motion follows the isometric direction of travel, and the stride advances with movement.
+
+### City finances and saves
+
+- Income, coal and goods taxes and export proceeds post monthly. The budget window shows the last month's ledger and an income-tax estimate that responds to rate changes. Annual accounts and the annual export discount thresholds remain available.
+- Automatic income tax and public-service funding review the monthly ledger independently. The budget shows the reason for automatic changes.
+- Preview 20 saves carry their existing uncollected tax balances forward to the first monthly settlement. Passenger delivery schedules are rebuilt from current stops and supplies on load.
+
+## City Evolution — Preview 20
+
+- Corrected the budget advisor’s revenue sign and tax projection. The advisor now shows the shortfall at the tax ceiling.
+- Auto funding applies immediately, with monthly review thereafter. Manual funding ranges from 0–200%, and small facilities pay fractional upkeep spread across days.
+- City Advisors reports housing shortages separately from unemployment.
+- Map and Eco fill the side panel. Scroll over the minimap to zoom, and click to move the city view.
+- Expanded lightning alerts to buildings with an electricity input and animated horse legs on roads.
+- Added individual help pages for warehouses, cafés, food halls and technology campuses.
+
 ## City Evolution — Preview 19
 
 - Bus stops, terminals, passenger stations, metro tracks, warehouses and power

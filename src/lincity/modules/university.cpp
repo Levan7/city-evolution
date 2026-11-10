@@ -84,7 +84,7 @@ University::University(World& world, ConstructionGroup *cstgrp) :
 
 void University::update() {
   try {
-    world.expense(world.civic.cost(CivicServices::EDUCATION,UNIVERSITY_RUNNING_COST), world.stats.expenses.university);
+    world.expense(world.civic.cost(CivicServices::EDUCATION,UNIVERSITY_RUNNING_COST, world.total_time, point.x + point.y), world.stats.expenses.university);
     //do the teaching
     if (world.civic.funded(CivicServices::EDUCATION,world.total_time,point.x+point.y) && commodityCount[STUFF_LABOR] >= UNIVERSITY_LABOR
       &&  commodityCount[STUFF_GOODS] >= UNIVERSITY_GOODS

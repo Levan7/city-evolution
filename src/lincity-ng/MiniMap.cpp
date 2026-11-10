@@ -21,6 +21,8 @@
 ** ---------------------------------------------------------------------- */
 
 #include "MiniMap.hpp"
+#include <cmath>
+#include <algorithm>
 
 #include <SDL3/SDL.h>                       // for Uint16, Uint8, SDL_BUTTON...
 #include <cassert>                          // for assert
@@ -596,13 +598,18 @@ MiniMap::scrollPageDown(bool down) {
 Vector2
 MiniMap::mapPointToVector(MapPoint p)
 {
-    return Vector2((p.x - anchor.x) * tilesize , (p.y - anchor.y) * tilesize);
+    const Vector2 offset = (Vector2(p.x,p.y) - anchor) * pixelsPerTile();
+    return Vector2(offset.x, offset.y * getHeight() / getWidth());
+}
+
+float MiniMap::pixelsPerTile() const {
+  return getWidth() * zoom / (game->getWorld().map.len() - 2);
 }
 
 void MiniMap::constrainPosition() {
   Vector2 min(1,1);
   Vector2 max(game->getWorld().map.len()-1, game->getWorld().map.len()-1);
-  max -= getSize() / tilesize;
+  max -= Vector2(getWidth(), getWidth()) / pixelsPerTile();
 
   if(min.x > max.x) {
     anchor.x = (min.x + max.x) / 2;
@@ -610,7 +617,7 @@ void MiniMap::constrainPosition() {
   else if(anchor.x < min.x) {
     anchor.x = min.x;
   }
-  else if(anchor.x > max.y) {
+  else if(anchor.x > max.x) {
     anchor.x = max.x;
   }
 
@@ -633,7 +640,7 @@ void MiniMap::setGameViewCorners(
 ) {
     this->upperLeft = upperLeft;
     this->lowerRight = lowerRight;
-    anchor = (upperLeft + lowerRight - getSize() / tilesize) / 2;
+    anchor = (upperLeft + lowerRight - Vector2(getWidth(), getWidth()) / pixelsPerTile()) / 2;
     constrainPosition();
     setDirty();
 }
@@ -645,7 +652,8 @@ void MiniMap::draw(Painter &painter) {
     mFullRefresh = false;
   }
   painter.pushClipRect(Rect2D(Vector2(0,0), getSize()));
-  painter.drawTexture(mTexture.get(), (-anchor + Vector2(1,1)) * tilesize);
+  const Vector2 position = mapPointToVector(MapPoint(1,1));
+  painter.drawStretchTexture(mTexture.get(), Rect2D(position, position + getSize() * zoom));
   painter.popClipRect();
 }
 
@@ -653,6 +661,7 @@ void MiniMap::refreshTexture(Painter& painter) {
   const int textureSize = (game->getWorld().map.len() - 2) * tilesize;
   if(!mTexture || mTexture->getWidth() != textureSize) {
     mTexture = painter.createTargetTexture(textureSize, textureSize);
+    mTexture->setScaleMode(Texture::ScaleMode::NEAREST);
   }
 
   painter.pushRenderTarget(mTexture.get());
@@ -894,6 +903,11 @@ MiniMap::getColor(MapTile& tile) const {
       if (loc_lvl < 0)
         return makeGrey(getColorNormal(tile));
       loc_lvl = loc_lvl * TRANSPORT_RATE / TRANSPORT_QUANTA;
+      const int roadTrips = game->getWorld().transit.roadTripsAt(tile.point,game->getWorld().map.len());
+      // Estimate bus vehicle load using shared seats, not one vehicle per shopper.
+      const float busCapacity = (tile.getGroup()==GROUP_TRACK || tile.getGroup()==GROUP_TRACK_BRIDGE)
+        ? 100.f : 300.f;
+      loc_lvl = std::min(.928f,loc_lvl + roadTrips/(20.f*busCapacity));
 
 #ifdef DEBUG
       assert(!(loc_lvl > 0.928)); //should be limit from fluctuations
@@ -976,10 +990,11 @@ void MiniMap::event(const Event& event) {
     }
     if(event.type==Event::MOUSEBUTTONDOWN) {
         // get Tile, that was clicked
-        MapPoint tile (
-          (int)((event.mousepos.x - border) / tilesize + anchor.x),
-          (int)((event.mousepos.y - border) / tilesize + anchor.y)
-        );
+        const auto& map = game->getWorld().map;
+        const Vector2 pos(event.mousepos.x, event.mousepos.y * getWidth() / getHeight());
+        const auto point = anchor + pos / pixelsPerTile();
+        MapPoint tile(std::clamp(int(point.x), 1, map.len()-2),
+                      std::clamp(int(point.y), 1, map.len()-2));
 
         if(event.mousebutton == SDL_BUTTON_LEFT )
         {   game->getGameView().show(tile);} // move main-map
@@ -989,12 +1004,12 @@ void MiniMap::event(const Event& event) {
         }
 */
     } else if (event.type == Event::MOUSEWHEEL) {
-        if (event.scrolly > 0) {
-            scrollPageDown(false);
-        }
-        if (event.scrolly < 0) {
-            scrollPageDown(true);
-        }
+        const Vector2 pos(event.mousepos.x, event.mousepos.y * getWidth() / getHeight());
+        const auto focus = anchor + pos / pixelsPerTile();
+        zoom = std::clamp(zoom * std::pow(1.25f, event.scrolly_precise), 1.f, 8.f);
+        anchor = focus - pos / pixelsPerTile();
+        constrainPosition();
+        setDirty();
     }
 /*
     else if (event.type == Event::KEYDOWN)

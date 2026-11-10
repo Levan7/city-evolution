@@ -224,8 +224,8 @@ void Market::cover() {
     std::max(point.y - constructionGroup->range, 1)
   );
   MapPoint se(
-    std::min(point.x + constructionGroup->range, world.map.len() - 1),
-    std::min(point.y + constructionGroup->range, world.map.len() - 1)
+    std::min(point.x + constructionGroup->size + constructionGroup->range, world.map.len() - 1),
+    std::min(point.y + constructionGroup->size + constructionGroup->range, world.map.len() - 1)
   );
   for(MapPoint p(nw); p.y < se.y; p.y++)
   for(p.x = nw.x; p.x < se.x; p.x++)

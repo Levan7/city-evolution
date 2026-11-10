@@ -13,11 +13,11 @@
 			</cell>
 			<cell row="1" col="2" valign="center">
 				<Paragraph style="messagebold" translatable="yes" halign="center">
-				Buy</Paragraph>
+				Import</Paragraph>
 			</cell>
 			<cell row="1" col="3" valign="center">
 				<Paragraph style="messagebold" translatable="yes" halign="center">
-				Sell</Paragraph>
+				Export</Paragraph>
 			</cell>
 
 			<cell row="2" col="1">

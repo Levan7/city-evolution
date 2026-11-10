@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Document style="helpdocument">
+  <p style="htitle">Freight Warehouse</p>
+  <img src="images/readable/BPMWarehouseButton-building.png" width="208" height="180" />
+  <p style="hp">Freight warehouses collect and store food, coal, goods, ore and steel. They are available at zero technology and cost $6 a day to run.</p>
+  <p style="hp">Connect the warehouse edge to a track, road or railway. It can dispatch freight to facilities up to 48 connected transport tiles away. Road and rail can both serve the same warehouse, so it can bridge a rail corridor and a local road network.</p>
+  <p style="hp">A connected warehouse can collect surplus from a mine, supply a market on a different street and feed a connected pottery or steel works. Routes share the capacity of their transport tiles. Upgrade busy freight corridors when a track cannot keep up.</p>
+  <li><a href="market">Market</a></li>
+  <li><a href="oremine">Ore mine</a></li>
+  <li><a href="pottery">Pottery</a></li>
+</Document>

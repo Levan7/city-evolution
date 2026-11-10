@@ -1,6 +1,14 @@
 Ore mine
 
-Ore mines provide ore to make goods and steel. You may build an ore mine anywhere. The ore under the area is slowly consumed; you cannot bulldoze it and build another one and hope to get more ore.
+Ore supplies potteries and steel works. When the inspector says ore stock is full, the mine has built up more than it can ship. Open the mine inventory to check ore and labor.
+
+For a small setup, put a staffed market near the mine and pottery, and enable Receive locally and Supply locally for ore. The pottery also needs coal and workers.
+
+For longer deliveries, connect the mine and a freight warehouse to the same track, road or rail line. Connect the warehouse to a market by track or road. The warehouse automatically collects surplus and dispatches it along the network. If the pottery is on that network, the warehouse can also supply it directly.
+
+For outside trade, connect a port to your freight network and select Export for ore at the port. The market controls local stock.
+
+Ore mines provide ore to make goods and steel. Build an ore mine on land with enough ore deposits. The ore under the area is slowly consumed; you cannot bulldoze it and build another one and hope to get more ore.
 
 If your economy provides ore in excess your ore mines can store up to 150% of the natural ore deposits
 
@@ -17,6 +25,6 @@ SUBH: Formulas
 
 2: 209 labor + 5000 ore =&gt; 1 ore reserve
 
-Ore mines target 80% coal inventory. If producing 5000 ore would not exceed 80% inventory, then formula 1 is applied. If consuming 5000 ore would not make the remaining inventory less than 80%, then formula 2 is applied.
+Ore mines target 80% ore inventory. If producing 5000 ore would not exceed 80% inventory, then formula 1 is applied. If consuming 5000 ore would not make the remaining inventory less than 80%, then formula 2 is applied.
 
-ALSO[See also:]: ore, goods, steel
+ALSO[See also:]: ore, goods, steel, market, pottery, port

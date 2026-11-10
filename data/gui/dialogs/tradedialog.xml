@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<?xml-stylesheet href="dialogs.xsl" type="text/xsl"?><Dialog width="300" height="450">
+<?xml-stylesheet href="dialogs.xsl" type="text/xsl"?><Dialog width="380" height="450">
 	<title>Trade Settings</title>
 	<contents>
 		<TableLayout rows="9" cols="3">
@@ -13,11 +13,11 @@
 			</cell>
 			<cell row="1" col="2" valign="center">
 				<Paragraph style="messagebold" translatable="yes" halign="center">
-				Buy</Paragraph>
+				Receive locally</Paragraph>
 			</cell>
 			<cell row="1" col="3" valign="center">
 				<Paragraph style="messagebold" translatable="yes" halign="center">
-				Sell</Paragraph>
+				Supply locally</Paragraph>
 			</cell>
 
 			<cell row="2" col="1">

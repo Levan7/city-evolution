@@ -3,7 +3,7 @@
 <Document style="helpdocument">
 	<p style="htitle">Ports</p>
 	<p style="hp">Ports let you import and export goods, steel, ore, coal, and food in exchange for money.</p>
-	<p style="hp">You can choose what to trade by double clicking on the port. This brings up a dialog with boxes to select what to import and what to export. If "buy" and "sell" are both checked or both unchecked for a commodity, then that commodity will not be imported or exported. A port will not import or export anything until you check the appropriate box.</p>
+	<p style="hp">You can choose what to trade by double clicking on the port. This brings up a dialog with boxes to select what to import and what to export. If Import and Export are both checked or both unchecked for a commodity, then that commodity will not be imported or exported. A port will not import or export anything until you check the appropriate box. Local markets supply the city. Ports trade with the outside world.</p>
 	<p style="hp">Due to fluctuation in international supply and demand and politics, sometimes trade of certain commodities can be randomly restricted for many years. When trade is restricted, the corresponding checkbox in the port dialog will appear red. If you have multiple ports in your city, the same trade restrictions apply to all ports.</p>
 	<p style="hp">Importing costs you money and exporting makes you money. The price of large exports are discounted, so you make less money per quantity if you export a lot of a particular commodity. Large imports are not discounted.</p>
 	<p style="hp">Ports must be connected to a river all along the east side.</p>

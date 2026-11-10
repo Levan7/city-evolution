@@ -105,6 +105,8 @@ private:
     DisplayMode mMode;
     Commodity stuff_ID;
     int tilesize;
+    float zoom = 1.f;
+    float pixelsPerTile() const;
     int border;
     Vector2 anchor; //Positioning of minimap
 

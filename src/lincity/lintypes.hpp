@@ -138,7 +138,8 @@ public:
   ResourceGroup *soundGroup;
 
   MapPoint point;
-  bool hadPowerInput = false; // inventory before the latest daily update
+  bool missingElectricity() const;
+  bool hadPowerInput = false; // compatible inventory before the latest daily update
   unsigned int flags = 0;              //flags are defined in lin-city.h
   World& world;
 
@@ -168,6 +169,7 @@ public:
   int countPowercables(int mask); //removes all but one suspended cable on each edge
   void link_to(Construction* other); //establishes mutual connection to neighbor or partner
   int  tellstuff( Commodity stuff_ID, int level); //tell the filling level of commodity
+    const CommodityRule& localTradeRule(Commodity) const;
   void trade(); //exchange commodities with neigbhors
   int equilibrate_stuff(int *rem_lvl, CommodityRule rem_rule , int ratio, Commodity stuff_ID);
   //equilibrates stuff with an external reservoir (e.g. another construction invoking this method)

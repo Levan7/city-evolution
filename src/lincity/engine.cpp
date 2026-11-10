@@ -43,11 +43,10 @@
 void
 World::income(int amt, Stat<int>& account) {
   assert(amt >= 0);
-  int newBal = total_money + amt;
-  if(newBal < total_money)
-    newBal = INT_MAX;
-  total_money = newBal;
+  total_money = std::min(1LL * total_money + amt, 1LL * INT_MAX);
   account -= amt;
+  civic.monthToDate.revenue += amt;
+  if(&account == &stats.income.income_tax) civic.monthToDate.incomeTax += amt;
   setUpdated(Updatable::MONEY);
 }
 
@@ -59,6 +58,9 @@ World::expense(int amt, Stat<int>& account, bool allowCredit) {
     throw OutOfMoneyMessage::create(allowCredit)->exception();
   total_money = newBal;
   account += amt;
+  if(&account != &stats.expenses.construction && &account != &stats.expenses.coalSurvey
+     && &account != &stats.expenses.interest)
+    civic.monthToDate.operating += amt;
   setUpdated(Updatable::MONEY);
   // TODO: move to ng
   if(total_money > 0 && newBal <= 0)

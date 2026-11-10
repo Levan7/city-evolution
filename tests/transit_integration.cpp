@@ -45,6 +45,49 @@ int main(){try{
   city->transit.remove(*city,MapPoint(12,8),false);city->transit.update(*city,false);require(city->transit.passengers[2]==0&&city->transit.passengers[3]==0,"broken interchange route still carries connecting riders");
   std::cout<<"PASS one-transfer underground/elevated interchange and disruption\n";
  }
+ {
+  auto city = new_barren_city(60);
+  city->total_money = 500000;
+  city->tech_level = MAX_TECH_LEVEL;
+  city->buildConstruction(residenceLLConstructionGroup,{4,2});
+  city->buildConstruction(schoolConstructionGroup,{30,2});
+  city->buildConstruction(marketConstructionGroup,{34,5});
+  city->buildConstruction(busTerminalGroup,{5,7});
+  city->buildConstruction(busTerminalGroup,{31,7});
+  for(int x=5;x<=32;++x) city->buildConstruction(trackConstructionGroup,{x,9});
+  for(auto p:{MapPoint(5,7),MapPoint(31,7)}) {
+   auto* stop = static_cast<TransitFacility*>(city->map(p)->construction);
+   stop->busy=100;
+   stop->active=true;
+  }
+  auto* home = static_cast<Residence*>(city->map({4,2})->construction);
+  auto* work = city->map({30,2})->construction;
+  auto* market = city->map({34,5})->construction;
+  home->local_population=100;
+  home->commodityCount[STUFF_LABOR]=500;
+  market->commodityCount[STUFF_LABOR]=500;
+  market->commodityCount[STUFF_FOOD]=1000;
+  city->transit.update(*city,false,true);
+  require(city->transit.roadTripsAt({18,9},city->map.len())>0,"bus route lacks road load");
+  for(int day=1;day<=100;++day) {
+   city->total_time=day;
+   city->transit.deliver(*city);
+  }
+  require(work->commodityCount[STUFF_LABOR]>0 &&
+    home->commodityCount[STUFF_LABOR]+work->commodityCount[STUFF_LABOR]==500,
+    "commuting did not transfer actual labor");
+  require(home->commodityCount[STUFF_FOOD]>0 &&
+    market->commodityCount[STUFF_FOOD]+home->commodityCount[STUFF_FOOD]==1000,
+    "shopping did not transfer actual market stock");
+  city->bulldozeArea({18,9});
+  const int food=home->commodityCount[STUFF_FOOD];
+  for(int day=1;day<=100;++day) {
+   city->total_time=day;
+   city->transit.deliver(*city);
+  }
+  require(home->commodityCount[STUFF_FOOD]==food,"shopping stock crossed a cut route");
+  std::cout<<"PASS direct commuting and shopping transfer conserved stock and respect road breaks\n";
+ }
  auto w=new_barren_city(50);w->tech_level=MAX_TECH_LEVEL;w->total_money=1000000;w->buildConstruction(residenceLLConstructionGroup,MapPoint(10,10));auto* home=w->map(MapPoint(10,10))->reportingConstruction;
  require(w->transit.place(*w,MapPoint(11,11),false),"cannot tunnel below existing home");require(w->transit.place(*w,MapPoint(11,11),true),"cannot elevate above existing home");require(w->map(MapPoint(10,10))->reportingConstruction==home,"layer construction removed home");int cash=w->total_money;require(!w->transit.place(*w,MapPoint(11,11),false)&&w->total_money==cash,"duplicate tunnel charged money");
  require(w->transit.remove(*w,MapPoint(11,11),false)&&w->map(MapPoint(10,10))->reportingConstruction==home,"removing tunnel damaged surface home");

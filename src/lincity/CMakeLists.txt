@@ -7,6 +7,7 @@ add_library(lincity_lib  STATIC
   civic_services.cpp
   civic_services.hpp
   city_evolution.cpp
+  freight.cpp
   transit.cpp
   transit.hpp
   traffic_era.hpp

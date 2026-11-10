@@ -83,7 +83,7 @@ void FireStation::update()
   ++daycount;
   try {
     world.expense(world.civic.cost(CivicServices::FIRE,FIRESTATION_RUNNING_COST * (1 +
-        FIRESTATION_RUNNING_COST_MUL * world.tech_level / MAX_TECH_LEVEL)),
+        FIRESTATION_RUNNING_COST_MUL * world.tech_level / MAX_TECH_LEVEL), world.total_time, point.x + point.y),
       world.stats.expenses.firestation);
 
     if(world.civic.funded(CivicServices::FIRE,world.total_time,point.x+point.y) && commodityCount[STUFF_LABOR] >= FIRESTATION_LABOR

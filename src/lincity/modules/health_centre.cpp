@@ -80,7 +80,7 @@ void HealthCentre::update() {
 
   try {
     world.expense(world.civic.cost(CivicServices::HEALTH,HEALTH_RUNNING_COST * (1 +
-        HEALTH_RUNNING_COST_MUL * world.tech_level / MAX_TECH_LEVEL)),
+        HEALTH_RUNNING_COST_MUL * world.tech_level / MAX_TECH_LEVEL), world.total_time, point.x + point.y),
       world.stats.expenses.health);
 
     if (world.civic.funded(CivicServices::HEALTH,world.total_time,point.x+point.y) && commodityCount[STUFF_LABOR] >= HEALTH_CENTRE_LABOR

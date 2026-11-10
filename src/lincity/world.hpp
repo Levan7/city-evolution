@@ -257,6 +257,8 @@ public:
     int coal = 0;
     int goods = 0;
     int trade_ex = 0;
+    int laborRemainder = 0, coalRemainder = 0, goodsRemainder = 0;
+    long long exportsThisYear = 0;
     // int trade_im; // import is payed for directly
   } taxable;
 

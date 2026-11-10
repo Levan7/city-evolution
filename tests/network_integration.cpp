@@ -3,6 +3,7 @@
 #include "lincity/modules/all_modules.hpp"
 #include "lincity/road_power.hpp"
 #include "lincity/world.hpp"
+#include "lincity/freight.hpp"
 #include <iostream>
 #include <stdexcept>
 static void need(bool b,const char*m){if(!b)throw std::runtime_error(m);}
@@ -62,8 +63,13 @@ static void marketFreight() {
   auto* home = w->map({13,5})->reportingConstruction;
   warehouse->commodityCount[STUFF_FOOD] = 10000;
   market->commodityCount[STUFF_LABOR] = 500;
-  market->update();
-  market->update();
+  distributeWarehouseFreight(*w);
+  need(warehouse->commodityCount[STUFF_FOOD] == 10000,"warehouse shipped across a disconnected network");
+  for(int x=5;x<=10;++x)w->buildConstruction(trackConstructionGroup,{x,7});
+  for(int day=0;day<12;++day) {
+    distributeWarehouseFreight(*w);
+    market->update();
+  }
   need(warehouse->commodityCount[STUFF_FOOD] < 10000
     && market->commodityCount[STUFF_FOOD] > 0 && home->commodityCount[STUFF_FOOD] > 0,
     "warehouse stock did not flow through a nearby market to housing");
@@ -71,7 +77,42 @@ static void marketFreight() {
     + home->commodityCount[STUFF_FOOD] == 10000,"market trade did not conserve stock");
 }
 
-int main(){try{initializeModules();negativeTreasury();congestedBusStops();marketFreight();int shortTrip=passengers(20,false),longTrip=passengers(100,false);need(shortTrip>longTrip&&longTrip>0,"long trips have no efficiency penalty");need(passengers(20,true)==0,"pedestrians walk through an uncrossed river");int near=electricity(13,false),far=electricity(113,false);need(near>far&&far>0,"distance losses missing");need(electricity(13,true)==0,"power crossed cut road");
+static void oreFreight() {
+  auto w = new_barren_city(70);
+  w->total_money = 500000;
+  w->tech_level = MAX_TECH_LEVEL;
+  w->map({3,3})->ore_reserve=MIN_ORE_RESERVE_FOR_MINE;
+  w->buildConstruction(oremineConstructionGroup,{3,3});
+  w->buildConstruction(warehouseConstructionGroup,{22,5});
+  w->buildConstruction(marketConstructionGroup,{43,5});
+  w->buildConstruction(potteryConstructionGroup,{56,5});
+  for(int x=3;x<=44;++x) w->buildConstruction(trackConstructionGroup,{x,7});
+  auto* mine=w->map({3,3})->construction;
+  auto* store=w->map({22,5})->construction;
+  auto* market=static_cast<Market*>(w->map({43,5})->construction);
+  auto* pottery=w->map({56,5})->construction;
+  mine->commodityCount[STUFF_ORE]=85000;
+  market->commodityCount[STUFF_LABOR]=500;
+  market->commodityRuleCount[STUFF_ORE].take=false;
+  distributeWarehouseFreight(*w);
+  need(store->commodityCount[STUFF_ORE]>0 && market->commodityCount[STUFF_ORE]==0,
+       "warehouse did not collect ore or ignored the market receive rule");
+  market->commodityRuleCount[STUFF_ORE].take=true;
+  for(int day=0;day<12;++day) {
+    distributeWarehouseFreight(*w);
+    market->update();
+  }
+  need(pottery->commodityCount[STUFF_ORE]>0,"road warehouse and market did not supply the pottery");
+  need(mine->commodityCount[STUFF_ORE]+store->commodityCount[STUFF_ORE]
+       +market->commodityCount[STUFF_ORE]+pottery->commodityCount[STUFF_ORE]==85000,
+       "warehouse freight did not conserve ore");
+  w->bulldozeArea({34,7});
+  int marketStock=market->commodityCount[STUFF_ORE];
+  distributeWarehouseFreight(*w);
+  need(market->commodityCount[STUFF_ORE]==marketStock,"freight crossed a severed track");
+}
+
+int main(){try{initializeModules();negativeTreasury();congestedBusStops();marketFreight();oreFreight();int shortTrip=passengers(20,false),longTrip=passengers(100,false);need(shortTrip>longTrip&&longTrip>0,"long trips have no efficiency penalty");need(passengers(20,true)==0,"pedestrians walk through an uncrossed river");int near=electricity(13,false),far=electricity(113,false);need(near>far&&far>0,"distance losses missing");need(electricity(13,true)==0,"power crossed cut road");
  auto w=new_barren_city(60);w->total_money=10000000;w->tech_level=MAX_TECH_LEVEL;w->buildConstruction(busStopGroup,{10,9});w->buildConstruction(busStopGroup,{35,11});for(int x=10;x<=35;++x)w->buildConstruction(trackConstructionGroup,{x,10});w->transit.update(*w,false);need(w->transit.connected[0]==2&&w->transit.disconnected[0]==0&&w->transit.unstaffed[0]==2,"track link, opposite sides or staffing reported disconnected");need(w->transit.passengers[0]==0,"unstaffed route carries passengers");w->bulldozeArea({22,10});w->transit.update(*w,false);need(w->transit.connected[0]==0&&w->transit.disconnected[0]==2,"route remains connected across break");
  for(int value:{5,15,25}){w->civic.budget[0]=value;int days=0;for(int day=0;day<100;++day)days+=w->civic.funded(0,day,9);need(days==value,"granular funding not respected");}
  std::cout<<"PASS negative treasury placement, stop capacity, warehouse-to-market-to-home freight, opposite-side dirt-track stops, staffing vs connectivity, broken streets, distance power losses, energy conservation and 5/15/25 percent funding\n";

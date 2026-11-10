@@ -68,6 +68,18 @@ DialogBuilder::messageAddText(const std::string& content) {
 }
 
 DialogBuilder&
+DialogBuilder::messageAddAction(const std::string& label, std::function<void()> action) {
+  auto paragraph = std::make_unique<Paragraph>();
+  auto style = styleRegistry.at("messagebold");
+  style.href = std::to_string(messageActions.size());
+  style.text_color = Color(115, 215, 246);
+  paragraph->setText(label, style);
+  _message->addParagraph(std::move(paragraph));
+  messageActions.push_back(std::move(action));
+  return *this;
+}
+
+DialogBuilder&
 DialogBuilder::messageAddTextBold(const std::string& content) {
   std::unique_ptr<Paragraph> par(new Paragraph());
   Style& messageBoldStyle = styleRegistry.at("messagebold");
@@ -141,6 +153,7 @@ DialogBuilder::build() {
 
   title->setText(_titleText);
 
+  auto* message = _message.get();
   messageChild->setComponent(std::move(_message));
 
   if(_image) {
@@ -154,6 +167,13 @@ DialogBuilder::build() {
 
   std::function<void(Button *)> closeAction =
     std::bind(&WindowManager::removeWindow, _windowManager, dialog.get());
+
+  if(!messageActions.empty())
+    message->linkClicked.connect([actions=std::move(messageActions),closeAction]
+      (Paragraph*, const std::string& href) {
+        closeAction(nullptr);
+        actions.at(std::stoul(href))();
+      });
 
   switch(_buttonSet) {
   case DialogBuilder::ButtonSet::OK: {

@@ -290,18 +290,30 @@ std::vector<Advice> CityEvolution::advise(World& w) const {
   auto add = [&](int sev, const std::string& title, const std::string& text) { out.push_back({sev, title, text}); };
   auto num = [](int v) { return std::to_string(v); };
   const int unis = w.stats.groupCount[GROUP_UNIVERSITY], schools = w.stats.groupCount[GROUP_SCHOOL];
-  int darkHomes = 0, jammed = 0; std::string jamWhere;
+  int darkHomes = 0, jammed = 0, housingCapacity = 0, housed = 0; std::string jamWhere;
   for(const Construction* c : w.map.constructions) {
     const int g = c->constructionGroup->group;
-    if(GROUP_IS_RESIDENCE(g) && !static_cast<const Residence*>(c)->hasElectricity()) ++darkHomes;
+    if(c->isDead()) continue;
+    if(GROUP_IS_RESIDENCE(g)) {
+      const auto& home = static_cast<const Residence&>(*c);
+      housed += home.local_population;
+      housingCapacity += home.max_population;
+      if(home.local_population > 0 && !home.hasElectricity()) ++darkHomes;
+    }
     if(g == GROUP_INDUSTRY_L || g == GROUP_INDUSTRY_H || g == GROUP_PORT || g == GROUP_WAREHOUSE) {
       bool linked = false; for(const Construction* n : c->neighbors) linked |= bool(n->flags & FLAG_IS_TRANSPORT);
       if(!linked && !jammed++) jamWhere = c->constructionGroup->name + " at " + num(c->point.x) + "," + num(c->point.y);
     }
   }
-  if(!homes && !residents) {
+  if(!housingCapacity && !housed && !w.people_pool) {
     add(1, "First settlement", "Nobody lives here yet. Place housing, a water well, a market and a farm, and join them with roads.");
     return out;
+  }
+  if(housed + w.people_pool > housingCapacity) {
+    add(2, "Housing shortage", num(w.people_pool) + " people are waiting for housing, with "
+      + num(std::max(0, housingCapacity - housed)) + " places available. Build homes near food, water and jobs.");
+  } else if(w.people_pool > 0 && housed > 0) {
+    add(1, "People waiting for housing", num(w.people_pool) + " people are unhoused. Check food, water and job access at existing homes.");
   }
   // 1. Skilled workforce.
   if(campuses > 0 && campusSpeed() < 1000) {

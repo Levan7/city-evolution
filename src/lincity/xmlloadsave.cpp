@@ -61,6 +61,7 @@
 #include "util/xmlutil.hpp"               // for xmlParse, xmlStr, xmlFormat
 #include "world.hpp"                      // for World, MapTile, Map, Ground
 #include "world_setup.hpp"
+#include "modules/public_transport.hpp"
 
 template<typename X>
 static inline const xmlStrF f(const X x) { return xmlFormat(x); }
@@ -251,7 +252,19 @@ World::load(const std::filesystem::path& filename) {
   }
 
   if(!world->flu.pendingLoad.empty()){auto state=std::move(world->flu.pendingLoad);world->flu.load(state,world->map.len());}
-  if(!world->civic.pendingLoad.empty()) { auto state=std::move(world->civic.pendingLoad);int reviewed=world->civic.taxReviewedDay;world->civic.load(state,world->map.len());world->civic.taxReviewedDay=reviewed; }
+  if(!world->civic.pendingLoad.empty()) {
+    auto& civic = world->civic;
+    auto state = std::move(civic.pendingLoad);
+    const int reviewed = civic.taxReviewedDay, laborBase = civic.lastLaborTaxBase;
+    const auto current = civic.monthToDate, last = civic.lastMonth;
+    const bool monthly = civic.hasMonthlyHistory;
+    civic.load(state, world->map.len());
+    civic.taxReviewedDay = reviewed;
+    civic.lastLaborTaxBase = laborBase;
+    civic.monthToDate = current;
+    civic.lastMonth = last;
+    civic.hasMonthlyHistory = monthly;
+  }
   for(auto* cells:{&world->transit.tunnels,&world->transit.viaducts}) for(auto it=cells->begin();it!=cells->end();) { int n=world->map.len(),id=*it;if(id<0||id>=n*n||!world->map.is_visible(MapPoint(id%n,id/n)))it=cells->erase(it);else ++it; }
   // Extension fields are optional in older cities and validated before rendering.
   auto& e = world->evolution;
@@ -272,12 +285,23 @@ World::load(const std::filesystem::path& filename) {
   e.visualTime = std::clamp(e.visualTime,0,3599999);
   e.approval = std::clamp(e.approval,5,95);
   if(!e.randomState) e.randomState = 173831;
+  for(auto* building : world->map.constructions)
+    if(auto* stop = dynamic_cast<TransitFacility*>(building))
+      stop->active = stop->hasOperatingSupplies();
+  world->transit.update(*world,false,true);
   return world;
 }
 
 static void saveGlobals(xmlTextWriterPtr xmlWriter, const World& world) {
   xmlTextWriterWriteElement(xmlWriter,(xmlStr)"flu_state",(xmlStr)world.flu.save().c_str());
   xmlTextWriterWriteElement(xmlWriter,(xmlStr)"civic_taxReviewedDay", f(world.civic.taxReviewedDay));
+  xmlTextWriterWriteElement(xmlWriter,(xmlStr)"civic_laborTaxBase", f(world.civic.lastLaborTaxBase));
+  std::ostringstream monthlyLedger;
+  const auto& civic = world.civic;
+  monthlyLedger << civic.hasMonthlyHistory << ' ' << civic.monthToDate.revenue << ' '
+    << civic.monthToDate.operating << ' ' << civic.monthToDate.incomeTax << ' '
+    << civic.lastMonth.revenue << ' ' << civic.lastMonth.operating << ' ' << civic.lastMonth.incomeTax;
+  xmlTextWriterWriteElement(xmlWriter,(xmlStr)"monthly_fiscal", (xmlStr)monthlyLedger.str().c_str());
   xmlTextWriterWriteElement(xmlWriter,(xmlStr)"civic_state",(xmlStr)world.civic.save().c_str());
   for(int id:world.transit.tunnels) xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_tunnel",f(id));
   for(int id:world.transit.viaducts) xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_viaduct",f(id));
@@ -404,6 +428,10 @@ static void saveGlobals(xmlTextWriterPtr xmlWriter, const World& world) {
     xmlTextWriterWriteElement(xmlWriter, (xmlStr)"coal",                      f(world.taxable.coal));
     xmlTextWriterWriteElement(xmlWriter, (xmlStr)"goods",                     f(world.taxable.goods));
     xmlTextWriterWriteElement(xmlWriter, (xmlStr)"trade_ex",                  f(world.taxable.trade_ex));
+    xmlTextWriterWriteElement(xmlWriter, (xmlStr)"exportsThisYear", f(std::to_string(world.taxable.exportsThisYear)));
+    xmlTextWriterWriteElement(xmlWriter, (xmlStr)"laborRemainder", f(world.taxable.laborRemainder));
+    xmlTextWriterWriteElement(xmlWriter, (xmlStr)"coalRemainder", f(world.taxable.coalRemainder));
+    xmlTextWriterWriteElement(xmlWriter, (xmlStr)"goodsRemainder", f(world.taxable.goodsRemainder));
   xmlTextWriterEndElement(xmlWriter);
 
   xmlTextWriterStartElement(xmlWriter, (xmlStr)"tradeRules");
@@ -659,6 +687,14 @@ static void loadGlobals(xmlpp::TextReader& xmlReader, World& world,
       }
     }
     else if(xml_tag == "flu_state") world.flu.pendingLoad=xmlReader.read_string2().value_or("");
+    else if(xml_tag == "monthly_fiscal") {
+      std::istringstream ledger(xmlReader.read_inner_xml());
+      auto& c = world.civic;
+      ledger >> c.hasMonthlyHistory >> c.monthToDate.revenue >> c.monthToDate.operating
+        >> c.monthToDate.incomeTax >> c.lastMonth.revenue >> c.lastMonth.operating >> c.lastMonth.incomeTax;
+      if(!ledger) throw std::runtime_error("Invalid monthly fiscal ledger");
+    }
+    else if(xml_tag == "civic_laborTaxBase") world.civic.lastLaborTaxBase = std::max(-1, p<int>(xmlReader.read_inner_xml()));
     else if(xml_tag == "civic_taxReviewedDay") world.civic.taxReviewedDay = p<int>(xmlReader.read_inner_xml());
     else if(xml_tag == "civic_state") world.civic.pendingLoad=xmlReader.read_string2().value_or("");
     else if(xml_tag == "transit_tunnel" || xml_tag=="transit_viaduct") {int id=p<int>(xmlReader.read_inner_xml());int len=world.map.len();if(id>=0&&id<160000) (xml_tag=="transit_tunnel"?world.transit.tunnels:world.transit.viaducts).insert(id);}
@@ -736,6 +772,10 @@ static void loadGlobals(xmlpp::TextReader& xmlReader, World& world,
         else if(xml_tag == "coal")     world.taxable.coal = p<int>(xmlReader.read_inner_xml());
         else if(xml_tag == "goods")    world.taxable.goods = p<int>(xmlReader.read_inner_xml());
         else if(xml_tag == "trade_ex") world.taxable.trade_ex = p<int>(xmlReader.read_inner_xml());
+        else if(xml_tag == "exportsThisYear") world.taxable.exportsThisYear = std::max(0LL, std::stoll(xmlReader.read_inner_xml()));
+        else if(xml_tag == "laborRemainder") world.taxable.laborRemainder = std::clamp(p<int>(xmlReader.read_inner_xml()),0,99);
+        else if(xml_tag == "coalRemainder") world.taxable.coalRemainder = std::clamp(p<int>(xmlReader.read_inner_xml()),0,9);
+        else if(xml_tag == "goodsRemainder") world.taxable.goodsRemainder = std::clamp(p<int>(xmlReader.read_inner_xml()),0,99);
         else
           unexpectedXmlElement(xmlReader);
         xmlReader.next();

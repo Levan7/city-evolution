@@ -14,6 +14,7 @@ public:
  int workingDays=0,busy=0,riders=0;bool active=false;
  TransitFacility(World&,ConstructionGroup*);
  int mode() const;
+ bool hasOperatingSupplies() const;
  int monthlyCapacity() const;
  int requestedTrips = 0, endpointTrips = 0;
  bool overloaded() const { return requestedTrips > monthlyCapacity(); }

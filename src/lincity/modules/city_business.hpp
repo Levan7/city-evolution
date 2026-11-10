@@ -16,6 +16,7 @@ public:
   void report(Mps& mps, bool production) const override;
   void save(xmlTextWriterPtr writer) const override;
   bool loadMember(xmlpp::TextReader& reader, unsigned int version) override;
+  bool freightSurveyed = false, freightHasBuyer = false;
   int workingDays = 0, busy = 0;
   int skillCredit = 0; // accumulates the staffed share of each day; a full day needs 1000
 };

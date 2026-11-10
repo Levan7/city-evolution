@@ -12,7 +12,7 @@ CivicBuildingGroup::CivicBuildingGroup(const std::string& name,int group,int siz
 Construction* CivicBuildingGroup::createConstruction(World& w){return new CivicBuilding(w,this);}
 CivicBuilding::CivicBuilding(World& w,ConstructionGroup* g):Construction(w){constructionGroup=g;initialize_commodities();}
 void CivicBuilding::update(){
- if(constructionGroup->group==63){world.expense(world.civic.cost(CivicServices::POLICE,4),world.stats.expenses.police);if(world.civic.funded(CivicServices::POLICE,world.total_time,point.x+point.y)&&commodityCount[STUFF_LABOR]>=4&&commodityCount[STUFF_GOODS]>=1&&commodityCount[STUFF_WASTE]<1000){consumeStuff(STUFF_LABOR,4);consumeStuff(STUFF_GOODS,1);produceStuff(STUFF_WASTE,1);}}
+ if(constructionGroup->group==63){world.expense(world.civic.cost(CivicServices::POLICE,4, world.total_time, point.x + point.y),world.stats.expenses.police);if(world.civic.funded(CivicServices::POLICE,world.total_time,point.x+point.y)&&commodityCount[STUFF_LABOR]>=4&&commodityCount[STUFF_GOODS]>=1&&commodityCount[STUFF_WASTE]<1000){consumeStuff(STUFF_LABOR,4);consumeStuff(STUFF_GOODS,1);produceStuff(STUFF_WASTE,1);}}
  else if(commodityCount[STUFF_LABOR]>=20&&commodityCount[STUFF_LOVOLT]>=20&&commodityCount[STUFF_WATER]>=4&&commodityCount[STUFF_GOODS]<3950&&commodityCount[STUFF_WASTE]<1000){consumeStuff(STUFF_LABOR,20);consumeStuff(STUFF_LOVOLT,20);consumeStuff(STUFF_WATER,4);produceStuff(STUFF_GOODS,20+20*world.civic.education/1000);produceStuff(STUFF_WASTE,1);}
  if(world.total_time%NUMOF_DAYS_IN_MONTH==NUMOF_DAYS_IN_MONTH-1)reset_prod_counters();
 }

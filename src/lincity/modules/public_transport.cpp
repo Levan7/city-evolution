@@ -24,9 +24,15 @@ int TransitFacility::monthlyCapacity() const {
    : constructionGroup->group==GROUP_BUS_TERMINAL ? 1000 : 800;
 }
 
+bool TransitFacility::hasOperatingSupplies() const {
+ const bool bus = mode() == TransitSystem::BUS;
+ return commodityCount[STUFF_LABOR] >= (bus ? 2 : 8) &&
+   commodityCount[STUFF_LOVOLT] >= (bus ? 0 : 15);
+}
+
 void TransitFacility::update(){
  int m=mode(),staff=m==0?2:8,power=m==0?0:15;
- active=commodityCount[STUFF_LABOR]>=staff&&commodityCount[STUFF_LOVOLT]>=power;
+ active=hasOperatingSupplies();
  if(active){consumeStuff(STUFF_LABOR,staff);if(power)consumeStuff(STUFF_LOVOLT,power);++workingDays;}
  int cost=constructionGroup->group==GROUP_BUS_STOP?4:constructionGroup->group==GROUP_BUS_TERMINAL?18:m==1?35:m==2?40:45;
  world.expense(cost,world.stats.expenses.transport);world.transit.upkeepMonth+=cost;

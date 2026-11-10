@@ -13,11 +13,14 @@ struct CivicServices {
  std::array<int,4> budget{100,100,100,100};
  bool autoBudget=false,autoTax=false,zombiesEnabled=true,zombieNoticePending=false;
  int taxReviewedDay=-1;
+ int lastLaborTaxBase=-1; // optional for older saves
+ void adjustFunding(const World&, bool immediate);
+ long long laborTaxBase(const World&) const;
  int taxCeiling=15,reserve=25000,education=0,crime=0,sickTotal=0,exposureMonths=0,zombieCooldown=0,nextId=1,resolved=0,forceBurn=-1;
  unsigned rng=728391;
  std::map<int,int> sick; std::vector<Incident> incidents; std::vector<Unit> units; std::string pendingLoad;
  bool funded(int s,int day,int seed) const;
- int cost(int s,int base) const;
+ int cost(int s,int base,int day,int seed) const;
  int illAt(int id) const;
  bool burningAt(int id) const;
  bool fireResponseAt(int id) const;
@@ -30,6 +33,10 @@ struct CivicServices {
  // fiscal(): last completed year's tax income and running costs (construction excluded).
  struct Fiscal { long long revenue=0, operating=0, incomeTax=0; int population=0; };
  Fiscal fiscal(const World&) const;
+ Fiscal monthToDate, lastMonth;
+ bool hasMonthlyHistory = false;
+ std::string fundingNote;
+ Fiscal monthlyFiscal(const World&) const;
  // The income-tax rate the financial advisor recommends, and why. Never above the ceiling.
  int recommendedTax(const World&, std::string* why=nullptr) const;
  // Button "Auto-adjust taxes": jump to the recommended rate right now (any month, any size of change).

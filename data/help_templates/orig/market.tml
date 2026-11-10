@@ -1,32 +1,15 @@
 Market
 
-Markets are key buildings in Lincity.
+Markets distribute food and finished goods to homes and route labor and raw materials to local businesses. A pottery can receive ore, coal and workers from a staffed market, then return finished goods.
 
-Market is probably a bad name for these areas. They are more like job centres, shops,
-warehouses and markets all rolled into one. They buy and sell food, labor, coal, goods, ore and steel to
-surrounding areas, and to adjacent transports such as roads.
+Local trade reaches up to 14 tiles from the market footprint. Adjacent transport connects the market to the wider freight network. A connected warehouse can replenish food, goods, coal, ore and steel from farther away.
 
-Within the range of a market all exchanges are done remotely.
-Use the Transportation overlay to check if a building is within the range of a market.
-People can obtain food, goods and employment from markets that are within walking distance of their residential area.
-All areas that require labor (employees) get them from markets.
-Farms can sell their food directly to markets.
-Mills, Potteries and blacksmiths sell goods directly to nearby markets,
-they also get their raw materials from the same markets.
-
-If no market is available, these buildings need connection to transport.
-
-SUBH: Controlling what markets can buy and sell
-
-You can control the function of a market by selecting what may be bought and sold from transport.
-Click twice on a market (not the select button) and towards the top left hand side a window will
-appear allowing you to select what is traded. The default is to trade in everything.
+Open the market with the Query tool and select it again to edit stock rules. Receive locally lets stock enter the market. Supply locally lets existing stock leave for local homes, businesses and transport. For outside trade, use Import or Export at a port.
 
 IMG_1[This is a market]: images/help-art01/MarketEmpty.png
 IMG_2[and this its icon]: images/help-art01/MarketEmpty-icon.png
 IMG_3[This means the trade is allowed.]: images/gui/checkbox/checkbox_checked.png
 IMG_4[This means the trade is <b>not</b> allowed.]: images/gui/checkbox/checkbox.png
-The numbers between the words Buy and Sell are the map reference for that market.
 
 SUBH: Formulas
 

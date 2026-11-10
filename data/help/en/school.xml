@@ -5,6 +5,7 @@
 	<p style="hp">Schools use labor and goods to produce technology in a similar way to universities. They use far fewer labor and goods than universities, but produce far fewer tech points. Given the choice between putting four or five schools in a given area, or a single university, it is often (but not always) better to put a university in.</p>
 	<p style="hp">Schools do not need to connect to transport, but do need to be within range of a market than can supply the quantity of labor and goods to make the school work.</p>
 	<p style="hp">Schools cost money to run. You can see the total cost for the last year by clicking on the money button.</p>
+  <p style="hp">Elementary schools can be built with a negative treasury once the technology requirement is met. Funding controls operating days below 100% and education capacity above 100%. Schools still need labor and goods.</p>
 	<p style="hp">You can see when a school is working in the usual way, by clicking on it.</p>
 
   <p style="hp">This is a school</p>

@@ -20,6 +20,7 @@
 ** ---------------------------------------------------------------------- */
 
 #include <functional>  // for function
+#include <vector>
 #include <list>        // for list
 #include <memory>
 #include <string>      // for string, basic_string
@@ -42,6 +43,7 @@ public:
   DialogBuilder& titleText(const std::string& title);
   // DialogBuilder& message(Document *content);
   DialogBuilder& messageAddText(const std::string& content);
+  DialogBuilder& messageAddAction(const std::string& label, std::function<void()> action);
   DialogBuilder& messageAddTextBold(const std::string& content);
   DialogBuilder& image(std::unique_ptr<Image>&& image);
   DialogBuilder& imageFile(const std::filesystem::path& image);
@@ -63,6 +65,7 @@ private:
   ButtonSet _buttonSet;
   // std::filesystem::path template;
   WindowManager *_windowManager;
+  std::vector<std::function<void()>> messageActions;
   std::list<std::function<void()>> okCallbacks;
   std::list<std::function<void()>> yesCallbacks;
   std::list<std::function<void()>> noCallbacks;

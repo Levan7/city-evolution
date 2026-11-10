@@ -1348,13 +1348,8 @@ void GameView::drawTile(Painter& painter, const MapPoint &tile)
                                 if(!hideHigh && building && graphicsInfo->texture
                                    && frit == building->frameIt) {
                                     const auto* home = dynamic_cast<const Residence*>(building);
-                                    const int group = building->constructionGroup->group;
-                                    const bool factory = group == GROUP_INDUSTRY_L
-                                      || group == GROUP_INDUSTRY_H || group == GROUP_TECH_CAMPUS;
                                     const bool noPower = home ? home->local_population > 0 && !home->hasElectricity()
-                                      : factory && !building->hadPowerInput
-                                        && building->commodityCount[STUFF_LOVOLT] == 0
-                                        && building->commodityCount[STUFF_HIVOLT] == 0;
+                                      : building->missingElectricity();
                                     if(noPower) {
                                         const auto top = getScreenPoint(lowerRightTile)
                                           - Vector2(0, graphicsInfo->y * zoom + 10);
@@ -1592,6 +1587,30 @@ void GameView::draw(Painter& painter)
       game->getMiniMap().switchView("MapMPS");
     }
     drawDistricts(painter);
+    const auto& world = getWorld();
+    const auto* op = getUserOperation();
+    const MapTile* selection = game->getMpsMap().tile;
+    const Construction* station = selection ? selection->reportingConstruction : nullptr;
+    const ConstructionGroup* group = nullptr;
+    MapPoint coveragePoint = tileUnderMouse;
+    if(op->action != UserOperation::ACTION_BUILD && station) {
+      group = station->constructionGroup;
+      coveragePoint = station->point;
+    } else if(op->action == UserOperation::ACTION_BUILD && mouseInGameView && !blockingDialogIsOpen) {
+      group = op->constructionGroup;
+    }
+    const int coverageMode = group ? TransitSystem::stationMode(group->group) : -1;
+    if(coverageMode >= 0 && inCity(coveragePoint)) {
+      const auto area = TransitSystem::walkingArea(world,coveragePoint,group->size,coverageMode);
+      for(const auto& [id, steps] : area) {
+        MapPoint point(id % world.map.len(), id / world.map.len());
+        const auto pt = getScreenPoint(point);
+        Rect2D diamond(0,0,tileWidth,tileHeight);
+        diamond.move(pt-Vector2(tileWidth/2,tileHeight));
+        painter.setFillColor(Color(63,200,245,steps==0 ? 110 : 55));
+        fillDiamond(painter,diamond);
+      }
+    }
     //Mark Tile under Mouse // TODO: handle showTerrainHeight
     if(mouseInGameView && !blockingDialogIsOpen) {
         MapPoint lastRazed( -1,-1 );
@@ -1788,6 +1807,44 @@ void GameView::updateStreetActors() {
   }
 }
 
+namespace {
+void drawHorseStride(Painter& painter, const Texture* texture, const Rect2D& dest,
+                    float zoom, bool east, bool north, bool carriage, float phase) {
+  const float width = texture->getWidth();
+  const float height = texture->getHeight();
+  auto piece = [&](float left, float top, float right, float bottom, float shift) {
+    if(right <= left || bottom <= top) return;
+    // Each map direction projects at a 2:1 diagonal on screen.
+    const bool downSlope = east != north;
+    const Vector2 offset(shift * zoom, shift * zoom * (downSlope ? .5f : -.5f));
+    painter.pushClipRect(Rect2D(dest.p1 + Vector2(left, top) * zoom + offset,
+                               dest.p1 + Vector2(right, bottom) * zoom + offset));
+    painter.drawStretchTexture(texture, Rect2D(dest.p1 + offset, dest.p2 + offset));
+    painter.popClipRect();
+  };
+
+  // The four original sprites face diagonally. Mirror the limb regions for
+  // westbound sprites and leave the cart, driver and wheels still in the pose.
+  const float horseLeft = carriage && east ? (north ? 34 : 25) : 0;
+  const float horseRight = carriage && !east ? width - (north ? 34 : 25) : width;
+  const float split = (horseLeft + horseRight) / 2;
+  piece(0, 0, horseLeft, height, 0);
+  piece(horseRight, 0, width, height, 0);
+  for(int leg = 0; leg < 2; ++leg) {
+    const bool front = east ? leg == 1 : leg == 0;
+    const float hip = carriage ? (north ? 23 : 31) : (north ? (front ? 23 : 28) : 16);
+    const float left = leg ? split : horseLeft;
+    const float right = leg ? horseRight : split;
+    const float stride = (front ? phase : -phase) * (east ? 1.f : -1.f);
+    piece(left, 0, right, hip, 0);
+    for(float row = hip; row < height; row += 2) {
+      const float bend = std::clamp((row - hip) / 9.f, 0.f, 1.f);
+      piece(left, row, right, std::min(row + 2, height), std::round(stride * bend * 3.f));
+    }
+  }
+}
+}
+
 void GameView::drawStreetActors(Painter& painter, MapPoint tile) {
   const auto& e = getWorld().evolution;
   const auto actors = streetActorsByTile.equal_range(tile.y * getWorld().map.len() + tile.x);
@@ -1809,7 +1866,14 @@ void GameView::drawStreetActors(Painter& painter, MapPoint tile) {
       float width=texture->getWidth()*zoom,height=texture->getHeight()*zoom;
       Rect2D actorRect(p.x-width/2,p.y-height+4*zoom,p.x+width/2,p.y+4*zoom);
       texture->setLighting(255-e.darkness()*110/1000,255-e.darkness()*95/1000,255-e.darkness()*65/1000);
-      painter.drawStretchTexture(texture,actorRect);texture->setLighting(255,255,255);
+      if(motor) painter.drawStretchTexture(texture, actorRect);
+      else {
+        const bool east = dx > 0 || dy < 0;
+        const bool north = dx < 0 || dy < 0;
+        const float stride = std::sin(a.progress * 18.8495559f);
+        drawHorseStride(painter, texture, actorRect, zoom, east, north, a.appearance % 2, stride);
+      }
+      texture->setLighting(255,255,255);
       drawNightLayers(painter,std::string("Traffic:")+kind+direction+":0",actorRect,true,true);
     } else {
       const bool woman=(a.appearance%2)==0;
