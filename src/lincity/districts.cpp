@@ -91,7 +91,7 @@ void CityEvolution::updateDistricts(World& w) {
         if(cap > 0 && c->commodityCount[STUFF_FOOD] * 10 >= cap * 9) ++s.backedUpFarms; // storage full: harvest cannot leave
         break; }
       case GROUP_PORT: ++s.ports; break;
-      case GROUP_WAREHOUSE: ++s.warehouses; break;
+      case GROUP_LARGE_WAREHOUSE: case GROUP_WAREHOUSE: ++s.warehouses; break;
       case GROUP_MARKET: ++s.markets; break;
       default: continue;
     }

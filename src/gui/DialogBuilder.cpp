@@ -171,8 +171,9 @@ DialogBuilder::build() {
   if(!messageActions.empty())
     message->linkClicked.connect([actions=std::move(messageActions),closeAction]
       (Paragraph*, const std::string& href) {
+        auto action = actions.at(std::stoul(href));
         closeAction(nullptr);
-        actions.at(std::stoul(href))();
+        action();
       });
 
   switch(_buttonSet) {

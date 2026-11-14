@@ -26,7 +26,14 @@
 
 /******* Buildings // GROUPS ************/
 
-#define NUM_OF_GROUPS    70
+#define NUM_OF_GROUPS    75
+#define GROUP_FOOTBALL 70
+#define GROUP_LARGE_WAREHOUSE 71
+#define GROUP_COMPUTER_FACTORY 72
+#define GROUP_CAR_FACTORY 73
+#define GROUP_NUCLEAR_POWER 74
+
+
 #define GROUP_POLICE 63
 #define GROUP_CHURCH 62
 #define GROUP_BUS_STOP 55
@@ -37,6 +44,10 @@
 #define GROUP_METRO_TRACK 60
 #define GROUP_ELEVATED_TRACK 61
 #define GROUP_WAREHOUSE     51
+
+constexpr bool isWarehouseGroup(int group) {
+  return group == GROUP_WAREHOUSE || group == GROUP_LARGE_WAREHOUSE;
+}
 #define GROUP_TECH_CAMPUS   52
 #define GROUP_CAFE          53
 #define GROUP_FOODHALL      54

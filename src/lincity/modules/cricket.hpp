@@ -80,7 +80,7 @@ public:
     virtual Construction *createConstruction(World& world);
 };
 
-extern CricketConstructionGroup cricketConstructionGroup;
+extern CricketConstructionGroup cricketConstructionGroup, footballConstructionGroup;
 
 class Cricket: public Construction {
 public:

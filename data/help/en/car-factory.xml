@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Document style="helpdocument">
+  <p style="htitle">Car Factory</p>
+  <img src="images/tiles/car-factory.png" width="208" height="160" />
+  <p style="hp">A four-by-four factory that turns steel, labor, water and low-voltage electricity into goods. It uses more steel and makes more goods per operating day than the computer factory. Requires 60% technology.</p>
+</Document>

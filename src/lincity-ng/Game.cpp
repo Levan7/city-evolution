@@ -482,7 +482,7 @@ void Game::showCityAdvisors() {
         ++issues;
       }
     }
-    if(group != GROUP_PORT && group != GROUP_INDUSTRY_L && group != GROUP_INDUSTRY_H && group != GROUP_WAREHOUSE) continue;
+    if(group != GROUP_PORT && group != GROUP_INDUSTRY_L && group != GROUP_INDUSTRY_H && !isWarehouseGroup(group)) continue;
     bool road = false, rail = false;
     for(const Construction* neighbor : building->neighbors) {
       const auto ng = neighbor->constructionGroup->group;
@@ -495,7 +495,7 @@ void Game::showCityAdvisors() {
         + " has no direct transport neighbor. Connect a road, track or railway to its edge.");
       ++issues;
     }
-    if(group == GROUP_WAREHOUSE && rail && !road && issues < 4) {
+    if(isWarehouseGroup(group) && rail && !road && issues < 4) {
       dialog.messageAddText("Freight warehouse" + where + ": add a road or track at its edge to distribute rail freight locally.");
       ++issues;
     }

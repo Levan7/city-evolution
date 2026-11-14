@@ -552,7 +552,7 @@ void Construction::link_to(Construction* other)
             const bool market = (group == GROUP_MARKET) != (otherGroup == GROUP_MARKET);
             const int gapX = std::max({0, vec_x-s+1, -vec_x-ns+1});
             const int gapY = std::max({0, vec_y-s+1, -vec_y-ns+1});
-            if(market && group != GROUP_WAREHOUSE && otherGroup != GROUP_WAREHOUSE
+            if(market && !isWarehouseGroup(group) && !isWarehouseGroup(otherGroup)
               && std::max(gapX,gapY) <= GROUP_MARKET_RANGE)
             {
                 partners.push_back(other);

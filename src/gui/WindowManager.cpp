@@ -17,6 +17,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 #include "WindowManager.hpp"
 
+#include <algorithm>
+
 #include <SDL3/SDL.h>                     // for SDL_SystemCursor, SDL_BUTTO...
 #include <libxml++/parsers/textreader.h>  // for TextReader
 #include <stdexcept>                      // for runtime_error
@@ -106,6 +108,8 @@ WindowManager::event(const Event& event) {
     Window *window = static_cast<Window *>(child.getComponent());
     Vector2 mousepos = event.mousepos - child.getPos();
 
+    if(std::find(removeQueue.begin(), removeQueue.end(), window) != removeQueue.end())
+      continue;
     if(!child.isEnabled())
       continue;
 
@@ -242,10 +246,12 @@ WindowManager::addWindow(std::unique_ptr<Window>&& window) {
 
 void
 WindowManager::removeWindow(Window *window) {
-  if(childLock)
-    removeQueue.push_back(window);
-  else
+  if(!childLock) {
     removeWindowInternal(window);
+    return;
+  }
+  if(std::find(removeQueue.begin(), removeQueue.end(), window) == removeQueue.end())
+    removeQueue.push_back(window);
 }
 
 WindowManager::Edge
@@ -284,6 +290,13 @@ WindowManager::removeWindowInternal(Window *window) {
   // find child
   for(Childs::iterator i = childs.begin(); i != childs.end(); ++i) {
     if(i->getComponent() == window) {
+      if(dragWindow == window) {
+        dragWindow = nullptr;
+        dragEdge = Edge::NONE;
+        dragging = false;
+        hasMoved = false;
+        desktop->tryClearCursor(this);
+      }
       childs.erase(i);
       return;
     }

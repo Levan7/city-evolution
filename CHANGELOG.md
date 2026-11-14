@@ -1,5 +1,12 @@
 # Changelog
 
+## City Evolution — Preview 22
+
+- Prevented a residence information panel overflow when food or water advice is shown. Hardened advisor window removal.
+- Bus stops and terminals now have larger square catchments, with walking barriers respected.
+- Warehouses serve a local delivery area and relay surplus over connected roads or rail. Added a larger distribution center.
+- Added computer and car factories, a nuclear power station, and a football stadium with a custom sprite and whistle-and-crowd sound. The other new facilities reuse existing industrial artwork.
+
 ## City Evolution — Preview 21
 
 ### Freight and markets

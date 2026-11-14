@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Document style="helpdocument">
+  <p style="htitle">Computer Factory</p>
+  <img src="images/tiles/computer-factory.png" width="208" height="160" />
+  <p style="hp">A three-by-three factory that consumes labor, steel, water and low-voltage electricity to produce goods. Provide freight access for inputs, output and waste. Requires 50% technology.</p>
+</Document>

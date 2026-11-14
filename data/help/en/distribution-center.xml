@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Document style="helpdocument">
+  <p style="htitle">Freight Distribution Center</p>
+  <img src="images/tiles/large-warehouse.png" width="208" height="160" />
+  <p style="hp">This three-by-three warehouse stores 80,000 units of each freight commodity. Its local service square extends 24 tiles beyond the footprint. Connect a road or rail line to its edge for local service and transfers. It can also serve facilities up to 96 connected transport tiles away, and send surplus to a warehouse anywhere on its connected road or rail network. Upkeep is $18 per day.</p>
+</Document>

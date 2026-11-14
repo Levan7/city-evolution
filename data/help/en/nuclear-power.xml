@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Document style="helpdocument">
+  <p style="htitle">Nuclear Power Station</p>
+  <img src="images/tiles/nuclear-power.png" width="208" height="160" />
+  <p style="hp">A four-by-four high-voltage power station. Supply labor and water, remove waste, and connect a power line to distribute output. The simplified simulation uses no separate fuel commodity. Requires 75% technology.</p>
+</Document>

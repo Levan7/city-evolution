@@ -52,9 +52,14 @@ std::map<int,int> TransitSystem::walkingArea(const World& w, MapPoint point, int
  while(!pending.empty()) {
   auto p = pending.front(); pending.pop();
   const int distance = distances.at(p.y*length+p.x);
-  if(distance >= limit) continue;
+  if(mode != BUS && distance >= limit) continue;
   for(auto next : {p.n(),p.e(),p.s(),p.w()}) {
    if(!w.map.is_visible(next)) continue;
+   if(mode == BUS) {
+    const int reach = busReach(size);
+    if(next.x < point.x-reach || next.y < point.y-reach ||
+       next.x >= point.x+size+reach || next.y >= point.y+size+reach) continue;
+   }
    auto* tile = w.map(next);
    auto* building = tile->reportingConstruction;
    const bool transport = building && (building->flags & FLAG_IS_TRANSPORT);
@@ -64,6 +69,11 @@ std::map<int,int> TransitSystem::walkingArea(const World& w, MapPoint point, int
    if(!building || transport) pending.push(next);
   }
  }
+ if(mode == BUS)
+  for(auto& [id, steps] : distances) {
+   const int x = id % length, y = id / length;
+   steps = std::max({0, point.x-x, x-point.x-size+1, point.y-y, y-point.y-size+1});
+  }
  return distances;
 }
 
@@ -139,7 +149,7 @@ void TransitSystem::update(World& w,bool account,bool initializeSchedule){
   if(g>=GROUP_BUS_STOP&&g<=GROUP_ELEVATED_STATION){auto* s=static_cast<TransitFacility*>(c);stations.push_back(s);walking.emplace(s,walkingArea(w,s->point,s->constructionGroup->size,s->mode()));s->riders=0;s->requestedTrips=0;s->endpointTrips=0;}
   if(g==GROUP_MARKET) markets.push_back(static_cast<Market*>(c));
   else if(GROUP_IS_RESIDENCE(g))homes.push_back(c);
-  else if(stationMode(g)<0 && !w.map(c->point)->is_transport() && g!=GROUP_POWER_LINE && g!=GROUP_WAREHOUSE && c->constructionGroup->commodityRuleCount[STUFF_LABOR].take&&c->constructionGroup->commodityRuleCount[STUFF_LABOR].maxload)jobs.push_back(c);
+  else if(stationMode(g)<0 && !w.map(c->point)->is_transport() && g!=GROUP_POWER_LINE && !isWarehouseGroup(g) && c->constructionGroup->commodityRuleCount[STUFF_LABOR].take&&c->constructionGroup->commodityRuleCount[STUFF_LABOR].maxload)jobs.push_back(c);
  }
  auto distance=[](MapPoint a,MapPoint b){return std::abs(a.x-b.x)+std::abs(a.y-b.y);};
  for(int mode:{METRO,ELEVATED,RAIL,BUS}){

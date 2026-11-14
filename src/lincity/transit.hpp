@@ -13,7 +13,8 @@ struct TransitSystem {
  std::vector<TransitRoute> routes;
  std::array<int,4> passengers{}, shoppingTrips{}, running{}, disconnected{}, connected{}, unstaffed{};
  int view=0, assessedMonth=-1, faresMonth=0, upkeepMonth=0;
- static int walkingRadius(int mode) { return mode == BUS ? 6 : 10; }
+ static int busReach(int size) { return size >= 2 ? 14 : 8; }
+ static int walkingRadius(int mode) { return mode == BUS ? 14 : 10; }
  static int stationMode(int group);
  static std::map<int,int> walkingArea(const World&, MapPoint, int size, int mode);
  int roadTripsAt(MapPoint p, int width) const;

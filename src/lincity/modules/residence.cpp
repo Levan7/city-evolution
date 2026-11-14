@@ -462,7 +462,10 @@ void Residence::report(Mps& mps, bool production) const {
   mps.add_sd(N_("Desireability"), desireability);
   mps.add_sf(N_("Births p.a."), (float)1200/births);
   mps.add_sf(N_("Death p.a."), (float)1200/deaths);
-  mps.add_sfp(N_("Unnat. mortality"), (float)pol_deaths);
+  // The info panel holds 13 lines. With the supply advice shown, drop this
+  // row so the commodity list still fits.
+  if(foodAdvice.empty())
+    mps.add_sfp(N_("Unnat. mortality"), (float)pol_deaths);
   list_commodities(mps, production);
 }
 

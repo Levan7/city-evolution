@@ -58,6 +58,12 @@ CricketConstructionGroup cricketConstructionGroup(
      GROUP_CRICKET_RANGE
 );
 
+CricketConstructionGroup footballConstructionGroup(
+    N_("Football Stadium"), N_("Football Stadiums"), FALSE, GROUP_FOOTBALL,
+    3, GROUP_CRICKET_COLOUR, GROUP_CRICKET_COST_MUL, 3500, GROUP_CRICKET_FIREC,
+    18000, MAX_TECH_LEVEL / 5, 16
+);
+
 Construction *CricketConstructionGroup::createConstruction(World& world) {
   return new Cricket(world, this);
 }
@@ -84,7 +90,7 @@ void Cricket::update()
 {
     ++daycount;
     try {
-      world.expense(CRICKET_RUNNING_COST, world.stats.expenses.cricket);
+      world.expense(constructionGroup->group == GROUP_FOOTBALL ? 8 : CRICKET_RUNNING_COST, world.stats.expenses.cricket);
 
       if(commodityCount[STUFF_LABOR] >= CRICKET_LABOR
         &&  commodityCount[STUFF_GOODS] >= CRICKET_GOODS

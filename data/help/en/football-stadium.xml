@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Document style="helpdocument">
+  <p style="htitle">Football Stadium</p>
+  <img src="images/tiles/football-stadium.png" width="208" height="160" />
+  <p style="hp">A three-by-three sports venue under Services. Supply it with labor and goods, and remove waste. When operating, it improves sports coverage for nearby homes. Base construction cost is $18,000. Upkeep is $8 per day. Requires 20% technology.</p>
+</Document>

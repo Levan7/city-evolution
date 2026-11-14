@@ -8,7 +8,8 @@ public:
   bool can_build(const World& world, Message::ptr& message) const override;
 };
 extern CityBusinessGroup warehouseConstructionGroup, techCampusConstructionGroup,
-  cafeConstructionGroup, foodHallConstructionGroup;
+  cafeConstructionGroup, foodHallConstructionGroup, largeWarehouseConstructionGroup,
+  computerFactoryConstructionGroup, carFactoryConstructionGroup, nuclearPowerConstructionGroup;
 class CityBusiness : public Construction {
 public:
   CityBusiness(World& world, ConstructionGroup* group);

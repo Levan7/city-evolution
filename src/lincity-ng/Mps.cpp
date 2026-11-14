@@ -94,7 +94,11 @@ Mps::clear() {
 
 void
 Mps::addText(const std::string &s) {
-  assert(i >= 0 && i < PARAGRAPH_COUNT);
+  // The panel has a fixed number of lines. Extra lines must be dropped:
+  // assert() is compiled out of release builds, so indexing past the end
+  // read a bad Paragraph pointer and crashed the game.
+  if(i < 0 || isFull())
+    return;
   paragraphs[i++]->setText(s);
 }
 
@@ -111,7 +115,7 @@ Mps::fillBlank() {
 
 bool
 Mps::isFull() const {
-  return i >= PARAGRAPH_COUNT;
+  return i >= PARAGRAPH_COUNT || (i >= 0 && static_cast<size_t>(i) >= paragraphs.size());
 }
 
 void

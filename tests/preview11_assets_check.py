@@ -24,7 +24,7 @@ before=E.parse(str(S/'art/preview10/before10-buttonpanel.xml'))
 for n in before.findall('menu/tool'):
  assert {k:v for k,v in tools[n.get('name')].items() if k!='help'}=={k:v for k,v in n.attrib.items() if k!='help'}
 
-assert len(tools)==59 and len(bp.findall('menu'))==15
+assert len(tools)==64 and len(bp.findall('menu'))==15
 assert not bp.xpath('.//Button[@name="TransportButton"]')
 app=E.parse(str(D/'gui/app.xml'));assert len(app.xpath('.//Button[@name="TransportButton"]'))==1
 assert app.xpath('.//Button[@name="MayorButton"]/../..')[0] is app.xpath('.//Button[@name="TransportButton"]/../..')[0]
@@ -48,5 +48,5 @@ for name in ['mainmenu','app','buttonpanel','speedpanel','transport','cityhall',
    p=n.get(a)
    if p and p.startswith(('images/','gui/','fonts/')):assert (D/p).exists(),(name,p)
 metrics=json.loads((S/'art/preview11/scale-metrics.json').read_text());assert all(x['sprite_scale']==.8 for x in metrics)
-result={'result':'PASS','tools':59,'previous_tools_preserved':51,'categories':15,'tables_checked':tables,'commune_variants':3,'housing_appearances':12,'replacement_sprite_scale':.8,'building_frames_rescaled':len(metrics),'native_frame_counts_preserved':True,'transport_report_build_controls':0,'windows_graphical_play_tested':False}
+result={'result':'PASS','tools':64,'previous_tools_preserved':51,'categories':15,'tables_checked':tables,'commune_variants':3,'housing_appearances':12,'replacement_sprite_scale':.8,'building_frames_rescaled':len(metrics),'native_frame_counts_preserved':True,'transport_report_build_controls':0,'windows_graphical_play_tested':False}
 print(json.dumps(result,indent=2))

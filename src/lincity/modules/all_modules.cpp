@@ -35,6 +35,10 @@ void initializeModules() {
     ConstructionGroup::addConstructionGroup(&fireStationConstructionGroup);
     ConstructionGroup::addConstructionGroup(&healthCentreConstructionGroup);
     ConstructionGroup::addConstructionGroup(&cricketConstructionGroup);
+    ConstructionGroup::addConstructionGroup(&footballConstructionGroup);
+    for(auto* group : {&largeWarehouseConstructionGroup, &computerFactoryConstructionGroup,
+                       &carFactoryConstructionGroup, &nuclearPowerConstructionGroup})
+      ConstructionGroup::addConstructionGroup(group);
     ConstructionGroup::addConstructionGroup(&potteryConstructionGroup);
     ConstructionGroup::addConstructionGroup(&monumentConstructionGroup);
     ConstructionGroup::addConstructionGroup(&blacksmithConstructionGroup);
@@ -115,6 +119,11 @@ void initializeModules() {
     ConstructionGroup::addResourceID("FireStation", &fireStationConstructionGroup);
     ConstructionGroup::addResourceID("Health", &healthCentreConstructionGroup);
     ConstructionGroup::addResourceID("SportsCroud", &cricketConstructionGroup);
+    ConstructionGroup::addResourceID("FootballStadium", &footballConstructionGroup);
+    ConstructionGroup::addResourceID("LargeWarehouse", &largeWarehouseConstructionGroup);
+    ConstructionGroup::addResourceID("ComputerFactory", &computerFactoryConstructionGroup);
+    ConstructionGroup::addResourceID("CarFactory", &carFactoryConstructionGroup);
+    ConstructionGroup::addResourceID("NuclearPower", &nuclearPowerConstructionGroup);
     ConstructionGroup::addResourceID("Pottery", &potteryConstructionGroup);
     //ConstructionGroup::addResourceID("Monument", &monumentFinishedConstructionGroup);
     ConstructionGroup::addResourceID("MonumentConstruction", &monumentConstructionGroup);

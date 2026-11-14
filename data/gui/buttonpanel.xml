@@ -32,6 +32,7 @@
     <tool name="BPMHealthButton" grpid="22" help="health" />
     <tool name="BPMSportsButton" grpid="31" help="cricket" />
     <tool name="BPMPoliceButton" grpid="63" help="police" />
+    <tool name="BPMFootballButton" grpid="70" help="football-stadium" />
   </menu>
   <menu button-name="BPTransportButton" drawer-name="BPTransportButtonDrawer" default="BPMTrackButton">
     <tool name="BPMTrackButton" grpid="07" help="track" />
@@ -56,6 +57,7 @@
   <menu button-name="BPFreightButton" drawer-name="BPFreightButtonDrawer" default="BPMPortButton">
     <tool name="BPMPortButton" grpid="17" help="port" />
     <tool name="BPMWarehouseButton" grpid="51" help="warehouse" />
+    <tool name="BPMLargeWarehouseButton" grpid="71" help="distribution-center" />
   </menu>
   <menu button-name="BPPowerButton" drawer-name="BPPowerButtonDrawer" default="BPMPowerLineButton">
     <tool name="BPMPowerLineButton" grpid="01" help="powerline" />
@@ -63,6 +65,7 @@
     <tool name="BPMSolarPSButton" grpid="02" help="powerssolar" />
     <tool name="BPMSubstationButton" grpid="03" help="substation" />
     <tool name="BPMWindmillButton" grpid="49" help="windmill" />
+    <tool name="BPMNuclearButton" grpid="74" help="nuclear-power" />
   </menu>
   <menu button-name="BPMiningButton" drawer-name="BPMiningButtonDrawer" default="BPMCoalButton">
     <tool name="BPMCoalButton" grpid="08" help="coalmine" />
@@ -78,6 +81,8 @@
     <tool name="BPMGlassButton" grpid="67" help="glass-offices" />
     <tool name="BPMBronzeButton" grpid="68" help="bronze-offices" />
     <tool name="BPMDecoButton" grpid="69" help="deco-offices" />
+    <tool name="BPMComputerButton" grpid="72" help="computer-factory" />
+    <tool name="BPMCarFactoryButton" grpid="73" help="car-factory" />
   </menu>
   <menu button-name="BPLandButton" drawer-name="BPLandButtonDrawer" default="BPMParkButton">
     <tool name="BPMParkButton" grpid="19" help="park" />
@@ -557,16 +562,16 @@
           </Panel>
           <Panel name="BPSchoolButtonDrawer" resizable="yes">
             <TableLayout rows="1" cols="1">
-              <rowsize row="1" fixed="226" />
+              <rowsize row="1" fixed="306" />
               <cell row="1" col="1" halign="left" valign="top">
-                <Panel width="320" height="226">
+                <Panel width="320" height="306">
                   <FilledRectangle color="#132c2bf2" />
                   <TableLayout rows="3" cols="3">
                     <colsize col="1" fixed="12" />
                     <colsize col="3" fixed="12" />
                     <rowsize row="1" fixed="36" />
                     <rowsize row="2" fixed="24" />
-                    <rowsize row="3" fixed="160" />
+                    <rowsize row="3" fixed="240" />
                     <cell row="1" col="2">
                       <Paragraph color="#eef1df" font-size="18">SERVICES</Paragraph>
                     </cell>
@@ -574,9 +579,10 @@
                       <Paragraph color="#c3d0bc" font-size="13">Choose a building or route</Paragraph>
                     </cell>
                     <cell row="3" col="2">
-                      <TableLayout rows="2" cols="3">
+                      <TableLayout rows="3" cols="3">
                         <rowsize row="1" fixed="80" />
                         <rowsize row="2" fixed="80" />
+                        <rowsize row="3" fixed="80" />
                         <cell row="1" col="1" halign="center" valign="center">
                           <CheckButton name="BPMSchoolButton" width="88" height="76" auto-uncheck="false">
                             <image src="images/readable/plate-72-normal.png" width="88" height="76" resizable="yes" />
@@ -643,6 +649,20 @@
                               </Panel>
                             </caption>
                             <tooltip>Police</tooltip>
+                          </CheckButton>
+                        </cell>
+                        <cell row="3" col="1" halign="center" valign="center">
+                          <CheckButton name="BPMFootballButton" width="88" height="76" auto-uncheck="false">
+                            <image src="images/readable/plate-72-normal.png" width="88" height="76" resizable="yes" />
+                            <image-hover src="images/readable/plate-72-hover.png" width="88" height="76" resizable="yes" />
+                            <image-clicked src="images/readable/plate-72-clicked.png" width="88" height="76" resizable="yes" />
+                            <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes" />
+                            <caption><Panel width="88" height="76"><TableLayout rows="2" cols="1">
+                              <rowsize row="1" fixed="53" /><rowsize row="2" fixed="23" />
+                              <cell row="1" col="1" halign="center" valign="center"><Image src="images/tiles/football-stadium.png" width="52" height="52" resizable="yes" /></cell>
+                              <cell row="2" col="1" halign="center" valign="center"><Paragraph color="#edf0df" font-size="11" halign="center">Football stadium</Paragraph></cell>
+                            </TableLayout></Panel></caption>
+                            <tooltip>Football stadium</tooltip>
                           </CheckButton>
                         </cell>
                       </TableLayout>
@@ -921,6 +941,20 @@
                             <image-caption src="images/readable/BPMWarehouseButton-building.png" width="88" height="76" resizable="yes" />
                           </CheckButton>
                         </cell>
+                        <cell row="1" col="3" halign="center" valign="center">
+                          <CheckButton name="BPMLargeWarehouseButton" width="88" height="76" auto-uncheck="false">
+                            <image src="images/readable/plate-72-normal.png" width="88" height="76" resizable="yes" />
+                            <image-hover src="images/readable/plate-72-hover.png" width="88" height="76" resizable="yes" />
+                            <image-clicked src="images/readable/plate-72-clicked.png" width="88" height="76" resizable="yes" />
+                            <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes" />
+                            <caption><Panel width="88" height="76"><TableLayout rows="2" cols="1">
+                              <rowsize row="1" fixed="53" /><rowsize row="2" fixed="23" />
+                              <cell row="1" col="1" halign="center" valign="center"><Image src="images/tiles/large-warehouse.png" width="52" height="52" resizable="yes" /></cell>
+                              <cell row="2" col="1" halign="center" valign="center"><Paragraph color="#edf0df" font-size="11" halign="center">Distribution center</Paragraph></cell>
+                            </TableLayout></Panel></caption>
+                            <tooltip>Distribution center</tooltip>
+                          </CheckButton>
+                        </cell>
                       </TableLayout>
                     </cell>
                   </TableLayout>
@@ -995,6 +1029,20 @@
                             <image-caption src="images/readable/BPMWindmillButton-building.png" width="88" height="76" resizable="yes" />
                           </CheckButton>
                         </cell>
+                        <cell row="2" col="3" halign="center" valign="center">
+                          <CheckButton name="BPMNuclearButton" width="88" height="76" auto-uncheck="false">
+                            <image src="images/readable/plate-72-normal.png" width="88" height="76" resizable="yes" />
+                            <image-hover src="images/readable/plate-72-hover.png" width="88" height="76" resizable="yes" />
+                            <image-clicked src="images/readable/plate-72-clicked.png" width="88" height="76" resizable="yes" />
+                            <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes" />
+                            <caption><Panel width="88" height="76"><TableLayout rows="2" cols="1">
+                              <rowsize row="1" fixed="53" /><rowsize row="2" fixed="23" />
+                              <cell row="1" col="1" halign="center" valign="center"><Image src="images/tiles/nuclear-power.png" width="52" height="52" resizable="yes" /></cell>
+                              <cell row="2" col="1" halign="center" valign="center"><Paragraph color="#edf0df" font-size="11" halign="center">Nuclear power</Paragraph></cell>
+                            </TableLayout></Panel></caption>
+                            <tooltip>Nuclear power</tooltip>
+                          </CheckButton>
+                        </cell>
                       </TableLayout>
                     </cell>
                   </TableLayout>
@@ -1050,16 +1098,16 @@
           </Panel>
           <Panel name="BPIndustryButtonDrawer" resizable="yes">
             <TableLayout rows="1" cols="1">
-              <rowsize row="1" fixed="306" />
+              <rowsize row="1" fixed="386" />
               <cell row="1" col="1" halign="left" valign="top">
-                <Panel width="320" height="306">
+                <Panel width="320" height="386">
                   <FilledRectangle color="#132c2bf2" />
                   <TableLayout rows="3" cols="3">
                     <colsize col="1" fixed="12" />
                     <colsize col="3" fixed="12" />
                     <rowsize row="1" fixed="36" />
                     <rowsize row="2" fixed="24" />
-                    <rowsize row="3" fixed="240" />
+                    <rowsize row="3" fixed="320" />
                     <cell row="1" col="2">
                       <Paragraph color="#eef1df" font-size="18">INDUSTRY</Paragraph>
                     </cell>
@@ -1067,10 +1115,11 @@
                       <Paragraph color="#c3d0bc" font-size="13">Choose a building or route</Paragraph>
                     </cell>
                     <cell row="3" col="2">
-                      <TableLayout rows="3" cols="3">
+                      <TableLayout rows="4" cols="3">
                         <rowsize row="1" fixed="80" />
                         <rowsize row="2" fixed="80" />
                         <rowsize row="3" fixed="80" />
+                        <rowsize row="4" fixed="80" />
                         <cell row="1" col="1" halign="center" valign="center">
                           <CheckButton name="BPMPotteryButton" width="88" height="76" auto-uncheck="false">
                             <image src="images/readable/plate-72-normal.png" width="88" height="76" resizable="yes" />
@@ -1192,6 +1241,34 @@
                               </Panel>
                             </caption>
                             <tooltip>Art Deco</tooltip>
+                          </CheckButton>
+                        </cell>
+                        <cell row="4" col="1" halign="center" valign="center">
+                          <CheckButton name="BPMComputerButton" width="88" height="76" auto-uncheck="false">
+                            <image src="images/readable/plate-72-normal.png" width="88" height="76" resizable="yes" />
+                            <image-hover src="images/readable/plate-72-hover.png" width="88" height="76" resizable="yes" />
+                            <image-clicked src="images/readable/plate-72-clicked.png" width="88" height="76" resizable="yes" />
+                            <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes" />
+                            <caption><Panel width="88" height="76"><TableLayout rows="2" cols="1">
+                              <rowsize row="1" fixed="53" /><rowsize row="2" fixed="23" />
+                              <cell row="1" col="1" halign="center" valign="center"><Image src="images/tiles/computer-factory.png" width="52" height="52" resizable="yes" /></cell>
+                              <cell row="2" col="1" halign="center" valign="center"><Paragraph color="#edf0df" font-size="11" halign="center">Computer factory</Paragraph></cell>
+                            </TableLayout></Panel></caption>
+                            <tooltip>Computer factory</tooltip>
+                          </CheckButton>
+                        </cell>
+                        <cell row="4" col="2" halign="center" valign="center">
+                          <CheckButton name="BPMCarFactoryButton" width="88" height="76" auto-uncheck="false">
+                            <image src="images/readable/plate-72-normal.png" width="88" height="76" resizable="yes" />
+                            <image-hover src="images/readable/plate-72-hover.png" width="88" height="76" resizable="yes" />
+                            <image-clicked src="images/readable/plate-72-clicked.png" width="88" height="76" resizable="yes" />
+                            <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes" />
+                            <caption><Panel width="88" height="76"><TableLayout rows="2" cols="1">
+                              <rowsize row="1" fixed="53" /><rowsize row="2" fixed="23" />
+                              <cell row="1" col="1" halign="center" valign="center"><Image src="images/tiles/car-factory.png" width="52" height="52" resizable="yes" /></cell>
+                              <cell row="2" col="1" halign="center" valign="center"><Paragraph color="#edf0df" font-size="11" halign="center">Car factory</Paragraph></cell>
+                            </TableLayout></Panel></caption>
+                            <tooltip>Car factory</tooltip>
                           </CheckButton>
                         </cell>
                       </TableLayout>

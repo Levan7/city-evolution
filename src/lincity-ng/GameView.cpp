@@ -1330,6 +1330,7 @@ void GameView::drawTile(Painter& painter, const MapPoint &tile)
                                     case GROUP_ORGANIC_FARM:
                                     case GROUP_WATERWELL:
                                     case GROUP_SHANTY:
+                                    case GROUP_FOOTBALL:
                                     case GROUP_CRICKET:
                                     case GROUP_SUBSTATION:
                                     //add anything else with low northen corner

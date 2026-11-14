@@ -333,6 +333,10 @@ used for high traffic, the second half as low traffic
     <sound file="SportsCroud2.wav" />
     <sound file="SportsCroud3.wav" />
     </group>
+  <group>
+    <resourceID name="FootballStadium" />
+    <sound file="FootballCrowd.wav" />
+  </group>
 
     <group>
     <resourceID name="SubstationOff" />
