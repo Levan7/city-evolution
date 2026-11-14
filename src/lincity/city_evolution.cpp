@@ -82,6 +82,7 @@ void CityEvolution::updateCity(World& world) {
   spiritualCoverage=homes?spiritualHomes*100/homes:0;
   target+=spiritualCoverage*6/100;
   if(world.total_money < 0) target -= 10;
+  target -= std::max(0, world.money_rates.income_tax - 20) / 2;
   approval = std::clamp((approval*2 + target)/3, 5, 95);
   if(!fullAutonomy) updatePlan(world);
   runMayor(world);
@@ -91,9 +92,24 @@ void CityEvolution::updateCity(World& world) {
     ++electionCount;
     lastVote = approval;
     nextElection = world.total_time + 4*NUMOF_DAYS_IN_YEAR;
+    std::string decision;
+    if(lastVote < 50 && incomeTaxLimit > BaseTaxLimit) {
+      incomeTaxLimit = BaseTaxLimit;
+      world.money_rates.income_tax = std::min(world.money_rates.income_tax, incomeTaxLimit);
+      world.civic.taxCeiling = std::min(world.civic.taxCeiling, incomeTaxLimit);
+      world.civic.taxNote.clear();
+      decision = " Voters restored the 30% income tax limit.";
+    } else if(taxReferendum) {
+      if(lastVote >= 60 && incomeTaxLimit < MaxTaxLimit) {
+        incomeTaxLimit += 10;
+        decision = " Voters approved a " + std::to_string(incomeTaxLimit) + "% income tax limit.";
+      } else {
+        decision = " Voters rejected the income tax proposal.";
+      }
+    }
+    taxReferendum = false;
     headline("Election " + std::to_string(electionCount) + ": " + std::to_string(lastVote)
-      + "% approval. " + (lastVote >= 50 ? "Council endorses your programme." : "Council requests better services.")
-      + " You remain City Steward.");
+      + "% approval." + decision + " You remain City Steward.");
   }
 }
 

@@ -152,7 +152,12 @@ void FireStation::report(Mps& mps, bool production) const {
   mps.add_s(constructionGroup->name);
   mps.add_sfp(N_("busy"), (float) busy);
   list_commodities(mps, production);
-  mps.add_ss(N_("Fire Protection"), active ? N_("Yes") : N_("No"));
+  int out = 0;
+  const int id = point.y * world.map.len() + point.x;
+  for(const auto& unit : world.civic.units) if(unit.home == id) ++out;
+  mps.add_sd(N_("Crews on calls"), out);
+  mps.add_s(world.civic.budget[CivicServices::FIRE] > 0
+    ? N_("Responds citywide") : N_("Dispatch paused: no funding"));
 }
 
 void FireStation::save(xmlTextWriterPtr xmlWriter) const {

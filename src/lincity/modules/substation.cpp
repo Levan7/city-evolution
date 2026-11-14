@@ -23,6 +23,7 @@
 ** ---------------------------------------------------------------------- */
 
 #include "substation.hpp"
+#include "lincity/road_power.hpp"
 
 #include <list>                     // for _List_iterator
 #include <map>                      // for map
@@ -100,7 +101,7 @@ void Substation::animate(unsigned long real_time) {
 
 void Substation::report(Mps& mps, bool production) const {
   mps.add_s(constructionGroup->name);
-  mps.addBlank();
+  mps.add_sd(N_("Powered reach (tiles)"),substationReach(*this));
   mps.add_sfp(N_("busy"), busy);
   list_commodities(mps, production);
 }

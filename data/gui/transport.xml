@@ -14,5 +14,147 @@
     <text color="white">X</text>
   </closebutton>
   <contents>
-    <TableLayout rows="8" cols="2"><rowsize row="1" fixed="46"/><rowsize row="2" fixed="34"/><rowsize row="3" fixed="34"/><rowsize row="4" fixed="34"/><rowsize row="5" fixed="34"/><rowsize row="6" fixed="100"/><rowsize row="7" fixed="48"/><rowsize row="8" fixed="48"/><cell row="1" col="1" colspan="2"><Paragraph name="TransitSummary" color="#edf0df" font-size="17">Passenger services connect homes to jobs.</Paragraph></cell><cell row="2" col="1" colspan="2"><Paragraph name="TransitMode0" color="#edf0df" font-size="17">Waiting for a connected service.</Paragraph></cell><cell row="3" col="1" colspan="2"><Paragraph name="TransitMode1" color="#edf0df" font-size="17">Waiting for a connected service.</Paragraph></cell><cell row="4" col="1" colspan="2"><Paragraph name="TransitMode2" color="#edf0df" font-size="17">Waiting for a connected service.</Paragraph></cell><cell row="5" col="1" colspan="2"><Paragraph name="TransitMode3" color="#edf0df" font-size="17">Waiting for a connected service.</Paragraph></cell><cell row="6" col="1" colspan="2"><Paragraph name="TransitIntro" color="#edf0df" font-size="17">Build from the categories on the left. Connect at least two supplied stops. Early bus routes use horse carriages. Motor traffic begins at 10% technology and reaches 100% at 30%.</Paragraph></cell><cell row="7" col="1" colspan="2" halign="center" valign="center"><Button name="TransitView" width="720" height="36"><image src="images/readable/plate-650-normal.png" width="720" height="36" resizable="yes"/><image-hover src="images/readable/plate-650-hover.png" width="720" height="36" resizable="yes"/><image-clicked src="images/readable/plate-650-clicked.png" width="720" height="36" resizable="yes"/><text-caption color="#edf1df" halign="center" font-size="18">Normal city view</text-caption></Button></cell><cell row="8" col="1" colspan="1" halign="center" valign="center"><Button name="TransitRefresh" width="340" height="36"><image src="images/readable/plate-650-normal.png" width="340" height="36" resizable="yes"/><image-hover src="images/readable/plate-650-hover.png" width="340" height="36" resizable="yes"/><image-clicked src="images/readable/plate-650-clicked.png" width="340" height="36" resizable="yes"/><text-caption color="#edf1df" halign="center" font-size="18">Refresh service report</text-caption></Button></cell><cell row="8" col="2" colspan="1" halign="center" valign="center"><Button name="TransitClose" width="340" height="36"><image src="images/readable/plate-650-normal.png" width="340" height="36" resizable="yes"/><image-hover src="images/readable/plate-650-hover.png" width="340" height="36" resizable="yes"/><image-clicked src="images/readable/plate-650-clicked.png" width="340" height="36" resizable="yes"/><text-caption color="#edf1df" halign="center" font-size="18">Close report</text-caption></Button></cell></TableLayout></contents>
+    <TableLayout rows="8" cols="2">
+      <colsize col="1" relative="3"/>
+      <colsize col="2" relative="1"/>
+      <rowsize row="1" fixed="46"/>
+      <rowsize row="2" fixed="42"/>
+      <rowsize row="3" fixed="42"/>
+      <rowsize row="4" fixed="42"/>
+      <rowsize row="5" fixed="42"/>
+      <rowsize row="6" fixed="66"/>
+      <rowsize row="7" fixed="48"/>
+      <rowsize row="8" fixed="48"/>
+      <cell row="1" col="1" colspan="2">
+        <Paragraph name="TransitSummary" color="#edf0df" font-size="17">Passenger services connect homes to jobs.</Paragraph>
+      </cell>
+      <cell row="2" col="1" valign="center">
+        <Paragraph name="TransitMode0" color="#edf0df" font-size="17">Waiting for a connected service.</Paragraph>
+      </cell>
+      <cell row="2" col="2">
+        <TableLayout rows="1" cols="3">
+          <cell row="1" col="1" valign="center" halign="center">
+            <Button name="FareDown0" width="48" height="32">
+              <image src="images/readable/plate-72-normal.png" width="48" height="32" resizable="yes"/>
+              <image-hover src="images/readable/plate-72-hover.png" width="48" height="32" resizable="yes"/>
+              <text-caption color="#edf0df" halign="center" font-size="18">−</text-caption>
+            </Button>
+          </cell>
+          <cell row="1" col="3" valign="center" halign="center">
+            <Button name="FareUp0" width="48" height="32">
+              <image src="images/readable/plate-72-normal.png" width="48" height="32" resizable="yes"/>
+              <image-hover src="images/readable/plate-72-hover.png" width="48" height="32" resizable="yes"/>
+              <text-caption color="#edf0df" halign="center" font-size="18">+</text-caption>
+            </Button>
+          </cell>
+          <cell row="1" col="2" valign="center">
+            <Paragraph name="Fare0" color="#edf0df" font-size="16" halign="center">Fare / trip</Paragraph>
+          </cell>
+        </TableLayout>
+      </cell>
+      <cell row="3" col="1" valign="center">
+        <Paragraph name="TransitMode1" color="#edf0df" font-size="17">Waiting for a connected service.</Paragraph>
+      </cell>
+      <cell row="3" col="2">
+        <TableLayout rows="1" cols="3">
+          <cell row="1" col="1" valign="center" halign="center">
+            <Button name="FareDown1" width="48" height="32">
+              <image src="images/readable/plate-72-normal.png" width="48" height="32" resizable="yes"/>
+              <image-hover src="images/readable/plate-72-hover.png" width="48" height="32" resizable="yes"/>
+              <text-caption color="#edf0df" halign="center" font-size="18">−</text-caption>
+            </Button>
+          </cell>
+          <cell row="1" col="3" valign="center" halign="center">
+            <Button name="FareUp1" width="48" height="32">
+              <image src="images/readable/plate-72-normal.png" width="48" height="32" resizable="yes"/>
+              <image-hover src="images/readable/plate-72-hover.png" width="48" height="32" resizable="yes"/>
+              <text-caption color="#edf0df" halign="center" font-size="18">+</text-caption>
+            </Button>
+          </cell>
+          <cell row="1" col="2" valign="center">
+            <Paragraph name="Fare1" color="#edf0df" font-size="16" halign="center">Fare / trip</Paragraph>
+          </cell>
+        </TableLayout>
+      </cell>
+      <cell row="4" col="1" valign="center">
+        <Paragraph name="TransitMode2" color="#edf0df" font-size="17">Waiting for a connected service.</Paragraph>
+      </cell>
+      <cell row="4" col="2">
+        <TableLayout rows="1" cols="3">
+          <cell row="1" col="1" valign="center" halign="center">
+            <Button name="FareDown2" width="48" height="32">
+              <image src="images/readable/plate-72-normal.png" width="48" height="32" resizable="yes"/>
+              <image-hover src="images/readable/plate-72-hover.png" width="48" height="32" resizable="yes"/>
+              <text-caption color="#edf0df" halign="center" font-size="18">−</text-caption>
+            </Button>
+          </cell>
+          <cell row="1" col="3" valign="center" halign="center">
+            <Button name="FareUp2" width="48" height="32">
+              <image src="images/readable/plate-72-normal.png" width="48" height="32" resizable="yes"/>
+              <image-hover src="images/readable/plate-72-hover.png" width="48" height="32" resizable="yes"/>
+              <text-caption color="#edf0df" halign="center" font-size="18">+</text-caption>
+            </Button>
+          </cell>
+          <cell row="1" col="2" valign="center">
+            <Paragraph name="Fare2" color="#edf0df" font-size="16" halign="center">Fare / trip</Paragraph>
+          </cell>
+        </TableLayout>
+      </cell>
+      <cell row="5" col="1" valign="center">
+        <Paragraph name="TransitMode3" color="#edf0df" font-size="17">Waiting for a connected service.</Paragraph>
+      </cell>
+      <cell row="5" col="2">
+        <TableLayout rows="1" cols="3">
+          <cell row="1" col="1" valign="center" halign="center">
+            <Button name="FareDown3" width="48" height="32">
+              <image src="images/readable/plate-72-normal.png" width="48" height="32" resizable="yes"/>
+              <image-hover src="images/readable/plate-72-hover.png" width="48" height="32" resizable="yes"/>
+              <text-caption color="#edf0df" halign="center" font-size="18">−</text-caption>
+            </Button>
+          </cell>
+          <cell row="1" col="3" valign="center" halign="center">
+            <Button name="FareUp3" width="48" height="32">
+              <image src="images/readable/plate-72-normal.png" width="48" height="32" resizable="yes"/>
+              <image-hover src="images/readable/plate-72-hover.png" width="48" height="32" resizable="yes"/>
+              <text-caption color="#edf0df" halign="center" font-size="18">+</text-caption>
+            </Button>
+          </cell>
+          <cell row="1" col="2" valign="center">
+            <Paragraph name="Fare3" color="#edf0df" font-size="16" halign="center">Fare / trip</Paragraph>
+          </cell>
+        </TableLayout>
+      </cell>
+      <cell row="6" col="1" colspan="2">
+        <Paragraph name="TransitIntro" color="#edf0df" font-size="17">Adjust fares per trip. Higher fares reduce demand. Fare revenue enters the treasury at month-end.</Paragraph>
+      </cell>
+      <cell row="7" col="1" colspan="2" halign="center" valign="center">
+        <Button name="TransitView" width="720" height="36">
+          <image src="images/readable/plate-650-normal.png" width="720" height="36" resizable="yes"/>
+          <image-hover src="images/readable/plate-650-hover.png" width="720" height="36" resizable="yes"/>
+          <image-clicked src="images/readable/plate-650-clicked.png" width="720" height="36" resizable="yes"/>
+          <text-caption color="#edf1df" halign="center" font-size="18">Normal city view</text-caption>
+        </Button>
+      </cell>
+      <cell row="8" col="1" colspan="2">
+        <TableLayout rows="1" cols="2">
+          <cell row="1" col="1" halign="center" valign="center">
+            <Button name="TransitRefresh" width="340" height="36">
+              <image src="images/readable/plate-650-normal.png" width="340" height="36" resizable="yes"/>
+              <image-hover src="images/readable/plate-650-hover.png" width="340" height="36" resizable="yes"/>
+              <image-clicked src="images/readable/plate-650-clicked.png" width="340" height="36" resizable="yes"/>
+              <text-caption color="#edf1df" halign="center" font-size="18">Refresh service report</text-caption>
+            </Button>
+          </cell>
+          <cell row="1" col="2" halign="center" valign="center">
+            <Button name="TransitClose" width="340" height="36">
+              <image src="images/readable/plate-650-normal.png" width="340" height="36" resizable="yes"/>
+              <image-hover src="images/readable/plate-650-hover.png" width="340" height="36" resizable="yes"/>
+              <image-clicked src="images/readable/plate-650-clicked.png" width="340" height="36" resizable="yes"/>
+              <text-caption color="#edf1df" halign="center" font-size="18">Close report</text-caption>
+            </Button>
+          </cell>
+        </TableLayout>
+      </cell>
+    </TableLayout>
+  </contents>
 </Window>

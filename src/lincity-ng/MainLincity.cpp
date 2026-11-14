@@ -52,15 +52,20 @@ void setSimulationDelay( int speed )
 /*
  * get Data form Lincity NG and Save City
  */
-void saveCityNG(const World& world, const std::filesystem::path& filename) {
-  std::filesystem::path fullname = filename;
+bool saveCityNG(const World& world, const std::filesystem::path& filename) {
+  auto pending = filename;
+  pending += ".tmp";
   try {
-    world.save(fullname);
-    std::cout << "saved game to '" << fullname << "'" << std::endl;
-  } catch(std::runtime_error err) {
-    std::cerr << "error: failed to save game to '" << fullname << "': "
+    world.save(pending);
+    std::filesystem::rename(pending, filename);
+    std::cout << "saved game to " << filename << std::endl;
+    return true;
+  } catch(const std::exception& err) {
+    std::error_code ignored;
+    std::filesystem::remove(pending, ignored);
+    std::cerr << "error: failed to save game to " << filename << ": "
       << err.what() << std::endl;
-    assert(false);
+    return false;
   }
 }
 

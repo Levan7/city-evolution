@@ -21,4 +21,5 @@
 	<li><a href="windmill">Windmills</a></li>
 	<li><a href="powerscoal">Coal fired power station</a></li>
 	<li><a href="powerssolar">Solar power station</a></li>
+  <p style="hp">Substations, dedicated power lines and coal plants unlock at 5% technology. A substation converts incoming high voltage to low voltage. The yellow square shows its current reach, based on available power. Buildings within the square can draw power without a direct connection. Dirt tracks lose the most power, followed by paved roads, rail and metro, and dedicated power lines lose the least.</p>
 </Document>

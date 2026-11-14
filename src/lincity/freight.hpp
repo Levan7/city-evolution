@@ -4,3 +4,4 @@
 class World;
 inline constexpr int WarehouseFreightRange = 48;
 void distributeWarehouseFreight(World&);
+void distributeMetroSupplies(World&);

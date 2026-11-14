@@ -23,6 +23,7 @@
 
 #include "GameView.hpp"
 #include "lincity/street_routes.hpp"
+#include "lincity/road_power.hpp"
 #include "NightCrops.hpp"
 #include <cmath>
 #include "lincity/building_visual_state.hpp"
@@ -73,6 +74,7 @@
 #include "lincity-ng/UserOperation.hpp"   // for UserOperation
 #include "lincity/all_buildings.hpp"      // for GROUP_WATER_BUL_COST, GROUP...
 #include "lincity/groups.hpp"             // for GROUP_DESERT, GROUP_WATER
+#include "lincity/modules/parkland.hpp"
 #include "lincity/lin-city.hpp"           // for FLAG_POWER_CABLES_0, FLAG_P...
 #include "lincity/lintypes.hpp"           // for ConstructionGroup, Construc...
 #include "lincity/messages.hpp"           // for Message
@@ -627,10 +629,49 @@ bool GameView::constrainViewportPosition(bool useScrollCorrection) {
   }
 }
 
+namespace {
+constexpr int ParkZone = -1;
+constexpr int MaxParkSide = 20;
+
+void placeCityPark(World& world, MapPoint a, MapPoint b, GameView& view) {
+  const int left = std::min(a.x,b.x), top = std::min(a.y,b.y);
+  const int right = std::max(a.x,b.x), bottom = std::max(a.y,b.y);
+  const int width = right-left+1, height = bottom-top+1;
+  if(width < 3 || height < 3 || width > MaxParkSide || height > MaxParkSide) {
+    view.printStatusMessage("Choose a park between 3×3 and 20×20 tiles.");
+    return;
+  }
+  if(world.total_money < width * height * cityParkGroup.getCosts(world)) {
+    view.printStatusMessage("The treasury cannot cover this park. Try a smaller area.");
+    return;
+  }
+  Message::ptr reason;
+  for(int y=top; y<=bottom; ++y) for(int x=left; x<=right; ++x)
+    if(!cityParkGroup.can_build_here(world,{x,y},reason)) {
+      view.printStatusMessage("The park needs a rectangle of clear land. Existing buildings and water are preserved.");
+      return;
+    }
+
+  const int centerX=(left+right)/2, centerY=(top+bottom)/2;
+  for(int y=top; y<=bottom; ++y) for(int x=left; x<=right; ++x) {
+    const MapPoint p(x,y);
+    world.buildConstruction(cityParkGroup,p);
+    const int style = x==centerX && y==centerY ? 4
+      : x==centerX ? 1 : y==centerY ? 2 : 0;
+    static_cast<Parkland*>(world.map(p)->reportingConstruction)->setParkTile(style);
+  }
+  view.printStatusMessage("Built a " + std::to_string(width) + "×" + std::to_string(height) + " City Park.");
+}
+}
+
+void GameView::beginCityPark() {
+  beginDistrictZone(ParkZone);
+}
+
 void GameView::beginDistrictZone(int type) {
   districtMode = true; districtDrag = false; districtType = type;
   roadDragging = false; areaBulldoze = false; leftButtonDown = false;
-  printStatusMessage(type == 0 ? std::string("Drag a rectangle on the map for the mayor's work zone. Esc cancels.")
+  printStatusMessage(type == ParkZone ? "Drag a 3×3 to 20×20 City Park. Esc cancels." : type == 0 ? std::string("Drag a rectangle on the map for the mayor's work zone. Esc cancels.")
     : std::string("Drag a rectangle on the map for the new ") + CityEvolution::districtTypeName(type) + " district. It may cover existing buildings. Esc cancels.");
   setDirty();
 }
@@ -640,7 +681,7 @@ GameView::event(const Event& event) {
   // District zone mode: a left-button drag selects the rectangle; nothing is built or bulldozed.
   if(districtMode) {
     if(event.type == Event::KEYDOWN && event.scancode == SDL_SCANCODE_ESCAPE) {
-      districtMode = false; districtDrag = false; printStatusMessage("District zone cancelled."); setDirty(); return;
+      districtMode = false; districtDrag = false; printStatusMessage("Area selection cancelled."); setDirty(); return;
     }
     if(event.type == Event::MOUSEBUTTONDOWN && event.mousebutton == SDL_BUTTON_LEFT && event.inside) {
       districtStart = districtEnd = getTile(event.mousepos); districtDrag = true; setDirty(); return;
@@ -650,7 +691,9 @@ GameView::event(const Event& event) {
       districtEnd = getTile(event.mousepos);
       districtDrag = false; districtMode = false;
       auto& world = getWorld();
-      if(districtType == 0) {
+      if(districtType == ParkZone) {
+        placeCityPark(world, districtStart, districtEnd, *this);
+      } else if(districtType == 0) {
         game->mayorZoneDrawn(districtStart.x, districtStart.y, districtEnd.x, districtEnd.y);
       } else if(world.evolution.addDistrict(world, districtType, districtStart.x, districtStart.y, districtEnd.x, districtEnd.y, "")) {
         game->districtDrawn(int(world.evolution.districts.size()) - 1);
@@ -1386,8 +1429,8 @@ void GameView::drawTile(Painter& painter, const MapPoint &tile)
         if(mapOverlay != overlayOnly && (cstgrp->group == GROUP_ROAD || cstgrp->group == GROUP_TRACK
           || cstgrp->group == GROUP_ROAD_BRIDGE || cstgrp->group == GROUP_TRACK_BRIDGE))
           drawStreetActors(painter, tile);
-        if(mapOverlay != overlayOnly && (cstgrp->group==GROUP_ROAD || cstgrp->group==GROUP_ROAD_BRIDGE || cstgrp->group==GROUP_RAIL || cstgrp->group==GROUP_RAIL_BRIDGE)) drawTransit(painter,0,tile);
-        if(mapOverlay != overlayOnly) drawEmergencyActors(painter,tile);
+        if(mapOverlay != overlayOnly && (cstgrp->group==GROUP_ROAD || cstgrp->group==GROUP_ROAD_BRIDGE || cstgrp->group==GROUP_TRACK || cstgrp->group==GROUP_TRACK_BRIDGE || cstgrp->group==GROUP_RAIL || cstgrp->group==GROUP_RAIL_BRIDGE)) drawTransit(painter,0,tile);
+
         if(!hideHigh && mapOverlay!=overlayOnly) {
           auto* parent=getWorld().map(upperLeft)->reportingConstruction;
           if(parent){auto stock=buildingStockVisual(*parent);if(stock.kind>=0&&stock.level>0){const char* kinds[]={"food","goods","ore","coal"};auto tx=texture_manager->load(std::string("images/activity/")+kinds[stock.kind]+"-"+std::to_string(stock.level)+".png");auto p=getScreenPoint(lowerRightTile)-Vector2(tileWidth*.60f,tileHeight*.48f);int dark=getWorld().evolution.darkness();tx->setLighting(255-dark*148/1000,255-dark*136/1000,255-dark*113/1000);painter.drawStretchTexture(tx,Rect2D(p.x-25*zoom,p.y-47*zoom,p.x+25*zoom,p.y+3*zoom));tx->setLighting(255,255,255);}}
@@ -1577,7 +1620,7 @@ void GameView::draw(Painter& painter)
     }
     painter.drawTexture(mapTexture.get(), Vector2(0,0));
     if(mapOverlay != overlayOnly) {
-      drawTransit(painter,1);drawCityLife(painter);
+      drawTransit(painter,1);drawEmergencyActors(painter);drawCityLife(painter);
       if(getWorld().evolution.darkness()>50)for(auto*c:getWorld().map.constructions){int g=c->constructionGroup->group;if(g==GROUP_ROAD||g==GROUP_TRACK||g==GROUP_ROAD_BRIDGE||g==GROUP_TRACK_BRIDGE)drawStreetLamps(painter,c->point);}
     }
 
@@ -1602,6 +1645,19 @@ void GameView::draw(Painter& painter)
     }
     const int coverageMode = group ? TransitSystem::stationMode(group->group) : -1;
     if(coverageMode >= 0 && inCity(coveragePoint)) {
+      const int reach=coverageMode==TransitSystem::BUS ? TransitSystem::busReach(group->size)
+        : TransitSystem::walkingRadius(coverageMode);
+      const int end=group->size+reach-1;
+      for(int offset=-reach; offset<=end; ++offset)
+        for(const auto edge:{coveragePoint.e(offset).n(reach),coveragePoint.e(offset).s(end),
+                             coveragePoint.w(reach).s(offset),coveragePoint.e(end).s(offset)}) {
+          if(!inCity(edge)) continue;
+          const auto pt=getScreenPoint(edge);
+          Rect2D diamond(0,0,tileWidth,tileHeight);
+          diamond.move(pt-Vector2(tileWidth/2,tileHeight));
+          painter.setFillColor(Color(105,214,243,35));
+          fillDiamond(painter,diamond);
+        }
       const auto area = TransitSystem::walkingArea(world,coveragePoint,group->size,coverageMode);
       for(const auto& [id, steps] : area) {
         MapPoint point(id % world.map.len(), id / world.map.len());
@@ -1609,6 +1665,20 @@ void GameView::draw(Painter& painter)
         Rect2D diamond(0,0,tileWidth,tileHeight);
         diamond.move(pt-Vector2(tileWidth/2,tileHeight));
         painter.setFillColor(Color(63,200,245,steps==0 ? 110 : 55));
+        fillDiamond(painter,diamond);
+      }
+    }
+    if(group && group->group == GROUP_SUBSTATION && inCity(coveragePoint)) {
+      const bool existing = station && station->point == coveragePoint &&
+        station->constructionGroup == group && op->action != UserOperation::ACTION_BUILD;
+      const int reach = existing ? substationReach(*station) : 14;
+      for(int dy=-reach; dy<=reach; ++dy) for(int dx=-reach; dx<=reach; ++dx) {
+        const auto tile = coveragePoint.e(dx).s(dy);
+        if(!inCity(tile)) continue;
+        const auto screen = getScreenPoint(tile);
+        Rect2D diamond(0,0,tileWidth,tileHeight);
+        diamond.move(screen-Vector2(tileWidth/2,tileHeight));
+        painter.setFillColor(Color(255,202,65,reach ? 56 : 130));
         fillDiamond(painter,diamond);
       }
     }
@@ -1704,11 +1774,11 @@ void GameView::draw(Painter& painter)
         {
           auto& ev = getWorld().evolution;
           if(districtMode && districtDrag) {
-            printStatusMessage(std::string(districtType == 0 ? "Mayor's work zone: " : std::string("New ") + CityEvolution::districtTypeName(districtType) + " district: ")
+            printStatusMessage(std::string(districtType == ParkZone ? "City Park: " : districtType == 0 ? "Mayor's work zone: " : std::string("New ") + CityEvolution::districtTypeName(districtType) + " district: ")
               + std::to_string(std::abs(districtEnd.x - districtStart.x) + 1) + "x" + std::to_string(std::abs(districtEnd.y - districtStart.y) + 1)
               + " tiles. Release the mouse to create it.");
           } else if(districtMode) {
-            printStatusMessage(districtType == 0 ? std::string("Drag a rectangle for the mayor's work zone. Esc cancels.")
+            printStatusMessage(districtType == ParkZone ? "Drag a 3×3 to 20×20 City Park. Esc cancels." : districtType == 0 ? std::string("Drag a rectangle for the mayor's work zone. Esc cancels.")
               : std::string("Drag a rectangle for the new ") + CityEvolution::districtTypeName(districtType) + " district. Esc cancels.");
           } else if(getUserOperation()->action == UserOperation::ACTION_QUERY) {
             const int di = ev.districtAt(tileUnderMouse.x, tileUnderMouse.y);
@@ -1945,7 +2015,15 @@ void GameView::drawCityLife(Painter& painter) {
   auto& world = getWorld();
   auto& e = world.evolution;
   const int weather=e.currentWeather();
-  if(weather>=2) {
+  if(weather==4) {
+    painter.setFillColor(Color(233,243,250,202));
+    for(int i=0;i<155;++i) {
+      const float x=std::fmod(i*131.71f+e.visualTime*.023f,getWidth()+20)-10;
+      const float y=std::fmod(i*89.03f+e.visualTime*(.035f+(i%5)*.01f),getHeight()+20)-10;
+      const float size=1.0f+(i%4)*.52f;
+      painter.fillRectangle(Rect2D(x,y,x+size,y+size));
+    }
+  } else if(weather==2 || weather==3) {
     const int drops=weather==3 ? 200 : 100;
     painter.setLineColor(Color(159,193,222,weather==3 ? 145 : 105));
     for(int i=0;i<drops;++i) {
@@ -1953,8 +2031,8 @@ void GameView::drawCityLife(Painter& painter) {
       float y=std::fmod(i*97.73f + e.visualTime*.43f,getHeight()+50)-25;
       painter.drawLine(Vector2(x,y),Vector2(x-4,y+13));
     }
-    if(weather==3 && e.visualTime%19000 < 90) {
-      painter.setFillColor(Color(201,218,255,55));
+    if(weather==3 && e.visualTime%19000 < 180) {
+      painter.setFillColor(Color(201,218,255,105));
       painter.fillRectangle(Rect2D(0,0,getWidth(),getHeight()));
     }
   }
@@ -2087,22 +2165,53 @@ void GameView::drawNightLayers(Painter& painter,const std::string& key,const Rec
   }
 }
 
-void GameView::drawEmergencyActors(Painter& painter,MapPoint tile) {
+void GameView::drawEmergencyActors(Painter& painter) {
  auto& w=getWorld();int n=w.map.len();auto point=[n](int id){return MapPoint(id%n,id/n);};
- for(const auto& u:w.civic.units){if(u.path.empty()||u.step>=int(u.path.size()))continue;int id=u.path[u.step];if(point(id)!=tile)continue;int next=u.step+1<int(u.path.size())?u.path[u.step+1]:id;auto a=point(id),b=point(next);int cost=w.civic.terrainCost(w,next,u.home,u.returning?u.home:next);float f=next==id?0:std::clamp(u.credit/float(std::max(1,cost)),0.f,1.f);auto p=getScreenPoint(a)*(1-f)+getScreenPoint(b)*f-Vector2(0,tileHeight*.52f);
+ for(const auto& call:w.civic.incidents) {
+   const auto tile=point(call.target);
+   if(!w.map.is_visible(tile)) continue;
+   const auto* building=w.map(tile)->construction;
+   if(!building) continue;
+   if(call.kind==CivicServices::FIRE_CALL && call.severity>0 &&
+      building->constructionGroup->group!=GROUP_FIRE) {
+     auto* fire=ResourceGroup::resMap["Fire"];
+     if(fire && !fire->graphicsInfoVector.empty())
+       drawTexture(painter,tile.e(building->constructionGroup->size-1),
+         &fire->graphicsInfoVector[(w.evolution.visualTime/100)%fire->graphicsInfoVector.size()]);
+   }
+   if(call.kind==CivicServices::ZOMBIE_CALL) {
+     const auto p=getScreenPoint(tile)-Vector2(0,tileHeight);
+     painter.setFillColor(Color(133,180,102));
+     for(int i=0;i<std::min(4,call.severity);++i)
+       painter.fillRectangle(Rect2D(p.x+i*4*zoom,p.y-10*zoom,p.x+(i*4+3)*zoom,p.y));
+   }
+ }
+ for(const auto& u:w.civic.units){if(u.path.empty()||u.step>=int(u.path.size()))continue;int id=u.path[u.step];int next=u.step+1<int(u.path.size())?u.path[u.step+1]:id;auto a=point(id),b=point(next);int cost=w.civic.terrainCost(w,next,u.home,u.returning?u.home:next);float f=next==id?0:std::clamp(u.credit/float(std::max(1,cost)),0.f,1.f);auto p=getScreenPoint(a)*(1-f)+getScreenPoint(b)*f-Vector2(0,tileHeight*.52f);
   int dx=b.x-a.x,dy=b.y-a.y;const char* direction=dx>0?"SE":dy>0?"SW":dx<0?"NW":"NE";bool motor=TrafficEra::motorVehicle(w.tech_level,MAX_TECH_LEVEL,unsigned(u.home));std::string kind=motor?(u.kind==CivicServices::FIRE_CALL?"firetruck-":u.kind==CivicServices::MEDICAL_CALL?"ambulance-":"policecar-"):u.kind==CivicServices::FIRE_CALL?"pumpwagon-":"carriage-";
   std::string file=std::string("images/")+(!motor&&u.kind!=CivicServices::FIRE_CALL?"transit/":"emergency/")+kind+direction+".png";auto tx=texture_manager->load(file);float width=tx->getWidth()*zoom,height=tx->getHeight()*zoom;int dark=w.evolution.darkness();tx->setLighting(255-dark*110/1000,255-dark*95/1000,255-dark*65/1000);painter.drawStretchTexture(tx,Rect2D(p.x-width/2,p.y-height,p.x+width/2,p.y));tx->setLighting(255,255,255);
   if(motor&&w.evolution.visualTime%800<400){painter.setFillColor(Color(120,195,255));painter.fillRectangle(Rect2D(p.x-2*zoom,p.y-height*.8f,p.x+2*zoom,p.y-height*.8f+2*zoom));}
   if(dark>0){painter.setFillColor(Color(255,215,145));painter.fillRectangle(Rect2D(p.x+width*.25f,p.y-5*zoom,p.x+width*.25f+2*zoom,p.y-3*zoom));}
-  if(u.kind==CivicServices::FIRE_CALL&&!u.returning&&next==id){painter.setLineColor(Color(161,211,237));painter.drawLine(p,p+Vector2(12*zoom,-16*zoom));}
+  if(u.kind==CivicServices::FIRE_CALL && !u.returning && next==id) {
+    const auto call=std::find_if(w.civic.incidents.begin(),w.civic.incidents.end(),
+      [&](const auto& incident){return incident.id==u.call;});
+    if(call!=w.civic.incidents.end()) {
+      const auto target=getScreenPoint(point(call->target))-Vector2(0,tileHeight*.65f);
+      const auto nozzle=p-Vector2(0,height*.50f);
+      painter.setLineColor(Color(173,224,250,230));
+      for(int stream=-1;stream<=1;++stream)
+        for(int part=0;part<6;++part) {
+          const float t=part/6.f;
+          const float b=(part+1)/6.f;
+          const float wobble=std::sin(w.evolution.visualTime*.016f+stream+part)*2*zoom;
+          auto arc = [&](float f) {
+            return nozzle*(1-f)+target*f-Vector2(0,(60*f*(1-f)+stream*3+wobble)*zoom);
+          };
+          painter.drawLine(arc(t),arc(b));
+        }
+    }
+  }
  }
- auto* building=w.map(tile)->reportingConstruction;
- if(!building)return;
- int root=building->point.y*n+building->point.x;
- for(auto& c:w.civic.incidents){if(c.target!=root)continue;auto p=getScreenPoint(tile.e(building->constructionGroup->size-1))-Vector2(0,tileHeight);
-  if(c.kind==CivicServices::FIRE_CALL&&building->constructionGroup->group!=GROUP_FIRE){auto* rg=ResourceGroup::resMap["Fire"];if(rg&&!rg->graphicsInfoVector.empty())drawTexture(painter,tile.e(building->constructionGroup->size-1),&rg->graphicsInfoVector[(w.evolution.visualTime/100)%rg->graphicsInfoVector.size()]);}
-  if(c.kind==CivicServices::ZOMBIE_CALL){painter.setFillColor(Color(133,180,102));for(int i=0;i<std::min(4,c.severity);++i)painter.fillRectangle(Rect2D(p.x+i*4*zoom,p.y-10*zoom,p.x+(i*4+3)*zoom,p.y));}
- }
+
 }
 
 void GameView::drawStreetLamps(Painter& painter,MapPoint tile) {

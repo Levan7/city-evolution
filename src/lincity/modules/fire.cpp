@@ -78,7 +78,7 @@ void Fire::update()
     if (burning_days == 0)
     {   burning_days = rand() % (FIRE_LENGTH / 5);}
 
-    if (burning_days > FIRE_LENGTH)
+    if (burning_days >= FIRE_LENGTH)
     {
         //is_burning = false;
         if (smoking_days == 0)   /* rand length here also */

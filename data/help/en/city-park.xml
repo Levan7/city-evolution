@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Document style="helpdocument">
+  <p style="htitle">City Park</p>
+  <img src="images/tiles/city-park-fountain.png" width="128" height="64"/>
+  <p style="hp">Under Land, choose City Park, then drag a rectangle between 3 by 3 and 20 by 20 tiles. The park costs $125 per tile. It adds trees, intersecting paths and a central fountain. Its greenery gradually reduces pollution in the park and up to two tiles away.</p>
+</Document>

@@ -92,7 +92,8 @@ void SolarPower::report(Mps& mps, bool production) const {
   mps.addBlank();
   mps.add_sfp(N_("busy"), (busy));
   mps.add_sfp(N_("Tech"), (tech * 100.0) / MAX_TECH_LEVEL);
-  mps.add_sd(N_("Output"), hivolt_output);
+  mps.add_sd(N_("Rated generation"), hivolt_output);
+  mps.add_sd(N_("Weather limit"), hivolt_output * world.evolution.solarPercent() / 100);
   list_commodities(mps, production);
 }
 

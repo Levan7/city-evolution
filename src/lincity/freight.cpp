@@ -10,6 +10,7 @@
 #include <map>
 #include <queue>
 #include <set>
+#include <tuple>
 
 namespace {
 constexpr std::array cargo{STUFF_FOOD, STUFF_COAL, STUFF_GOODS, STUFF_ORE, STUFF_STEEL};
@@ -94,6 +95,11 @@ void distributeWarehouseFreight(World& world) {
         if(seen.insert(index(endpoint->point)).second) endpoints.emplace_back(endpoint,-1);
       }
 
+    // Give local businesses and markets first use of shared route capacity.
+    std::stable_partition(endpoints.begin(), endpoints.end(), [](const auto& entry) {
+      return entry.first->constructionGroup->group != GROUP_PORT;
+    });
+
     auto transfer = [&](Construction& from, Construction& to, int route, size_t i, int requested) {
       const auto stuff = cargo[i];
       if(!from.localTradeRule(stuff).give || !to.localTradeRule(stuff).take) return;
@@ -121,6 +127,8 @@ void distributeWarehouseFreight(World& world) {
         const auto& supply = source->localTradeRule(stuff);
         const int threshold = supply.take ? supply.maxload/2 : 0;
         if(source->constructionGroup->group == GROUP_MARKET || isWarehouseGroup(source->constructionGroup->group)) continue;
+        if(source->constructionGroup->group == GROUP_PORT &&
+          !static_cast<Port*>(source)->commodityRuleCount[stuff].take) continue;
         transfer(*source,*warehouse,route,i,source->commodityCount[stuff]-threshold);
       }
       for(auto [buyer,route] : endpoints) {
@@ -133,10 +141,78 @@ void distributeWarehouseFreight(World& world) {
           continue;
         }
         if(demand.give && group!=GROUP_MARKET && group!=GROUP_PORT) continue;
-        if(group==GROUP_PORT && !static_cast<Port*>(buyer)->commodityRuleCount[stuff].give) continue;
+        if(group==GROUP_PORT) {
+          const auto& order = static_cast<Port*>(buyer)->commodityRuleCount[stuff];
+          if(!order.give || order.take || !world.tradeRule[stuff].give) continue;
+          const int surplus = warehouse->commodityCount[stuff] - warehouse->localTradeRule(stuff).maxload/4;
+          transfer(*warehouse,*buyer,route,i,std::min(surplus,demand.maxload-buyer->commodityCount[stuff]));
+          continue;
+        }
         if(demand.take) warehouse->freightHasBuyer = true;
         const int target = group==GROUP_MARKET ? demand.maxload/4 : demand.maxload/2;
         transfer(*warehouse,*buyer,route,i,target-buyer->commodityCount[stuff]);
+      }
+    }
+  }
+}
+
+void distributeMetroSupplies(World& world) {
+  const int side = world.map.len();
+  for(const auto* tracks : {&world.transit.tunnels,&world.transit.viaducts}) {
+    std::set<int> seen;
+    for(int start : *tracks) {
+      if(!seen.insert(start).second) continue;
+      std::queue<int> pending;
+      pending.push(start);
+      std::set<Construction*> nearby;
+      int length = 0;
+      while(!pending.empty()) {
+        const int id=pending.front();
+        pending.pop();
+        ++length;
+        const MapPoint p(id%side,id/side);
+        for(auto tile : {p,p.n(),p.e(),p.s(),p.w()}) {
+          if(!world.map.is_visible(tile)) continue;
+          const int next=tile.y*side+tile.x;
+          if(tracks->count(next) && seen.insert(next).second) pending.push(next);
+          auto* endpoint=world.map(tile)->reportingConstruction;
+          if(endpoint && !(endpoint->flags&FLAG_IS_TRANSPORT) && available(world,*endpoint))
+            nearby.insert(endpoint);
+        }
+      }
+      if(nearby.size()<2) continue;
+      std::vector<Construction*> endpoints(nearby.begin(),nearby.end());
+      std::sort(endpoints.begin(),endpoints.end(),[](const auto* a,const auto* b) {
+        return std::tie(a->point.y,a->point.x)<std::tie(b->point.y,b->point.x);
+      });
+      std::rotate(endpoints.begin(),endpoints.begin()+world.total_time%endpoints.size(),endpoints.end());
+      // Limited daily delivery keeps passenger tracks from replacing freight rail.
+      for(auto stuff : {STUFF_LABOR,STUFF_FOOD,STUFF_WATER,STUFF_COAL,STUFF_ORE,STUFF_GOODS,STUFF_STEEL}) {
+        int capacity=std::max(20,100-length/3);
+        for(auto* destination : endpoints) {
+          const auto& demand=destination->localTradeRule(stuff);
+          if(!demand.take || !demand.maxload) continue;
+          int need=demand.maxload/4-destination->commodityCount[stuff];
+          for(auto* source : endpoints) {
+            if(need<=0 || capacity<=0) break;
+            if(source==destination || source->constructionGroup->group==GROUP_PORT) continue;
+            const auto& supply=source->localTradeRule(stuff);
+            if(!supply.give) continue;
+            const int reserve=supply.take ? supply.maxload/2 : 0;
+            const int amount=std::min({need,capacity,source->commodityCount[stuff]-reserve});
+            if(amount<=0) continue;
+            source->commodityCount[stuff]-=amount;
+            destination->commodityCount[stuff]+=amount;
+            need-=amount;
+            capacity-=amount;
+            const int group=destination->constructionGroup->group;
+            if(group==GROUP_MARKET || isWarehouseGroup(group)) continue;
+            if(stuff==STUFF_LABOR) world.taxable.labor+=amount;
+            if(stuff==STUFF_COAL) world.taxable.coal+=amount;
+            if(stuff==STUFF_GOODS) world.taxable.goods+=amount;
+          }
+          if(capacity<=0) break;
+        }
       }
     }
   }

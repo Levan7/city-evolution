@@ -598,7 +598,7 @@ void Dialog::editPort(){
         blockingDialogIsOpen = true;
         iAmBlocking = true;
     } catch(std::exception& e) {
-        std::cerr << "Couldn't display dialog 'tradedialog.xml': "
+        std::cerr << "Couldn't display dialog 'portdialog.xml': "
             << e.what() << "\n";
         return;
     }
@@ -609,12 +609,13 @@ void Dialog::editPort(){
     assert(port);
     Paragraph* p = getParagraph( *myDialogComponent, "DialogTitle" );
     std::stringstream title;
-    title << _("Port") << point;
+    title << _("Foreign Trade — Port ") << point;
     p->setText( title.str() );
 
     for(Commodity c = STUFF_INIT; c != STUFF_COUNT; c++) {
       if(!port->commodityRuleCount[c].maxload) continue;
 
+      std::array<CheckButton*,2> direction{};
       for(int isGive = 0; isGive < 2; isGive++) {
         SwitchComponent *sc = dynamic_cast<SwitchComponent *>(
           myDialogComponent->findComponent(
@@ -637,8 +638,13 @@ void Dialog::editPort(){
           continue;
         }
 
+        direction[isGive] = cb;
         CommodityRule& crc = port->commodityRuleCount[c];
         if(isGive ? crc.give : crc.take) cb->check(); else cb->uncheck();
+      }
+      if(direction[0] && direction[1]) {
+        direction[0]->checked.connect([other=direction[1]](CheckButton*) { other->uncheck(); });
+        direction[1]->checked.connect([other=direction[0]](CheckButton*) { other->uncheck(); });
       }
     }
 

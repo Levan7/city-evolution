@@ -319,7 +319,7 @@ MpsMap::refreshGround() {
     addBlank();
   }
 
-  add_ss(N_("Fire Protection"),
+  add_ss(N_("Nearby fire service"),
     (tile->flags & FLAG_FIRE_COVER) ? N_("Yes") : N_("No"));
 
   add_ss(N_("Health Care"),

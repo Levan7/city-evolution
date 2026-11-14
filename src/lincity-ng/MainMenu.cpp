@@ -22,6 +22,7 @@
 ** ---------------------------------------------------------------------- */
 
 #include "MainMenu.hpp"
+#include <string_view>
 
 #include <SDL3/SDL.h>                   // for SDL_EventType, Uint32, SDL_Ge...
 #include <stdio.h>                      // for fprintf, size_t, stderr
@@ -152,37 +153,88 @@ MainMenu::updateNewGameMenu() {
   button->setCaptionText(_("Rocket 98"));
 }
 
-void MainMenu::updateLoadSaveMenus() {
-  static const int buttonCount = 6;
-  static const std::array<std::string, buttonCount> buttonNames = {
-    "File0", "File1", "File2", "File3", "File4", "File5"
-  };
-  std::array<std::filesystem::file_time_type, buttonCount> fileTimes;
-  for(auto& t : fileTimes) t = std::filesystem::file_time_type::min();
+namespace {
+std::string slotName(int slot) { return "Save " + std::to_string(slot); }
 
-  for(const std::string& name : buttonNames) {
-    getCheckButton(*loadGameMenu, name)->setCaptionText(_("empty"));
-    getCheckButton(*saveGameMenu, name)->setCaptionText(_("empty"));
+// Store names in ASCII so the same saves can be opened by the Windows and Linux builds.
+std::string encodeSaveName(const std::string& name) {
+  static constexpr char hex[] = "0123456789ABCDEF";
+  std::string result;
+  for(unsigned char ch : name) {
+    if((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') ||
+       (ch >= '0' && ch <= '9') || ch == ' ' || ch == '-') {
+      result += ch;
+    } else {
+      result += '%';
+      result += hex[ch >> 4];
+      result += hex[ch & 15];
+    }
+  }
+  return result;
+}
+
+std::string saveCaption(const std::string& filename, int slot) {
+  constexpr std::string_view suffix = ".scn.gz";
+  if(filename.size() < 7 + suffix.size() || filename.compare(2,5,"City-") != 0 ||
+     filename.compare(filename.size()-suffix.size(), suffix.size(), suffix) != 0)
+    return slotName(slot) + " (older save)";
+  const auto encoded = filename.substr(7, filename.size() - 7 - suffix.size());
+  std::string result;
+  constexpr std::string_view hex = "0123456789ABCDEF";
+  for(size_t i = 0; i < encoded.size(); ++i) {
+    if(encoded[i] == '%' && i + 2 < encoded.size()) {
+      auto high = hex.find(encoded[i+1]);
+      auto low = hex.find(encoded[i+2]);
+      if(high != hex.npos && low != hex.npos) {
+        result += char(high * 16 + low);
+        i += 2;
+        continue;
+      }
+    }
+    result += encoded[i];
+  }
+  return result.empty() ? slotName(slot) : result;
+}
+}
+
+void MainMenu::updateSaveName() {
+  getParagraph(*saveGameMenu, "SaveName")->setText(saveName.empty()
+    ? _("Optional name — select a slot and start typing")
+    : _("Save name") + std::string("  ") + saveName);
+}
+
+void MainMenu::updateLoadSaveMenus() {
+  std::array<std::filesystem::file_time_type, 6> fileTimes;
+  fileTimes.fill(std::filesystem::file_time_type::min());
+  for(int i = 0; i < 6; ++i) {
+    const auto id = "File" + std::to_string(i);
+    auto* button = getCheckButton(*loadGameMenu, id);
+    loadFiles.erase(button);
+    button->setCaptionText(slotName(i+1) + " (empty)");
+    getCheckButton(*saveGameMenu, id)->setCaptionText(slotName(i+1) + " (empty)");
   }
 
-  std::filesystem::path dir = getConfig()->userDataDir.get();
-  for(auto& dirEnt : std::filesystem::directory_iterator(dir)) {
-    std::string fName = dirEnt.path().filename().string();
-    if(fName.substr(1, 1) != "_") continue;
-    unsigned long i = 0;
-    try { i = std::stoul(fName.substr(0,1)) - 1; }
-      catch(const std::invalid_argument& ex) { continue; }
-      catch(const std::out_of_range& ex) { continue; }
-    if(i >= buttonCount) continue;
-    if(!dirEnt.is_regular_file()) continue;
-    if(dirEnt.last_write_time() < fileTimes[i]) continue;
+  const auto dir = getConfig()->userDataDir.get();
+  auto* autosave = getCheckButton(*loadGameMenu, "Autosave");
+  loadFiles.erase(autosave);
+  const auto recovery = dir / "Autosave.scn.gz";
+  const bool hasAutosave = std::filesystem::is_regular_file(recovery);
+  if(hasAutosave) loadFiles.emplace(autosave, recovery);
+  autosave->setCaptionText(hasAutosave ? _("Autosave") : _("Autosave (empty)"));
 
-    CheckButton *button = getCheckButton(*loadGameMenu, buttonNames[i]);
-    loadFiles.insert_or_assign(button, dirEnt.path());
-    button->setCaptionText(fName.c_str());
-    getCheckButton(*saveGameMenu, buttonNames[i])
-      ->setCaptionText(fName.c_str());
-    fileTimes[i] = dirEnt.last_write_time();
+  for(const auto& entry : std::filesystem::directory_iterator(dir)) {
+    const auto filename = entry.path().filename().string();
+    if(filename.size() < 5 || filename[0] < '1' || filename[0] > '6' ||
+       filename[1] != '_' || filename.compare(filename.size()-3, 3, ".gz") != 0 || !entry.is_regular_file()) continue;
+    const int i = filename[0] - '1';
+    if(entry.last_write_time() < fileTimes[i]) continue;
+    const auto id = "File" + std::to_string(i);
+    auto* button = getCheckButton(*loadGameMenu, id);
+    loadFiles.insert_or_assign(button, entry.path());
+    const auto caption = saveCaption(filename, i+1);
+    button->setCaptionText(caption);
+    getCheckButton(*saveGameMenu, id)->setCaptionText(caption);
+    fileTimes[i] = entry.last_write_time();
   }
 }
 
@@ -407,7 +459,7 @@ MainMenu::loadLoadGameMenu() {
   backButton->clicked.connect(std::bind(&MainMenu::loadGameBackButtonClicked, this, _1));
 
   for(const std::string& bName :
-    {"File0", "File1", "File2", "File3", "File4", "File5"}
+    {"File0", "File1", "File2", "File3", "File4", "File5", "Autosave"}
   ) {
     CheckButton *button = getCheckButton(*loadGameMenu, bName);
     button->clicked.connect(std::bind(&MainMenu::doubleClick, this, _1,
@@ -436,6 +488,8 @@ MainMenu::loadSaveGameMenu() {
 
 void
 MainMenu::switchMenu(Component *newMenu) {
+  if(menuSwitch->getActiveComponent() == saveGameMenu && newMenu != saveGameMenu)
+    SDL_StopTextInput(window);
   if(newMenu == newGameMenu) {
     // updateNewGameMenu();
   }
@@ -443,7 +497,10 @@ MainMenu::switchMenu(Component *newMenu) {
     updateLoadSaveMenus();
   }
   else if(newMenu == saveGameMenu) {
+    saveName.clear();
+    updateSaveName();
     updateLoadSaveMenus();
+    SDL_StartTextInput(window);
   }
   else if(newMenu == optionsMenu) {
     updateOptionsMenu();
@@ -696,8 +753,15 @@ MainMenu::continueButtonClicked(Button* ) {
     std::unique_ptr<World> world;
     std::filesystem::path file =
       getConfig()->userDataDir.get() / "9_currentGameNG.scn.gz";
+    const auto autosave = file.parent_path() / "Autosave.scn.gz";
+    if(std::filesystem::exists(autosave) && (!std::filesystem::exists(file) ||
+      std::filesystem::last_write_time(autosave) > std::filesystem::last_write_time(file)))
+      file = autosave;
     if(std::filesystem::exists(file)) {
       world = loadCityNG(file);
+      const auto resume = autosave.parent_path() / "9_currentGameNG.scn.gz";
+      if(!world && file == autosave && std::filesystem::exists(resume))
+        world = loadCityNG(resume);
     }
     else {
       city_settings city;
@@ -872,40 +936,20 @@ MainMenu::loadGameSaveButtonClicked(Button *) {
 
   getSound()->playSound( "Click" );
 
-  /* Build filename */
-  std::stringstream filename;
-  filename << (i + 1) << "_Y";
-  filename << std::setfill('0') << std::setw(5);
-  fprintf(stderr,"total_time %i\n", world.total_time);
-  filename << world.total_time/1200;
-  filename << "_Tech";
-  filename << std::setfill('0') << std::setw(3);
-  filename << world.tech_level/10000;
-  filename << "_Cash";
-  if(world.total_money >= 0)
-    filename << "+";
-  else
-    filename << "-";
-  filename << std::setfill('0') << std::setw(3);
-  int money = abs(world.total_money);
-  if (money > 1000000000)
-    filename << money/1000000000 << "G";
-  else if (money > 1000000)
-    filename << money/1000000 << "M";
-  else  if(money > 1000)
-    filename << money/1000 << "K";
-  else
-    filename << money << "_";
-
-  filename << "_P";
-  filename << std::setfill('0') << std::setw(5);
-  filename << world.stats.population.population_m / NUMOF_DAYS_IN_MONTH;
-  filename << ".gz";
-
-  saveCityNG(world, getConfig()->userDataDir.get() / filename.str());
-
-  // TODO: remove the old save file, but only if the save was successful
-
+  const auto first = saveName.find_first_not_of(' ');
+  const auto name = first == std::string::npos ? slotName(i+1)
+    : saveName.substr(first, saveName.find_last_not_of(' ') - first + 1);
+  const auto dir = getConfig()->userDataDir.get();
+  const auto filename = dir / (std::to_string(i+1) + "_City-" + encodeSaveName(name) + ".scn.gz");
+  const auto previous = loadFiles.find(getCheckButton(*loadGameMenu, buttonNames[i]));
+  if(!saveCityNG(world, filename)) {
+    getParagraph(*saveGameMenu, "SaveName")->setText(_("Could not save. Check that the save folder is writable."));
+    return;
+  }
+  if(previous != loadFiles.end() && previous->second != filename) {
+    std::error_code error;
+    std::filesystem::remove(previous->second, error);
+  }
   gotoMainMenu();
 }
 
@@ -959,16 +1003,40 @@ MainMenu::run() {
                     }
                     break;
                 }
+                case SDL_EVENT_TEXT_INPUT:
+                    if(menuSwitch->getActiveComponent() == saveGameMenu) {
+                      const std::string input = event.text.text;
+                      if(saveName.size() + input.size() <= 48) saveName += input;
+                      updateSaveName();
+                    }
+                    break;
+                case SDL_EVENT_KEY_DOWN:
+                    if(menuSwitch->getActiveComponent() == saveGameMenu) {
+                      if(event.key.key == SDLK_BACKSPACE && !saveName.empty()) {
+                        size_t start = saveName.size() - 1;
+                        while(start && (static_cast<unsigned char>(saveName[start]) & 0xc0) == 0x80) --start;
+                        saveName.resize(start);
+                        updateSaveName();
+                      } else if(event.key.key == SDLK_RETURN || event.key.key == SDLK_KP_ENTER) {
+                        loadGameSaveButtonClicked(nullptr);
+                      }
+                      break;
+                    }
+                    { Event gui_event(event); menu->event(gui_event); }
+                    break;
                 case SDL_EVENT_MOUSE_MOTION:
                 case SDL_EVENT_MOUSE_BUTTON_UP:
                 case SDL_EVENT_MOUSE_BUTTON_DOWN:
-                case SDL_EVENT_MOUSE_WHEEL:
-                case SDL_EVENT_KEY_DOWN:{
+                case SDL_EVENT_MOUSE_WHEEL:{
                     Event gui_event(event);
                     menu->event(gui_event);
                     break;
                 }
                 case SDL_EVENT_KEY_UP: {
+                    if(menuSwitch->getActiveComponent() == saveGameMenu) {
+                      if(event.key.key == SDLK_ESCAPE) gotoMainMenu();
+                      break;
+                    }
                     Event gui_event(event);
                     //In menu ESC as well as ^c exits the game.
                     //might come in handy if video-mode is not working as expected.

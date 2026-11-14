@@ -21,7 +21,7 @@
 	<p style="hp">import: money =&gt; 50% of remaining capacity</p>
 	<p style="hp">For import or export to occur, 100 labor must be consumed.</p>
 	<p style="hp">If there is both import and export, then .0002 tech is produced, which can sustain up to ~10 tech &lt;100 or ~5 tech &gt;100.</p>
-	<p style="hp">If there is less than 6.67% inventory of a commodity, then that commodity will not be exported. If there is more than 93.33% inventory of a commodity, then that commodity will not be imported.</p>
+	<p style="hp">Shipments move half the stored stock (exports) or half the available space (imports), rounded down. The shipment must be at least one fifteenth of the port’s capacity for that commodity. Imports cost 10% more than the base export price at the default tariff and require cash in the treasury.</p>
 
   <p style="hsubtitle">See also:</p>
 	<li><a href="river">Rivers/Water</a></li>
@@ -32,4 +32,5 @@
 	<li><a href="ore">Ore</a></li>
 	<li><a href="goods">Goods</a></li>
 	<li><a href="steel">Steel</a></li>
+  <p style="hp">Red boxes mean foreign trade for that product and direction is closed until the new year. A checked box keeps your order ready to resume. Trade also requires workers and enough cargo to form a shipment. The report separates the latest completed month from this month so far. A zero means there was no reportable trade in that period.</p>
 </Document>

@@ -194,12 +194,24 @@ void Game::showTransport() {
   auto refresh=[this,w]() {
     world->transit.update(*world,false);auto& t=world->transit;
     const char* labels[]={"Bus","Rail","Underground","Elevated"};
+    for(int i=0;i<4;++i) {
+      getParagraph(*w, "Fare" + std::to_string(i))->setText("$" + std::to_string(t.fares[i]) + " / trip");
+    }
     for(int i=0;i<4;++i)getParagraph(*w,("TransitMode"+std::to_string(i)).c_str())->setText(std::string(labels[i])+": "+std::to_string(t.passengers[i])+" trips/month | "+std::to_string(t.connected[i])+" connected | "+std::to_string(t.disconnected[i])+" disconnected | "+std::to_string(t.unstaffed[i])+" unstaffed");
     getParagraph(*w,"TransitSummary")->setText(std::to_string(t.servedHomes.size())+" homes with job access | Shopping trips "+std::to_string(std::accumulate(t.shoppingTrips.begin(),t.shoppingTrips.end(),0))+"/month | Fares about $"+std::to_string(t.faresMonth)+"/month");
     const char* views[]={"Normal city view","Show all transit","Underground track view","Elevated track view"};
     getButton(*w,"TransitView")->setCaptionText(views[std::clamp(t.view,0,3)]);
     getGameView().setMapDirty();getGameView().setDirty();
   };
+  for(int mode=0; mode<4; ++mode) {
+    auto change = [this, refresh, mode](int amount) {
+      auto& fare = world->transit.fares[mode];
+      fare = std::clamp(fare + amount, 0, TransitSystem::MaxFare);
+      refresh();
+    };
+    getButton(*w,"FareDown" + std::to_string(mode))->clicked.connect([change](Button*) {change(-1);});
+    getButton(*w,"FareUp" + std::to_string(mode))->clicked.connect([change](Button*) {change(1);});
+  }
   getButton(*w,"TransitView")->clicked.connect([this,refresh](Button*) {world->transit.view=(world->transit.view+1)%4;refresh();});
   getButton(*w,"TransitRefresh")->clicked.connect([refresh](Button*) {refresh();});
   getButton(*w,"TransitClose")->clicked.connect([this,w](Button*) {windowmanager->removeWindow(w);});
@@ -217,6 +229,11 @@ void Game::showCityHall(bool mayor, const char* page) {
   Window* w = hall.get();
   auto refresh = [this, w]() {
     const auto& e = world->evolution;
+    getButton(*w,"TaxReferendum")->setCaptionText(e.taxReferendum ? "Withdraw tax proposal" :
+      e.incomeTaxLimit >= CityEvolution::MaxTaxLimit ? "Maximum tax limit reached" :
+      "Propose " + std::to_string(e.incomeTaxLimit + 10) + "% income tax limit");
+    getParagraph(*w,"TaxMandate")->setText("Income tax limit " + std::to_string(e.incomeTaxLimit)
+      + "%  |  Approval of 60% passes a proposal. Below 50% restores the 30% limit.");
     const char* focus=e.planFocus==1?"Livable city":e.planFocus==2?"Skills / education":e.planFocus==3?"Technology hub":"None";
     getButton(*w,"PlanFocus")->setCaptionText(e.planState==CityEvolution::PLAN_PROPOSED ? std::string("Focus: ")+focus : std::string("Focus locked: ")+focus);
     getButton(*w,"PedestrianControl")->setCaptionText(e.pedestrians?"People visible - hide":"People hidden - show");
@@ -226,7 +243,7 @@ void Game::showCityHall(bool mayor, const char* page) {
       + " | Last result: " + std::to_string(e.lastVote) + "% | Next in " + std::to_string(std::max(0,e.nextElection-world->total_time)) + " days");
     getParagraph(*w,"EconomySummary")->setText("Businesses: " + std::to_string(e.operatingBusinesses)
       + " working | " + std::to_string(e.newJobs) + " jobs | " + std::to_string(e.amenities) + " amenities");
-    getParagraph(*w,"AtmosphereSummary")->setText("Spiritual wellbeing: "+std::to_string(e.spiritualCoverage)+"% homes | "+std::to_string(e.churchesWorking)+" churches open. Solar: "+std::to_string(e.solarPercent())+"%.");
+    getParagraph(*w,"AtmosphereSummary")->setText("Spiritual wellbeing: "+std::to_string(e.spiritualCoverage)+"% homes | "+std::to_string(e.churchesWorking)+" churches open. Sunlight for solar: "+std::to_string(e.solarPercent())+"%.");
     {
       const bool on=e.mayorMode!=0;
       getParagraph(*w,"MayorOn")->setText(on?"THE MAYOR IS ON: he builds inside his area and budget":"");
@@ -367,6 +384,11 @@ void Game::showCityHall(bool mayor, const char* page) {
   getButton(*w,"MayorServices")->clicked.connect([this,refresh](Button*) {world->evolution.mayorServices=!world->evolution.mayorServices;refresh();});
   getButton(*w,"MayorParks")->clicked.connect([this,refresh](Button*) {world->evolution.mayorParks=!world->evolution.mayorParks;refresh();});
   getButton(*w,"MayorRoads")->clicked.connect([this,refresh](Button*) {world->evolution.mayorRoads=!world->evolution.mayorRoads;refresh();});
+  getButton(*w,"TaxReferendum")->clicked.connect([this,refresh](Button*) {
+    auto& e = world->evolution;
+    if(e.incomeTaxLimit < CityEvolution::MaxTaxLimit) e.taxReferendum = !e.taxReferendum;
+    refresh();
+  });
   getButton(*w,"RenameCity")->clicked.connect([this](Button*) {startNaming(-2);});
   getButton(*w,"AllAdvice")->clicked.connect([this](Button*) {showCityAdvisors();});
   windowmanager->addWindow(std::move(hall));
@@ -419,7 +441,10 @@ void Game::showCityAdvisors() {
   dialog.titleText("City advisors").buttonSet(DialogBuilder::ButtonSet::OK);
   dialog.messageAddText("City Steward: elections report public approval and never remove your building control.");
   const auto& e = world->evolution;
-  dialog.messageAddText("Approval " + std::to_string(e.approval) + "% | Solar output " + std::to_string(e.solarPercent()) + "%. Keep coal or wind generation and substations available for dark or wet periods.");
+  dialog.messageAddText("Approval " + std::to_string(e.approval) + "%.");
+  if(world->stats.groupCount[GROUP_SOLAR_POWER])
+    dialog.messageAddText("Sunlight allows solar plants to produce up to " + std::to_string(e.solarPercent())
+      + "% of rated output right now. Night and rain reduce generation.");
   {
     const char* tags[] = {"[Note] ", "[Warning] ", "[URGENT] "};
     for(const auto& a : world->evolution.advise(*world))
@@ -469,12 +494,16 @@ void Game::showCityAdvisors() {
     if(group == GROUP_SCHOOL) ++schools;
     if(group == GROUP_UNIVERSITY) ++universities;
     const std::string coordinates = " (" + std::to_string(building->point.x) + ", " + std::to_string(building->point.y) + ")";
-    if(group >= GROUP_TECH_CAMPUS && group <= GROUP_FOODHALL && issues < 4) {
+    if((group == GROUP_INDUSTRY_L || group == GROUP_INDUSTRY_H || group == GROUP_COAL_POWER ||
+        group == GROUP_COMPUTER_FACTORY || group == GROUP_CAR_FACTORY || group == GROUP_NUCLEAR_POWER ||
+        (group >= GROUP_TECH_CAMPUS && group <= GROUP_FOODHALL)) && issues < 4) {
       std::string missing;
       for(Commodity stuff = STUFF_INIT; stuff < STUFF_COUNT; stuff++) {
         int daily = building->commodityMaxCons[stuff] / NUMOF_DAYS_IN_MONTH;
         if(daily > 0 && building->commodityCount[stuff] < daily)
-          missing += (missing.empty() ? "" : ", ") + std::string(commodityStandardName(stuff));
+          missing += (missing.empty() ? "" : ", ") + std::string(
+            stuff == STUFF_LABOR ? "workers" : stuff == STUFF_LOVOLT || stuff == STUFF_HIVOLT
+            ? "electricity" : commodityStandardName(stuff));
       }
       if(!missing.empty()) {
         dialog.messageAddText(building->constructionGroup->name + coordinates + " needs " + missing
@@ -483,16 +512,22 @@ void Game::showCityAdvisors() {
       }
     }
     if(group != GROUP_PORT && group != GROUP_INDUSTRY_L && group != GROUP_INDUSTRY_H && !isWarehouseGroup(group)) continue;
-    bool road = false, rail = false;
+    bool road = false, rail = false, metro = false;
+    const int side=world->map.len(), size=building->constructionGroup->size;
+    for(int y=-1;y<=size;++y) for(int x=-1;x<=size;++x) {
+      if((x==-1||x==size) && (y==-1||y==size)) continue;
+      const auto p=building->point.e(x).s(y);
+      if(world->map.is_visible(p)) metro |= world->transit.tunnels.count(p.y*side+p.x) || world->transit.viaducts.count(p.y*side+p.x);
+    }
     for(const Construction* neighbor : building->neighbors) {
       const auto ng = neighbor->constructionGroup->group;
       road |= ng == GROUP_TRACK || ng == GROUP_ROAD || ng == GROUP_TRACK_BRIDGE || ng == GROUP_ROAD_BRIDGE;
       rail |= ng == GROUP_RAIL || ng == GROUP_RAIL_BRIDGE;
     }
     const std::string where = " (" + std::to_string(building->point.x) + ", " + std::to_string(building->point.y) + ")";
-    if(!road && !rail && issues < 4) {
+    if(!road && !rail && !metro && issues < 4) {
       dialog.messageAddText(building->constructionGroup->name + where
-        + " has no direct transport neighbor. Connect a road, track or railway to its edge.");
+        + " has no direct transport neighbor. Connect a road, freight railway or metro track to any edge.");
       ++issues;
     }
     if(isWarehouseGroup(group) && rail && !road && issues < 4) {
@@ -526,6 +561,7 @@ void Game::showCityAdvisors() {
 void
 Game::setWorld(std::unique_ptr<World>&& world) {
   this->world = std::move(world);
+  autosavePlayTime = 0;
   this->world->transit.update(*this->world,false);
   // Old forced sky/weather modes reset whenever a city is entered.
   this->world->evolution.skyMode = 0;
@@ -622,7 +658,7 @@ Game::getUserOperation() const {
 void
 Game::setUserOperation(const UserOperation& op) {
   userOperation = op;
-  if(op.action==UserOperation::ACTION_BUILD&&op.constructionGroup){int g=op.constructionGroup->group;if(g==GROUP_METRO_TRACK)world->transit.view=2;else if(g==GROUP_ELEVATED_TRACK)world->transit.view=3;else world->transit.view=0;getGameView().setMapDirty();}
+  getGameView().setMapDirty();
 
   for(auto w : {&warnBullWater, &warnBullShanty, &warnBullMonument})
     w->accepted = false;;
@@ -841,6 +877,9 @@ Game::run() {
     Uint32 prev_execute = 0, prev_animate = 0, prev_gui = 0, prev_fps = 0;
     Uint32 next_task;
     Uint32 next_building_animation = 0;
+    int lastThunder = -1;
+    constexpr Uint64 autosaveInterval = 30 * 60 * 1000;
+    Uint64 lastPlayTick = SDL_GetTicks();
 
     running = true;
     while(true) {
@@ -962,13 +1001,24 @@ Game::run() {
               next_task = 0;
         }
 
-        Uint32 tick = SDL_GetTicks();
+        const Uint64 now = SDL_GetTicks();
+        const bool playing = simDelay != SIM_DELAY_PAUSE && !blockingDialogIsOpen &&
+          !windowmanager->hasOpenWindows();
+        if(playing && next_execute != Uint32(~0)) autosavePlayTime += now - lastPlayTick;
+        lastPlayTick = now;
+        Uint32 tick = now;
         get_real_time_with(tick);
         frame++;
 
         if(tick >= next_gui) { // gui update
             const int weather = world->evolution.currentWeather();
             getSound()->setRainAmbience(weather == 3 ? .42f : weather == 2 ? .28f : 0.f);
+            const int weatherClock = world->evolution.visualTime;
+            if(weather == 3 && weatherClock%19000 >= 400 && weatherClock%19000 < 750 &&
+               lastThunder != weatherClock/19000) {
+              lastThunder = weatherClock/19000;
+              getSound()->playSound("Thunder");
+            }
             // fire update event
             gui->event(Event((tick - prev_gui) / 1000.0f));
 
@@ -1028,6 +1078,11 @@ Game::run() {
             new_day = true;
             if(world->total_time % NUMOF_DAYS_IN_MONTH == 0)
               new_month = true;
+            if(autosavePlayTime >= autosaveInterval) {
+              autosavePlayTime = 0;
+              if(!saveCityNG(*world, getConfig()->userDataDir.get() / "Autosave.scn.gz"))
+                getGameView().printStatusMessage("Autosave failed. Check the save folder.");
+            }
             if(world->total_time % NUMOF_DAYS_IN_YEAR == 0)
               new_year = true;
 
@@ -1431,7 +1486,7 @@ void Game::showPublicServices() {
 
     // Taxes page
     const long long estimatedTax = civic.laborTaxBase(*world) * rates.income_tax / 100;
-    getParagraph(*w, "IncomeLine")->setText("Income tax: " + std::to_string(rates.income_tax) + "%" + "   (monthly estimate " + dollars(estimatedTax) + ")");
+    getParagraph(*w, "IncomeLine")->setText("Income tax: " + std::to_string(rates.income_tax) + "%  (limit " + std::to_string(world->evolution.incomeTaxLimit) + "%, estimated " + dollars(estimatedTax) + "/mo)");
     getParagraph(*w, "GoodsLine")->setText("Goods tax: " + std::to_string(rates.goods_tax) + "%");
     getParagraph(*w, "SocialLine")->setText("Social support: " + std::to_string(rates.dole) + "   (help for the jobless)");
     getParagraph(*w, "CeilingLine")->setText("Tax ceiling for automation: " + std::to_string(civic.taxCeiling) + "%");
@@ -1486,14 +1541,14 @@ void Game::showPublicServices() {
     world->civic.autoTax = false; world->civic.taxNote.clear();
     rate = std::clamp(rate + delta, low, high);
   };
-  bind("TaxDown",      [this, manualTax]() { manualTax(world->money_rates.income_tax, -1, 0, 30); });
-  bind("TaxUp",        [this, manualTax]() { manualTax(world->money_rates.income_tax, +1, 0, 30); });
+  bind("TaxDown",      [this, manualTax]() { manualTax(world->money_rates.income_tax, -1, 0, world->evolution.incomeTaxLimit); });
+  bind("TaxUp",        [this, manualTax]() { manualTax(world->money_rates.income_tax, +1, 0, world->evolution.incomeTaxLimit); });
   bind("BusinessDown", [this, manualTax]() { manualTax(world->money_rates.goods_tax, -1, 0, 20); });
   bind("BusinessUp",   [this, manualTax]() { manualTax(world->money_rates.goods_tax, +1, 0, 20); });
   bind("SocialDown",   [this]() { world->money_rates.dole = std::max(0, world->money_rates.dole - 5); });
   bind("SocialUp",     [this]() { world->money_rates.dole = std::min(100, world->money_rates.dole + 5); });
   bind("CeilingDown",  [this]() { world->civic.taxCeiling = std::max(5, world->civic.taxCeiling - 1); });
-  bind("CeilingUp",    [this]() { world->civic.taxCeiling = std::min(30, world->civic.taxCeiling + 1); });
+  bind("CeilingUp",    [this]() { world->civic.taxCeiling = std::min(world->evolution.incomeTaxLimit, world->civic.taxCeiling + 1); });
   bind("AutoTax", [this]() {
     auto& civic = world->civic;
     if(civic.autoTax) { civic.autoTax = false; civic.taxNote = "Automatic taxes stopped. The rate stays where it is."; }

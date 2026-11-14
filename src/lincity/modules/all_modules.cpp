@@ -67,6 +67,7 @@ void initializeModules() {
     ConstructionGroup::addConstructionGroup(&railbridgeConstructionGroup);
     ConstructionGroup::addConstructionGroup(&powerlineConstructionGroup);
     ConstructionGroup::addConstructionGroup(&parklandConstructionGroup);
+    ConstructionGroup::addConstructionGroup(&cityParkGroup);
     ConstructionGroup::addConstructionGroup(&parkpondConstructionGroup);
     ConstructionGroup::addConstructionGroup(&oremineConstructionGroup);
     ConstructionGroup::addConstructionGroup(&coalmineConstructionGroup);
@@ -167,6 +168,7 @@ void initializeModules() {
     ConstructionGroup::addResourceID("RailBridge", &railbridgeConstructionGroup);
     ConstructionGroup::addResourceID("PowerLine", &powerlineConstructionGroup);
     ConstructionGroup::addResourceID("ParklandPlane", &parklandConstructionGroup);
+    ConstructionGroup::addResourceID("CityPark", &cityParkGroup);
     ConstructionGroup::addResourceID("ParklandLake", &parkpondConstructionGroup);
     ConstructionGroup::addResourceID("OreMine", &oremineConstructionGroup);
     ConstructionGroup::addResourceID("CoalMine", &coalmineConstructionGroup);

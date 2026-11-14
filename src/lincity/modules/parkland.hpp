@@ -66,6 +66,7 @@ public:
       Message::ptr& message) const override;
 };
 
+extern ParklandConstructionGroup cityParkGroup;
 extern ParklandConstructionGroup parklandConstructionGroup;
 extern ParklandConstructionGroup parkpondConstructionGroup;
 
@@ -73,7 +74,15 @@ class Parkland: public Construction {
 public:
     Parkland(World& world, ConstructionGroup *cstgrp);
     virtual void update() override;
-    virtual void report(Mps& mps, bool production) const override;
+    void setParkTile(int tile);
+    void place(MapPoint point) override;
+    void save(xmlTextWriterPtr writer) const override;
+    bool loadMember(xmlpp::TextReader& reader, unsigned int version) override;
+    void report(Mps& mps, bool production) const override;
+
+private:
+    int parkTile = 0;
+
 };
 
 #endif // __LINCITYNG_LINCITY_MODULES_PARKLAND_HPP__

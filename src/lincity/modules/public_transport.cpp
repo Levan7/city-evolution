@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 #include "public_transport.hpp"
+#include "lincity/transport.hpp"
 #include "lincity/world.hpp"
 #include "lincity-ng/Mps.hpp"
 #include "util/xmlutil.hpp"
 #include <libxml++/parsers/textreader.h>
 #include <libxml/xmlwriter.h>
-TransitGroup busStopGroup("Bus stop",GROUP_BUS_STOP,1,800,0),busTerminalGroup("Bus terminal",GROUP_BUS_TERMINAL,2,7500,0),railStationGroup("Passenger railway station",GROUP_RAIL_STATION,3,15000,MAX_TECH_LEVEL/20),metroStationGroup("Underground metro station",GROUP_METRO_STATION,1,18000,MAX_TECH_LEVEL/10),elevatedStationGroup("Elevated metro station",GROUP_ELEVATED_STATION,2,22000,MAX_TECH_LEVEL/10),metroTrackGroup("Underground metro track",GROUP_METRO_TRACK,1,1000,MAX_TECH_LEVEL/10,true),elevatedTrackGroup("Elevated metro track",GROUP_ELEVATED_TRACK,1,1800,MAX_TECH_LEVEL/10,true);
+TransitGroup busStopGroup("Bus stop",GROUP_BUS_STOP,1,800,0),busTerminalGroup("Bus terminal",GROUP_BUS_TERMINAL,2,7500,0),railStationGroup("Passenger railway station",GROUP_RAIL_STATION,3,15000,GROUP_RAIL_TECH),metroStationGroup("Underground metro station",GROUP_METRO_STATION,1,18000,MAX_TECH_LEVEL/10),elevatedStationGroup("Elevated metro station",GROUP_ELEVATED_STATION,2,22000,MAX_TECH_LEVEL/10),metroTrackGroup("Underground metro track",GROUP_METRO_TRACK,1,1000,MAX_TECH_LEVEL/10,true),elevatedTrackGroup("Elevated metro track",GROUP_ELEVATED_TRACK,1,1800,MAX_TECH_LEVEL/10,true);
 TransitGroup::TransitGroup(const char* n,int g,int sz,int c,int tech,bool l):ConstructionGroup(n,n,false,g,sz,blue(22),0,c/5,0,c,tech,0),layer(l) {
  if(!l){commodityRuleCount[STUFF_LABOR]={2000,true,false};commodityRuleCount[STUFF_LOVOLT]={4000,true,false};}
 }
@@ -40,12 +41,12 @@ void TransitFacility::update(){
 }
 void TransitFacility::report(Mps& m,bool production)const{
  m.add_s(constructionGroup->name);m.add_s(active?"Running":"Needs staff / power");
- m.add_sfp("Days active",busy);m.add_sfp("Journeys / month",riders);
+ m.add_sfp("Days active",busy);m.add_sd("Journeys / month",riders);
  if(mode() == TransitSystem::BUS) {
    m.add_sd("Trips through stop", endpointTrips);
    if(overloaded()) m.add_s("Crowded: add bus capacity");
  }
- m.add_s("Street link and staffing differ.");
+ m.add_s("Tracks can connect on any side.");
  m.add_s("Top-right: Transport");list_commodities(m,production);
 }
 void TransitFacility::save(xmlTextWriterPtr w)const{Construction::save(w);xmlTextWriterWriteElement(w,(xmlStr)"transit_days",xmlFormat<int>(workingDays));xmlTextWriterWriteElement(w,(xmlStr)"transit_busy",xmlFormat<int>(busy));}

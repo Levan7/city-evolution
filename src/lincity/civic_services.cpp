@@ -38,14 +38,13 @@ bool CivicServices::addIncident(int kind,int target,int severity){
  incidents.push_back({nextId++,kind,target,std::clamp(severity,1,100),0});return true;
 }
 bool CivicServices::stationReady(const Construction& c,int s)const{
- if(budget[s]<=0)return false;
- if(s==FIRE)return static_cast<const FireStation&>(c).active&&c.commodityCount[STUFF_LABOR]>=6&&c.commodityCount[STUFF_GOODS]>=3;
- if(s==HEALTH)return static_cast<const HealthCentre&>(c).active&&c.commodityCount[STUFF_LABOR]>=6&&c.commodityCount[STUFF_GOODS]>=40;
- return c.commodityCount[STUFF_LABOR]>=4&&c.commodityCount[STUFF_GOODS]>=1;
+ // Every funded station keeps one crew on call. Supplies improve capacity and
+ // daily service, but a temporarily empty storeroom cannot strand a crew.
+ return budget[s]>0 && !(c.flags & FLAG_EVACUATE);
 }
 int CivicServices::terrainCost(const World& w,int id,int home,int target)const{
  int n=w.map.len();if(id<0||id>=n*n)return 0;auto p=pointOf(w,id);if(!w.map.is_visible(p))return 0;auto* t=w.map(p);auto* c=t->reportingConstruction;
- if(c){int root=idOf(w,c->point),g=c->constructionGroup->group;if(root==home||root==target)return 15;if(g==GROUP_ROAD||g==GROUP_TRACK||g==GROUP_ROAD_BRIDGE||g==GROUP_TRACK_BRIDGE)return 3+(c->commodityCount[STUFF_LABOR]>500?2:0);return 0;}
+ if(c){int root=idOf(w,c->point),g=c->constructionGroup->group;if(root==home||root==target)return 15;if(g==GROUP_ROAD||g==GROUP_ROAD_BRIDGE)return 3;if(g==GROUP_TRACK||g==GROUP_TRACK_BRIDGE)return 5;if(g==GROUP_RAIL||g==GROUP_RAIL_BRIDGE)return 9;return 0;}
  if(t->group==GROUP_WATER)return 0;
  return t->group==GROUP_TREE||t->group==GROUP_TREE2||t->group==GROUP_TREE3?24:15;
 }
@@ -102,13 +101,34 @@ void CivicServices::update(World& w){
  for(auto it=units.begin();it!=units.end();){auto& u=*it;int service=serviceFor(u.kind);auto* station=at(w,u.home);if(!station||idOf(w,station->point)!=u.home||station->constructionGroup->group!=groupFor(service)){it=units.erase(it);continue;}
   auto call=std::find_if(incidents.begin(),incidents.end(),[&](auto& c){return c.id==u.call;});if(call==incidents.end()&&!u.returning){u.path.resize(std::min(int(u.path.size()),u.step+1));std::reverse(u.path.begin(),u.path.end());u.step=0;u.credit=0;u.returning=true;}
   if(u.path.empty()){it=units.erase(it);continue;}
-  if(!u.returning&&(!stationReady(*station,service)||!funded(service,w.total_time,u.home))){++it;continue;}
-  if(u.step+1<int(u.path.size())){u.credit+=3;int target=u.returning?u.home:call->target;int cost=terrainCost(w,u.path[u.step+1],u.home,target);if(!cost){auto newPath=route(w,u.path[u.step],target);if(newPath.empty()){it=units.erase(it);continue;}u.path=std::move(newPath);u.step=0;u.credit=0;}else if(u.credit>=cost){u.credit-=cost;++u.step;}}
+
+  if(u.step+1<int(u.path.size())){u.credit+=6;int target=u.returning?u.home:call->target;int cost=terrainCost(w,u.path[u.step+1],u.home,target);if(!cost){auto newPath=route(w,u.path[u.step],target);if(newPath.empty()){it=units.erase(it);continue;}u.path=std::move(newPath);u.step=0;u.credit=0;}else if(u.credit>=cost){u.credit-=cost;++u.step;}}
   else if(u.returning){it=units.erase(it);continue;}
-  else if(call!=incidents.end()){++u.working;auto* b=at(w,call->target);if(u.kind==FIRE_CALL){if(b&&b->constructionGroup->group==GROUP_FIRE)static_cast<Fire*>(b)->burning_days+=std::max(1,60*budget[FIRE]/100);else call->severity-=3;}else if(u.working%5==0){--call->severity;if(u.kind==MEDICAL_CALL){w.flu.treat(call->target,1);auto i=sick.find(call->target);if(i!=sick.end()&&i->second>0)--i->second;}}if(call->severity<=0){++resolved;w.evolution.headline(u.kind==FIRE_CALL?"Fire contained: the building was saved.":"Emergency resolved; crew returning.");}}
+  else if(call!=incidents.end()) {
+   ++u.working;
+   auto* building = at(w,call->target);
+   const int strength = 2 + budget[service]/50;
+   if(u.kind==FIRE_CALL) {
+    call->severity -= strength;
+    if(building && building->constructionGroup->group==GROUP_FIRE && call->severity<=0)
+     static_cast<Fire*>(building)->burning_days = FIRE_LENGTH+1;
+   } else if(u.working%std::max(2,7-strength)==0) {
+    --call->severity;
+    if(u.kind==MEDICAL_CALL) {
+     w.flu.treat(call->target,1);
+     auto illness = sick.find(call->target);
+     if(illness!=sick.end() && illness->second>0) --illness->second;
+    }
+   }
+   if(call->severity<=0) {
+    ++resolved;
+    w.evolution.headline(u.kind==FIRE_CALL ? "Fire put out; crew returning." :
+      "Emergency resolved; crew returning.");
+   }
+  }
   ++it;
  }
- if(w.total_time%10==0)for(auto& c:incidents){if(c.severity<=0)continue;bool assigned=false;for(auto& u:units)if(!u.returning&&u.call==c.id)assigned=true;if(assigned||units.size()>=128)continue;int s=serviceFor(c.kind),best=-1,lowest=std::numeric_limits<int>::max();std::vector<int> chosen;
+ if(w.total_time%5==0)for(auto& c:incidents){if(c.severity<=0)continue;bool assigned=false;for(auto& u:units)if(!u.returning&&u.call==c.id)assigned=true;if(assigned||units.size()>=128)continue;int s=serviceFor(c.kind),best=-1,lowest=std::numeric_limits<int>::max();std::vector<int> chosen;
   for(auto* b:w.map.constructions){if(b->isDead()||b->constructionGroup->group!=groupFor(s)||!stationReady(*b,s))continue;int home=idOf(w,b->point),out=0;for(auto& u:units)if(u.home==home)++out;if(out>=std::max(1,budget[s]/50))continue;auto path=route(w,home,c.target);if(path.empty())continue;int distance=0;for(int id:path)distance+=terrainCost(w,id,home,c.target);if(distance<lowest){lowest=distance;best=home;chosen=std::move(path);}}
   if(best>=0){Unit u;u.kind=c.kind;u.home=best;u.call=c.id;u.path=std::move(chosen);units.push_back(std::move(u));}
  }
@@ -118,7 +138,7 @@ std::string CivicServices::save()const{
  std::ostringstream o;o<<1<<' ';for(int b:budget)o<<b<<' ';o<<autoBudget<<' '<<autoTax<<' '<<zombiesEnabled<<' '<<zombieNoticePending<<' '<<taxCeiling<<' '<<reserve<<' '<<education<<' '<<crime<<' '<<sickTotal<<' '<<exposureMonths<<' '<<zombieCooldown<<' '<<nextId<<' '<<resolved<<' '<<rng<<' '<<sick.size()<<' ';for(auto& [id,count]:sick)o<<id<<' '<<count<<' ';o<<incidents.size()<<' ';for(auto& c:incidents)o<<c.id<<' '<<c.kind<<' '<<c.target<<' '<<c.severity<<' '<<c.age<<' ';o<<units.size()<<' ';for(auto& u:units){o<<u.kind<<' '<<u.home<<' '<<u.call<<' '<<u.step<<' '<<u.credit<<' '<<u.working<<' '<<u.returning<<' '<<u.path.size()<<' ';for(int id:u.path)o<<id<<' ';}return o.str();
 }
 void CivicServices::load(const std::string& text,int side){
- CivicServices v;std::istringstream in(text);int version;auto require=[&](bool ok){if(!ok)throw std::runtime_error("Invalid civic service save state");};require(bool(in>>version)&&version==1);for(int& b:v.budget){in>>b;require(b>=0&&b<=200);}in>>v.autoBudget>>v.autoTax>>v.zombiesEnabled>>v.zombieNoticePending>>v.taxCeiling>>v.reserve>>v.education>>v.crime>>v.sickTotal>>v.exposureMonths>>v.zombieCooldown>>v.nextId>>v.resolved>>v.rng;require(bool(in)&&v.taxCeiling>=1&&v.taxCeiling<=30&&v.reserve>=0&&v.reserve<=1000000&&v.education>=0&&v.education<=1000&&v.crime>=0&&v.crime<=200&&v.exposureMonths>=0&&v.zombieCooldown>=0&&v.nextId>0&&v.resolved>=0);int cells=side*side,n;auto valid=[&](int id){return id>=0&&id<cells;};in>>n;require(bool(in)&&n>=0&&n<=cells);for(int j=0;j<n;++j){int id,count;in>>id>>count;require(bool(in)&&valid(id)&&count>=0&&count<=100000);v.sick[id]=count;}in>>n;require(bool(in)&&n>=0&&n<=64);std::set<int> ids;for(int j=0;j<n;++j){Incident c;in>>c.id>>c.kind>>c.target>>c.severity>>c.age;require(bool(in)&&c.id>0&&c.id<v.nextId&&ids.insert(c.id).second&&c.kind>=0&&c.kind<=3&&valid(c.target)&&c.severity>=-3&&c.severity<=100&&c.age>=0);v.incidents.push_back(c);}in>>n;require(bool(in)&&n>=0&&n<=128);for(int j=0;j<n;++j){Unit u;int steps;in>>u.kind>>u.home>>u.call>>u.step>>u.credit>>u.working>>u.returning>>steps;require(bool(in)&&u.kind>=0&&u.kind<=3&&valid(u.home)&&steps>0&&steps<=cells&&u.step>=0&&u.step<steps&&u.credit>=0&&u.credit<=100&&u.working>=0);for(int k=0;k<steps;++k){int id;in>>id;require(bool(in)&&valid(id));if(k){int prev=u.path.back();require(std::abs(prev%side-id%side)+std::abs(prev/side-id/side)==1);}u.path.push_back(id);}v.units.push_back(std::move(u));}in>>std::ws;require(in.eof());*this=std::move(v);
+ CivicServices v;std::istringstream in(text);int version;auto require=[&](bool ok){if(!ok)throw std::runtime_error("Invalid civic service save state");};require(bool(in>>version)&&version==1);for(int& b:v.budget){in>>b;require(b>=0&&b<=200);}in>>v.autoBudget>>v.autoTax>>v.zombiesEnabled>>v.zombieNoticePending>>v.taxCeiling>>v.reserve>>v.education>>v.crime>>v.sickTotal>>v.exposureMonths>>v.zombieCooldown>>v.nextId>>v.resolved>>v.rng;require(bool(in)&&v.taxCeiling>=1&&v.taxCeiling<=CityEvolution::MaxTaxLimit&&v.reserve>=0&&v.reserve<=1000000&&v.education>=0&&v.education<=1000&&v.crime>=0&&v.crime<=200&&v.exposureMonths>=0&&v.zombieCooldown>=0&&v.nextId>0&&v.resolved>=0);int cells=side*side,n;auto valid=[&](int id){return id>=0&&id<cells;};in>>n;require(bool(in)&&n>=0&&n<=cells);for(int j=0;j<n;++j){int id,count;in>>id>>count;require(bool(in)&&valid(id)&&count>=0&&count<=100000);v.sick[id]=count;}in>>n;require(bool(in)&&n>=0&&n<=64);std::set<int> ids;for(int j=0;j<n;++j){Incident c;in>>c.id>>c.kind>>c.target>>c.severity>>c.age;require(bool(in)&&c.id>0&&c.id<v.nextId&&ids.insert(c.id).second&&c.kind>=0&&c.kind<=3&&valid(c.target)&&c.severity>=-3&&c.severity<=100&&c.age>=0);v.incidents.push_back(c);}in>>n;require(bool(in)&&n>=0&&n<=128);for(int j=0;j<n;++j){Unit u;int steps;in>>u.kind>>u.home>>u.call>>u.step>>u.credit>>u.working>>u.returning>>steps;require(bool(in)&&u.kind>=0&&u.kind<=3&&valid(u.home)&&steps>0&&steps<=cells&&u.step>=0&&u.step<steps&&u.credit>=0&&u.credit<=100&&u.working>=0);for(int k=0;k<steps;++k){int id;in>>id;require(bool(in)&&valid(id));if(k){int prev=u.path.back();require(std::abs(prev%side-id%side)+std::abs(prev/side-id/side)==1);}u.path.push_back(id);}v.units.push_back(std::move(u));}in>>std::ws;require(in.eof());*this=std::move(v);
 }
 
 CivicServices::Fiscal CivicServices::fiscal(const World& w) const {
@@ -152,7 +172,7 @@ long long CivicServices::laborTaxBase(const World& w) const {
 }
 
 int CivicServices::recommendedTax(const World& w, std::string* why) const {
- const int rate=w.money_rates.income_tax, ceiling=std::clamp(taxCeiling,1,30);
+ const int rate=w.money_rates.income_tax, ceiling=std::clamp(taxCeiling,1,w.evolution.incomeTaxLimit);
  const Fiscal f=monthlyFiscal(w);
  const long long base=laborTaxBase(w);
  const long long otherRevenue=f.revenue-f.incomeTax;
@@ -185,7 +205,7 @@ int CivicServices::recommendedTax(const World& w, std::string* why) const {
   say("Projected revenue covers running costs. Keep the current rate.");
  }
  if(why && rate>ceiling && gap<=0) *why+=" The tax ceiling is "+std::to_string(ceiling)+"%.";
- return std::clamp(target,0,30);
+ return std::clamp(target,0,w.evolution.incomeTaxLimit);
 }
 
 std::string CivicServices::applyRecommendedTax(World& w) {

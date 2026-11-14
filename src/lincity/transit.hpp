@@ -12,9 +12,11 @@ struct TransitSystem {
  std::set<int> tunnels, viaducts, servedHomes;
  std::vector<TransitRoute> routes;
  std::array<int,4> passengers{}, shoppingTrips{}, running{}, disconnected{}, connected{}, unstaffed{};
+ static constexpr int MaxFare = 10;
+ std::array<int,4> fares{1,2,2,2};
  int view=0, assessedMonth=-1, faresMonth=0, upkeepMonth=0;
  static int busReach(int size) { return size >= 2 ? 14 : 8; }
- static int walkingRadius(int mode) { return mode == BUS ? 14 : 10; }
+ static int walkingRadius(int mode) { return mode == BUS ? 14 : mode == RAIL ? 30 : 20; }
  static int stationMode(int group);
  static std::map<int,int> walkingArea(const World&, MapPoint, int size, int mode);
  int roadTripsAt(MapPoint p, int width) const;
@@ -29,6 +31,9 @@ private:
   int mode, count;
   bool shopping;
   std::vector<MapPoint> path;
+  int transferMode = -1;
+  std::vector<MapPoint> transferPath;
+  MapPoint interchangeFrom, interchangeTo;
  };
  std::vector<Trip> trips;
  std::map<int,int> roadTrips;

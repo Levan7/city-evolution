@@ -60,6 +60,8 @@ private:
     void loadOptionsMenu();
 
     void updateLoadSaveMenus();
+    void updateSaveName();
+    std::string saveName;
     void updateNewGameMenu();
     void updateOptionsMenu();
 

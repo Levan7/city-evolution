@@ -166,9 +166,6 @@ World::do_random_fire() {
   const ConstructionGroup& cstGrp = *cst->constructionGroup;
   if(rand() % 100 >= cstGrp.fire_chance)
     return;
-  if(map(loc)->flags & FLAG_FIRE_COVER)
-    return;
-
   cst->torch();
   pushMessage(FireStartedMessage::create(loc, cstGrp));
 }

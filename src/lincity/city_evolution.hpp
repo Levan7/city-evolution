@@ -130,7 +130,7 @@ struct CityEvolution {
   std::vector<std::string> planLines(World& world) const; // text for the City Hall page
   // Real active-play milliseconds, deliberately independent of simulation days.
   int skyMode = 0; // 0 occasional nights, 1 permanent day, 2 permanent night
-  int weatherMode = 0; // 0 changing, 1 clear, 2 clouds, 3 rain, 4 storm
+  int weatherMode = 0; // 0 changing, 1 clear, 2 clouds, 3 rain, 4 storm, 5 snow
   int skyPhase = 0; // daylight, dusk, night, dawn
   int skyElapsed = 0;
   int skyDuration = 720000;
@@ -139,6 +139,9 @@ struct CityEvolution {
   int weatherDuration = 240000;
   int visualTime = 0;
   unsigned int randomState = 173831;
+  static constexpr int BaseTaxLimit = 30, MaxTaxLimit = 70;
+  int incomeTaxLimit = BaseTaxLimit;
+  bool taxReferendum = false;
   int approval = 60, electionCount = 0, lastVote = 60;
   int nextElection = 4800;
   int poweredHomes = 0, homes = 0, amenities = 0;
@@ -166,7 +169,7 @@ struct CityEvolution {
     if(weatherElapsed >= weatherDuration) {
       weatherElapsed -= weatherDuration;
       int roll = random()%100;
-      weather = roll < 48 ? 0 : roll < 73 ? 1 : roll < 94 ? 2 : 3;
+      weather = roll < 43 ? 0 : roll < 68 ? 1 : roll < 88 ? 2 : roll < 95 ? 3 : 4;
       weatherDuration = 180000 + random()%300001;
     }
   }

@@ -78,8 +78,6 @@ class World;
 #define PORT_IMPORT_RATE  500
 #define PORT_TRIGGER_RATE  15
 
-#define IMPORT_EXPORT_ENABLE_PERIOD  100
-#define IMPORT_EXPORT_DISABLE_PERIOD 150
 
 class PortConstructionGroup: public ConstructionGroup {
 public:
@@ -146,7 +144,8 @@ public:
     void trade_connection();
 
     std::array<CommodityRule, STUFF_COUNT> commodityRuleCount;
-    int daily_ic, monthly_ic, lastm_ic; //import cost
+    int daily_ic, monthly_ic, lastm_ic; // import cost in dollars
+    int importPence = 0;
     int daily_et, monthly_et, lastm_et; //export tax
     int pence;
     int working_days, busy;

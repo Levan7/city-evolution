@@ -24,6 +24,9 @@
 
 #include "parkland.hpp"
 
+#include <algorithm>
+#include <libxml++/parsers/textreader.h>
+#include "util/xmlutil.hpp"
 #include <string>                   // for basic_string
 
 #include "lincity-ng/Mps.hpp"       // for Mps
@@ -32,6 +35,11 @@
 #include "lincity/lin-city.hpp"       // for TRUE, FLAG_HAS_UNDERGROUND_WATER
 #include "lincity/world.hpp"          // for World, Map, MapTile
 #include "util/gettextutil.hpp"
+
+ParklandConstructionGroup cityParkGroup(
+    N_("City Park"), N_("City Parks"), TRUE, GROUP_CITY_PARK, 1,
+    GROUP_PARKLAND_COLOUR, 0, 50, GROUP_PARKLAND_FIREC, 125, 0, 2
+);
 
 ParklandConstructionGroup parklandConstructionGroup(
      N_("Park"),
@@ -73,7 +81,7 @@ ParklandConstructionGroup::can_build_here(const World& world,
 ) const {
   if(!ConstructionGroup::can_build_here(world, point, message)) return false;
 
-  if(!(world.map(point)->flags & FLAG_HAS_UNDERGROUND_WATER)) {
+  if(group != GROUP_CITY_PARK && !(world.map(point)->flags & FLAG_HAS_UNDERGROUND_WATER)) {
     message = DesertHereMessage::create(point);
     return false;
   }
@@ -88,7 +96,39 @@ Parkland::Parkland(World& world, ConstructionGroup *cstgrp) :
   this->flags |= FLAG_NEVER_EVACUATE;
 }
 
+void Parkland::place(MapPoint point) {
+  Construction::place(point);
+  if(constructionGroup->group == GROUP_CITY_PARK) frameIt->frame = parkTile;
+}
+
+void Parkland::setParkTile(int tile) {
+  parkTile = tile;
+  frameIt->frame = parkTile;
+}
+
+void Parkland::save(xmlTextWriterPtr writer) const {
+  if(constructionGroup->group == GROUP_CITY_PARK)
+    xmlTextWriterWriteElement(writer, (xmlStr)"park_tile", xmlFormat<int>(parkTile));
+  Construction::save(writer);
+}
+
+bool Parkland::loadMember(xmlpp::TextReader& reader, unsigned int version) {
+  if(reader.get_name() != "park_tile") return Construction::loadMember(reader, version);
+  parkTile = std::clamp(xmlParse<int>(reader.read_inner_xml()),0,4);
+  return true;
+}
+
 void Parkland::update() {
+  if(constructionGroup->group == GROUP_CITY_PARK) {
+    if((world.total_time + point.x + point.y) % 4 != 0) return;
+    for(int y=-2; y<=2; ++y) for(int x=-2; x<=2; ++x) {
+      if(std::abs(x) + std::abs(y) > 2) continue;
+      const MapPoint nearby(point.x+x, point.y+y);
+      if(world.map.is_visible(nearby) && world.map(nearby)->pollution > 10)
+        --world.map(nearby)->pollution;
+    }
+    return;
+  }
   if(world.map(point)->pollution > 10 && (world.total_time & 1) == 0)
     world.map(point)->pollution--;
 }

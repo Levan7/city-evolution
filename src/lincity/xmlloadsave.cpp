@@ -268,6 +268,9 @@ World::load(const std::filesystem::path& filename) {
   for(auto* cells:{&world->transit.tunnels,&world->transit.viaducts}) for(auto it=cells->begin();it!=cells->end();) { int n=world->map.len(),id=*it;if(id<0||id>=n*n||!world->map.is_visible(MapPoint(id%n,id/n)))it=cells->erase(it);else ++it; }
   // Extension fields are optional in older cities and validated before rendering.
   auto& e = world->evolution;
+  e.incomeTaxLimit = std::clamp(e.incomeTaxLimit / 10 * 10, CityEvolution::BaseTaxLimit, CityEvolution::MaxTaxLimit);
+  world->money_rates.income_tax = std::clamp(world->money_rates.income_tax, 0, e.incomeTaxLimit);
+  world->civic.taxCeiling = std::min(world->civic.taxCeiling, e.incomeTaxLimit);
   e.mayorMode=std::clamp(e.mayorMode,0,2);
   e.mayorBudget=std::clamp(e.mayorBudget,0,CityEvolution::MAX_PLAN_BUDGET);
   e.mayorScope=std::clamp(e.mayorScope,0,2);e.mayorPace=std::clamp(e.mayorPace,1,3);e.planState=std::clamp(e.planState,0,3);e.planFocus=std::clamp(e.planFocus,0,3);e.planBudgetYear=std::clamp(e.planBudgetYear,0,CityEvolution::MAX_PLAN_BUDGET);
@@ -275,9 +278,9 @@ World::load(const std::filesystem::path& filename) {
   e.districtX=std::clamp(e.districtX,1,std::max(1,world->map.len()-26));
   e.districtY=std::clamp(e.districtY,1,std::max(1,world->map.len()-26));
   e.skyMode = std::clamp(e.skyMode,0,2);
-  e.weatherMode = std::clamp(e.weatherMode,0,4);
+  e.weatherMode = std::clamp(e.weatherMode,0,5);
   e.skyPhase = std::clamp(e.skyPhase,0,3);
-  e.weather = std::clamp(e.weather,0,3);
+  e.weather = std::clamp(e.weather,0,4);
   e.skyDuration = std::clamp(e.skyDuration,45000,960000);
   e.weatherDuration = std::clamp(e.weatherDuration,180000,480000);
   e.skyElapsed = std::clamp(e.skyElapsed,0,e.skyDuration-1);
@@ -303,6 +306,13 @@ static void saveGlobals(xmlTextWriterPtr xmlWriter, const World& world) {
     << civic.lastMonth.revenue << ' ' << civic.lastMonth.operating << ' ' << civic.lastMonth.incomeTax;
   xmlTextWriterWriteElement(xmlWriter,(xmlStr)"monthly_fiscal", (xmlStr)monthlyLedger.str().c_str());
   xmlTextWriterWriteElement(xmlWriter,(xmlStr)"civic_state",(xmlStr)world.civic.save().c_str());
+  xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_view",f(world.transit.view));
+  for(size_t mode=0; mode<world.transit.fares.size(); ++mode) {
+    const auto tag = "transit_fare_" + std::to_string(mode);
+    xmlTextWriterWriteElement(xmlWriter,(xmlStr)tag.c_str(),f(world.transit.fares[mode]));
+  }
+  xmlTextWriterWriteElement(xmlWriter,(xmlStr)"evolution_tax_limit",f(world.evolution.incomeTaxLimit));
+  xmlTextWriterWriteElement(xmlWriter,(xmlStr)"evolution_tax_referendum",f<int>(world.evolution.taxReferendum));
   for(int id:world.transit.tunnels) xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_tunnel",f(id));
   for(int id:world.transit.viaducts) xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_viaduct",f(id));
   xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_fares_ly",f(world.stats.income.transit_fares.stat));
@@ -700,6 +710,12 @@ static void loadGlobals(xmlpp::TextReader& xmlReader, World& world,
     else if(xml_tag == "transit_tunnel" || xml_tag=="transit_viaduct") {int id=p<int>(xmlReader.read_inner_xml());int len=world.map.len();if(id>=0&&id<160000) (xml_tag=="transit_tunnel"?world.transit.tunnels:world.transit.viaducts).insert(id);}
     else if(xml_tag=="transit_fares_ly") world.stats.income.transit_fares.stat=p<int>(xmlReader.read_inner_xml());
     else if(xml_tag=="transit_fares_ytd") world.stats.income.transit_fares.acc=p<int>(xmlReader.read_inner_xml());
+    else if(xml_tag.size() == 14 && xml_tag.substr(0,13) == "transit_fare_" &&
+      xml_tag[13] >= '0' && xml_tag[13] <= '3')
+      world.transit.fares[xml_tag[13]-'0'] = std::clamp(p<int>(xmlReader.read_inner_xml()),0,TransitSystem::MaxFare);
+    else if(xml_tag=="evolution_tax_limit") world.evolution.incomeTaxLimit=p<int>(xmlReader.read_inner_xml());
+    else if(xml_tag=="evolution_tax_referendum") world.evolution.taxReferendum=p<int>(xmlReader.read_inner_xml())!=0;
+    else if(xml_tag=="transit_view") world.transit.view=std::clamp(p<int>(xmlReader.read_inner_xml()),0,3);
     else if(xml_tag=="transit_assessed") world.transit.assessedMonth=p<int>(xmlReader.read_inner_xml());
     else if(xml_tag == "evolution_skyMode") world.evolution.skyMode = p<int>(xmlReader.read_inner_xml());
     else if(xml_tag == "evolution_weatherMode") world.evolution.weatherMode = p<int>(xmlReader.read_inner_xml());

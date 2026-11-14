@@ -86,6 +86,7 @@
   </menu>
   <menu button-name="BPLandButton" drawer-name="BPLandButtonDrawer" default="BPMParkButton">
     <tool name="BPMParkButton" grpid="19" help="park" />
+    <tool name="BPMCityParkButton" grpid="75" help="city-park" />
     <tool name="BPMTipButton" grpid="16" help="tip" />
     <tool name="BPMRecycleButton" grpid="20" help="recycle" />
     <tool name="BPMCommuneButton" grpid="14" help="commune" />
@@ -1334,6 +1335,15 @@
                             <image-clicked src="images/readable/plate-72-clicked.png" width="88" height="76" resizable="yes" />
                             <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes" />
                             <image-caption src="images/readable/BPMCommuneButton-building.png" width="88" height="76" resizable="yes" />
+                          </CheckButton>
+                        </cell>
+                        <cell row="2" col="2" halign="center" valign="center">
+                          <CheckButton name="BPMCityParkButton" width="88" height="76" auto-uncheck="false">
+                            <image src="images/readable/plate-72-normal.png" width="88" height="76" resizable="yes"/>
+                            <image-hover src="images/readable/plate-72-hover.png" width="88" height="76" resizable="yes"/>
+                            <image-clicked src="images/readable/plate-72-clicked.png" width="88" height="76" resizable="yes"/>
+                            <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes"/>
+                            <image-caption src="images/readable/BPMCityParkButton-building.png" width="88" height="76"/>
                           </CheckButton>
                         </cell>
                       </TableLayout>

@@ -41,7 +41,7 @@
 #include "lin-city.hpp"                    // for MAX_TECH_LEVEL, TECH_LEVEL_LOSS
 #include "lintypes.hpp"                    // for Construction, NUMOF_DAYS_IN_...
 #include "messages.hpp"                  // for OutOfMoneyMessage, NoPeopleL...
-#include "modules/all_modules.hpp"         // for IMPORT_EXPORT_DISABLE_PERIOD
+#include "modules/all_modules.hpp"
 #include "modules/modules_interfaces.hpp"  // for update_shanty
 #include "stats.hpp"                       // for Stats, Stat
 #include "sustainable.hpp"                 // for SUST_FIRE_YEARS_NEEDED, SUST...
@@ -68,6 +68,7 @@ World::do_time_step(void) {
     /* Run through simulation equations for each farm, residence, etc. */
     distributeRoadPower(*this);
     distributeWarehouseFreight(*this);
+    distributeMetroSupplies(*this);
     transit.deliver(*this);
     simulate_mappoints();
 
@@ -237,12 +238,10 @@ World::end_of_year_update(void) {
 
   setUpdated(Updatable::MONEY);
 
-  // change import/export ability
-  for(Commodity s = STUFF_INIT; s < STUFF_COUNT; s++) {
-    tradeRule[s].take ^= !(rand() % (tradeRule[s].take
-      ? IMPORT_EXPORT_DISABLE_PERIOD : IMPORT_EXPORT_ENABLE_PERIOD));
-    tradeRule[s].give ^= !(rand() % (tradeRule[s].give
-      ? IMPORT_EXPORT_DISABLE_PERIOD : IMPORT_EXPORT_ENABLE_PERIOD));
+  // A foreign trade closure lasts one game year, including restrictions in old saves.
+  for(Commodity stuff : {STUFF_FOOD, STUFF_COAL, STUFF_ORE, STUFF_GOODS, STUFF_STEEL}) {
+    tradeRule[stuff].take = !tradeRule[stuff].take || rand() % 20 != 0;
+    tradeRule[stuff].give = !tradeRule[stuff].give || rand() % 20 != 0;
   }
 }
 

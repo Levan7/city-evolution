@@ -1,5 +1,27 @@
 # Changelog
 
+## City Evolution — Preview 24
+
+- Autosave runs every 30 minutes of active play to avoid frequent interruptions at high simulation speeds.
+
+- Railway tracks, bridges and stations unlock together at 4% technology. Square walking catchments extend 30 tiles for rail and 20 for metro, subject to walking barriers. Rail, underground and elevated lines can share station footprints, with real track paths for commuting transfers. Staffed lines display moving trains even before they attract passengers.
+- Keep the selected track overlay while switching construction tools and after loading a save. Metro tracks can also deliver a limited amount of supplies to connected buildings. Ports can face a river on any side.
+- Coal power, substations and power lines unlock at 5%. Electricity can move along roads, rail and metro on any side of a building. Dedicated lines have the lowest losses. Substations show a powered coverage square and supply nearby buildings, also drawing on multiple generators when available.
+- Funded fire stations, clinics and police stations keep a crew ready for calls. Dispatched crews continue if station stock runs low. Paved roads are fastest, with slower routes via dirt, rail rights-of-way and open ground. Crews need a physical crossing over water. Fire crews show animated water aimed at the fire.
+- Added snow and thunder during storms, and expanded City Advisors' factory input reports.
+
+## City Evolution — Preview 23
+
+- Added a separate month-end autosave and named manual saves. Unnamed saves use the slot name, and older slots still load.
+- Added a drag-to-build City Park under Land. Build a 3 × 3 to 20 × 20 park with greenery, paths and a fountain. Park tiles gradually reduce nearby air pollution.
+- Added unique world sprites and matching Help illustrations for the distribution center, computer and car factories, and nuclear plant. The stadium keeps its custom artwork.
+- Added individual fares for buses, passenger rail, underground and elevated metro. Each fare ranges from $0 to $10 per trip. Above-default fares reduce estimated ridership.
+- Added an income-tax referendum in City Hall. At 60% approval, voters can authorize another ten percentage points per term, up to 70%. An election below 50% approval resets the legal limit to 30%.
+- Explained that solar percentages represent the effect of daylight and weather on rated generation. The plant report shows both rated capacity and the weather-limited figure.
+- Aligned the port controls and explained red trade closures. Closures reopen at the next year boundary. The port report separates last month from month-to-date and preserves those totals across saves.
+- Prioritized local freight deliveries before port exports and kept a quarter of warehouse capacity in reserve for local buyers. Closed export directions receive no new direct warehouse shipments. Import prices now include a 10% markup over the base export price.
+- Expanded the mayor’s housing, power, freight and employment decisions. It can consider sites throughout the selected area, work across the preferred street grid when needed, and reject access roads that would occupy the building site.
+
 ## City Evolution — Preview 22
 
 - Prevented a residence information panel overflow when food or water advice is shown. Hardened advisor window removal.

@@ -91,7 +91,7 @@ void Coal_power::update()
     int coal_used = POWERS_COAL_OUTPUT / POWER_PER_COAL * (hivolt_made/100) /(hivolt_output/100);
     if ((commodityCount[STUFF_LABOR] >= labor_used )
      && (commodityCount[STUFF_COAL] >= coal_used)
-     && (hivolt_made >= POWERS_COAL_OUTPUT))
+     && (hivolt_made >= 100))
     {
         consumeStuff(STUFF_LABOR, labor_used);
         consumeStuff(STUFF_COAL, coal_used);

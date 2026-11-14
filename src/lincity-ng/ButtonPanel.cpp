@@ -37,6 +37,8 @@
 #include <stdexcept>                      // for runtime_error
 #include <utility>                        // for pair, move
 
+#include "GameView.hpp"
+#include "lincity/groups.hpp"
 #include "Game.hpp"                       // for Game
 #include "UserOperation.hpp"              // for UserOperation
 #include "Util.hpp"                       // for getCheckButton
@@ -440,6 +442,11 @@ void ButtonPanel::toolButtonClicked(CheckButton* button, int mouseBtnNum) {
   }
 
   openMenu(NULL);
+  if(tool->operation.constructionGroup &&
+     tool->operation.constructionGroup->group == GROUP_CITY_PARK) {
+    selectQueryTool();
+    game->getGameView().beginCityPark();
+  }
 }
 
 void ButtonPanel::menuButtonClicked(CheckButton* button, int mouseBtnNum) {

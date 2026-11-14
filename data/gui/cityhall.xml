@@ -67,18 +67,20 @@
       <cell row="5" col="1" colspan="5" halign="center" valign="center">
         <SwitchComponent name="HallPages">
           <Panel name="CouncilPage" resizable="yes">
-            <TableLayout rows="11" cols="2">
+            <TableLayout rows="13" cols="2">
               <rowsize row="1" fixed="30" />
-              <rowsize row="2" fixed="28" />
-              <rowsize row="3" fixed="28" />
-              <rowsize row="4" fixed="28" />
-              <rowsize row="5" fixed="28" />
-              <rowsize row="6" fixed="28" />
-              <rowsize row="7" fixed="28" />
-              <rowsize row="8" fixed="58" />
-              <rowsize row="9" fixed="58" />
-              <rowsize row="10" fixed="44" />
-              <rowsize row="11" fixed="40" />
+              <rowsize row="2" fixed="22" />
+              <rowsize row="3" fixed="22" />
+              <rowsize row="4" fixed="22" />
+              <rowsize row="5" fixed="22" />
+              <rowsize row="6" fixed="22" />
+              <rowsize row="7" fixed="22" />
+              <rowsize row="8" fixed="44" />
+              <rowsize row="9" fixed="44" />
+              <rowsize row="10" fixed="34" />
+              <rowsize row="11" fixed="36" />
+              <rowsize row="12" fixed="28"/>
+              <rowsize row="13" fixed="34"/>
               <cell row="1" col="1" colspan="2" halign="left" valign="top">
                 <Paragraph name="CityLine" color="#ffd36a" font-size="19" />
               </cell>
@@ -121,6 +123,16 @@
                   <image src="images/readable/plate-320-normal.png" />
                   <image-hover src="images/readable/plate-320-hover.png" />
                   <text-caption color="#ffffff" font-size="17" halign="center" font-weight="bold">All advice (what to fix)</text-caption>
+                </Button>
+              </cell>
+              <cell row="12" col="1" colspan="2" valign="center">
+                <Paragraph name="TaxMandate" color="#9fb4c2" font-size="15"/>
+              </cell>
+              <cell row="13" col="1" colspan="2" halign="center" valign="center">
+                <Button name="TaxReferendum" width="320" height="34">
+                  <image src="images/readable/plate-320-normal.png"/>
+                  <image-hover src="images/readable/plate-320-hover.png"/>
+                  <text-caption color="#ffffff" font-size="16" halign="center">Propose tax limit</text-caption>
                 </Button>
               </cell>
             </TableLayout>
@@ -280,7 +292,7 @@
                 <Paragraph color="#ffffff" font-size="18">Day and night change automatically.</Paragraph>
               </cell>
               <cell row="2" col="2" colspan="1" halign="center" valign="center">
-                <Paragraph color="#ffffff" font-size="18">Sun, clouds and rain change automatically.</Paragraph>
+                <Paragraph color="#ffffff" font-size="18">Sun, clouds, rain, thunderstorms and snow change automatically.</Paragraph>
               </cell>
               <cell row="3" col="1" colspan="2" halign="center" valign="center">
                 <Button name="PedestrianControl" width="320" height="36">

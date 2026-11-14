@@ -26,7 +26,8 @@
 
 /******* Buildings // GROUPS ************/
 
-#define NUM_OF_GROUPS    75
+#define NUM_OF_GROUPS    76
+#define GROUP_CITY_PARK 75
 #define GROUP_FOOTBALL 70
 #define GROUP_LARGE_WAREHOUSE 71
 #define GROUP_COMPUTER_FACTORY 72

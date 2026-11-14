@@ -3,6 +3,7 @@
 #include "city_evolution.hpp"
 #include "world.hpp"
 #include "modules/all_modules.hpp"
+#include <algorithm>
 #include <queue>
 #include <map>
 #include <limits>
@@ -18,14 +19,14 @@ int CityEvolution::autonomousStep(World& w,bool allowBuilding,bool allowRoad,boo
  builtRoad=false;if(!fullAutonomy||mayorMode==0){report="Mayor is OFF.";return 0;}
  int x0,y0,x1,y1;mayorBounds(w,x0,y0,x1,y1);const int n=w.map.len(),inf=100000000;
  auto inside=[&](int x,int y){return x>=x0&&y>=y0&&x<x1&&y<y1&&w.map.is_visible({x,y});};
- auto roadAt=[&](int x,int y){if(!inside(x,y))return false;auto*c=w.map({x,y})->reportingConstruction;return c&&(c->flags&FLAG_IS_TRANSPORT);};
+ auto roadAt=[&](int x,int y){if(!inside(x,y))return false;auto*c=w.map({x,y})->reportingConstruction;return c&&(c->flags&FLAG_IS_TRANSPORT)&&w.map({x,y})->getTransportGroup()!=GROUP_RAIL;};
  auto free=[&](int x,int y){return inside(x,y)&&!w.map({x,y})->reportingConstruction&&(w.map({x,y})->is_bare()||w.map({x,y})->is_water());};
  const int gridX=(x0+x1)/2,gridY=(y0+y1)/2;
  auto corridor=[&](int x,int y){return (x-gridX+6*n)%6==0||(y-gridY+6*n)%6==0;};
- std::map<int,int> count;int pop=0,capacity=0,homes=0,ax=0,ay=0,jams=0;long long food=0,goods=0,labor=0,ore=0,coal=0;std::vector<Construction*> existing;
+ std::map<int,int> count;int pop=0,capacity=0,homes=0,ax=0,ay=0,jams=0,unpowered=0,employed=0,unfed=0;long long food=0,goods=0,labor=0,ore=0,coal=0;std::vector<Construction*> existing;
  for(auto*c:w.map.constructions){auto p=c->point;if(!inside(p.x,p.y))continue;existing.push_back(c);int g=c->constructionGroup->group;++count[g];
   food+=c->commodityCount[STUFF_FOOD];goods+=c->commodityCount[STUFF_GOODS];labor+=c->commodityCount[STUFF_LABOR];ore+=c->commodityCount[STUFF_ORE];coal+=c->commodityCount[STUFF_COAL];
-  if(GROUP_IS_RESIDENCE(g)){auto*r=static_cast<Residence*>(c);pop+=r->local_population;capacity+=r->max_population;++homes;ax+=p.x;ay+=p.y;}
+  if(GROUP_IS_RESIDENCE(g)){auto*r=static_cast<Residence*>(c);pop+=r->local_population;capacity+=r->max_population;++homes;unpowered+=!(c->flags&FLAG_HAD_POWER);employed+=bool(c->flags&FLAG_EMPLOYED);unfed+=!(c->flags&FLAG_FED);ax+=p.x;ay+=p.y;}
   if(auto*t=dynamic_cast<Transport*>(c))for(int k=0;k<STUFF_COUNT;++k)if(t->constructionGroup->commodityRuleCount[k].maxload>0&&t->trafficCount[k]*100LL/t->constructionGroup->commodityRuleCount[k].maxload>80){++jams;break;}
  }
  MapPoint anchor(homes?ax/homes:(x0+x1)/2,homes?ay/homes:(y0+y1)/2);
@@ -34,6 +35,7 @@ int CityEvolution::autonomousStep(World& w,bool allowBuilding,bool allowRoad,boo
  const int available=std::max(0,w.total_money-reserve);
  auto& road=w.tech_level>=roadConstructionGroup.tech?roadConstructionGroup:trackConstructionGroup;
  Message::ptr message;
+ allowRoad &= mayorRoads && road.can_build(w,message);
  auto account=[&](int before,ConstructionGroup& g,MapPoint p,const std::string& why,int roads){int spent=std::max(0,before-w.total_money);mayorSpent+=spent;++mayorProjects;mayorRoadsMonth+=roads;report="Built "+g.name+" at "+std::to_string(p.x)+","+std::to_string(p.y)+" ($"+std::to_string(spent)+"): "+why+".";if(g.group!=GROUP_TRACK&&g.group!=GROUP_ROAD)headline("Mayor: "+report);};
  if(!allowBuilding&&!allowRoad){report="Monthly construction allowance used.";return 0;}
  if(available<road.getCosts(w)){report="Waiting for revenue: $"+std::to_string(w.total_money)+" treasury, $"+std::to_string(reserve)+" adaptive reserve. No borrowing or free funds.";return 0;}
@@ -53,7 +55,7 @@ int CityEvolution::autonomousStep(World& w,bool allowBuilding,bool allowRoad,boo
  auto ring=[&](MapPoint p,int size){int best=-1;for(int a=0;a<size;++a)for(auto t:{p.e(a).n(),p.e(a).s(size),p.s(a).w(),p.s(a).e(size)})if(inside(t.x,t.y)&&dist[t.y*n+t.x]<inf&&(best<0||dist[t.y*n+t.x]<dist[best]))best=t.y*n+t.x;return best;};
  auto path=[&](int id){std::vector<MapPoint> route;while(id>=0&&dist[id]>0&&route.size()<80){route.emplace_back(id%n,id/n);id=parent[id];}std::reverse(route.begin(),route.end());return route;};
  // Repair access before duplicating idle workplaces or services.
- if(allowRoad)for(auto*c:existing){if(c->flags&FLAG_IS_TRANSPORT)continue;int id=ring(c->point,c->constructionGroup->size);if(id<0||dist[id]==0)continue;auto route=path(id);if(route.empty())continue;MapPoint p=route.front();if(road.can_build_here(w,p,message)){int before=w.total_money;w.buildConstruction(road,p);account(before,road,p,"connect isolated "+c->constructionGroup->name,0);builtRoad=true;return 1;}}
+ if(allowRoad)for(auto*c:existing){if(c->flags&FLAG_IS_TRANSPORT || c->constructionGroup->group==GROUP_CITY_PARK)continue;int id=ring(c->point,c->constructionGroup->size);if(id<0||dist[id]==0)continue;auto route=path(id);if(route.empty())continue;MapPoint p=route.front();if(road.can_build_here(w,p,message)){int before=w.total_money;w.buildConstruction(road,p);account(before,road,p,"connect isolated "+c->constructionGroup->name,0);builtRoad=true;return 1;}}
  if(!allowBuilding){report="Monthly building allowance used; next assessment after this month.";return 0;}
  struct Need{ConstructionGroup*g;std::string why;};std::vector<Need> needs;
  auto want=[&](bool yes,ConstructionGroup&g,const char*why){if(yes)needs.push_back({&g,why});};
@@ -63,39 +65,75 @@ int CityEvolution::autonomousStep(World& w,bool allowBuilding,bool allowRoad,boo
  want(!farms,organic_farmConstructionGroup,"establish food production");
  want(!markets,marketConstructionGroup,"distribute food, water, labor and goods");
  ConstructionGroup& starterHome=homes%3==0?residenceLLConstructionGroup:homes%3==1?residenceMLConstructionGroup:residenceHLConstructionGroup;
- want(homes<4,starterHome,"provide starter housing for arriving residents");
+ want(homes<4 || (pop>0 && w.people_pool>20 && capacity-pop < std::max(25,pop/4)),starterHome,"provide starter housing for arriving residents");
  want(communes<2,communeConstructionGroup,"supply renewable coal and ore before factories");
  want(!workshops,potteryConstructionGroup,"provide early jobs and locally produced goods");
  // No repeated farm spam if labor is missing; add capacity as actual population rises.
- want(farms<std::max(1,(pop+349)/350)&&food<pop*8LL,organic_farmConstructionGroup,"food stocks are low for this population");
+ want(farms<std::max(2,(pop+249)/250) && pop>=100 &&
+   (food<pop*8LL || unfed*3>homes),organic_farmConstructionGroup,
+   "expand food production when households are short of food");
  want(count[GROUP_WATERWELL]<std::max(1,homes/6),waterwellConstructionGroup,"extend water capacity");
  want(pop>80&&goods<pop*2LL&&workshops<std::max(2,pop/220)&&ore>40&&coal>20,potteryConstructionGroup,"goods shortage with raw materials available");
  want(pop>50&&goods>100&&!count[GROUP_CHURCH],churchConstructionGroup,"support wellbeing and informal learning while formal education unlocks");
- want(homes>=4&&goods>100&&!count[GROUP_SCHOOL],schoolConstructionGroup,"train workers once essentials are supplied");
- want(pop>150&&!count[GROUP_WINDMILL]&&!count[GROUP_WIND_POWER]&&!count[GROUP_COAL_POWER],windmillConstructionGroup,"power the productive street network");
- want(pop>150&&farms&&markets&&capacity>0&&((pop*100/capacity>70)||(homes<8&&w.people_pool>20)),starterHome,"expand housing where demand exceeds spare rooms");
- want(markets<std::max(1,homes/10),marketConstructionGroup,"extend neighborhood distribution");
- want(pop>250&&!count[GROUP_FIRESTATION],fireStationConstructionGroup,"provide fire response");
- want(pop>300&&!count[GROUP_HEALTH],healthCentreConstructionGroup,"provide healthcare");
- want(pop>400&&!count[GROUP_POLICE]&&w.civic.crime>30,policeGroup,"provide police response");
- want(pop>400&&count[GROUP_SCHOOL]<std::max(2,pop/500)&&goods>pop,schoolConstructionGroup,"expand education with funded supplies");
- want(pop>500&&workshops>1&&goods>pop&&!count[GROUP_UNIVERSITY],universityConstructionGroup,"train engineers for industry");
+ want(mayorServices&&homes>=4&&goods>100&&!count[GROUP_SCHOOL],schoolConstructionGroup,"train workers once essentials are supplied");
+ const int generators = count[GROUP_WINDMILL] + count[GROUP_WIND_POWER]
+   + count[GROUP_COAL_POWER] + count[GROUP_SOLAR_POWER] + count[GROUP_NUCLEAR_POWER];
+ want(mayorServices && pop>150 && unpowered>0 &&
+   generators < std::max(1,(unpowered+5)/6),windmillConstructionGroup,
+   "supply streets serving homes without power");
+ const bool crowded = capacity > 0 && pop*100/capacity > 65;
+ const bool growingNeighborhood = pop >= 120 && homes < std::min(8,1+pop/30) && unfed*3 <= homes;
+ want(farms && markets && (crowded || growingNeighborhood ||
+   (pop>150 && homes<8 && w.people_pool>20)), starterHome,
+   "expand housing as the settlement grows");
+ want(markets<std::max(2,homes/8) && pop>=120 &&
+   (unfed*3>homes || employed*2<homes || homes>=10),marketConstructionGroup,
+   "extend neighborhood supply and labor distribution");
+ want(mayorServices&&pop>250&&!count[GROUP_FIRESTATION],fireStationConstructionGroup,"provide fire response");
+ want(mayorServices&&pop>300&&!count[GROUP_HEALTH],healthCentreConstructionGroup,"provide healthcare");
+ want(mayorServices&&pop>400&&!count[GROUP_POLICE]&&w.civic.crime>30,policeGroup,"provide police response");
+ want(mayorServices&&pop>400&&count[GROUP_SCHOOL]<std::max(2,pop/500)&&goods>pop,schoolConstructionGroup,"expand education with funded supplies");
+ want(mayorServices&&pop>500&&workshops>1&&goods>pop&&!count[GROUP_UNIVERSITY],universityConstructionGroup,"train engineers for industry");
  want(pop>400&&goods<pop*3LL&&ore>200&&coal>100&&count[GROUP_INDUSTRY_L]<std::max(1,pop/900),industryLightConstructionGroup,"productive jobs with raw materials already present");
- want(pop>500&&approval<60&&count[GROUP_PARKLAND]<std::max(1,homes/12),parklandConstructionGroup,"improve neighborhood wellbeing");
+ want(mayorParks && pop>=140 && count[GROUP_PARKLAND]+count[GROUP_CITY_PARK]<std::max(1,homes/12),
+   parklandConstructionGroup,"add green space to growing neighborhoods");
  want(pop>700&&goods>pop&&!count[GROUP_CHURCH],churchConstructionGroup,"support neighborhood wellbeing");
- want(pop>700&&jams>2&&count[GROUP_BUS_STOP]<2,busStopGroup,"reduce congestion with connected neighborhood stops");
+ want(mayorServices && pop>200 && (jams>2 || employed*2<homes) &&
+   count[GROUP_BUS_STOP]+count[GROUP_BUS_TERMINAL]<std::max(2,homes/7),
+   busStopGroup,"connect housing and jobs on busy streets");
+ want(mayorServices && pop>300 && markets>=2 && !count[GROUP_WAREHOUSE] &&
+   (ore>500 || goods>500),warehouseConstructionGroup,"move surplus freight between neighborhoods");
+ want(pop>=100 && employed*2<homes && ore>40 && coal>20 &&
+   workshops<std::max(2,homes/4),potteryConstructionGroup,"add jobs where housing lacks work");
+ want(pop>=110 && goods>pop && !count[GROUP_CAFE],cafeConstructionGroup,
+   "add a neighborhood employer and amenity");
  want(pop>1000&&engineers>=20&&technicians>=10&&goods>pop&&!count[GROUP_TECH_CAMPUS],techCampusConstructionGroup,"use the trained workforce for higher value jobs");
  want(pop>1000&&pop*100/std::max(1,capacity)>80&&w.total_money>150000,ivoryTowerGroup,"add high density housing where demand is strong");
  // Funding/technology failures do not block cheaper necessities farther down the list.
  std::string blocked;
- for(auto need:needs){auto&g=*need.g;if(!g.can_build(w,message)||g.getCosts(w)>available){if(blocked.empty())blocked=g.name+" needs technology or $"+std::to_string(g.getCosts(w));continue;}
+ for(auto need:needs){auto&g=*need.g;if(!g.can_build(w,message)||g.getCosts(w)>available){
+   if(blocked.empty()) {
+    if(w.tech_level < g.tech) {
+     const int tenths = (g.tech * 1000 + MAX_TECH_LEVEL - 1) / MAX_TECH_LEVEL;
+     blocked = g.name + " unlocks at " + std::to_string(tenths/10)
+       + "." + std::to_string(tenths%10) + "% technology";
+    } else blocked = g.name + " needs $" + std::to_string(g.getCosts(w)) + " after the reserve";
+   }
+   continue;
+  }
   MapPoint best(-1,-1);std::vector<MapPoint> bestRoute;int bestScore=inf;
-  for(int y=std::max(y0,anchor.y-30);y+g.size<=std::min(y1,anchor.y+31);++y)for(int x=std::max(x0,anchor.x-30);x+g.size<=std::min(x1,anchor.x+31);++x){MapPoint p(x,y);bool clear=true;int dry=0;
-   for(int j=0;j<g.size&&clear;++j)for(int i=0;i<g.size;++i){auto*t=w.map(p.e(i).s(j));if(!t->is_bare()||t->reportingConstruction||corridor(x+i,y+j)){clear=false;break;}dry+=!(t->flags&FLAG_HAS_UNDERGROUND_WATER);}
+  for(int y=y0;y+g.size<=y1;++y)for(int x=x0;x+g.size<=x1;++x){
+   const int distance = std::abs(x-anchor.x)+std::abs(y-anchor.y);
+   if(distance*2 > bestScore) continue;
+   MapPoint p(x,y);bool clear=true;int dry=0, roadReserve=0;
+   for(int j=0;j<g.size&&clear;++j)for(int i=0;i<g.size;++i){auto*t=w.map(p.e(i).s(j));if(!t->is_bare()||t->reportingConstruction){clear=false;break;}dry+=!(t->flags&FLAG_HAS_UNDERGROUND_WATER);roadReserve+=corridor(x+i,y+j);}
    if(!clear||(g.group==GROUP_WATERWELL&&dry)||!g.can_build_here(w,p,message))continue;
    int id=ring(p,g.size);if(id<0)continue;auto route=path(id);if(!route.empty()&&(!allowRoad||int(route.size())>mayorRoadTilesPerMonth()-mayorRoadsMonth))continue;
+   if(std::any_of(route.begin(),route.end(),[&](MapPoint tile) {
+     return tile.x>=x && tile.x<x+g.size && tile.y>=y && tile.y<y+g.size;
+   })) continue;
    int cost=g.getCosts(w)+int(route.size())*road.getCosts(w);if(cost>available)continue;
-   int score=(std::abs(x-anchor.x)+std::abs(y-anchor.y))*2+int(route.size())*5;
+   int score=distance*2+int(route.size())*5+roadReserve*18;
    if(g.group==GROUP_ORGANIC_FARM)score+=dry*10;
    if(GROUP_IS_RESIDENCE(g.group))score+=w.map(p)->pollution/20;
    // Avoid merging all new bus coverage onto one stop.

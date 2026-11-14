@@ -99,6 +99,7 @@ private:
     void handleMessage(Message::ptr message);
 
     bool running;
+    unsigned long long autosavePlayTime = 0;
     void backToMainMenu();
     void testAllHelpFiles();
     void quickLoad();

@@ -39,7 +39,7 @@ void doLincityStep();
 void setSimulationDelay( int speed );
 
 //get Data form Lincity NG and Save City
-void saveCityNG(const World& world, const std::filesystem::path& newFilename);
+bool saveCityNG(const World& world, const std::filesystem::path& newFilename);
 
 //Load City and do setup for Lincity NG.
 std::unique_ptr<World> loadCityNG(const std::filesystem::path& filename);

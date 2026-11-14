@@ -8,7 +8,7 @@
 #include <stdexcept>
 static void need(bool b,const char*m){if(!b)throw std::runtime_error(m);}
 static int electricity(int end,bool cut){auto w=new_barren_city(140);w->total_money=10000000;w->tech_level=MAX_TECH_LEVEL;w->buildConstruction(windmillConstructionGroup,{3,10});w->buildConstruction(residenceLLConstructionGroup,{end,10});for(int x=3;x<end+3;++x)w->buildConstruction(trackConstructionGroup,{x,9});auto* source=w->map({3,10})->reportingConstruction;auto* h=static_cast<Residence*>(w->map({end,10})->reportingConstruction);h->local_population=100;source->commodityCount[STUFF_LOVOLT]=100;if(cut)w->bulldozeArea({8,9});distributeRoadPower(*w);int got=h->commodityCount[STUFF_LOVOLT];need(source->commodityCount[STUFF_LOVOLT]>=0&&got+source->commodityCount[STUFF_LOVOLT]<=100,"power created or negative source stock");return got;}
-static int passengers(int end,bool river){auto w=new_barren_city(140);w->total_money=10000000;w->tech_level=MAX_TECH_LEVEL;w->buildConstruction(residenceLLConstructionGroup,{3,2});static_cast<Residence*>(w->map({3,2})->reportingConstruction)->local_population=80;w->buildConstruction(schoolConstructionGroup,{end,2});w->buildConstruction(busStopGroup,{5,7});w->buildConstruction(busStopGroup,{end,7});for(int x=5;x<=end;++x)w->buildConstruction(trackConstructionGroup,{x,8});for(auto p:{MapPoint(5,7),MapPoint(end,7)}){auto*f=static_cast<TransitFacility*>(w->map(p)->reportingConstruction);f->active=true;f->busy=100;}if(river)for(int x=1;x<139;++x)w->map({x,5})->setTerrain(GROUP_WATER);w->transit.update(*w,false);need(w->transit.connected[0]==2,"distance removed physical route connection");return w->transit.passengers[0];}
+static int passengers(int end,bool river,int fare=1){auto w=new_barren_city(140);w->total_money=10000000;w->tech_level=MAX_TECH_LEVEL;w->buildConstruction(residenceLLConstructionGroup,{3,2});static_cast<Residence*>(w->map({3,2})->reportingConstruction)->local_population=80;w->buildConstruction(schoolConstructionGroup,{end,2});w->buildConstruction(busStopGroup,{5,7});w->buildConstruction(busStopGroup,{end,7});for(int x=5;x<=end;++x)w->buildConstruction(trackConstructionGroup,{x,8});for(auto p:{MapPoint(5,7),MapPoint(end,7)}){auto*f=static_cast<TransitFacility*>(w->map(p)->reportingConstruction);f->active=true;f->busy=100;}if(river)for(int x=1;x<139;++x)w->map({x,5})->setTerrain(GROUP_WATER);w->transit.fares[0]=fare;w->transit.update(*w,false);need(w->transit.connected[0]==2,"distance or fare removed physical route connection");return w->transit.passengers[0];}
 static void negativeTreasury() {
   auto w = new_barren_city(50);
   w->total_money = -15000000;
@@ -162,8 +162,66 @@ static void preview22Buildings() {
   need(terminal.count(75*side+95) && !terminal.count(76*side+96),"terminal catchment is not a fourteen-tile square");
 }
 
-int main(){try{initializeModules();negativeTreasury();congestedBusStops();marketFreight();oreFreight();preview22Buildings();int shortTrip=passengers(20,false),longTrip=passengers(100,false);need(shortTrip>longTrip&&longTrip>0,"long trips have no efficiency penalty");need(passengers(20,true)==0,"pedestrians walk through an uncrossed river");int near=electricity(13,false),far=electricity(113,false);need(near>far&&far>0,"distance losses missing");need(electricity(13,true)==0,"power crossed cut road");
+static void preview23CityPolicy() {
+  auto w = new_barren_city(60);
+  w->total_money = 500000;
+  w->tech_level = MAX_TECH_LEVEL;
+  w->evolution.taxReferendum = true;
+  w->evolution.nextElection = w->total_time = 100;
+  w->evolution.updateCity(*w);
+  need(w->evolution.incomeTaxLimit==40 && !w->evolution.taxReferendum,"approved proposal did not raise the cap");
+  w->money_rates.income_tax = 38;
+  w->civic.taxCeiling = 40;
+  w->transit.fares[0] = 8;
+  w->evolution.taxReferendum = true;
+  w->buildConstruction(cityParkGroup,{10,10});
+  auto* park = static_cast<Parkland*>(w->map({10,10})->construction);
+  park->setParkTile(4);
+  w->map({10,11})->pollution = 50;
+  park->update();
+  need(w->map({10,11})->pollution==49,"city park did not clean nearby air");
+
+  for(int y=20; y<24; ++y) {
+    w->map({24,y})->setTerrain(GROUP_WATER);
+    w->map({24,y})->flags |= FLAG_IS_RIVER;
+  }
+  w->buildConstruction(portConstructionGroup,{20,20});
+  auto* port=static_cast<Port*>(w->map({20,20})->construction);
+  port->commodityRuleCount[STUFF_ORE].give=true;
+  port->commodityCount[STUFF_ORE]=5000;
+  port->commodityCount[STUFF_LABOR]=1000;
+  w->tradeRule[STUFF_ORE].give=false;
+  port->update();
+  need(port->commodityCount[STUFF_ORE]==5000,"port exported a closed commodity");
+  w->tradeRule[STUFF_ORE].give=true;
+  port->update();
+  need(port->commodityCount[STUFF_ORE]==2500 && w->taxable.trade_ex==25,
+    "open export did not sell stock or account for the receipt");
+  port->commodityRuleCount[STUFF_ORE].give=false;
+  port->commodityRuleCount[STUFF_ORE].take=true;
+  port->commodityCount[STUFF_ORE]=0;
+  const int cash = w->total_money;
+  port->update();
+  need(port->commodityCount[STUFF_ORE]==3000 && cash-w->total_money==33,
+    "imports did not charge above the base export price");
+
+  const auto file = std::filesystem::temp_directory_path()/"city-evolution-network-policy.scn.gz";
+  w->save(file);
+  auto loaded=World::load(file);
+  std::filesystem::remove(file);
+  need(loaded->evolution.incomeTaxLimit==40 && loaded->evolution.taxReferendum &&
+    loaded->money_rates.income_tax==38 && loaded->civic.taxCeiling==40 &&
+    loaded->transit.fares[0]==8,"policy or fares lost on load");
+  need(loaded->map({10,10})->construction->constructionGroup==&cityParkGroup,"park lost on load");
+  loaded->evolution.approval=5;
+  loaded->evolution.nextElection=loaded->total_time=200;
+  loaded->evolution.updateCity(*loaded);
+  need(loaded->evolution.incomeTaxLimit==30 && loaded->civic.taxCeiling==30 &&
+    loaded->money_rates.income_tax==30,"low approval did not restore the base cap");
+}
+
+int main(){try{initializeModules();preview23CityPolicy();negativeTreasury();congestedBusStops();marketFreight();oreFreight();preview22Buildings();int shortTrip=passengers(20,false),longTrip=passengers(100,false);need(shortTrip>longTrip&&longTrip>0,"long trips have no efficiency penalty");need(passengers(20,false,8)<shortTrip,"higher fares did not reduce demand");need(passengers(20,true)==0,"pedestrians walk through an uncrossed river");int near=electricity(13,false),far=electricity(113,false);need(near>far&&far>0,"distance losses missing");need(electricity(13,true)==0,"power crossed cut road");
  auto w=new_barren_city(60);w->total_money=10000000;w->tech_level=MAX_TECH_LEVEL;w->buildConstruction(busStopGroup,{10,9});w->buildConstruction(busStopGroup,{35,11});for(int x=10;x<=35;++x)w->buildConstruction(trackConstructionGroup,{x,10});w->transit.update(*w,false);need(w->transit.connected[0]==2&&w->transit.disconnected[0]==0&&w->transit.unstaffed[0]==2,"track link, opposite sides or staffing reported disconnected");need(w->transit.passengers[0]==0,"unstaffed route carries passengers");w->bulldozeArea({22,10});w->transit.update(*w,false);need(w->transit.connected[0]==0&&w->transit.disconnected[0]==2,"route remains connected across break");
  for(int value:{5,15,25}){w->civic.budget[0]=value;int days=0;for(int day=0;day<100;++day)days+=w->civic.funded(0,day,9);need(days==value,"granular funding not respected");}
- std::cout<<"PASS negative treasury placement, stop capacity, warehouse-to-market-to-home freight, opposite-side dirt-track stops, staffing vs connectivity, broken streets, distance power losses, energy conservation and 5/15/25 percent funding\n";
+ std::cout<<"PASS referenda, fare demand, park pollution, port restrictions and pricing, save/load, negative treasury placement, stop capacity, warehouse-to-market-to-home freight, opposite-side dirt-track stops, staffing vs connectivity, broken streets, distance power losses, energy conservation and 5/15/25 percent funding\n";
 }catch(const std::exception&e){std::cerr<<e.what();return 1;}}

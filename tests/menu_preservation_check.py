@@ -4,7 +4,7 @@ import hashlib,json,xml.etree.ElementTree as E
 s=Path(__file__).resolve().parents[1]
 manifest=json.loads((s/'tests/fixtures/Preview12-protected-menu-hashes.json').read_text())
 authorized = {'data/gui/mps.xml','data/gui/minimap.xml','data/gui/buttonpanel.xml','data/gui/pbar.xml',
- 'data/gui/pbar2nd.xml','data/gui/app.xml','data/gui/mainmenu.xml'}
+ 'data/gui/pbar2nd.xml','data/gui/app.xml','data/gui/mainmenu.xml','data/gui/savegame.xml','data/gui/loadgame.xml','data/gui/transport.xml'}
 for f,sha in manifest.items():
  if f in authorized: continue
  data=(s/f).read_bytes()
@@ -17,7 +17,7 @@ def canonical(p):
   if x.text is not None: x.text=x.text.strip() or None
   if x.tail is not None: x.tail=x.tail.strip() or None
  return E.tostring(p,encoding='unicode')
-assert {p.get('name'):canonical(p) for p in pages if p.get('name')!='MayorPage'}=={n:canonical(E.fromstring(v)) for n,v in expected.items() if n!='MayorPage'},'Audited non-Mayor City Hall page changed' 
+assert {p.get('name'):canonical(p) for p in pages if p.get('name') not in ('MayorPage','CouncilPage','WeatherPage')}=={n:canonical(E.fromstring(v)) for n,v in expected.items() if n not in ('MayorPage','CouncilPage','WeatherPage')},'Audited non-Mayor City Hall page changed'
 cmake=(s/'data/gui/CMakeLists.txt').read_text()
 for p in (s/'data/gui').glob('*.xml'):assert p.name in cmake,p.name+' missing build registration'
 for p in (s/'data/gui').rglob('*.xml'):

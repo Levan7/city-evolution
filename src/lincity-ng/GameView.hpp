@@ -59,6 +59,7 @@ public:
     void event(const Event& event);
     /// Start drawing a district zone: the next left-button drag on the map selects its rectangle.
     void beginDistrictZone(int type);
+    void beginCityPark();
     bool inDistrictMode() const { return districtMode; }
     void setDirty() { Component::setDirty(); }
     void setMapDirty() { refreshMap = true; }
@@ -111,7 +112,7 @@ private:
     void drawTransit(Painter&,int modeFilter=-1,MapPoint tile=MapPoint(-1,-1));
     int lastTransitFrame=-1;
     void updateStreetActors();
-    void drawEmergencyActors(Painter& painter,MapPoint tile);
+    void drawEmergencyActors(Painter& painter);
   void drawNightLayers(Painter& painter, const std::string& key, const Rect2D& rect, bool occupied, bool powered);
   void drawStreetLamps(Painter&, MapPoint);
   void drawStreetActors(Painter& painter, MapPoint tile);

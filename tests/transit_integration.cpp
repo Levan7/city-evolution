@@ -33,15 +33,25 @@ int main(){try{
   std::cout<<"PASS transit mode "<<mode<<": network, ridership, coverage, fares, costs, save/load, route cut, staffing\n";
  }
  {
-  auto city=new_barren_city(50);city->total_money=10000000;city->tech_level=MAX_TECH_LEVEL;
+  auto city=new_barren_city(85);city->total_money=10000000;city->tech_level=MAX_TECH_LEVEL;
   city->buildConstruction(residenceLLConstructionGroup,MapPoint(4,2));static_cast<Residence*>(city->map(MapPoint(4,2))->reportingConstruction)->local_population=80;
-  city->buildConstruction(schoolConstructionGroup,MapPoint(40,2));
-  for(auto p:{MapPoint(5,7),MapPoint(20,7)})city->buildConstruction(metroStationGroup,p);
-  for(auto p:{MapPoint(22,7),MapPoint(40,7)})city->buildConstruction(elevatedStationGroup,p);
+  city->buildConstruction(schoolConstructionGroup,MapPoint(70,2));
+  for(auto p:{MapPoint(5,7),MapPoint(29,7)})city->buildConstruction(metroStationGroup,p);
+  for(auto p:{MapPoint(31,7),MapPoint(70,7)})city->buildConstruction(elevatedStationGroup,p);
   for(auto* c:city->map.constructions)if(auto* f=dynamic_cast<TransitFacility*>(c)){f->commodityCount[STUFF_LABOR]=1000;f->commodityCount[STUFF_LOVOLT]=1000;f->update();f->busy=100;}
-  for(int x=5;x<=20;++x)city->transit.place(*city,MapPoint(x,8),false);
-  for(int x=22;x<=41;++x)city->transit.place(*city,MapPoint(x,9),true);
-  city->transit.update(*city,false);require(city->transit.passengers[2]>0&&city->transit.passengers[3]>0,"metro/elevated interchange did not carry connecting riders");require(city->transit.routes.size()==2,"interchange did not create both vehicle legs");
+  for(int x=5;x<=29;++x)city->transit.place(*city,MapPoint(x,8),false);
+  for(int x=31;x<=71;++x)city->transit.place(*city,MapPoint(x,9),true);
+  city->transit.update(*city,false,true);require(city->transit.passengers[2]>0&&city->transit.passengers[3]>0,"metro/elevated interchange did not carry connecting riders");require(city->transit.routes.size()==2,"interchange did not create both vehicle legs");
+  auto* home=city->map({4,2})->construction;
+  auto* school=city->map({70,2})->construction;
+  home->commodityCount[STUFF_LABOR]=500;
+  for(int day=1;day<=100;++day) {
+   city->total_time=day;
+   city->transit.deliver(*city);
+  }
+  require(school->commodityCount[STUFF_LABOR]>0 &&
+    home->commodityCount[STUFF_LABOR]+school->commodityCount[STUFF_LABOR]==500,
+    "interchange did not deliver actual labor");
   city->transit.remove(*city,MapPoint(12,8),false);city->transit.update(*city,false);require(city->transit.passengers[2]==0&&city->transit.passengers[3]==0,"broken interchange route still carries connecting riders");
   std::cout<<"PASS one-transfer underground/elevated interchange and disruption\n";
  }

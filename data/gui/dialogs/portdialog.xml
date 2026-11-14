@@ -1,30 +1,30 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<?xml-stylesheet href="dialogs.xsl" type="text/xsl"?><Dialog width="300" height="450">
+<?xml-stylesheet href="dialogs.xsl" type="text/xsl"?><Dialog width="400" height="465">
 	<title>Harbour Trade Settings</title>
 	<contents>
-		<TableLayout rows="6" cols="3">
-			<colsize col="1" relative=".3"/>
-			<colsize col="2" relative=".18"/>
-			<colsize col="3" relative=".18"/>
+		<TableLayout rows="7" cols="3">
+			<colsize col="1" relative="1.3"/>
+			<colsize col="2" relative="1"/>
+			<colsize col="3" relative="1"/>
 
 			<cell row="1" col="1" valign="center" halign="center">
 				<Paragraph style="messagebold" translatable="yes" halign="center">
 				Product</Paragraph>
 			</cell>
-			<cell row="1" col="2" valign="center">
+			<cell row="1" col="2" halign="center" valign="center">
 				<Paragraph style="messagebold" translatable="yes" halign="center">
 				Import</Paragraph>
 			</cell>
-			<cell row="1" col="3" valign="center">
+			<cell row="1" col="3" halign="center" valign="center">
 				<Paragraph style="messagebold" translatable="yes" halign="center">
 				Export</Paragraph>
 			</cell>
 
-			<cell row="2" col="1">
+			<cell row="2" col="1" halign="center" valign="center">
 				<Paragraph style="message" translatable="yes">
 				Food</Paragraph>
 			</cell>
-			<cell row="2" col="2">
+			<cell row="2" col="2" halign="center" valign="center">
 				<SwitchComponent name="BuyFood">
 					<CheckButton name="green">
 						<image src="images/gui/checkbox/checkbox.png"/>
@@ -36,7 +36,7 @@
 					</CheckButton>
 				</SwitchComponent>
 			</cell>
-			<cell row="2" col="3">
+			<cell row="2" col="3" halign="center" valign="center">
 				<SwitchComponent name="SellFood">
 					<CheckButton name="green">
 						<image src="images/gui/checkbox/checkbox.png"/>
@@ -48,11 +48,11 @@
 					</CheckButton>
 				</SwitchComponent>
 			</cell>
-			<cell row="3" col="1">
+			<cell row="3" col="1" halign="center" valign="center">
 				<Paragraph style="message" translatable="yes">
 				Coal</Paragraph>
 			</cell>
-			<cell row="3" col="2">
+			<cell row="3" col="2" halign="center" valign="center">
 				<SwitchComponent name="BuyCoal">
 					<CheckButton name="green">
 						<image src="images/gui/checkbox/checkbox.png"/>
@@ -64,7 +64,7 @@
 					</CheckButton>
 				</SwitchComponent>
 			</cell>
-			<cell row="3" col="3">
+			<cell row="3" col="3" halign="center" valign="center">
 				<SwitchComponent name="SellCoal">
 					<CheckButton name="green">
 						<image src="images/gui/checkbox/checkbox.png"/>
@@ -76,11 +76,11 @@
 					</CheckButton>
 				</SwitchComponent>
 			</cell>
-			<cell row="4" col="1">
+			<cell row="4" col="1" halign="center" valign="center">
 				<Paragraph style="message" translatable="yes">
 				Ore</Paragraph>
 			</cell>
-			<cell row="4" col="2">
+			<cell row="4" col="2" halign="center" valign="center">
 				<SwitchComponent name="BuyOre">
 					<CheckButton name="green">
 						<image src="images/gui/checkbox/checkbox.png"/>
@@ -92,7 +92,7 @@
 					</CheckButton>
 				</SwitchComponent>
 			</cell>
-			<cell row="4" col="3">
+			<cell row="4" col="3" halign="center" valign="center">
 				<SwitchComponent name="SellOre">
 					<CheckButton name="green">
 						<image src="images/gui/checkbox/checkbox.png"/>
@@ -104,11 +104,11 @@
 					</CheckButton>
 				</SwitchComponent>
 			</cell>
-			<cell row="5" col="1">
+			<cell row="5" col="1" halign="center" valign="center">
 				<Paragraph style="message" translatable="yes">
 				Goods</Paragraph>
 			</cell>
-			<cell row="5" col="2">
+			<cell row="5" col="2" halign="center" valign="center">
 				<SwitchComponent name="BuyGoods">
 					<CheckButton name="green">
 						<image src="images/gui/checkbox/checkbox.png"/>
@@ -120,7 +120,7 @@
 					</CheckButton>
 				</SwitchComponent>
 			</cell>
-			<cell row="5" col="3">
+			<cell row="5" col="3" halign="center" valign="center">
 				<SwitchComponent name="SellGoods">
 					<CheckButton name="green">
 						<image src="images/gui/checkbox/checkbox.png"/>
@@ -132,11 +132,11 @@
 					</CheckButton>
 				</SwitchComponent>
 			</cell>
-			<cell row="6" col="1">
+			<cell row="6" col="1" halign="center" valign="center">
 				<Paragraph style="message" translatable="yes">
 				Steel</Paragraph>
 			</cell>
-			<cell row="6" col="2">
+			<cell row="6" col="2" halign="center" valign="center">
 				<SwitchComponent name="BuySteel">
 					<CheckButton name="green">
 						<image src="images/gui/checkbox/checkbox.png"/>
@@ -148,7 +148,7 @@
 					</CheckButton>
 				</SwitchComponent>
 			</cell>
-			<cell row="6" col="3">
+			<cell row="6" col="3" halign="center" valign="center">
 				<SwitchComponent name="SellSteel">
 					<CheckButton name="green">
 						<image src="images/gui/checkbox/checkbox.png"/>
@@ -160,7 +160,10 @@
 					</CheckButton>
 				</SwitchComponent>
 			</cell>
-		</TableLayout>
+      <cell row="7" col="1" colspan="3" valign="center">
+        <Paragraph font-size="15" color="#f2cc86" halign="center">Red means foreign trade is closed until next year. Select one direction per product.</Paragraph>
+      </cell>
+        </TableLayout>
 	</contents>
 	<buttonbar>
 		<TableLayout rows="1" cols="2">

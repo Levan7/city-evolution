@@ -23,6 +23,7 @@
 ** ---------------------------------------------------------------------- */
 
 #include "port.hpp"
+#include <algorithm>
 
 #include <libxml++/parsers/textreader.h>  // for TextReader
 #include <libxml/xmlwriter.h>             // for xmlTextWriterWriteElement
@@ -62,15 +63,17 @@ PortConstructionGroup::can_build_here(const World& world, const MapPoint point,
 ) const {
   if(!ConstructionGroup::can_build_here(world, point, message)) return false;
 
-  MapPoint east = point.e(size);
-  for(int j = 0; j < size; j++) {
-    if(!world.map(east.s(j))->is_river()) {
-      message = PortRequiresRiverMessage::create();
-      return false;
+  for(int side=0; side<4; ++side) {
+    bool waterfront = true;
+    for(int i=0; i<size; ++i) {
+      const auto tile = side==0 ? point.e(size).s(i) : side==1 ? point.w().s(i) :
+                        side==2 ? point.s(size).e(i) : point.n().e(i);
+      waterfront &= world.map(tile)->is_river();
     }
+    if(waterfront) return true;
   }
-
-  return true;
+  message = PortRequiresRiverMessage::create();
+  return false;
 }
 
 Port::Port(World& world, ConstructionGroup *cstgrp) :
@@ -128,12 +131,15 @@ int Port::buy_stuff(Commodity stuff)
     if (i < (portConstructionGroup.commodityRuleCount[stuff].maxload / PORT_TRIGGER_RATE))
     {   return 0;}
     try {
-      int cost = i * portConstructionGroup.commodityRates[stuff];
-      // TODO: track fractional remainder
-      world.expense(cost * world.money_rates.import_cost / 100,
-        world.stats.expenses.import);
+      const int base = i * portConstructionGroup.commodityRates[stuff];
+      // Foreign purchases carry a 10% markup over the base export value.
+      const int tariff = std::clamp(world.money_rates.import_cost, 1, 100);
+      const int total = 11 * base * tariff / 10 + importPence;
+      const int charged = total / 100;
+      world.expense(charged, world.stats.expenses.import, false);
+      importPence = total % 100;
       produceStuff(stuff, i);
-      return cost;
+      return charged;
     } catch(const OutOfMoneyMessage::Exception& ex) {
       return 0;
     }
@@ -208,16 +214,26 @@ void Port::update()
 
 void Port::report(Mps& mps, bool production) const {
   mps.add_s(constructionGroup->name);
-  mps.add_sfp(N_("busy"), busy);
-  mps.add_sd(N_("Export"),lastm_et/100);
-  mps.add_sd(N_("Import"),lastm_ic/100);
-  mps.add_sfp(N_("Culture exchanged"), tech_made * 100.0 / MAX_TECH_LEVEL);
+  mps.add_sfp(N_("Last month active"), busy);
+  mps.add_sd(N_("Last month exports $"),lastm_et/100);
+  mps.add_sd(N_("Last month imports $"),lastm_ic);
+  const auto gross = "This mo. $: " + std::to_string(monthly_et/100)
+    + " out / " + std::to_string(monthly_ic) + " in";
+  mps.add_s(gross);
   list_commodities(mps, production);
 }
 
 void Port::save(xmlTextWriterPtr xmlWriter) const {
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"tech_made", xmlFormat<int>(tech_made));
 
+  xmlTextWriterWriteElement(xmlWriter, (xmlStr)"month_imports", xmlFormat<int>(monthly_ic));
+  xmlTextWriterWriteElement(xmlWriter, (xmlStr)"month_exports", xmlFormat<int>(monthly_et));
+  xmlTextWriterWriteElement(xmlWriter, (xmlStr)"last_imports", xmlFormat<int>(lastm_ic));
+  xmlTextWriterWriteElement(xmlWriter, (xmlStr)"last_exports", xmlFormat<int>(lastm_et));
+  xmlTextWriterWriteElement(xmlWriter, (xmlStr)"trade_days", xmlFormat<int>(working_days));
+  xmlTextWriterWriteElement(xmlWriter, (xmlStr)"last_trade_days", xmlFormat<int>(busy));
+  xmlTextWriterWriteElement(xmlWriter, (xmlStr)"import_pence", xmlFormat<int>(importPence));
+  xmlTextWriterWriteElement(xmlWriter, (xmlStr)"export_pence", xmlFormat<int>(pence));
   const std::string givePfx("give_");
   const std::string takePfx("take_");
   for(Commodity stuff = STUFF_INIT; stuff < STUFF_COUNT; stuff++) {
@@ -237,17 +253,28 @@ void Port::save(xmlTextWriterPtr xmlWriter) const {
 
 bool Port::loadMember(xmlpp::TextReader& xmlReader, unsigned int ldsv_version) {
   std::string tag = xmlReader.get_name();
-  bool give;
-  Commodity stuff;
-  if(((give = tag.find("give_") == 0) || tag.find("take_") == 0) &&
-    (stuff = commodityFromStandardName(tag.substr(5).c_str())) != STUFF_COUNT &&
-    commodityRuleCount[stuff].maxload
-  ) {
-    CommodityRule& rule = commodityRuleCount[stuff];
-    (give ? rule.give : rule.take) = xmlParse<int>(xmlReader.read_inner_xml());
+  if(tag == "month_imports") monthly_ic = std::max(0, xmlParse<int>(xmlReader.read_inner_xml()));
+  else if(tag == "month_exports") monthly_et = std::max(0, xmlParse<int>(xmlReader.read_inner_xml()));
+  else if(tag == "last_imports") lastm_ic = std::max(0, xmlParse<int>(xmlReader.read_inner_xml()));
+  else if(tag == "last_exports") lastm_et = std::max(0, xmlParse<int>(xmlReader.read_inner_xml()));
+  else if(tag == "trade_days") working_days = std::clamp(xmlParse<int>(xmlReader.read_inner_xml()),0,100);
+  else if(tag == "last_trade_days") busy = std::clamp(xmlParse<int>(xmlReader.read_inner_xml()),0,100);
+  else if(tag == "import_pence") importPence = std::clamp(xmlParse<int>(xmlReader.read_inner_xml()),0,99);
+  else if(tag == "export_pence") pence = std::clamp(xmlParse<int>(xmlReader.read_inner_xml()),0,99);
+  else {
+    bool give;
+    Commodity stuff;
+    if(((give = tag.find("give_") == 0) || tag.find("take_") == 0) &&
+      (stuff = commodityFromStandardName(tag.substr(5).c_str())) != STUFF_COUNT &&
+      commodityRuleCount[stuff].maxload
+    ) {
+      CommodityRule& rule = commodityRuleCount[stuff];
+      (give ? rule.give : rule.take) = xmlParse<int>(xmlReader.read_inner_xml());
+    }
+    else if(tag == "tech_made") tech_made = xmlParse<int>(xmlReader.read_inner_xml());
+    else return Construction::loadMember(xmlReader, ldsv_version);
+    return true;
   }
-  else if(tag == "tech_made") tech_made = xmlParse<int>(xmlReader.read_inner_xml());
-  else return Construction::loadMember(xmlReader, ldsv_version);
   return true;
 }
 
