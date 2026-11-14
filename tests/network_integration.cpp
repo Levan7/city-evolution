@@ -200,6 +200,15 @@ static void preview23CityPolicy() {
   port->commodityRuleCount[STUFF_ORE].give=false;
   port->commodityRuleCount[STUFF_ORE].take=true;
   port->commodityCount[STUFF_ORE]=0;
+  w->total_money = 379774;
+  w->do_coal_survey();
+  const int debt = w->total_money;
+  need(debt == -620226, "coal survey did not charge the treasury");
+  port->update();
+  need(port->commodityCount[STUFF_ORE] == 0 && w->total_money == debt,
+       "port did not skip an unaffordable import after the coal survey");
+
+  w->total_money = 500000;
   const int cash = w->total_money;
   port->update();
   need(port->commodityCount[STUFF_ORE]==3000 && cash-w->total_money==33,

@@ -55,7 +55,7 @@ World::expense(int amt, Stat<int>& account, bool allowCredit) {
   assert(amt >= 0);
   const long long newBal = 1LL * total_money - amt;
   if(newBal < (allowCredit ? -2000000000 : 0))
-    throw OutOfMoneyMessage::create(allowCredit)->exception();
+    OutOfMoneyMessage::create(allowCredit)->throwEx();
   total_money = newBal;
   account += amt;
   if(&account != &stats.expenses.construction && &account != &stats.expenses.coalSurvey

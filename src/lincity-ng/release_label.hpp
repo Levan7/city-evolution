@@ -3,4 +3,4 @@
 // it verifies the main menu text, the Windows version resource and the changelog agree with this file.
 #pragma once
 #define CE_RELEASE_NUMBER 25
-#define CE_RELEASE_LABEL "Preview 25"
+#define CE_RELEASE_LABEL "Preview 25 Hotfix 1"

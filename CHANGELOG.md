@@ -2,6 +2,13 @@
 
 ## City Evolution — Preview 25
 
+### Hotfix 1
+
+- Fixed a crash when a port attempted an import the city could not afford, including after a coal survey sent the treasury into debt. The port skips that purchase and can trade again when funds are available.
+- A coal survey that would exceed the credit limit now shows a warning.
+
+### Preview 25
+
 - Farm advice now reports the share of farms with nearly full storage and explains common bottlenecks. Warehouses prioritize full farms and can use local pickup when their track capacity is already booked. Unstaffed markets no longer receive warehouse food shipments.
 - Substation placement previews the maximum 14-tile reach. Built substations show coverage based on available connected supply. Power lines can cross roads, rail and water. Bulldozing a crossing removes the wire first.
 ## City Evolution — Preview 24

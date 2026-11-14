@@ -56,6 +56,7 @@
 #include "lincity/groups.hpp"               // for GROUP_BLACKSMITH, GROUP_C...
 #include "lincity/lin-city.hpp"             // for MAX_TECH_LEVEL, RESULTS_F...
 #include "lincity/lintypes.hpp"             // for Construction, NUMOF_DAYS_...
+#include "lincity/messages.hpp"             // for OutOfMoneyMessage
 #include "lincity/modules/all_modules.hpp"  // for Market, Port, RocketPad
 #include "lincity/stats.hpp"                // for Stats, Stat
 #include "lincity/util.hpp"                 // for current_year, current_month
@@ -815,7 +816,13 @@ void Dialog::okayLaunchRocketButtonClicked(Button *) {
 
 
 void Dialog::okayCoalSurveyButtonClicked( Button* ){
-    game.getWorld().do_coal_survey();
+    try {
+        game.getWorld().do_coal_survey();
+    } catch(const OutOfMoneyMessage::Exception&) {
+        game.getGameView().printStatusMessage(_("Not enough credit for a coal survey."));
+        closeDialog();
+        return;
+    }
     windowManager->removeWindow( myDialogComponent );
     blockingDialogIsOpen = false;
     unRegisterDialog();
