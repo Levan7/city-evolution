@@ -1,8 +1,16 @@
 # Changelog
 
+## City Evolution — Preview 25
+
+- Farm advice now reports the share of farms with nearly full storage and explains common bottlenecks. Warehouses prioritize full farms and can use local pickup when their track capacity is already booked. Unstaffed markets no longer receive warehouse food shipments.
+- Substation placement previews the maximum 14-tile reach. Built substations show coverage based on available connected supply. Power lines can cross roads, rail and water. Bulldozing a crossing removes the wire first.
 ## City Evolution — Preview 24
 
+### Hotfix 1
+
 - Autosave runs every 30 minutes of active play to avoid frequent interruptions at high simulation speeds.
+
+### Preview 24
 
 - Railway tracks, bridges and stations unlock together at 4% technology. Square walking catchments extend 30 tiles for rail and 20 for metro, subject to walking barriers. Rail, underground and elevated lines can share station footprints, with real track paths for commuting transfers. Staffed lines display moving trains even before they attract passengers.
 - Keep the selected track overlay while switching construction tools and after loading a save. Metro tracks can also deliver a limited amount of supplies to connected buildings. Ports can face a river on any side.

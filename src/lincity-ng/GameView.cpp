@@ -1620,6 +1620,27 @@ void GameView::draw(Painter& painter)
     }
     painter.drawTexture(mapTexture.get(), Vector2(0,0));
     if(mapOverlay != overlayOnly) {
+      const auto& world = getWorld();
+      const int side = world.map.len();
+      auto poleTop = [&](MapPoint p) {
+        return getScreenPoint(p)-Vector2(0,tileHeight*.5f+25*zoom);
+      };
+      for(int id : world.overheadPowerLines) {
+        const MapPoint p(id%side,id/side);
+        const auto top=poleTop(p);
+        if(top.x < -tileWidth || top.y < -tileHeight ||
+           top.x > getWidth()+tileWidth || top.y > getHeight()+tileHeight) continue;
+        painter.setLineColor(Color(106,94,76));
+        painter.drawLine(top,getScreenPoint(p)-Vector2(0,tileHeight*.5f));
+        painter.setLineColor(Color(218,204,170));
+        for(auto next : {p.n(),p.e(),p.s(),p.w()}) {
+          if(!inCity(next)) continue;
+          const bool wire = world.overheadPowerLines.count(next.y*side+next.x);
+          if((wire && (next.x>p.x || next.y>p.y)) ||
+             world.map(next)->getGroup()==GROUP_POWER_LINE)
+            painter.drawLine(top,poleTop(next));
+        }
+      }
       drawTransit(painter,1);drawEmergencyActors(painter);drawCityLife(painter);
       if(getWorld().evolution.darkness()>50)for(auto*c:getWorld().map.constructions){int g=c->constructionGroup->group;if(g==GROUP_ROAD||g==GROUP_TRACK||g==GROUP_ROAD_BRIDGE||g==GROUP_TRACK_BRIDGE)drawStreetLamps(painter,c->point);}
     }
@@ -1671,7 +1692,7 @@ void GameView::draw(Painter& painter)
     if(group && group->group == GROUP_SUBSTATION && inCity(coveragePoint)) {
       const bool existing = station && station->point == coveragePoint &&
         station->constructionGroup == group && op->action != UserOperation::ACTION_BUILD;
-      const int reach = existing ? substationReach(*station) : 14;
+      const int reach = existing ? substationReach(*station) : MaxSubstationReach;
       for(int dy=-reach; dy<=reach; ++dy) for(int dx=-reach; dx<=reach; ++dx) {
         const auto tile = coveragePoint.e(dx).s(dy);
         if(!inCity(tile)) continue;

@@ -220,7 +220,44 @@ static void preview23CityPolicy() {
     loaded->money_rates.income_tax==30,"low approval did not restore the base cap");
 }
 
-int main(){try{initializeModules();preview23CityPolicy();negativeTreasury();congestedBusStops();marketFreight();oreFreight();preview22Buildings();int shortTrip=passengers(20,false),longTrip=passengers(100,false);need(shortTrip>longTrip&&longTrip>0,"long trips have no efficiency penalty");need(passengers(20,false,8)<shortTrip,"higher fares did not reduce demand");need(passengers(20,true)==0,"pedestrians walk through an uncrossed river");int near=electricity(13,false),far=electricity(113,false);need(near>far&&far>0,"distance losses missing");need(electricity(13,true)==0,"power crossed cut road");
+static void overheadPower() {
+  auto w = new_barren_city(60);
+  w->total_money = 10000000;
+  w->tech_level = MAX_TECH_LEVEL;
+  w->buildConstruction(coal_powerConstructionGroup,{4,10});
+  w->buildConstruction(roadConstructionGroup,{9,10});
+  w->map({10,10})->setTerrain(GROUP_WATER);
+  w->buildConstruction(substationConstructionGroup,{12,10});
+  for(int x=8; x<=11; ++x) w->buildConstruction(powerlineConstructionGroup,{x,10});
+  need(w->map({9,10})->getGroup()==GROUP_ROAD && w->map({10,10})->is_water(),
+       "overhead line replaced the road or water");
+  auto* plant = w->map({4,10})->construction;
+  auto* station = w->map({12,10})->construction;
+  plant->commodityCount[STUFF_HIVOLT]=8000;
+  distributeRoadPower(*w);
+  const int reach = substationReach(*station);
+  need(reach>0 && station->commodityCount[STUFF_HIVOLT]>0,"crossing did not carry power");
+  w->bulldozeArea({9,10});
+  plant->commodityCount[STUFF_HIVOLT]=8000;
+  distributeRoadPower(*w);
+  need(substationReach(*station)>0 && substationReach(*station)<reach,
+       "a paved-road segment should give less coverage than a continuous wire");
+  w->buildConstruction(powerlineConstructionGroup,{9,10});
+  plant->commodityCount[STUFF_HIVOLT]=8000;
+  distributeRoadPower(*w);
+  need(substationReach(*station)==reach,"restoring the wire should extend coverage");
+  const auto file=std::filesystem::temp_directory_path()/"ce-wire-crossing.scn.gz";
+  w->save(file);
+  auto loaded=World::load(file);
+  std::filesystem::remove(file);
+  need(loaded->overheadPowerLines==w->overheadPowerLines,"overhead crossings did not survive save");
+  w->bulldozeArea({10,10});
+  distributeRoadPower(*w);
+  need(w->map({10,10})->is_water() && substationReach(*station)==0,
+       "removing the wire changed the river or left stale grid coverage");
+}
+
+int main(){try{initializeModules();overheadPower();preview23CityPolicy();negativeTreasury();congestedBusStops();marketFreight();oreFreight();preview22Buildings();int shortTrip=passengers(20,false),longTrip=passengers(100,false);need(shortTrip>longTrip&&longTrip>0,"long trips have no efficiency penalty");need(passengers(20,false,8)<shortTrip,"higher fares did not reduce demand");need(passengers(20,true)==0,"pedestrians walk through an uncrossed river");int near=electricity(13,false),far=electricity(113,false);need(near>far&&far>0,"distance losses missing");need(electricity(13,true)==0,"power crossed cut road");
  auto w=new_barren_city(60);w->total_money=10000000;w->tech_level=MAX_TECH_LEVEL;w->buildConstruction(busStopGroup,{10,9});w->buildConstruction(busStopGroup,{35,11});for(int x=10;x<=35;++x)w->buildConstruction(trackConstructionGroup,{x,10});w->transit.update(*w,false);need(w->transit.connected[0]==2&&w->transit.disconnected[0]==0&&w->transit.unstaffed[0]==2,"track link, opposite sides or staffing reported disconnected");need(w->transit.passengers[0]==0,"unstaffed route carries passengers");w->bulldozeArea({22,10});w->transit.update(*w,false);need(w->transit.connected[0]==0&&w->transit.disconnected[0]==2,"route remains connected across break");
  for(int value:{5,15,25}){w->civic.budget[0]=value;int days=0;for(int day=0;day<100;++day)days+=w->civic.funded(0,day,9);need(days==value,"granular funding not respected");}
  std::cout<<"PASS referenda, fare demand, park pollution, port restrictions and pricing, save/load, negative treasury placement, stop capacity, warehouse-to-market-to-home freight, opposite-side dirt-track stops, staffing vs connectivity, broken streets, distance power losses, energy conservation and 5/15/25 percent funding\n";

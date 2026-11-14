@@ -34,6 +34,19 @@
 #include "lincity/world.hpp"          // for World
 #include "util/gettextutil.hpp"
 
+bool PowerlineConstructionGroup::can_build_here(const World& world, MapPoint p,
+                                                  Message::ptr& message) const {
+  if(world.map.is_visible(p)) {
+    const int id = p.y * world.map.len() + p.x;
+    if(world.overheadPowerLines.count(id)) {
+      message = SpaceOccupiedMessage::create(p);
+      return false;
+    }
+    if(world.map(p)->is_transport() || world.map(p)->is_water()) return true;
+  }
+  return ConstructionGroup::can_build_here(world,p,message);
+}
+
 PowerlineConstructionGroup powerlineConstructionGroup(
     N_("Power Line"),
     N_("Power Lines"),

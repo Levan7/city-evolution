@@ -195,6 +195,7 @@ public:
 
   void do_time_step();
   void do_animate(unsigned long real_time);
+  std::set<int> overheadPowerLines;
   void buildConstruction(ConstructionGroup& cstGrp, MapPoint point);
   void bulldozeArea(MapPoint point);
   void evacuateArea(MapPoint point);

@@ -13,7 +13,7 @@ and passenger transport.
 ## What City Evolution adds to LinCity-NG
 
 City Evolution builds on the original C++ simulation. The table describes the
-cumulative changes through Preview 24. The changelog records the detailed
+cumulative changes through Preview 25. The changelog records the detailed
 changes and fixes by version.
 
 | Area | Changes |

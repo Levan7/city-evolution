@@ -425,6 +425,11 @@ World::buildConstruction(ConstructionGroup& cstGrp, MapPoint point) {
     CannotBuildHereMessage::create(cstGrp, point, message)->throwEx();
   expense(cstGrp.getCosts(*this), stats.expenses.construction,
     !cstGrp.no_credit);
+  if(cstGrp.group == GROUP_POWER_LINE && (map(point)->is_water() || map(point)->is_transport())) {
+    overheadPowerLines.insert(point.y * map.len() + point.x);
+    setUpdated(Updatable::MAP);
+    return;
+  }
   cstGrp.placeItem(*this, point);
 
   map.connect_transport(point.x - 2, point.y - 2,
@@ -437,6 +442,13 @@ void
 World::bulldozeArea(MapPoint point) {
   if(!map.is_visible(point))
     OutsideMapMessage::create(point)->throwEx();
+
+  if(auto wire = overheadPowerLines.find(point.y*map.len()+point.x); wire != overheadPowerLines.end()) {
+    expense(100, stats.expenses.construction);
+    overheadPowerLines.erase(wire);
+    setUpdated(Updatable::MAP);
+    return;
+  }
 
   if(Construction *cst = map(point)->reportingConstruction) {
     cst->bulldoze();

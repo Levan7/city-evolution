@@ -266,6 +266,12 @@ World::load(const std::filesystem::path& filename) {
     civic.hasMonthlyHistory = monthly;
   }
   for(auto* cells:{&world->transit.tunnels,&world->transit.viaducts}) for(auto it=cells->begin();it!=cells->end();) { int n=world->map.len(),id=*it;if(id<0||id>=n*n||!world->map.is_visible(MapPoint(id%n,id/n)))it=cells->erase(it);else ++it; }
+  for(auto it=world->overheadPowerLines.begin(); it!=world->overheadPowerLines.end();) {
+    const int side=world->map.len(), id=*it;
+    if(id<0 || id>=side*side || !world->map.is_visible({id%side,id/side}))
+      it=world->overheadPowerLines.erase(it);
+    else ++it;
+  }
   // Extension fields are optional in older cities and validated before rendering.
   auto& e = world->evolution;
   e.incomeTaxLimit = std::clamp(e.incomeTaxLimit / 10 * 10, CityEvolution::BaseTaxLimit, CityEvolution::MaxTaxLimit);
@@ -313,6 +319,7 @@ static void saveGlobals(xmlTextWriterPtr xmlWriter, const World& world) {
   }
   xmlTextWriterWriteElement(xmlWriter,(xmlStr)"evolution_tax_limit",f(world.evolution.incomeTaxLimit));
   xmlTextWriterWriteElement(xmlWriter,(xmlStr)"evolution_tax_referendum",f<int>(world.evolution.taxReferendum));
+  for(int id:world.overheadPowerLines) xmlTextWriterWriteElement(xmlWriter,(xmlStr)"overhead_power_line",f(id));
   for(int id:world.transit.tunnels) xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_tunnel",f(id));
   for(int id:world.transit.viaducts) xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_viaduct",f(id));
   xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_fares_ly",f(world.stats.income.transit_fares.stat));
@@ -715,6 +722,7 @@ static void loadGlobals(xmlpp::TextReader& xmlReader, World& world,
       world.transit.fares[xml_tag[13]-'0'] = std::clamp(p<int>(xmlReader.read_inner_xml()),0,TransitSystem::MaxFare);
     else if(xml_tag=="evolution_tax_limit") world.evolution.incomeTaxLimit=p<int>(xmlReader.read_inner_xml());
     else if(xml_tag=="evolution_tax_referendum") world.evolution.taxReferendum=p<int>(xmlReader.read_inner_xml())!=0;
+    else if(xml_tag=="overhead_power_line") world.overheadPowerLines.insert(p<int>(xmlReader.read_inner_xml()));
     else if(xml_tag=="transit_view") world.transit.view=std::clamp(p<int>(xmlReader.read_inner_xml()),0,3);
     else if(xml_tag=="transit_assessed") world.transit.assessedMonth=p<int>(xmlReader.read_inner_xml());
     else if(xml_tag == "evolution_skyMode") world.evolution.skyMode = p<int>(xmlReader.read_inner_xml());

@@ -161,7 +161,7 @@ int main(int argc,char**argv) {
     auto* farm=dw->map(MapPoint(30,30))->reportingConstruction;
     farm->commodityCount[STUFF_FOOD]=farm->constructionGroup->commodityRuleCount[STUFF_FOOD].maxload;
     de.updateDistricts(*dw);require(de.districtStats[1].farms==1&&de.districtStats[1].backedUpFarms==1,"full farm not detected");
-    de.residents=100;bool harvest=false;for(const auto& a:de.advise(*dw)) if(a.title=="Harvest cannot leave"&&a.text.find("100%")!=std::string::npos&&a.text.find("Green Valley")!=std::string::npos)harvest=true;
+    de.residents=100;bool harvest=false;for(const auto& a:de.advise(*dw)) if(a.title=="Farm storage nearly full"&&a.text.find("100%")!=std::string::npos&&a.text.find("Green Valley")!=std::string::npos)harvest=true;
     require(harvest,"advisor must name the district and the share of harvest at risk");
     // University district: schools inside train 25% more (6 -> 7 technicians a month).
     dw->buildConstruction(schoolConstructionGroup,MapPoint(50,8));

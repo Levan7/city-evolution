@@ -32,6 +32,7 @@ int conductor(const World& world, MapPoint point) {
   if(group == GROUP_POWER_LINE) return 1;
   if(group == GROUP_RAIL) return 2;
   const int id = point.y * world.map.len() + point.x;
+  if(world.overheadPowerLines.count(id)) return 1;
   if(world.transit.tunnels.count(id) || world.transit.viaducts.count(id)) return 2;
   if(group == GROUP_ROAD) return 3;
   return group == GROUP_TRACK ? 5 : 0;
@@ -67,8 +68,7 @@ int demand(const Construction& building, Commodity voltage) {
 }
 
 int substationReach(const Construction& station) {
-  const int supply = station.commodityCount[STUFF_HIVOLT] * 2 + station.commodityCount[STUFF_LOVOLT];
-  return std::clamp((supply + 299) / 300, 0, 14);
+  return static_cast<const Substation&>(station).gridReach;
 }
 
 void distributeRoadPower(World& world) {
@@ -130,17 +130,20 @@ void distributeRoadPower(World& world) {
       });
       return loss;
     };
-    if(voltage == STUFF_HIVOLT) {
-      // Transformer input is limited by route quality even after long accumulation.
+    if(!local) {
       for(auto* station : substations) {
         const int loss = lossTo(*station);
         if(loss == unreachable) continue;
-        const int quota = int(1800LL*100/(100+loss));
-        const int cap = std::min(4500-stationInput[station],
-          station->constructionGroup->commodityRuleCount[voltage].maxload-station->commodityCount[voltage]);
+        const bool high = voltage == STUFF_HIVOLT;
+        const int equivalent = high ? 2 : 1;
+        const int quota = (high ? 1500 : 750) * 20 / (20+loss);
+        const int available = int(source.commodityCount[voltage]*100LL/(100+loss));
+        stationInput[station] += std::min(quota,available)*equivalent;
         const int before = station->commodityCount[voltage];
-        deliver(source,voltage,*station,voltage,loss,std::min(quota,cap));
-        stationInput[station] += station->commodityCount[voltage]-before;
+        // Keep enough buffer for conversion without letting stale stock determine reach.
+        const int target = std::min(high ? SUBSTATION_HIVOLT*2 : SUBSTATION_LOVOLT,
+                                    before+quota);
+        deliver(source,voltage,*station,voltage,loss,target-before);
       }
     }
     const int reach = local ? substationReach(source) : 0;
@@ -165,5 +168,9 @@ void distributeRoadPower(World& world) {
     distribute(*source,STUFF_HIVOLT,false);
     distribute(*source,STUFF_LOVOLT,false);
   }
-  for(auto* station : substations) distribute(*station,STUFF_LOVOLT,true);
+  for(auto* station : substations) {
+    const int input = stationInput[station];
+    static_cast<Substation*>(station)->gridReach = std::min(MaxSubstationReach,(input+249)/250);
+    distribute(*station,STUFF_LOVOLT,true);
+  }
 }

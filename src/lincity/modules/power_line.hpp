@@ -56,6 +56,7 @@ public:
     }
     // overriding method that creates a power line
     virtual Construction *createConstruction(World& world);
+    bool can_build_here(const World&, MapPoint, Message::ptr&) const override;
 };
 
 extern PowerlineConstructionGroup powerlineConstructionGroup;

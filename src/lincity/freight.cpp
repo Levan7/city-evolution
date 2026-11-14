@@ -95,6 +95,14 @@ void distributeWarehouseFreight(World& world) {
         if(seen.insert(index(endpoint->point)).second) endpoints.emplace_back(endpoint,-1);
       }
 
+    // Local pickup remains possible when a narrow access track is saturated.
+    auto inLocalRange = [&](const Construction& endpoint) {
+      const int x = endpoint.point.x, y = endpoint.point.y;
+      const int edge = endpoint.constructionGroup->size;
+      return x < origin.x+size+radius && x+edge > origin.x-radius &&
+             y < origin.y+size+radius && y+edge > origin.y-radius;
+    };
+
     // Give local businesses and markets first use of shared route capacity.
     std::stable_partition(endpoints.begin(), endpoints.end(), [](const auto& entry) {
       return entry.first->constructionGroup->group != GROUP_PORT;
@@ -111,6 +119,14 @@ void distributeWarehouseFreight(World& world) {
         const int capacity = tile.localTradeRule(stuff).maxload / TRANSPORT_RATE;
         amount = std::min(amount,capacity-used[id][i]);
       }
+      if(amount<=0 && route>=0) {
+        const auto& endpoint = &from==warehouse ? to : from;
+        if(!isWarehouseGroup(endpoint.constructionGroup->group) && inLocalRange(endpoint)) {
+          route = -1;
+          amount = std::min({requested,from.commodityCount[stuff],
+            to.localTradeRule(stuff).maxload-to.commodityCount[stuff],40});
+        }
+      }
       if(amount<=0) return;
       for(int id=route; id>=0; id=network.at(id).previous) used[id][i] += amount;
       from.commodityCount[stuff] -= amount;
@@ -123,6 +139,17 @@ void distributeWarehouseFreight(World& world) {
 
     for(size_t i=0;i<cargo.size();++i) {
       auto stuff = cargo[i];
+      // Start with farms whose storage is closest to capacity.
+      if(stuff == STUFF_FOOD)
+        std::stable_sort(endpoints.begin(),endpoints.end(),[](const auto& a,const auto& b) {
+          auto priority = [](const Construction* building) {
+            if(building->constructionGroup->group == GROUP_PORT) return -1;
+            if(building->constructionGroup->group != GROUP_ORGANIC_FARM) return 0;
+            return 1 + 100 * building->commodityCount[STUFF_FOOD] /
+              building->constructionGroup->commodityRuleCount[STUFF_FOOD].maxload;
+          };
+          return priority(a.first)>priority(b.first);
+        });
       for(auto [source,route] : endpoints) {
         const auto& supply = source->localTradeRule(stuff);
         const int threshold = supply.take ? supply.maxload/2 : 0;
@@ -148,6 +175,8 @@ void distributeWarehouseFreight(World& world) {
           transfer(*warehouse,*buyer,route,i,std::min(surplus,demand.maxload-buyer->commodityCount[stuff]));
           continue;
         }
+        if(group == GROUP_MARKET && stuff == STUFF_FOOD &&
+           buyer->commodityCount[STUFF_LABOR] < static_cast<Market*>(buyer)->labor) continue;
         if(demand.take) warehouse->freightHasBuyer = true;
         const int target = group==GROUP_MARKET ? demand.maxload/4 : demand.maxload/2;
         transfer(*warehouse,*buyer,route,i,target-buyer->commodityCount[stuff]);

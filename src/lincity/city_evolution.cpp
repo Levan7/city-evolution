@@ -385,8 +385,8 @@ std::vector<Advice> CityEvolution::advise(World& w) const {
     if(d.type == DIST_INDUSTRIAL && s.factories == 1) add(0, "Cluster needs more factories", who + " has 1 factory. A second one switches on the cluster bonus (+20% speed).");
     if(d.type == DIST_TECH && s.campuses && !(s.universities + s.schools)) add(1, "No research bonus", who + " has a campus but no school or university inside it.");
     if(d.type == DIST_UNIVERSITY && !(s.universities + s.schools)) add(0, "No training here", who + " has no school or university to train people.");
-    if(d.type == DIST_FARMING && s.backedUpFarms) add(1, "Harvest cannot leave", num(s.backedUpFarms) + " of " + num(s.farms) + " farms in " + who + " are full ("
-      + num(s.backedUpFarms * 100 / std::max(1, s.farms)) + "% of the harvest is at risk). Connect them to roads or rail and add a market or warehouse.");
+    if(d.type == DIST_FARMING && s.backedUpFarms) add(1, "Farm storage nearly full", num(s.backedUpFarms) + " of " + num(s.farms) + " farms in " + who + " have at least 90% of their food storage filled ("
+      + num(s.backedUpFarms * 100 / std::max(1, s.farms)) + "% of farms). Check whether connected markets have workers and food enabled, warehouses have space, and buyers are using the food. A full network can also mean production exceeds demand.");
     else if(d.type == DIST_FARMING && s.farms && !s.warehouses) add(0, "No storage", who + " has " + num(s.farms) + " farms but no warehouse. Storage and freight links keep the harvest from spoiling.");
     if(d.type == DIST_TRADE && !(s.ports + s.warehouses)) add(1, "No trade facility", who + " needs a port or a warehouse to trade.");
   }

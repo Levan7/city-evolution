@@ -86,6 +86,7 @@ public:
     virtual void animate(unsigned long real_time) override;
 
     int  working_days, busy;
+    int gridReach = 0;
 };
 
 #endif // __LINCITYNG_LINCITY_MODULES_SUBSTATION_HPP__

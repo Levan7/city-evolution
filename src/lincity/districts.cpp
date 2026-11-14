@@ -88,7 +88,7 @@ void CityEvolution::updateDistricts(World& w) {
       case GROUP_ORGANIC_FARM: {
         ++s.farms;
         const int cap = c->constructionGroup->commodityRuleCount[STUFF_FOOD].maxload;
-        if(cap > 0 && c->commodityCount[STUFF_FOOD] * 10 >= cap * 9) ++s.backedUpFarms; // storage full: harvest cannot leave
+        if(cap > 0 && c->commodityCount[STUFF_FOOD] * 10 >= cap * 9) ++s.backedUpFarms; // at least 90% of food storage occupied
         break; }
       case GROUP_PORT: ++s.ports; break;
       case GROUP_LARGE_WAREHOUSE: case GROUP_WAREHOUSE: ++s.warehouses; break;
