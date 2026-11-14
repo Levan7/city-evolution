@@ -26,6 +26,7 @@ jobs:
         run: |
           export LD_LIBRARY_PATH="$HOME/lc-prefix/lib:${LD_LIBRARY_PATH:-}"
           DESTDIR="$PWD/AppDir" cmake --install build/linux --prefix /usr
+          rm -f AppDir/usr/share/applications/io.github.lincity_ng.lincity-ng.desktop
           curl -fL --retry 3 -o linuxdeploy.AppImage https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
           chmod +x linuxdeploy.AppImage
           export OUTPUT="$PWD/CityEvolution-Preview-25-Linux-x86_64.AppImage"
