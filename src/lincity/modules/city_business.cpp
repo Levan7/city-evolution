@@ -15,6 +15,9 @@ CityBusinessGroup computerFactoryConstructionGroup("Computer factory", GROUP_COM
 CityBusinessGroup carFactoryConstructionGroup("Car factory", GROUP_CAR_FACTORY, 4, 85000, MAX_TECH_LEVEL*3/5);
 CityBusinessGroup nuclearPowerConstructionGroup("Nuclear power station", GROUP_NUCLEAR_POWER, 4, 120000, MAX_TECH_LEVEL*3/4);
 
+CityBusinessGroup airportConstructionGroup("Regional airport", GROUP_AIRPORT, 6, 180000, MAX_TECH_LEVEL/2);
+CityBusinessGroup racingCircuitConstructionGroup("Grand Prix circuit", GROUP_RACING_CIRCUIT, 6, 140000, MAX_TECH_LEVEL*2/5);
+
 namespace {
 struct Production {
   int labor, water, power, steel, waste;
@@ -24,6 +27,8 @@ struct Production {
 
 Production productionFor(int group) {
   switch(group) {
+  case GROUP_AIRPORT: return {60, 30, 200, 0, 4, STUFF_GOODS, 0};
+  case GROUP_RACING_CIRCUIT: return {35, 20, 100, 0, 3, STUFF_GOODS, 0};
   case GROUP_COMPUTER_FACTORY: return {30, 12, 120, 12, 3, STUFF_GOODS, 240};
   case GROUP_CAR_FACTORY: return {45, 24, 180, 45, 6, STUFF_GOODS, 420};
   case GROUP_NUCLEAR_POWER: return {65, 180, 0, 0, 8, STUFF_HIVOLT, 18000};
@@ -41,6 +46,12 @@ CityBusinessGroup::CityBusinessGroup(const std::string& n, int g, int s, int c, 
   if(isWarehouseGroup(g)) {
     for(Commodity c : {STUFF_FOOD, STUFF_COAL, STUFF_GOODS, STUFF_ORE, STUFF_STEEL})
       rule(c, g == GROUP_LARGE_WAREHOUSE ? 80000 : 20000, true, true);
+  } else if(g == GROUP_AIRPORT || g == GROUP_RACING_CIRCUIT) {
+    rule(STUFF_LABOR, recipe.labor * 20, true, false);
+    rule(STUFF_WATER, recipe.water * 20, true, false);
+    rule(STUFF_LOVOLT, recipe.power * 20, true, false);
+    rule(STUFF_GOODS, 6000, true, false);
+    rule(STUFF_WASTE, 2000, false, true);
   } else if(recipe.amount) {
     rule(STUFF_LABOR, recipe.labor * 20, true, false);
     rule(STUFF_WATER, recipe.water * 20, true, false);
@@ -78,7 +89,13 @@ CityBusiness::CityBusiness(World& w, ConstructionGroup* g) : Construction(w) {
   constructionGroup = g;
   initialize_commodities();
   const auto recipe = productionFor(g->group);
-  if(recipe.amount) {
+  if(g->group == GROUP_AIRPORT || g->group == GROUP_RACING_CIRCUIT) {
+    commodityMaxCons[STUFF_LABOR] = 100 * recipe.labor;
+    commodityMaxCons[STUFF_WATER] = 100 * recipe.water;
+    commodityMaxCons[STUFF_LOVOLT] = 100 * recipe.power;
+    commodityMaxCons[STUFF_GOODS] = 100 * (g->group == GROUP_AIRPORT ? 20 : 12);
+    commodityMaxProd[STUFF_WASTE] = 100 * recipe.waste;
+  } else if(recipe.amount) {
     commodityMaxCons[STUFF_LABOR] = 100*recipe.labor;
     commodityMaxCons[STUFF_WATER] = 100*recipe.water;
     commodityMaxCons[STUFF_LOVOLT] = 100*recipe.power;
@@ -95,6 +112,16 @@ CityBusiness::CityBusiness(World& w, ConstructionGroup* g) : Construction(w) {
     else { commodityMaxCons[STUFF_FOOD] = 100*(cafe ? 10 : 20); commodityMaxCons[STUFF_GOODS] = 100*(cafe ? 2 : 8); }
   }
 }
+bool CityBusiness::hasTransportAccess() const {
+  return std::any_of(neighbors.begin(), neighbors.end(), [](const auto* n) {
+      return n->constructionGroup->group == GROUP_ROAD ||
+        n->constructionGroup->group == GROUP_TRACK ||
+        n->constructionGroup->group == GROUP_RAIL ||
+        n->constructionGroup->group == GROUP_ROAD_BRIDGE ||
+        n->constructionGroup->group == GROUP_TRACK_BRIDGE ||
+        n->constructionGroup->group == GROUP_RAIL_BRIDGE;
+    });
+}
 void CityBusiness::update() {
   int g = constructionGroup->group;
   bool operated = false;
@@ -102,6 +129,27 @@ void CityBusiness::update() {
   if(isWarehouseGroup(g)) {
     world.expense(g == GROUP_LARGE_WAREHOUSE ? 18 : 6, world.stats.expenses.transport);
     operated = freightSurveyed;
+  } else if(g == GROUP_AIRPORT || g == GROUP_RACING_CIRCUIT) {
+    const bool airport = g == GROUP_AIRPORT;
+    const int goods = airport ? 20 : 12;
+    const int upkeep = airport ? 30 : 20;
+    world.expense(upkeep, world.stats.expenses.transport);
+    const bool road = hasTransportAccess();
+    if(road && commodityCount[STUFF_LABOR] >= recipe.labor &&
+       commodityCount[STUFF_WATER] >= recipe.water &&
+       commodityCount[STUFF_LOVOLT] >= recipe.power &&
+       commodityCount[STUFF_GOODS] >= goods &&
+       commodityCount[STUFF_WASTE] + recipe.waste <= 2000) {
+      consumeStuff(STUFF_LABOR, recipe.labor);
+      consumeStuff(STUFF_WATER, recipe.water);
+      consumeStuff(STUFF_LOVOLT, recipe.power);
+      consumeStuff(STUFF_GOODS, goods);
+      produceStuff(STUFF_WASTE, recipe.waste);
+      world.income(airport ? 60 : 45, world.stats.income.service_revenue);
+      if(world.total_time % 10 == 0)
+        world.map(point)->pollution += airport ? 2 : 1;
+      operated = true;
+    }
   } else if(recipe.amount) {
     const auto& rules = constructionGroup->commodityRuleCount;
     if(commodityCount[STUFF_LABOR] >= recipe.labor && commodityCount[STUFF_WATER] >= recipe.water
@@ -143,12 +191,22 @@ void CityBusiness::update() {
       operated = true;
     }
   }
+  operating = operated;
   if(operated) ++workingDays;
   if(world.total_time % NUMOF_DAYS_IN_MONTH == NUMOF_DAYS_IN_MONTH-1) {
     busy = workingDays; workingDays = 0; reset_prod_counters();
   }
 }
 void CityBusiness::report(Mps& mps, bool production) const {
+  const int group = constructionGroup->group;
+  if(group == GROUP_AIRPORT || group == GROUP_RACING_CIRCUIT) {
+    mps.add_s(constructionGroup->name);
+    mps.add_sfp("Operating days last month", busy);
+    mps.add_sd("Operating days this month", workingDays);
+    mps.add_s(group == GROUP_AIRPORT ? "Flights need staff and supplies" : "Events need staff and supplies");
+    list_commodities(mps, production);
+    return;
+  }
   mps.add_s(constructionGroup->name);
   mps.add_sfp("Operating days / month",busy);
   if(isWarehouseGroup(constructionGroup->group)) {

@@ -109,6 +109,7 @@ Stats::yearly() {
   income.goods_tax.finalize();
   income.export_tax.finalize();
   income.transit_fares.finalize();
+  income.service_revenue.finalize();
 
   expenses.construction.finalize();
   expenses.coalSurvey.finalize();

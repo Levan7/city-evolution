@@ -1,5 +1,17 @@
 # Changelog
 
+## City Evolution — Preview 26
+
+- Audit update: separated airport and circuit receipts in the finance panel, enlarged the building report, prioritized missing transport access, added both venues to the help index and extended report tests to prerequisite-gated buildings.
+
+- Integrated Claude’s checked exportsThisYear save parsing, 64-bit import pricing, crash logs and regression tests. Export accumulation saturates at the 64-bit limit.
+- Added a regional airport and Grand Prix circuit under Civic, with dedicated artwork and Help pages. Both create labor demand, consume supplies and power, charge upkeep, and earn operating revenue. Airport planes arrive from outside the map and depart while the airport operates.
+- Energized overhead power crossings now show animated pulses over roads, rails and water.
+- Selected buildings show up to three input shortages or full output stores below the inventory report.
+- CI executes all simulation regression programs before packaging Linux and Windows builds.
+- Validation: Linux game compiled; 17 regression checks passed, including airport/circuit operation and save/load. The panel scan exercised 70 building types in 1,188 report states. Dummy-video startup parsed the main menu successfully.
+- New airport and circuit economic values are initial balancing choices. Windows runtime and visual play-testing are pending.
+
 ## City Evolution — Preview 25
 
 ### Hotfix 1

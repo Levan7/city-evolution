@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<?xml-stylesheet href="identity.xsl" type="text/xsl"?><Panel width="264" height="240" background="images/evolution/mps-frame.png">
+<?xml-stylesheet href="identity.xsl" type="text/xsl"?><Panel width="264" height="304" background="images/evolution/mps-frame.png">
     <DefineStyle name="mps_text" color="#eceddd" font-size="14" halign="left" margin-left="0" margin-right="0"/>
     <DefineStyle name="mps_title" color="#eceddd" font-size="14" halign="left" font-style="normal" margin-left="0" margin-right="0"/>
     <TableLayout rows="3" cols="3">
@@ -8,7 +8,7 @@
         <rowsize row="1" fixed="8"/>
         <rowsize row="3" fixed="8"/>
         <cell row="2" col="2">
-            <TableLayout rows="13" cols="1">
+            <TableLayout rows="16" cols="1">
                 <cell row="1" col="1" halign="center">
                     <Paragraph name="mps_text0" style="mps_title"/>
                 </cell>
@@ -48,6 +48,9 @@
                 <cell row="13" col="1" halign="left">
                     <Paragraph name="mps_text12" style="mps_text"/>
                 </cell>
+                <cell row="14" col="1"><Paragraph name="mps_status0" font-size="11" color="#ffdc8c"/></cell>
+                <cell row="15" col="1"><Paragraph name="mps_status1" font-size="11" color="#ffdc8c"/></cell>
+                <cell row="16" col="1"><Paragraph name="mps_status2" font-size="11" color="#ffdc8c"/></cell>
             </TableLayout>
         </cell>
         <!-- <cell row="1" col= "3"/> -->

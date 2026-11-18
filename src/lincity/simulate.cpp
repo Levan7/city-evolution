@@ -23,6 +23,7 @@
 ** ---------------------------------------------------------------------- */
 
 #include <assert.h>                      // for assert
+#include <limits>
 #include <algorithm>                     // for min, shuffle
 #include <array>                         // for array
 #include <cstdlib>                       // for rand, abs
@@ -203,7 +204,8 @@ World::end_of_month_update(void) {
       total += std::max(0LL, exports - threshold) / 10;
     return total;
   };
-  const auto exports = taxable.exportsThisYear + taxable.trade_ex;
+  const auto room = std::numeric_limits<long long>::max() - taxable.exportsThisYear;
+  const auto exports = taxable.exportsThisYear + std::min<long long>(room, taxable.trade_ex);
   income(taxable.trade_ex - (discount(exports) - discount(taxable.exportsThisYear)),
     stats.income.export_tax);
   taxable.exportsThisYear = exports;

@@ -95,6 +95,8 @@
     <tool name="BPMMonumentButton" grpid="25" help="monument" />
     <tool name="BPMRocketButton" grpid="23" help="rocket" />
     <tool name="BPMChurchButton" grpid="62" help="church" />
+      <tool name="BPMAirportButton" grpid="76" help="airport" />
+      <tool name="BPMCircuitButton" grpid="77" help="racing-circuit" />
   </menu>
   <content>
     <TableLayout rows="1" cols="2">
@@ -1355,16 +1357,16 @@
           </Panel>
           <Panel name="BPCivicButtonDrawer" resizable="yes">
             <TableLayout rows="1" cols="1">
-              <rowsize row="1" fixed="146" />
+              <rowsize row="1" fixed="226" />
               <cell row="1" col="1" halign="left" valign="top">
-                <Panel width="320" height="146">
+                <Panel width="320" height="226">
                   <FilledRectangle color="#132c2bf2" />
                   <TableLayout rows="3" cols="3">
                     <colsize col="1" fixed="12" />
                     <colsize col="3" fixed="12" />
                     <rowsize row="1" fixed="36" />
                     <rowsize row="2" fixed="24" />
-                    <rowsize row="3" fixed="80" />
+                    <rowsize row="3" fixed="160" />
                     <cell row="1" col="2">
                       <Paragraph color="#eef1df" font-size="18">CIVIC</Paragraph>
                     </cell>
@@ -1372,7 +1374,8 @@
                       <Paragraph color="#c3d0bc" font-size="13">Choose a building or route</Paragraph>
                     </cell>
                     <cell row="3" col="2">
-                      <TableLayout rows="1" cols="3">
+                      <TableLayout rows="2" cols="3">
+<rowsize row="2" fixed="80"/>
                         <rowsize row="1" fixed="80" />
                         <cell row="1" col="1" halign="center" valign="center">
                           <CheckButton name="BPMMonumentButton" width="88" height="76" auto-uncheck="false">
@@ -1415,7 +1418,19 @@
                             <tooltip>Church</tooltip>
                           </CheckButton>
                         </cell>
-                      </TableLayout>
+                      <cell row="2" col="1" halign="center" valign="center"><CheckButton name="BPMAirportButton" width="88" height="76" auto-uncheck="false">
+ <image src="images/readable/plate-72-normal.png" width="88" height="76" resizable="yes"/>
+ <image-hover src="images/readable/plate-72-hover.png" width="88" height="76" resizable="yes"/>
+ <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes"/>
+ <caption><Panel width="88" height="76"><TableLayout rows="2" cols="1"><rowsize row="1" fixed="53"/><rowsize row="2" fixed="23"/>
+ <cell row="1" col="1"><Image src="images/tiles/airport.png" width="70" height="50" resizable="yes"/></cell>
+ <cell row="2" col="1"><Paragraph color="#edf0df" font-size="10" halign="center">Airport</Paragraph></cell></TableLayout></Panel></caption><tooltip>Airport</tooltip></CheckButton></cell><cell row="2" col="2" halign="center" valign="center"><CheckButton name="BPMCircuitButton" width="88" height="76" auto-uncheck="false">
+ <image src="images/readable/plate-72-normal.png" width="88" height="76" resizable="yes"/>
+ <image-hover src="images/readable/plate-72-hover.png" width="88" height="76" resizable="yes"/>
+ <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes"/>
+ <caption><Panel width="88" height="76"><TableLayout rows="2" cols="1"><rowsize row="1" fixed="53"/><rowsize row="2" fixed="23"/>
+ <cell row="1" col="1"><Image src="images/tiles/racing-circuit.png" width="70" height="50" resizable="yes"/></cell>
+ <cell row="2" col="1"><Paragraph color="#edf0df" font-size="10" halign="center">Grand Prix circuit</Paragraph></cell></TableLayout></Panel></caption><tooltip>Grand Prix circuit</tooltip></CheckButton></cell></TableLayout>
                     </cell>
                   </TableLayout>
                 </Panel>

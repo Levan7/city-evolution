@@ -44,6 +44,8 @@
 #include <string>                                // for basic_string, char_t...
 
 #include "Config.hpp"                            // for getConfig, Config
+#include "CrashLog.hpp"                          // for crashlog::install
+#include "lincity/messages.hpp"                  // for Message::Exception
 #include "MainLincity.hpp"                       // for initLincity
 #include "MainMenu.hpp"                          // for MainMenu
 #include "Sound.hpp"                             // for Sound, getSound, Mus...
@@ -256,8 +258,25 @@ void mainLoop() {
   MainMenu(window).run();
 }
 
-int
-main(int argc, char** argv) {
+// Message::Exception derives privately from std::exception, so a plain
+// catch(const std::exception&) never sees it. Describe it explicitly.
+static bool describeGameException(std::string& out) {
+  try {
+    throw;
+  } catch(const Message::Exception& e) {
+    out = std::string("game message exception: ") + e.what();
+    if(const auto message = e.getMessage()) {
+      const std::string text = message->str();
+      if(!text.empty() && text != e.what())
+        out += " (message: " + text + ")";
+    }
+    return true;
+  } catch(...) {
+    return false;
+  }
+}
+
+static int runGame(int argc, char** argv) {
   std::fprintf(stderr, "[startup] XML parser initialization\n");
   std::fflush(stderr);
   // initialize XML parser early because it is needed for parsing the config
@@ -276,6 +295,8 @@ main(int argc, char** argv) {
   getConfig()->init(argc, argv);
   std::fprintf(stderr, "[startup] configuration loaded\n");
   std::fflush(stderr);
+  // Also keep crash reports next to the saves, in case stderr is not captured.
+  crashlog::setLogFile(getConfig()->userDataDir.get() / "crash.log");
 
   // set the preferred language
 #if ENABLE_NLS
@@ -345,6 +366,21 @@ main(int argc, char** argv) {
 #endif
 
   return 0;
+}
+
+int
+main(int argc, char** argv) {
+  crashlog::install(PRETTY_NAME_VERSION, &describeGameException);
+  try {
+    return runGame(argc, argv);
+  } catch(...) {
+    crashlog::reportCurrentException("main");
+    // Abort instead of exiting normally so the system can still write a core
+    // dump or crash report for this failure.
+    std::fprintf(stderr, "[crash] aborting to keep a core dump / crash report\n");
+    std::fflush(stderr);
+    std::abort();
+  }
 }
 
 

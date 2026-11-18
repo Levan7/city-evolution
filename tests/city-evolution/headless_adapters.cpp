@@ -16,17 +16,21 @@ Config::~Config()=default;
 Config* getConfig() { static Config config;return &config; }
 Sound* getSound() { return nullptr; }
 void Sound::playASound(MIX_Audio*) { }
-void Mps::addBlank() { }
-void Mps::add_s(const std::string&) { }
-void Mps::add_fp(int,double) { }
-void Mps::add_f(double) { }
-void Mps::add_sf(const std::string&,double) { }
-void Mps::add_d(int) { }
-void Mps::add_ss(const std::string&,const std::string&) { }
-void Mps::add_sd(const std::string&,int) { }
-void Mps::add_ssd(const std::string&,const std::string&,int) { }
-void Mps::add_sfp(const std::string&,double) { }
-void Mps::add_sdd(const std::string&,int,int) { }
-void Mps::add_sddp(const std::string&,int,int) { }
-void Mps::add_tsddp(const std::string&,const std::string&,int,int) { }
-void Mps::add_ttt(const std::string&,const std::string&,const std::string&) { }
+// Every real Mps::add_* call (and addBlank) fills exactly one info-panel line, so
+// counting calls counts panel lines. panel_capacity_integration checks this
+// against Mps::PARAGRAPH_COUNT.
+int mpsLinesAdded = 0;
+void Mps::addBlank() { ++mpsLinesAdded; }
+void Mps::add_s(const std::string&) { ++mpsLinesAdded; }
+void Mps::add_fp(int,double) { ++mpsLinesAdded; }
+void Mps::add_f(double) { ++mpsLinesAdded; }
+void Mps::add_sf(const std::string&,double) { ++mpsLinesAdded; }
+void Mps::add_d(int) { ++mpsLinesAdded; }
+void Mps::add_ss(const std::string&,const std::string&) { ++mpsLinesAdded; }
+void Mps::add_sd(const std::string&,int) { ++mpsLinesAdded; }
+void Mps::add_ssd(const std::string&,const std::string&,int) { ++mpsLinesAdded; }
+void Mps::add_sfp(const std::string&,double) { ++mpsLinesAdded; }
+void Mps::add_sdd(const std::string&,int,int) { ++mpsLinesAdded; }
+void Mps::add_sddp(const std::string&,int,int) { ++mpsLinesAdded; }
+void Mps::add_tsddp(const std::string&,const std::string&,int,int) { ++mpsLinesAdded; }
+void Mps::add_ttt(const std::string&,const std::string&,const std::string&) { ++mpsLinesAdded; }

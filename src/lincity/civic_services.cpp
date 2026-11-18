@@ -144,7 +144,7 @@ void CivicServices::load(const std::string& text,int side){
 CivicServices::Fiscal CivicServices::fiscal(const World& w) const {
  const auto& in=w.stats.income; const auto& ex=w.stats.expenses; Fiscal f;
  // Revenue accounts are ledger credits, stored with a negative sign.
- f.revenue=-(1LL*in.income_tax.stat+in.goods_tax.stat+in.coal_tax.stat+in.export_tax.stat+in.transit_fares.stat);
+ f.revenue=-(1LL*in.income_tax.stat+in.goods_tax.stat+in.coal_tax.stat+in.export_tax.stat+in.transit_fares.stat+in.service_revenue.stat);
  f.operating=1LL*ex.import.stat+ex.unemployment.stat+ex.transport.stat+ex.windmill.stat+ex.university.stat+ex.recycle.stat+ex.deaths.stat+ex.health.stat+ex.school.stat+ex.police.stat+ex.church.stat+ex.firestation.stat+ex.cricket.stat+ex.interest.stat+ex.rockets.stat;
  f.incomeTax=-1LL*in.income_tax.stat;
  for(auto*c:w.map.constructions) if(auto*r=dynamic_cast<Residence*>(c)) f.population+=r->local_population;

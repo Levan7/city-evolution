@@ -9,7 +9,7 @@ public:
 };
 extern CityBusinessGroup warehouseConstructionGroup, techCampusConstructionGroup,
   cafeConstructionGroup, foodHallConstructionGroup, largeWarehouseConstructionGroup,
-  computerFactoryConstructionGroup, carFactoryConstructionGroup, nuclearPowerConstructionGroup;
+  computerFactoryConstructionGroup, carFactoryConstructionGroup, nuclearPowerConstructionGroup, airportConstructionGroup, racingCircuitConstructionGroup;
 class CityBusiness : public Construction {
 public:
   CityBusiness(World& world, ConstructionGroup* group);
@@ -18,6 +18,8 @@ public:
   void save(xmlTextWriterPtr writer) const override;
   bool loadMember(xmlpp::TextReader& reader, unsigned int version) override;
   bool freightSurveyed = false, freightHasBuyer = false;
+  bool hasTransportAccess() const;
+  bool operating = false;
   int workingDays = 0, busy = 0;
   int skillCredit = 0; // accumulates the staffed share of each day; a full day needs 1000
 };

@@ -1,3 +1,4 @@
+#include "lincity/modules/city_business.hpp"
 /* ---------------------------------------------------------------------- *
  * src/lincity-ng/GameView.cpp
  * This file is part of Lincity-NG.
@@ -1638,10 +1639,23 @@ void GameView::draw(Painter& painter)
           const bool wire = world.overheadPowerLines.count(next.y*side+next.x);
           if((wire && (next.x>p.x || next.y>p.y)) ||
              world.map(next)->getGroup()==GROUP_POWER_LINE)
-            painter.drawLine(top,poleTop(next));
+        {
+          const auto end = poleTop(next);
+          painter.setLineColor(Color(218,204,170));
+          painter.drawLine(top, end);
+          if(world.poweredOverheadLines.count(id)) {
+            // Use the same phase on every segment so pulses cross the river.
+            const float phase = std::fmod(world.evolution.visualTime / 500.0f, 1.0f);
+            const auto pulse = top + (end - top) * phase;
+            painter.setLineColor(Color(112,219,255,160));
+            painter.drawLine(pulse - Vector2(5,0)*zoom, pulse + Vector2(5,0)*zoom);
+            painter.setLineColor(Color(246,255,255));
+            painter.drawLine(pulse - Vector2(0,3)*zoom, pulse + Vector2(0,3)*zoom);
+          }
+        }
         }
       }
-      drawTransit(painter,1);drawEmergencyActors(painter);drawCityLife(painter);
+      drawTransit(painter,1);drawEmergencyActors(painter);drawCityLife(painter);drawAirportFlights(painter);
       if(getWorld().evolution.darkness()>50)for(auto*c:getWorld().map.constructions){int g=c->constructionGroup->group;if(g==GROUP_ROAD||g==GROUP_TRACK||g==GROUP_ROAD_BRIDGE||g==GROUP_TRACK_BRIDGE)drawStreetLamps(painter,c->point);}
     }
 
@@ -2247,4 +2261,42 @@ void GameView::drawStreetLamps(Painter& painter,MapPoint tile) {
  for(int radius=9;radius>=3;radius-=3){Vector2 points[12];for(int k=0;k<12;++k){float angle=k*6.2831853f/12;points[k]=lamp+Vector2(std::cos(angle)*radius*zoom,std::sin(angle)*radius*zoom);}painter.setFillColor(Color(255,195,90,int(night*25)));painter.fillPolygon(12,points);}
  painter.setLineColor(Color(100,90,68,255));painter.drawLine(base,lamp);
  painter.setFillColor(Color(255,205,115,int(230*night)));painter.fillRectangle(Rect2D(lamp.x-2*zoom,lamp.y-2*zoom,lamp.x+2*zoom,lamp.y+3*zoom));
+}
+
+
+// Decorative flights follow a map-space route from outside the city to each
+// operating airport. Simulation income comes from staffed operating days.
+void GameView::drawAirportFlights(Painter& painter) {
+  const auto& world = getWorld();
+  for(const auto* construction : world.map.constructions) {
+    if(construction->constructionGroup->group != GROUP_AIRPORT) continue;
+    const auto* airport = static_cast<const CityBusiness*>(construction);
+    if(!airport->operating) continue;
+    const auto center = airport->point;
+    const double cycle = std::fmod(world.evolution.visualTime / 16000.0
+      + (center.x + center.y) * .017, 1.0);
+    const bool inbound = cycle < .45;
+    const bool outbound = cycle > .55;
+    if(!inbound && !outbound) continue; // turn around at the terminal
+    const float fraction = inbound ? float(cycle / .45) : float((1-cycle) / .45);
+    const auto start = getScreenPoint(MapPoint(-12, center.y+3));
+    const auto finish = getScreenPoint(MapPoint(center.x+3, center.y+3));
+    const auto location = start + (finish-start)*fraction
+      - Vector2(0, 60*zoom*(1-fraction));
+    const auto direction = finish-start;
+    const float length = std::sqrt(direction.x*direction.x + direction.y*direction.y);
+    if(length < 1) continue;
+    Vector2 forward = direction*(zoom/length);
+    if(outbound) forward = forward*(-1);
+    const Vector2 side(-forward.y, forward.x);
+    Vector2 body[] = {location+forward*12, location-forward*8+side*2,
+                      location-forward*10, location-forward*8-side*2};
+    Vector2 wings[] = {location+forward*2, location-forward*4+side*12,
+                       location-forward*5, location-forward*4-side*12};
+    painter.setFillColor(Color(226,237,241));
+    painter.fillPolygon(4,wings);
+    painter.fillPolygon(4,body);
+    painter.setLineColor(Color(39,107,142));
+    painter.drawLine(location-forward*7-side*4,location-forward*7+side*4);
+  }
 }

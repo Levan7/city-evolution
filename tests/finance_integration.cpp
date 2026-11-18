@@ -3,10 +3,21 @@
 #include "lincity/modules/all_modules.hpp"
 #include "lincity/world.hpp"
 #include <stdexcept>
+#include <limits>
 #include <iostream>
 #include <filesystem>
 static void check(bool b,const char*m){if(!b)throw std::runtime_error(m);}
-int main(){try{initializeModules();auto w=new_barren_city(40);w->buildConstruction(residenceLLConstructionGroup,{10,10});auto* r=static_cast<Residence*>(w->map({10,10})->reportingConstruction);r->local_population=100;w->evolution.mayorMode=0;w->total_money=500;w->money_rates.income_tax=8;w->civic.lastLaborTaxBase=10000;w->civic.autoTax=true;w->civic.adjustTaxes(*w);check(w->money_rates.income_tax==9,"independent auto tax did not adjust");for(int i=0;i<20;++i){w->total_time=i;w->civic.adjustTaxes(*w);}check(w->money_rates.income_tax==9,"repeat clicks changed tax within same month");w->total_time=100;w->civic.adjustTaxes(*w);check(w->money_rates.income_tax==10,"next monthly review missing");check(w->money_rates.goods_tax==1,"auto tax changed goods tax");check(w->civic.budget[0]==100,"auto tax changed service funding");int day=w->total_time;w->evolution.pedestrians=!w->evolution.pedestrians;w->evolution.changePlanFocus(*w);check(w->total_time==day,"UI state operation advanced date");auto file=std::filesystem::temp_directory_path()/"finance16.scn.gz";w->save(file);auto loaded=World::load(file);std::filesystem::remove(file);check(loaded->civic.lastLaborTaxBase==10000,"tax base lost on save/load");check(loaded->civic.taxReviewedDay==100,"tax review cooldown lost on save/load");check(!w->civic.financialAdvice(*w).empty(),"missing advisor"); { // "Auto-adjust taxes" acts at once, in any month, by the size of the gap, and explains itself.
+int main(){try{initializeModules();
+{
+  auto boundary = new_barren_city(40);
+  boundary->total_money = 100000;
+  boundary->taxable.exportsThisYear = std::numeric_limits<long long>::max();
+  boundary->taxable.trade_ex = 100;
+  boundary->total_time = 99;
+  boundary->do_time_step();
+  check(boundary->taxable.exportsThisYear >= 0, "export ledger overflowed at month end");
+}
+auto w=new_barren_city(40);w->buildConstruction(residenceLLConstructionGroup,{10,10});auto* r=static_cast<Residence*>(w->map({10,10})->reportingConstruction);r->local_population=100;w->evolution.mayorMode=0;w->total_money=500;w->money_rates.income_tax=8;w->civic.lastLaborTaxBase=10000;w->civic.autoTax=true;w->civic.adjustTaxes(*w);check(w->money_rates.income_tax==9,"independent auto tax did not adjust");for(int i=0;i<20;++i){w->total_time=i;w->civic.adjustTaxes(*w);}check(w->money_rates.income_tax==9,"repeat clicks changed tax within same month");w->total_time=100;w->civic.adjustTaxes(*w);check(w->money_rates.income_tax==10,"next monthly review missing");check(w->money_rates.goods_tax==1,"auto tax changed goods tax");check(w->civic.budget[0]==100,"auto tax changed service funding");int day=w->total_time;w->evolution.pedestrians=!w->evolution.pedestrians;w->evolution.changePlanFocus(*w);check(w->total_time==day,"UI state operation advanced date");auto file=std::filesystem::temp_directory_path()/"finance16.scn.gz";w->save(file);auto loaded=World::load(file);std::filesystem::remove(file);check(loaded->civic.lastLaborTaxBase==10000,"tax base lost on save/load");check(loaded->civic.taxReviewedDay==100,"tax review cooldown lost on save/load");check(!w->civic.financialAdvice(*w).empty(),"missing advisor"); { // "Auto-adjust taxes" acts at once, in any month, by the size of the gap, and explains itself.
   auto tw=new_barren_city(40);tw->buildConstruction(residenceLLConstructionGroup,{10,10});
   auto* home=static_cast<Residence*>(tw->map({10,10})->reportingConstruction);home->local_population=50;
   auto& c=tw->civic;auto& r=tw->money_rates;

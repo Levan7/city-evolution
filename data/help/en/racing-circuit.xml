@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Document><title>Grand Prix circuit</title><img src="images/tiles/racing-circuit.png"/><p>Build under Civic at 40% technology. Cost $140,000, footprint 6 by 6.
+Connect any side to track, road or rail. Each operating day needs 35 labor,
+20 water, 100 low-voltage electricity and 12 goods, and produces 3 waste.
+Upkeep is $20 per day even when idle. A supplied event day earns $45 in service
+receipts, listed under Service revenue. The circuit creates labor demand and
+adds some pollution.</p><p>Select the building to check inventory and input shortages. Use warehouses and markets for supplies, and keep waste moving to disposal.</p></Document>

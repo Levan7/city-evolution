@@ -24,6 +24,7 @@
 
 #include "port.hpp"
 #include <algorithm>
+#include <limits>
 
 #include <libxml++/parsers/textreader.h>  // for TextReader
 #include <libxml/xmlwriter.h>             // for xmlTextWriterWriteElement
@@ -131,13 +132,20 @@ int Port::buy_stuff(Commodity stuff)
     if (i < (portConstructionGroup.commodityRuleCount[stuff].maxload / PORT_TRIGGER_RATE))
     {   return 0;}
     try {
-      const int base = i * portConstructionGroup.commodityRates[stuff];
+      // 64-bit from the first multiplication: a large order at a high tariff
+      // overflows 32 bits. Rounding is unchanged (integer division, remainder
+      // carried in importPence).
+      const long long base = static_cast<long long>(i) * portConstructionGroup.commodityRates[stuff];
       // Foreign purchases carry a 10% markup over the base export value.
-      const int tariff = std::clamp(world.money_rates.import_cost, 1, 100);
-      const int total = 11 * base * tariff / 10 + importPence;
-      const int charged = total / 100;
+      const long long tariff = std::clamp(world.money_rates.import_cost, 1, 100);
+      const long long total = 11LL * base * tariff / 10 + importPence;
+      const long long charged64 = total / 100;
+      // The treasury is an int, so a bill beyond that can never be paid.
+      if(charged64 > std::numeric_limits<int>::max())
+        return 0;
+      const int charged = static_cast<int>(charged64);
       world.expense(charged, world.stats.expenses.import, false);
-      importPence = total % 100;
+      importPence = static_cast<int>(total % 100);
       produceStuff(stuff, i);
       return charged;
     } catch(const OutOfMoneyMessage::Exception& ex) {

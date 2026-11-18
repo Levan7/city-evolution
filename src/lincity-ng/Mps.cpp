@@ -213,6 +213,8 @@ Mps::add_ttt(const std::string& t1, const std::string& t2, const std::string& t3
 
 void
 MpsMap::refresh() {
+  for(int line = 0; line < 3; ++line)
+    getParagraph(*this, "mps_status" + std::to_string(line))->setText("");
   clear();
   if(!tile) return;
   switch(page) {
@@ -268,7 +270,28 @@ void
 MpsMap::refreshInvProd(bool production) {
   ConstructionGroup *tileCstGrp = tile->getTileConstructionGroup();
   if(tile->reportingConstruction) {
-    tile->reportingConstruction->report(*this, production);
+    const auto& building = *tile->reportingConstruction;
+    building.report(*this, production);
+    int line = 0;
+    const int group = building.constructionGroup->group;
+    if((group == GROUP_AIRPORT || group == GROUP_RACING_CIRCUIT) &&
+       !static_cast<const CityBusiness&>(building).hasTransportAccess())
+      getParagraph(*this, "mps_status" + std::to_string(line++))->setText("Needs road or rail access");
+    for(Commodity stuff = STUFF_INIT; stuff < STUFF_COUNT && line < 3; ++stuff) {
+      const int dailyNeed = (building.commodityMaxCons[stuff] + 99) / 100;
+      const int dailyOutput = (building.commodityMaxProd[stuff] + 99) / 100;
+      const int capacity = building.constructionGroup->commodityRuleCount[stuff].maxload;
+      std::string reason;
+      if(dailyNeed > 0 && building.commodityCount[stuff] < dailyNeed)
+        reason = std::string("Needs ") + commodityName(stuff);
+      else if(dailyOutput > 0 && capacity > 0 &&
+              building.commodityCount[stuff] > capacity - dailyOutput)
+        reason = std::string(commodityName(stuff)) + " storage full";
+      if(!reason.empty())
+        getParagraph(*this, "mps_status" + std::to_string(line++))->setText(reason);
+    }
+    if(line == 0 && building.commodityMaxCons[STUFF_LABOR] > 0)
+      getParagraph(*this, "mps_status0")->setText("Daily inputs available");
   }
   else if(tileCstGrp == &waterConstructionGroup) {
     add_sdd(waterConstructionGroup.name, tile->point.x, tile->point.y);
@@ -405,7 +428,7 @@ MpsFinance::refreshCashFlow() {
   int amt;
   int cashflow = 0;
 
-  add_s(N_("Tax Income"));
+  add_s(N_("Revenue"));
 
   amt = stats.income.income_tax;
   add_ss(N_("Income"), num_to_ansi(-amt));
@@ -423,7 +446,9 @@ MpsFinance::refreshCashFlow() {
   add_ss(N_("Exports / fares"), num_to_ansi(-amt));
   cashflow -= amt;
 
-  addBlank();
+  amt = stats.income.service_revenue;
+  add_ss(N_("Service revenue"), num_to_ansi(-amt));
+  cashflow -= amt;
 
   add_s(N_("Expenses"));
 

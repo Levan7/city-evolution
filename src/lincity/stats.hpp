@@ -104,6 +104,7 @@ public:
     Stat<int> goods_tax;
     Stat<int> export_tax;
     Stat<int> transit_fares;
+    Stat<int> service_revenue;
   } income;
 
   struct {

@@ -158,12 +158,15 @@ X xmlParse(const xmlpp::ustring& s) {
     throw std::system_error(std::make_error_code(r.ec), fmt::format(
       "failed to parse XML value of type {:?}: {:?}", typeid(X).name(), s));
   if(r.ptr != ce) {
+    // Older saves may carry trailing text. Warn and keep the parsed number so a
+    // debug build behaves like a release build; this used to assert() and abort
+    // the game before the load error could be shown. Fields that must be exact
+    // use a strict parser instead.
     fmt::println(stderr,
       "error: detected extra characters after number: {:?}",
       s
     );
   }
-  assert(r.ptr == ce);
   return x;
 }
 

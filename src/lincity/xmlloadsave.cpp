@@ -35,6 +35,8 @@
 #include <cassert>                        // for assert
 #include <cctype>                         // for isspace
 #include <charconv>                       // for from_chars_result, from_chars
+#include <fmt/format.h>                   // for format
+#include <system_error>                   // for errc
 #include <cstdio>                         // for NULL, size_t
 #include <deque>                          // for deque
 #include <filesystem>                     // for path
@@ -69,6 +71,28 @@ template<typename X>
 static inline const xmlStrF fx(const X x) { return xmlFormatHex(x); }
 template<typename X>
 static inline X p(const xmlpp::ustring& s) { return xmlParse<X>(s); }
+
+// Strict 64-bit parse for fields where a damaged value must not be guessed at.
+// The whole text (ignoring surrounding whitespace) has to be one number that
+// fits in 64 bits. Failures throw std::runtime_error, which the load dialog
+// reports to the player; std::stoll would throw a std::logic_error instead,
+// which nothing on the load path catches.
+static long long parseChecked64(const xmlpp::ustring& s, const char* field) {
+  const std::string text(s);
+  const char* begin = text.data();
+  const char* end = begin + text.size();
+  while(begin < end && std::isspace(static_cast<unsigned char>(*begin))) ++begin;
+  while(end > begin && std::isspace(static_cast<unsigned char>(end[-1]))) --end;
+  long long value = 0;
+  const auto result = std::from_chars(begin, end, value);
+  if(result.ec == std::errc::result_out_of_range)
+    throw std::runtime_error(fmt::format(
+      "Save file is damaged: {} is out of range ({:?}).", field, text));
+  if(begin == end || result.ec != std::errc{} || result.ptr != end)
+    throw std::runtime_error(fmt::format(
+      "Save file is damaged: {} is not a valid number ({:?}).", field, text));
+  return value;
+}
 
 static void saveGlobals(xmlTextWriterPtr xmlWriter, const World& world);
 static void loadGlobals(xmlpp::TextReader& xmlReader, World& World,
@@ -323,7 +347,9 @@ static void saveGlobals(xmlTextWriterPtr xmlWriter, const World& world) {
   for(int id:world.transit.tunnels) xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_tunnel",f(id));
   for(int id:world.transit.viaducts) xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_viaduct",f(id));
   xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_fares_ly",f(world.stats.income.transit_fares.stat));
+  xmlTextWriterWriteElement(xmlWriter,(xmlStr)"service_revenue_ly",f(world.stats.income.service_revenue.stat));
   xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_fares_ytd",f(world.stats.income.transit_fares.acc));
+  xmlTextWriterWriteElement(xmlWriter,(xmlStr)"service_revenue_ytd",f(world.stats.income.service_revenue.acc));
   xmlTextWriterWriteElement(xmlWriter,(xmlStr)"transit_assessed",f(world.transit.assessedMonth));
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_skyMode", f(world.evolution.skyMode));
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_weatherMode", f(world.evolution.weatherMode));
@@ -716,7 +742,9 @@ static void loadGlobals(xmlpp::TextReader& xmlReader, World& world,
     else if(xml_tag == "civic_state") world.civic.pendingLoad=xmlReader.read_string2().value_or("");
     else if(xml_tag == "transit_tunnel" || xml_tag=="transit_viaduct") {int id=p<int>(xmlReader.read_inner_xml());int len=world.map.len();if(id>=0&&id<160000) (xml_tag=="transit_tunnel"?world.transit.tunnels:world.transit.viaducts).insert(id);}
     else if(xml_tag=="transit_fares_ly") world.stats.income.transit_fares.stat=p<int>(xmlReader.read_inner_xml());
+    else if(xml_tag=="service_revenue_ly") world.stats.income.service_revenue.stat=p<int>(xmlReader.read_inner_xml());
     else if(xml_tag=="transit_fares_ytd") world.stats.income.transit_fares.acc=p<int>(xmlReader.read_inner_xml());
+    else if(xml_tag=="service_revenue_ytd") world.stats.income.service_revenue.acc=p<int>(xmlReader.read_inner_xml());
     else if(xml_tag.size() == 14 && xml_tag.substr(0,13) == "transit_fare_" &&
       xml_tag[13] >= '0' && xml_tag[13] <= '3')
       world.transit.fares[xml_tag[13]-'0'] = std::clamp(p<int>(xmlReader.read_inner_xml()),0,TransitSystem::MaxFare);
@@ -796,7 +824,7 @@ static void loadGlobals(xmlpp::TextReader& xmlReader, World& world,
         else if(xml_tag == "coal")     world.taxable.coal = p<int>(xmlReader.read_inner_xml());
         else if(xml_tag == "goods")    world.taxable.goods = p<int>(xmlReader.read_inner_xml());
         else if(xml_tag == "trade_ex") world.taxable.trade_ex = p<int>(xmlReader.read_inner_xml());
-        else if(xml_tag == "exportsThisYear") world.taxable.exportsThisYear = std::max(0LL, std::stoll(xmlReader.read_inner_xml()));
+        else if(xml_tag == "exportsThisYear") world.taxable.exportsThisYear = std::max(0LL, parseChecked64(xmlReader.read_inner_xml(), "exportsThisYear"));
         else if(xml_tag == "laborRemainder") world.taxable.laborRemainder = std::clamp(p<int>(xmlReader.read_inner_xml()),0,99);
         else if(xml_tag == "coalRemainder") world.taxable.coalRemainder = std::clamp(p<int>(xmlReader.read_inner_xml()),0,9);
         else if(xml_tag == "goodsRemainder") world.taxable.goodsRemainder = std::clamp(p<int>(xmlReader.read_inner_xml()),0,99);

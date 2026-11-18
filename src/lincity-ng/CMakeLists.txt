@@ -3,6 +3,8 @@ add_executable(lincity-ng
   ButtonPanel.hpp
   Config.cpp
   Config.hpp
+  CrashLog.cpp
+  CrashLog.hpp
   Dialog.cpp
   Dialog.hpp
   EconomyGraph.cpp

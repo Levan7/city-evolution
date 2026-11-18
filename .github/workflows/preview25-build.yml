@@ -1,4 +1,4 @@
-name: Build City Evolution Preview 25 Hotfix 1
+name: Build City Evolution Preview 26
 
 on:
   push:
@@ -16,10 +16,14 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build and test
         run: |
-          sed -i "s/-DLINCITYNG_EVOLUTION_CHECKS=ON/-DLINCITYNG_EVOLUTION_CHECKS=ON -DENABLE_NLS=OFF -DLINCITYNG_VERSION_SUFFIX=city-evolution-preview25-hotfix1/" contrib/build-ubuntu-2404.sh
+          sed -i "s/-DLINCITYNG_EVOLUTION_CHECKS=ON/-DLINCITYNG_EVOLUTION_CHECKS=ON -DENABLE_NLS=OFF -DLINCITYNG_VERSION_SUFFIX=city-evolution-preview26/" contrib/build-ubuntu-2404.sh
           bash contrib/build-ubuntu-2404.sh
           export LD_LIBRARY_PATH="$HOME/lc-prefix/lib:${LD_LIBRARY_PATH:-}"
-          build/linux/tests/city-evolution/network-checks
+          for check in city-evolution mayor transit community services flu autonomy street-routes finance network panel-capacity save-robustness import-math crashlog airport; do
+            build/linux/tests/city-evolution/"${check}-checks"
+          done
+          SDL_AUDIO_DRIVER=dummy build/linux/tests/city-evolution/audio-checks tests/audio-fixture working
+          SDL_AUDIO_DRIVER=nonexistent build/linux/tests/city-evolution/audio-checks tests/audio-fixture missing
       - name: Package AppImage
         env:
           APPIMAGE_EXTRACT_AND_RUN: '1'
@@ -29,7 +33,7 @@ jobs:
           rm -f AppDir/usr/share/applications/io.github.lincity_ng.lincity-ng.desktop
           curl -fL --retry 3 -o linuxdeploy.AppImage https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
           chmod +x linuxdeploy.AppImage
-          export OUTPUT="$PWD/CityEvolution-Preview-25-Hotfix-1-Linux-x86_64.AppImage"
+          export OUTPUT="$PWD/CityEvolution-Preview-26-Linux-x86_64.AppImage"
           app=io.github.lincity_ng.lincity-ng
           cat > city-evolution.desktop <<DESKTOP
           [Desktop Entry]
@@ -58,8 +62,8 @@ jobs:
           env -u LD_LIBRARY_PATH "$OUTPUT" --version
       - uses: actions/upload-artifact@v4
         with:
-          name: Preview-25-Hotfix-1-Linux-x86_64
-          path: CityEvolution-Preview-25-Hotfix-1-Linux-x86_64.AppImage
+          name: Preview-26-Linux-x86_64
+          path: CityEvolution-Preview-26-Linux-x86_64.AppImage
           if-no-files-found: error
 
   windows:
@@ -69,12 +73,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Cross-compile and package
         run: |
-          sed -i "s/-DLINCITYNG_EVOLUTION_CHECKS=OFF/-DLINCITYNG_EVOLUTION_CHECKS=OFF -DENABLE_NLS=OFF -DLINCITYNG_VERSION_SUFFIX=city-evolution-preview25-hotfix1/" contrib/windows-cross/build-windows.sh
+          sed -i "s/-DLINCITYNG_EVOLUTION_CHECKS=OFF/-DLINCITYNG_EVOLUTION_CHECKS=OFF -DENABLE_NLS=OFF -DLINCITYNG_VERSION_SUFFIX=city-evolution-preview26/" contrib/windows-cross/build-windows.sh
           bash contrib/windows-cross/build-windows.sh
-          mv build/CityEvolution-Windows-x64.zip CityEvolution-Preview-25-Hotfix-1-Windows-x64.zip
-          unzip -tq CityEvolution-Preview-25-Hotfix-1-Windows-x64.zip
+          mv build/CityEvolution-Windows-x64.zip CityEvolution-Preview-26-Windows-x64.zip
+          unzip -tq CityEvolution-Preview-26-Windows-x64.zip
       - uses: actions/upload-artifact@v4
         with:
-          name: Preview-25-Hotfix-1-Windows-x64
-          path: CityEvolution-Preview-25-Hotfix-1-Windows-x64.zip
+          name: Preview-26-Windows-x64
+          path: CityEvolution-Preview-26-Windows-x64.zip
           if-no-files-found: error

@@ -72,6 +72,7 @@ int substationReach(const Construction& station) {
 }
 
 void distributeRoadPower(World& world) {
+  world.poweredOverheadLines.clear();
   std::vector<Construction*> sources, consumers, substations;
   for(auto* building : world.map.constructions) {
     if(building->isDead() || building->flags & FLAG_EVACUATE) continue;
@@ -123,6 +124,9 @@ void distributeRoadPower(World& world) {
         }
       }
     }
+    for(int id : world.overheadPowerLines)
+      if(distance[id] != unreachable)
+        world.poweredOverheadLines.insert(id);
     auto lossTo = [&](const Construction& target) {
       int loss = unreachable;
       footprint(target,[&](MapPoint point) {
