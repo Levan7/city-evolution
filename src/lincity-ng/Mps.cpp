@@ -46,6 +46,7 @@
 #include "lincity/lin-city.hpp"             // for FLAG_IS_LAKE, FLAG_IS_RIVER
 #include "lincity/lintypes.hpp"             // for NUMOF_DAYS_IN_MONTH, Cons...
 #include "lincity/modules/all_modules.hpp"  // for TileConstructionGroup
+#include "lincity/modules/port.hpp"         // for Port, PORT_LABOR
 #include "lincity/stats.hpp"                // for Stat, Stats
 #include "lincity/util.hpp"                 // for num_to_ansi, current_year
 #include "lincity/world.hpp"                // for MapTile, World, Ground
@@ -274,6 +275,23 @@ MpsMap::refreshInvProd(bool production) {
     building.report(*this, production);
     int line = 0;
     const int group = building.constructionGroup->group;
+    if(group == GROUP_PORT) {
+      const auto& port = static_cast<const Port&>(building);
+      const int labor = port.commodityCount[STUFF_LABOR];
+      if(labor < PORT_LABOR) {
+        getParagraph(*this, "mps_status" + std::to_string(line++))->setText(
+          "Waiting for labor: " + std::to_string(labor) + " / " + std::to_string(PORT_LABOR));
+      }
+      for(Commodity stuff = STUFF_INIT; stuff < STUFF_COUNT && line < 3; ++stuff) {
+        const auto& rule = port.commodityRuleCount[stuff];
+        const int stock = port.commodityCount[stuff];
+        if(rule.maxload && rule.give && !rule.take && stock > 0) {
+          getParagraph(*this, "mps_status" + std::to_string(line++))->setText(
+            std::string(commodityName(stuff)) + " export stock: " + std::to_string(stock));
+        }
+      }
+      return;
+    }
     if((group == GROUP_AIRPORT || group == GROUP_RACING_CIRCUIT) &&
        !static_cast<const CityBusiness&>(building).hasTransportAccess())
       getParagraph(*this, "mps_status" + std::to_string(line++))->setText("Needs road or rail access");
