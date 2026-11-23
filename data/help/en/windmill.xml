@@ -11,11 +11,10 @@
    <img src="images/gui/buttonpanel/power/windmills.png" halign="center"/>
 
   <p style="hp">The first is a low-tech 'wooden' windmill. It provides low-voltage power for the local neighborhood:</p>
-   <img src="images/help-art01/WindMill.png" halign="center"/>
+   <img src="images/tiles/windmill1w.png" halign="center"/>
 
   <p style="hp">The second is a 'modern' wind-farm type. It provides high-voltage power to the city's power grid:</p>
    <img src="images/help-art01/WindMillHTechG.png" halign="center"/>
-	<p style="hp">The type you get depends on your tech-level when you build it.</p>
 
 	<p style="hsubtitle">Formulas</p>
 	<p style="hp">low tech: 10 labor =&gt; 450 lo-volt + 4.5 lo-volt * tech</p>

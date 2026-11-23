@@ -27,11 +27,20 @@ int main(int argc,char**argv) {
   w->total_money=100000000;
   w->tech_level=MAX_TECH_LEVEL;
   Message::ptr reason;
+  require(!universityConstructionGroup.can_build(*w,reason),"university without schools");
+  const auto withoutSchools = dynamic_message_cast<CityRequirementMessage>(reason);
+  require(withoutSchools && withoutSchools->text.find("have 0 and need 4") != std::string::npos,
+          "university error must explain the first school requirement");
   require(!techCampusConstructionGroup.can_build(*w,reason),"campus without university");
   require(!cafeConstructionGroup.can_build(*w,reason),"cafe without demand");
   for(int i=0;i<8;++i) w->buildConstruction(residenceLLConstructionGroup,MapPoint(2+i*4,2));
   for(int i=0;i<4;++i) w->buildConstruction(schoolConstructionGroup,MapPoint(2+i*5,20));
+  require(universityConstructionGroup.can_build(*w,reason),"one university allowed with four schools");
   w->buildConstruction(universityConstructionGroup,MapPoint(2,8));
+  require(!universityConstructionGroup.can_build(*w,reason),"second university needs more schools");
+  const auto secondUniversity = dynamic_message_cast<CityRequirementMessage>(reason);
+  require(secondUniversity && secondUniversity->text.find("have 4 and need 8") != std::string::npos,
+          "university error must explain the additional school requirement");
   require(cafeConstructionGroup.can_build(*w,reason),"cafe with demand");
   require(techCampusConstructionGroup.can_build(*w,reason),"campus with university");
   w->buildConstruction(warehouseConstructionGroup,MapPoint(10,10));

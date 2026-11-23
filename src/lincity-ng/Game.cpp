@@ -577,6 +577,7 @@ void Game::showCityAdvisors() {
 void
 Game::setWorld(std::unique_ptr<World>&& world) {
   this->world = std::move(world);
+  gameview->resetAirportFlights();
   autosavePlayTime = 0;
   this->world->transit.update(*this->world,false);
   // Old forced sky/weather modes reset whenever a city is entered.

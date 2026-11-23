@@ -9,10 +9,9 @@ Windmills also need manpower for producing power. If a windmill does not have en
 There are two forms of windmills.
 
 IMG_1[There are two forms of windmills:]: images/gui/buttonpanel/power/windmills.png
-IMG_2[The first is a low-tech 'wooden' windmill. It provides low-voltage power for the local neighborhood:] images/help-art01/WindMill.png
+IMG_2[The first is a low-tech 'wooden' windmill. It provides low-voltage power for the local neighborhood:] images/tiles/windmill1w.png
 IMG_3[The second is a 'modern' wind-farm type. It provides high-voltage power to the city's power grid:]  images/help-art01/WindMillHTechG.png
 
-The type you get depends on your tech-level when you build it.
 
 SUBH: Formulas
 

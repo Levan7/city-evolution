@@ -24,6 +24,7 @@
 
 #include "university.hpp"
 
+#include <fmt/format.h>
 #include <libxml++/parsers/textreader.h>  // for TextReader
 #include <libxml/xmlwriter.h>             // for xmlTextWriterWriteElement
 #include <string>                         // for basic_string, allocator
@@ -58,10 +59,12 @@ Construction *UniversityConstructionGroup::createConstruction(World& world) {
 bool
 UniversityConstructionGroup::can_build(const World& world, Message::ptr& message
 ) const {
-  if(world.stats.groupCount[GROUP_SCHOOL]/4
-    - world.stats.groupCount[GROUP_UNIVERSITY] < 1
-  ) {
-    message = NotEnoughStudentsMessage::create();
+  const int schools = world.stats.groupCount[GROUP_SCHOOL];
+  const int required = 4 * (world.stats.groupCount[GROUP_UNIVERSITY] + 1);
+  if(schools < required) {
+    message = CityRequirementMessage::create(fmt::format(
+      _("Universities require four elementary schools each. You have {} and need {} in total to build another university."),
+      schools, required));
     return false;
   }
 

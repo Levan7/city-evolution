@@ -2349,75 +2349,123 @@ void GameView::drawStreetLamps(Painter& painter,MapPoint tile) {
 }
 
 
-void GameView::drawAirportFlights(Painter& painter) {
+void GameView::resetAirportFlights() {
+  airportFlights.clear();
+  flightWaveStarted = -1;
+}
+
+void GameView::planAirportFlights() {
   const auto& world = getWorld();
-  std::vector<const Construction*> airports;
+  airportFlights.clear();
+  flightWaveStarted = world.evolution.visualTime;
+  std::vector<MapPoint> airports;
   for(const auto* building : world.map.constructions)
     if(!building->isDead() && building->constructionGroup->group == GROUP_AIRPORT &&
        static_cast<const CityBusiness*>(building)->operating)
-      airports.push_back(building);
-  std::sort(airports.begin(), airports.end(), [](const auto* a, const auto* b) {
-    return std::tie(a->point.x, a->point.y) < std::tie(b->point.x, b->point.y);
+      airports.push_back(building->point);
+  std::sort(airports.begin(), airports.end(), [](MapPoint a, MapPoint b) {
+    return std::tie(a.x, a.y) < std::tie(b.x, b.y);
   });
+  // Keep both endpoints for the whole flight so a missed operating day
+  // cannot turn an in-flight trip into a different route.
+  for(size_t i = 0; i < airports.size(); ++i)
+    airportFlights.push_back({airports[i], airports[(i+1) % airports.size()], int(i % 5) * 400});
+}
 
-  auto runway = [&](const Construction& airport, bool farEnd) {
-    const auto origin = getScreenPoint(airport.point.e(5).s(5)) - Vector2(384,384)*zoom;
-    return origin + (farEnd ? Vector2(508,97) : Vector2(163,253))*zoom;
+void GameView::drawAirportFlights(Painter& painter) {
+  const auto& world = getWorld();
+  const int now = world.evolution.visualTime;
+  int elapsed = (now - flightWaveStarted + 3600000) % 3600000;
+  if(flightWaveStarted < 0 || elapsed >= (airportFlights.empty() ? 1500 : 30000)) {
+    planAirportFlights();
+    elapsed = 0;
+  }
+
+  constexpr int runwayRollMs = 3200;
+  constexpr int offMapPauseMs = 1200;
+  const Vector2 runwayAxis(345, -156);
+  const Vector2 heading = runwayAxis / std::hypot(runwayAxis.x, runwayAxis.y);
+  // Match the airport sprite's 6x6 anchor and its painted runway centerline.
+  auto threshold = [this](MapPoint airport) {
+    return getScreenPoint(airport.e(5).s(5)) + Vector2(-221, -131)*zoom;
   };
-  const float clock = world.evolution.visualTime / 22000.f;
-  for(size_t i = 0; i < airports.size(); ++i) {
-    const auto& from = *airports[i];
-    const auto* to = airports.size() > 1 ? airports[(i+1) % airports.size()] : nullptr;
-    const float t = std::fmod(clock + float(i)/airports.size(), 1.f);
-    if(t >= .92f) continue;
-    const auto runwayStart = runway(from, false);
-    const auto runwayEnd = runway(from, true);
-    const auto fallback = getScreenPoint(MapPoint(from.point.x+8,-12));
-    Vector2 start = runwayStart;
-    Vector2 finish = runwayEnd;
-    float progress = t/.20f, altitude = 0;
-    if(t >= .20f && t < .72f) {
-      progress = (t-.20f)/.52f;
-      if(to) {
-        start = runwayEnd;
-        finish = runway(*to, false);
-        altitude = std::sin(progress*3.14159265f)*110.f;
-      } else if(progress < .5f) {
-        start = runwayEnd;
-        finish = fallback;
-        progress *= 2;
-        altitude = progress*110.f;
+  auto liveAirport = [&](MapPoint point) {
+    if(!inCity(point)) return false;
+    const auto* building = world.map(point)->construction;
+    return building && !building->isDead() && building->constructionGroup->group == GROUP_AIRPORT;
+  };
+  for(const auto& flight : airportFlights) {
+    const int time = elapsed - flight.delay;
+    if(time < 0 || !liveAirport(flight.departure) || !liveAirport(flight.arrival))
+      continue;
+
+    const bool local = flight.departure == flight.arrival;
+    const Vector2 takeoffStart = threshold(flight.departure);
+    const Vector2 takeoffEnd = takeoffStart + runwayAxis*zoom;
+    const Vector2 landingStart = threshold(flight.arrival);
+    const Vector2 landingEnd = landingStart + runwayAxis*zoom;
+    const Vector2 gap = landingStart - takeoffEnd;
+    const float distance = std::hypot(gap.x, gap.y) / zoom;
+    const int cruiseMs = local ? 18000 : std::clamp(int(distance * 5), 5500, 20000);
+    const int landingTime = runwayRollMs + cruiseMs;
+    Vector2 location, direction = heading;
+    float altitude = 0;
+
+    if(time < runwayRollMs) {
+      const float t = float(time) / runwayRollMs;
+      location = takeoffStart + runwayAxis*(t*t*zoom);
+    } else if(time < landingTime) {
+      Vector2 a = takeoffEnd, d = landingStart;
+      Vector2 startHeading = heading, endHeading = heading;
+      float t = float(time - runwayRollMs) / cruiseMs;
+      if(local) {
+        const int legMs = (cruiseMs - offMapPauseMs) / 2;
+        const int airTime = time - runwayRollMs;
+        if(airTime < legMs) {
+          d = getScreenPoint(MapPoint(flight.departure.x, -9));
+          endHeading = d - a;
+          endHeading = endHeading / std::hypot(endHeading.x, endHeading.y);
+          t = float(airTime) / legMs;
+          altitude = 132 * t * (2-t);
+        } else if(airTime >= legMs + offMapPauseMs) {
+          a = getScreenPoint(MapPoint(-9, flight.arrival.y));
+          startHeading = d - a;
+          startHeading = startHeading / std::hypot(startHeading.x, startHeading.y);
+          t = float(airTime - legMs - offMapPauseMs) / legMs;
+          altitude = 132 * (1-t*t);
+        } else continue;
       } else {
-        start = fallback;
-        finish = runwayStart;
-        progress = 2*progress-1;
-        altitude = (1-progress)*110.f;
+        altitude = 132 * std::sin(t*3.14159265f);
       }
-    } else if(t >= .72f) {
-      start = to ? runway(*to, false) : runwayStart;
-      finish = to ? runway(*to, true) : runwayEnd;
-      progress = (t-.72f)/.20f;
-    }
-    const auto dir = finish-start;
-    const float length = std::hypot(dir.x, dir.y);
-    if(length < 1) continue;
-    const auto location = start + dir*progress - Vector2(0,(altitude+3)*zoom);
-    if(location.x < -40 || location.y < -40 ||
-       location.x > getWidth()+40 || location.y > getHeight()+40) continue;
-    const Vector2 f = dir*(zoom/length), side(-f.y,f.x);
-    Vector2 body[] = {location+f*14, location+f*9+side*3, location-f*13+side*2,
-                      location-f*16, location-f*13-side*2, location+f*9-side*3};
-    Vector2 wing[] = {location+f*3, location-f*5+side*13, location-f*9+side*13,
-                      location-f*5, location-f*9-side*13, location-f*5-side*13};
-    Vector2 tail[] = {location-f*9,location-f*14+side*6,location-f*16,location-f*14-side*6};
-    painter.setFillColor(Color(191,211,224));
-    painter.fillPolygon(6,wing);
-    painter.setFillColor(Color(36,105,135));
-    painter.fillPolygon(4,tail);
-    painter.setFillColor(Color(244,244,235));
-    painter.fillPolygon(6,body);
-    painter.setLineColor(Color(29,82,114));
-    painter.drawLine(location+f*9,location-f*8);
+
+      // Cubic Bézier handles align with the runway direction on departure
+      // and arrival, including when the destination lies behind the runway.
+      const Vector2 span = d - a;
+      const float length = std::hypot(span.x, span.y) / zoom;
+      const float handle = std::clamp(length * .32f, 120.f, 560.f) * zoom;
+      const Vector2 b = a + startHeading*handle;
+      const Vector2 c = d - endHeading*handle;
+      const float u = 1-t;
+      location = a*(u*u*u) + b*(3*u*u*t) + c*(3*u*t*t) + d*(t*t*t);
+      direction = (b-a)*(u*u) + (c-b)*(2*u*t) + (d-c)*(t*t);
+    } else if(time < landingTime + runwayRollMs) {
+      const float t = float(time - landingTime) / runwayRollMs;
+      location = landingStart + (landingEnd-landingStart)*(t*(2-t));
+    } else continue;
+
+    location -= Vector2(0, (altitude+9)*zoom);
+    const float margin = 56*zoom;
+    if(location.x < -margin || location.y < -margin ||
+       location.x > getWidth()+margin || location.y > getHeight()+margin)
+      continue;
+
+    // Sixteen headings of the same airliner painted on the parked apron.
+    const int frame = (int(std::lround(std::atan2(direction.y, direction.x) / .39269908f)) + 16) % 16;
+    Texture* aircraft = texture_manager->load("images/aircraft/airliner-" + std::to_string(frame) + ".png");
+    const Vector2 radius(aircraft->getWidth()*zoom/2, aircraft->getHeight()*zoom/2);
+    setNightTint(*aircraft, world.evolution.darkness());
+    painter.drawStretchTexture(aircraft, Rect2D(location-radius, location+radius));
+    aircraft->setLighting(255, 255, 255);
   }
 }
 

@@ -316,7 +316,10 @@ ButtonPanel::updateTech() {
         }
       }
     }
-    else if(tool->button->isEnabled() || tool->button->getTooltip() == "") {
+    else {
+      auto requirement = dynamic_message_cast<CityRequirementMessage>(msg);
+      if(!requirement && !tool->button->isEnabled() && !tool->button->getTooltip().empty())
+        continue;
       tool->button->enable(false);
       if(tool == tool->menu->activeTool) {
         tool->menu->button->enable(false);
@@ -340,10 +343,11 @@ ButtonPanel::updateTech() {
           << _("$") << op.constructionGroup->getCosts(world)
           << ")";
       }
-      else {
-        // TODO: handle NotEnoughStudentsMessage
+      else if(requirement) {
+        os << "\n" << requirement->text;
       }
-      tool->button->setTooltip(os.str());
+      if(tool->button->getTooltip() != os.str())
+        tool->button->setTooltip(os.str());
     }
   }
   for(auto& m:menus)m.first->enable(true);

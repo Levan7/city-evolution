@@ -11,6 +11,13 @@
 - Brighten terrain and building windows after dark, add more streetlamps in developed areas and light powered airports and circuits.
 - Add a fire-location link to the alert and keep arriving crews spraying long enough to see them at work.
 
+### Hotfix 1
+
+- Explain the school requirement when university placement is blocked. Each university needs four elementary schools.
+- Keep each airliner on its assigned flight, with runway rolls and smooth departure and arrival turns. Use the same airliner and scale as the parked aircraft.
+- Redraw the local windmill with a timber tower, masonry base and animated cloth sails while preserving its footprint and sprite anchors.
+- Refresh Ubuntu package indexes from the main Ubuntu archive before the AppImage job installs dependencies.
+
 ## City Evolution — Preview 26
 
 - Audit update: separated airport and circuit receipts in the finance panel, enlarged the building report, prioritized missing transport access, added both venues to the help index and extended report tests to prerequisite-gated buildings.

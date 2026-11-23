@@ -12,9 +12,9 @@ BEGIN
   BEGIN
    VALUE "CompanyName", "Levan\0"
    VALUE "FileDescription", "City Evolution portable launcher\0"
-   VALUE "FileVersion", "Preview 27\0"
+   VALUE "FileVersion", "Preview 27 Hotfix 1\0"
    VALUE "ProductName", "City Evolution\0"
-   VALUE "ProductVersion", "Preview 27\0"
+   VALUE "ProductVersion", "Preview 27 Hotfix 1\0"
    VALUE "OriginalFilename", "City Evolution.exe\0"
   END
  END

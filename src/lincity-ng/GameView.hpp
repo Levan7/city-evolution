@@ -98,6 +98,7 @@ public:
     bool inCity( MapPoint tile );
 
     void setGame(Game *game);
+    void resetAirportFlights();
 
     bool textures_ready;
     //bool economyGraph_open;
@@ -109,6 +110,13 @@ private:
     std::unordered_multimap<int, size_t> streetActorsByTile;
     int lastAtmosphereTime = -1, trafficRefresh = 0;
     void drawCityLife(Painter& painter);
+    struct AirportFlight {
+        MapPoint departure, arrival;
+        int delay;
+    };
+    std::vector<AirportFlight> airportFlights;
+    int flightWaveStarted = -1;
+    void planAirportFlights();
     void drawAirportFlights(Painter& painter);
     void drawCircuitRaces(Painter& painter);
     void drawTransit(Painter&,int modeFilter=-1,MapPoint tile=MapPoint(-1,-1));
