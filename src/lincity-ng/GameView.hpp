@@ -110,6 +110,7 @@ private:
     int lastAtmosphereTime = -1, trafficRefresh = 0;
     void drawCityLife(Painter& painter);
     void drawAirportFlights(Painter& painter);
+    void drawCircuitRaces(Painter& painter);
     void drawTransit(Painter&,int modeFilter=-1,MapPoint tile=MapPoint(-1,-1));
     int lastTransitFrame=-1;
     void updateStreetActors();

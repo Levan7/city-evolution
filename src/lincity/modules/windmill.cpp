@@ -41,7 +41,7 @@
 #include "util/gettextutil.hpp"
 
 WindmillConstructionGroup windmillConstructionGroup(
-  N_("Windmill"),
+  N_("Local windmill"),
   N_("Windmills"),
   FALSE,                     /* need credit? */
   GROUP_WINDMILL,

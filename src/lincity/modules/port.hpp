@@ -25,6 +25,7 @@
 #ifndef __LINCITYNG_LINCITY_MODULES_PORT_HPP__
 #define __LINCITYNG_LINCITY_MODULES_PORT_HPP__
 
+#include <deque>
 #include <array>                      // for array
 #include <map>                        // for map
 #include <string>                     // for string
@@ -56,6 +57,7 @@ class World;
 #define PORT_POLLUTION    1
 //FIXME Guessing some values
 #define PORT_LABOR  100
+#define PORT_GRID_CAPACITY 20000
 #define PORT_FOOD  500
 #define PORT_COAL  100
 #define PORT_GOODS 100
@@ -112,6 +114,10 @@ public:
         commodityRuleCount[STUFF_STEEL].take = true;
         commodityRuleCount[STUFF_STEEL].give = true;
 
+        // Local electricity is routed by the grid, outside the cargo network.
+        commodityRuleCount[STUFF_HIVOLT] = {PORT_GRID_CAPACITY, false, false};
+        commodityRates[STUFF_HIVOLT] = 2;
+
         commodityRates[STUFF_FOOD] = PORT_FOOD_RATE;
         commodityRates[STUFF_COAL] = PORT_COAL_RATE;
         commodityRates[STUFF_GOODS] = PORT_GOODS_RATE;
@@ -150,6 +156,15 @@ public:
     int pence;
     int working_days, busy;
     int tech_made;
+    static constexpr int historyMonths = 1200;
+    struct TradeMonth {
+        int month = 0;
+        int imports = 0;
+        int exportCents = 0;
+        std::array<int, STUFF_COUNT> imported{}, exported{};
+    };
+    TradeMonth currentTrade;
+    std::deque<TradeMonth> tradeHistory;
 };
 
 #endif // __LINCITYNG_LINCITY_MODULES_PORT_HPP__

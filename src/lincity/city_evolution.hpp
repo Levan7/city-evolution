@@ -138,6 +138,7 @@ struct CityEvolution {
   int weatherElapsed = 0;
   int weatherDuration = 240000;
   int visualTime = 0;
+  int airportFare = 1;
   unsigned int randomState = 173831;
   static constexpr int BaseTaxLimit = 30, MaxTaxLimit = 70;
   int incomeTaxLimit = BaseTaxLimit;

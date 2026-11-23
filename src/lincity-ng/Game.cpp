@@ -199,6 +199,15 @@ void Game::showTransport() {
     }
     for(int i=0;i<4;++i)getParagraph(*w,("TransitMode"+std::to_string(i)).c_str())->setText(std::string(labels[i])+": "+std::to_string(t.passengers[i])+" trips/month | "+std::to_string(t.connected[i])+" connected | "+std::to_string(t.disconnected[i])+" disconnected | "+std::to_string(t.unstaffed[i])+" unstaffed");
     getParagraph(*w,"TransitSummary")->setText(std::to_string(t.servedHomes.size())+" homes with job access | Shopping trips "+std::to_string(std::accumulate(t.shoppingTrips.begin(),t.shoppingTrips.end(),0))+"/month | Fares about $"+std::to_string(t.faresMonth)+"/month");
+    int airports = 0, operating = 0;
+    for(const auto* building : world->map.constructions)
+      if(!building->isDead() && building->constructionGroup->group == GROUP_AIRPORT) {
+        ++airports;
+        operating += static_cast<const CityBusiness*>(building)->operating;
+      }
+    getParagraph(*w,"TransitMode4")->setText("Regional airports: " + std::to_string(operating)
+      + " operating / " + std::to_string(airports) + " built");
+    getParagraph(*w,"Fare4")->setText("$" + std::to_string(world->evolution.airportFare) + " / ticket");
     const char* views[]={"Normal city view","Show all transit","Underground track view","Elevated track view"};
     getButton(*w,"TransitView")->setCaptionText(views[std::clamp(t.view,0,3)]);
     getGameView().setMapDirty();getGameView().setDirty();
@@ -212,6 +221,13 @@ void Game::showTransport() {
     getButton(*w,"FareDown" + std::to_string(mode))->clicked.connect([change](Button*) {change(-1);});
     getButton(*w,"FareUp" + std::to_string(mode))->clicked.connect([change](Button*) {change(1);});
   }
+  auto changeAirFare = [this,refresh](int amount) {
+    auto& fare = world->evolution.airportFare;
+    fare = std::clamp(fare + amount, 0, TransitSystem::MaxFare);
+    refresh();
+  };
+  getButton(*w,"FareDown4")->clicked.connect([changeAirFare](Button*) {changeAirFare(-1);});
+  getButton(*w,"FareUp4")->clicked.connect([changeAirFare](Button*) {changeAirFare(1);});
   getButton(*w,"TransitView")->clicked.connect([this,refresh](Button*) {world->transit.view=(world->transit.view+1)%4;refresh();});
   getButton(*w,"TransitRefresh")->clicked.connect([refresh](Button*) {refresh();});
   getButton(*w,"TransitClose")->clicked.connect([this,w](Button*) {windowmanager->removeWindow(w);});
@@ -1156,10 +1172,16 @@ Game::handleMessage(Message::ptr message_) {
     DialogBuilder()
       .titleText(_("Fire!"))
       .messageAddTextBold(_("A Fire has Started"))
-      .messageAddText(fmt::format(_("A fire has broken out in a {}! You should"
-          " address this promptly before the whole city burns down."),
+      .messageAddText(fmt::format(_("A fire was reported at a {}. A funded, staffed fire station can send a crew if it has a route."),
         _(message->getGroup().name)))
-      .imageFile("images/gui/dialogs/warning.png") // TODO: fire icon
+      .messageAddAction(_("Go to fire location"), [this, point=message->getPoint()] {
+        if(!world->map.is_visible(point)) return;
+        getButtonPanel().selectQueryTool();
+        getGameView().show(point);
+        getMpsMap().query(world->map(point));
+        getMiniMap().switchView("MapMPS");
+      })
+      .imageFile("images/gui/dialogs/warning.png")
       .buttonSet(DialogBuilder::ButtonSet::OK)
       .build();
   }

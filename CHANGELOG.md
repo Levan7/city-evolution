@@ -1,5 +1,16 @@
 # Changelog
 
+## City Evolution — Preview 27
+
+- Fill exposed ground beneath the regional airport, Grand Prix circuit and distribution center. Fit the Industry drawer and the minimap to their panels.
+- Offer separate local windmills (3% technology, low voltage) and grid wind turbines (45%, high voltage), with distinct artwork and build buttons.
+- Show surveyed coal deposits in the city view when placing a mine. The mine preview and extraction both extend seven tiles beyond the footprint.
+- Clarify backed-up power and steel outputs. Allow freight warehouses to collect small imports from ports and prioritize nearby buyers short of goods or steel. Add shortage advice and improve full-autonomy planning and project selection.
+- Allow ports to trade high-voltage power by grid connection. Add per-port trade value and commodity quantities over the last month and rolling 1-, 5-, 10-, 50- and 100-year periods. History starts with this update.
+- Add an adjustable regional airport fare, aircraft takeoff and landing between operating airports, race cars on operating circuits and inspection sounds for the new facilities.
+- Brighten terrain and building windows after dark, add more streetlamps in developed areas and light powered airports and circuits.
+- Add a fire-location link to the alert and keep arriving crews spraying long enough to see them at work.
+
 ## City Evolution — Preview 26
 
 - Audit update: separated airport and circuit receipts in the finance panel, enlarged the building report, prioritized missing transport access, added both venues to the help index and extended report tests to prerequisite-gated buildings.

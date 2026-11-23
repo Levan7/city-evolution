@@ -41,7 +41,7 @@
     </cell>
     <cell row="1" col="1" rowspan="2" halign="left" valign="top">
       <TableLayout rows="3" cols="1">
-        <rowsize row="1" fixed="360" />
+        <rowsize row="1" fixed="386" />
         <rowsize row="3" fixed="156" />
         <cell row="1" col="1" halign="left" valign="top">
           <Import src="gui/buttonpanel.xml" />

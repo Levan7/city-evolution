@@ -152,11 +152,27 @@ void distributeWarehouseFreight(World& world) {
         });
       for(auto [source,route] : endpoints) {
         const auto& supply = source->localTradeRule(stuff);
-        const int threshold = supply.take ? supply.maxload/2 : 0;
-        if(source->constructionGroup->group == GROUP_MARKET || isWarehouseGroup(source->constructionGroup->group)) continue;
-        if(source->constructionGroup->group == GROUP_PORT &&
-          !static_cast<Port*>(source)->commodityRuleCount[stuff].take) continue;
-        transfer(*source,*warehouse,route,i,source->commodityCount[stuff]-threshold);
+        const int group = source->constructionGroup->group;
+        if(group == GROUP_MARKET || isWarehouseGroup(group)) continue;
+        int reserve = supply.take ? supply.maxload/2 : 0;
+        if(group == GROUP_PORT) {
+          const auto& order = static_cast<const Port*>(source)->commodityRuleCount[stuff];
+          if(!order.take || order.give) continue;
+          // An import order is stock for the city, including the first half-load.
+          reserve = 0;
+        }
+        transfer(*source,*warehouse,route,i,source->commodityCount[stuff]-reserve);
+      }
+      if(stuff == STUFF_GOODS || stuff == STUFF_STEEL) {
+        auto priority = [stuff](const Construction& building) {
+          const int group = building.constructionGroup->group;
+          if(group == GROUP_PORT || isWarehouseGroup(group)) return 0;
+          const int daily = building.commodityMaxCons[stuff] / NUMOF_DAYS_IN_MONTH;
+          return daily > 0 && building.commodityCount[stuff] < daily ? 2 : 1;
+        };
+        std::stable_sort(endpoints.begin(), endpoints.end(), [&](const auto& a, const auto& b) {
+          return priority(*a.first) > priority(*b.first);
+        });
       }
       for(auto [buyer,route] : endpoints) {
         const int group = buyer->constructionGroup->group;

@@ -21,6 +21,7 @@
 ** ---------------------------------------------------------------------- */
 
 #include "Dialog.hpp"
+#include "gui/DialogBuilder.hpp"
 
 #include <assert.h>                         // for assert
 #include <config.h>                         // for PACKAGE_VERSION
@@ -653,6 +654,39 @@ void Dialog::editPort(){
     Button* applyButton = getButton( *myDialogComponent, "Apply" );
     applyButton->clicked.connect(
       std::bind(&Dialog::applyPortButtonClicked, this, _1));
+    getButton(*myDialogComponent, "TradeHistory")->clicked.connect([this, port](Button*) {
+      DialogBuilder history;
+      history.windowManager(windowManager).titleText("Port trade history").buttonSet(DialogBuilder::ButtonSet::OK);
+      const int currentMonth = (game.getWorld().total_time + 1) / NUMOF_DAYS_IN_MONTH;
+      history.messageAddText("This month so far: $" + std::to_string(port->monthly_ic)
+        + " imported, $" + std::to_string(port->monthly_et / 100) + " exported.");
+      history.messageAddText("Completed months only. Old saves start recording history after this update.");
+      for(const int months : {1, 12, 60, 120, 600, 1200}) {
+        long long cost = 0, revenueCents = 0;
+        int recorded = 0;
+        std::array<long long, STUFF_COUNT> imports{}, exports{};
+        for(const auto& entry : port->tradeHistory) {
+          if(entry.month < currentMonth - months || entry.month >= currentMonth) continue;
+          ++recorded;
+          cost += entry.imports;
+          revenueCents += entry.exportCents;
+          for(Commodity c = STUFF_INIT; c < STUFF_COUNT; ++c) {
+            imports[c] += entry.imported[c];
+            exports[c] += entry.exported[c];
+          }
+        }
+        const std::string label = months == 1 ? "Last month" :
+          "Last " + std::to_string(months / 12) + (months == 12 ? " year" : " years");
+        history.messageAddTextBold(label + " (" + std::to_string(recorded) + " months recorded)");
+        history.messageAddText("$" + std::to_string(cost) + " imported, $"
+          + std::to_string(revenueCents / 100) + " exported.");
+        for(Commodity c = STUFF_INIT; c < STUFF_COUNT; ++c)
+          if(imports[c] || exports[c])
+            history.messageAddText(std::string(commodityName(c)) + ": "
+              + std::to_string(imports[c]) + " imported / " + std::to_string(exports[c]) + " exported");
+      }
+      history.build();
+    });
     Button* gotoButton = getButton( *myDialogComponent, "goto" );
     gotoButton->clicked.connect(
       std::bind(&Dialog::gotoButtonClicked, this, _1));

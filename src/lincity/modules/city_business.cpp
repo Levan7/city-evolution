@@ -145,7 +145,9 @@ void CityBusiness::update() {
       consumeStuff(STUFF_LOVOLT, recipe.power);
       consumeStuff(STUFF_GOODS, goods);
       produceStuff(STUFF_WASTE, recipe.waste);
-      world.income(airport ? 60 : 45, world.stats.income.service_revenue);
+      const int fare = world.evolution.airportFare;
+      const int tickets = 600 / (10 + 4 * std::max(0, fare - 1));
+      world.income(airport ? fare * tickets : 45, world.stats.income.service_revenue);
       if(world.total_time % 10 == 0)
         world.map(point)->pollution += airport ? 2 : 1;
       operated = true;

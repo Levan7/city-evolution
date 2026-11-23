@@ -23,6 +23,7 @@
 ** ---------------------------------------------------------------------- */
 
 #include "GameView.hpp"
+#include <tuple>
 #include "lincity/street_routes.hpp"
 #include "lincity/road_power.hpp"
 #include "NightCrops.hpp"
@@ -40,6 +41,7 @@
 #include <fmt/format.h>                   // for format
 #include <libxml++/parsers/textreader.h>  // for TextReader
 #include <libxml++/ustring.h>             // for ustring
+#include <array>
 #include <cstdio>                         // for stderr
 #include <cmath>                          // for sqrt, fabs, fabsf, floorf
 #include <cstddef>                        // for size_t, NULL
@@ -93,6 +95,38 @@ const int scale3d = 128; // guestimate value for good looking 3d view;
 const float GameView::defaultTileWidth = 128;
 const float GameView::defaultTileHeight = 64;
 const float GameView::defaultZoom = 1.0;    // fastest drawing
+
+namespace {
+
+void setNightTint(Texture& texture, int darkness, int cloud = 0, bool powered = false)
+{
+    const int strength = powered ? 57 : 85;
+    texture.setLighting(255 - darkness * strength / 1000 - cloud,
+        255 - darkness * (strength - 12) / 1000 - cloud,
+        255 - darkness * (strength - 33) / 1000 - cloud);
+}
+
+void drawLampGlow(Painter& painter, Vector2 center, Vector2 radius, Color color)
+{
+    if(color.a == 0)
+        return;
+    static const std::array<Vector2, 12> unitCircle = {
+        Vector2(1, 0), Vector2(.866f, .5f), Vector2(.5f, .866f),
+        Vector2(0, 1), Vector2(-.5f, .866f), Vector2(-.866f, .5f),
+        Vector2(-1, 0), Vector2(-.866f, -.5f), Vector2(-.5f, -.866f),
+        Vector2(0, -1), Vector2(.5f, -.866f), Vector2(.866f, -.5f)
+    };
+    painter.setFillColor(color);
+    for(float scale : {1.f, .68f, .36f}) {
+        std::array<Vector2, unitCircle.size()> points;
+        for(size_t i = 0; i < unitCircle.size(); ++i)
+            points[i] = center + Vector2(unitCircle[i].x * radius.x,
+                                        unitCircle[i].y * radius.y) * scale;
+        painter.fillPolygon(points.size(), points.data());
+    }
+}
+
+} // namespace
 
 GameView::GameView() {
     loaderThread = 0;
@@ -1273,10 +1307,7 @@ void GameView::drawTexture(Painter& painter, const MapPoint &tile, GraphicsInfo 
             ? static_cast<const Residence*>(c)->hasElectricity() : c->commodityCount[STUFF_LOVOLT] > 0;
         }
         const int cloud = e.currentWeather() ? 10 : 0;
-        const int strength = powered ? 80 : 110;
-        graphicsInfo->texture->setLighting(255 - dark*strength/1000 - cloud,
-          255 - dark*(strength-12)/1000 - cloud,
-          255 - dark*(strength-35)/1000 - cloud);
+        setNightTint(*graphicsInfo->texture, dark, cloud, powered);
         painter.drawStretchTexture(graphicsInfo->texture, tilerect);
         graphicsInfo->texture->setLighting(255,255,255);
         bool occupied=true;
@@ -1304,9 +1335,18 @@ void GameView::drawTile(Painter& painter, const MapPoint &tile)
     ResourceGroup *resgrp;
     unsigned short size = cstgrp->size;
 
-    //Attention map is rotated for displaying
-    if(tile.n(size-1) == upperLeft) //Signs are tested
+    // The foreground sprites do not cover every pixel of their footprints.
+    // Draw the terrain and foreground together in the building's paint pass.
+    if(tile.n(size-1) == upperLeft)
     {
+        if(cstgrp->group == GROUP_AIRPORT || cstgrp->group == GROUP_RACING_CIRCUIT ||
+           cstgrp->group == GROUP_LARGE_WAREHOUSE || cstgrp->group == GROUP_WINDMILL) {
+            auto& ground = ResourceGroup::resMap.at("Green")->graphicsInfoVector;
+            if(!ground.empty())
+                for(int y = 0; y < size; ++y)
+                    for(int x = 0; x < size; ++x)
+                        drawTexture(painter, upperLeft.e(x).s(y), &ground.front());
+        }
         resgrp = getWorld().map(upperLeft)->getTileResourceGroup();
         //adjust OnScreenPoint of big Tiles
         MapPoint lowerRightTile(tile.e(size-1));
@@ -1620,6 +1660,20 @@ void GameView::draw(Painter& painter)
       refreshMap = false;
     }
     painter.drawTexture(mapTexture.get(), Vector2(0,0));
+    const auto* placement = getUserOperation();
+    if(getWorld().coal_survey_done && placement->action == UserOperation::ACTION_BUILD &&
+       placement->constructionGroup->group == GROUP_COALMINE) {
+      for(int k = 0; k <= 2 * (lowerLeftTile.y - upperLeftTile.y); ++k)
+      for(int i = 0; i <= upperRightTile.x - upperLeftTile.x; ++i) {
+        const MapPoint p(upperLeftTile.x + i + (k+1)/2, upperLeftTile.y - i + k/2);
+        if(!inCity(p) || getWorld().map(p)->coal_reserve <= 0) continue;
+        const auto screen = getScreenPoint(p);
+        const bool rich = getWorld().map(p)->coal_reserve >= COAL_RESERVE_SIZE / 2;
+        painter.setFillColor(rich ? Color(255, 156, 49, 165) : Color(239, 212, 80, 120));
+        fillDiamond(painter, Rect2D(screen.x-tileWidth/2, screen.y-tileHeight,
+                                   screen.x+tileWidth/2, screen.y));
+      }
+    }
     if(mapOverlay != overlayOnly) {
       const auto& world = getWorld();
       const int side = world.map.len();
@@ -1655,7 +1709,7 @@ void GameView::draw(Painter& painter)
         }
         }
       }
-      drawTransit(painter,1);drawEmergencyActors(painter);drawCityLife(painter);drawAirportFlights(painter);
+      drawTransit(painter,1);drawEmergencyActors(painter);drawCityLife(painter);drawAirportFlights(painter);drawCircuitRaces(painter);
       if(getWorld().evolution.darkness()>50)for(auto*c:getWorld().map.constructions){int g=c->constructionGroup->group;if(g==GROUP_ROAD||g==GROUP_TRACK||g==GROUP_ROAD_BRIDGE||g==GROUP_TRACK_BRIDGE)drawStreetLamps(painter,c->point);}
     }
 
@@ -2090,6 +2144,11 @@ void GameView::showToolInfo( int number /*= 0*/ )
         infotextstream << getUserOperation()->constructionGroup->getName();
         infotextstream << _(": Cost to build ") << getUserOperation()->constructionGroup->getCosts(getWorld()) <<_("$");
         infotextstream << _(", to bulldoze ") << getUserOperation()->constructionGroup->bul_cost <<_("$") << ".";
+        if(getUserOperation()->constructionGroup->group == GROUP_COALMINE) {
+            infotextstream << (getWorld().coal_survey_done
+                ? " Survey: orange = richer deposit, yellow = smaller deposit."
+                : " Buy the coal survey to see deposits.");
+        }
         if( number > 1 ){
             infotextstream << _(" To build ") << number << _(" of them ");
             infotextstream << _("will cost about ") << number*getUserOperation()->constructionGroup->getCosts(getWorld()) << _("$") << "-";
@@ -2180,23 +2239,49 @@ IMPLEMENT_COMPONENT_FACTORY(GameView)
 /** @file lincity-ng/GameView.cpp */
 
 void GameView::drawNightLayers(Painter& painter,const std::string& key,const Rect2D& rect,bool occupied,bool powered) {
-  if(!occupied) return;
+  const auto& e = getWorld().evolution;
+  const float amount = e.darkness() / 1000.f;
+  if(!occupied || amount <= 0 || key.empty()) return;
+
+  // Fixture positions are in pixels relative to the venue sprite.
+  const auto venueLamp = [&](Vector2 fixture, Color color) {
+    const auto p = rect.p1 + fixture * zoom;
+    drawLampGlow(painter, p, Vector2(13, 10) * zoom, color);
+    painter.setFillColor(Color(255, 238, 184, int(amount * 230)));
+    painter.fillRectangle(Rect2D(p - Vector2(1.5f, 1) * zoom,
+                                 p + Vector2(1.5f, 1) * zoom));
+  };
+  if(powered && key == "Airport:0") {
+    for(Vector2 fixture : {Vector2(492, 164), Vector2(588, 162), Vector2(519, 255),
+                           Vector2(340, 284), Vector2(409, 285)})
+      venueLamp(fixture, Color(255, 223, 156, int(amount * 33)));
+  } else if(powered && key == "RacingCircuit:0") {
+    for(Vector2 fixture : {Vector2(435, 194), Vector2(461, 188), Vector2(486, 181),
+                           Vector2(514, 174), Vector2(536, 167)})
+      venueLamp(fixture, Color(255, 203, 118, int(amount * 32)));
+  }
+
   auto it=nightCrops.find(key);
   if(it==nightCrops.end()) {auto fallback=key;auto variant=fallback.find("Variant");auto colon=fallback.find(":");if(variant!=std::string::npos&&colon!=std::string::npos)fallback.erase(variant,colon-variant);it=nightCrops.find(fallback);}
   if(it==nightCrops.end())return;
-  const auto& e=getWorld().evolution; float amount=e.darkness()/1000.f;
-  if(amount<=0) return;
   float late=0;
   if(e.skyPhase==2) late=std::clamp(float(e.skyElapsed)/std::max(1,e.skyDuration)*2.f-.6f,0.f,1.f);
+  const bool lantern = key.rfind("Residential", 0) == 0 || key.rfind("Commune", 0) == 0;
+  const bool vehicle = key.rfind("Traffic:", 0) == 0;
   for(const auto& layer:it->second) {
-    const bool lantern=key.rfind("Residential",0)==0 || key.rfind("Commune",0)==0;
     if(layer.electric&&!powered&&!lantern)continue;
-    float alpha=std::min(1.f,amount*1.25f)*(layer.evening?1-late*.35f:1); if(layer.electric&&!powered)alpha*=.45f; if(alpha<=0)continue;
-    auto tx=texture_manager->load(layer.file);tx->setOpacity(static_cast<unsigned char>(255*alpha));
-    const float sx=zoom;
-    const float sy=sx;
-    Vector2 p=rect.p1+Vector2(layer.x*sx,layer.y*sy);
-    painter.drawStretchTexture(tx,Rect2D(p.x,p.y,p.x+tx->getWidth()*sx,p.y+tx->getHeight()*sy));tx->setOpacity(255);
+    float alpha = std::min(1.f, amount * 1.55f) * (layer.evening ? 1 - late * .24f : 1);
+    if(layer.electric && !powered) alpha *= .58f;
+    auto tx = texture_manager->load(layer.file);
+    const Vector2 p = rect.p1 + Vector2(layer.x, layer.y) * zoom;
+    const Vector2 size = Vector2(tx->getWidth(), tx->getHeight()) * zoom;
+    if(!vehicle && zoom >= .45f && tx->getWidth() <= 80 && tx->getHeight() <= 60) {
+      drawLampGlow(painter, p + size * .5f, size * .58f + Vector2(7, 5) * zoom,
+                   Color(255, 201, 112, int(alpha * 20)));
+    }
+    tx->setOpacity(static_cast<unsigned char>(255 * alpha));
+    painter.drawStretchTexture(tx, Rect2D(p, p + size));
+    tx->setOpacity(255);
   }
 }
 
@@ -2251,52 +2336,118 @@ void GameView::drawEmergencyActors(Painter& painter) {
 
 void GameView::drawStreetLamps(Painter& painter,MapPoint tile) {
  auto& w=getWorld();float night=w.evolution.darkness()/1000.f;
- if(night<=.05f||(tile.x+tile.y)%4)return;
+ if(night<=.05f||(tile.x+tile.y)%3)return;
  auto visible=getScreenPoint(tile);if(visible.x<0||visible.y<0||visible.x>getWidth()||visible.y>getHeight())return;
  bool settled=false;for(int dy=-3;dy<=3&&!settled;++dy)for(int dx=-3;dx<=3;++dx){MapPoint q(tile.x+dx,tile.y+dy);if(!w.map.is_visible(q))continue;auto*c=w.map(q)->reportingConstruction;if(c&&!(c->flags&FLAG_IS_TRANSPORT)){settled=true;break;}}
  if(!settled)return;
  auto base=getScreenPoint(tile)+Vector2(tileWidth*.25f,-tileHeight*.55f);
  auto lamp=base-Vector2(0,28*zoom);
- for(int radius=30;radius>=6;radius-=6){Vector2 points[12];for(int k=0;k<12;++k){float angle=k*6.2831853f/12;points[k]=base+Vector2(std::cos(angle)*radius*zoom,std::sin(angle)*radius*zoom*.45f);}painter.setFillColor(Color(255,190,85,int(night*18)));painter.fillPolygon(12,points);}
- for(int radius=9;radius>=3;radius-=3){Vector2 points[12];for(int k=0;k<12;++k){float angle=k*6.2831853f/12;points[k]=lamp+Vector2(std::cos(angle)*radius*zoom,std::sin(angle)*radius*zoom);}painter.setFillColor(Color(255,195,90,int(night*25)));painter.fillPolygon(12,points);}
+ drawLampGlow(painter, base, Vector2(38, 17) * zoom, Color(255, 190, 85, int(night * 28)));
+ drawLampGlow(painter, lamp, Vector2(12, 12) * zoom, Color(255, 210, 120, int(night * 36)));
  painter.setLineColor(Color(100,90,68,255));painter.drawLine(base,lamp);
- painter.setFillColor(Color(255,205,115,int(230*night)));painter.fillRectangle(Rect2D(lamp.x-2*zoom,lamp.y-2*zoom,lamp.x+2*zoom,lamp.y+3*zoom));
+ painter.setFillColor(Color(255,232,167,int(250*night)));painter.fillRectangle(Rect2D(lamp.x-2*zoom,lamp.y-2*zoom,lamp.x+2*zoom,lamp.y+3*zoom));
 }
 
 
-// Decorative flights follow a map-space route from outside the city to each
-// operating airport. Simulation income comes from staffed operating days.
 void GameView::drawAirportFlights(Painter& painter) {
   const auto& world = getWorld();
-  for(const auto* construction : world.map.constructions) {
-    if(construction->constructionGroup->group != GROUP_AIRPORT) continue;
-    const auto* airport = static_cast<const CityBusiness*>(construction);
-    if(!airport->operating) continue;
-    const auto center = airport->point;
-    const double cycle = std::fmod(world.evolution.visualTime / 16000.0
-      + (center.x + center.y) * .017, 1.0);
-    const bool inbound = cycle < .45;
-    const bool outbound = cycle > .55;
-    if(!inbound && !outbound) continue; // turn around at the terminal
-    const float fraction = inbound ? float(cycle / .45) : float((1-cycle) / .45);
-    const auto start = getScreenPoint(MapPoint(-12, center.y+3));
-    const auto finish = getScreenPoint(MapPoint(center.x+3, center.y+3));
-    const auto location = start + (finish-start)*fraction
-      - Vector2(0, 60*zoom*(1-fraction));
-    const auto direction = finish-start;
-    const float length = std::sqrt(direction.x*direction.x + direction.y*direction.y);
+  std::vector<const Construction*> airports;
+  for(const auto* building : world.map.constructions)
+    if(!building->isDead() && building->constructionGroup->group == GROUP_AIRPORT &&
+       static_cast<const CityBusiness*>(building)->operating)
+      airports.push_back(building);
+  std::sort(airports.begin(), airports.end(), [](const auto* a, const auto* b) {
+    return std::tie(a->point.x, a->point.y) < std::tie(b->point.x, b->point.y);
+  });
+
+  auto runway = [&](const Construction& airport, bool farEnd) {
+    const auto origin = getScreenPoint(airport.point.e(5).s(5)) - Vector2(384,384)*zoom;
+    return origin + (farEnd ? Vector2(508,97) : Vector2(163,253))*zoom;
+  };
+  const float clock = world.evolution.visualTime / 22000.f;
+  for(size_t i = 0; i < airports.size(); ++i) {
+    const auto& from = *airports[i];
+    const auto* to = airports.size() > 1 ? airports[(i+1) % airports.size()] : nullptr;
+    const float t = std::fmod(clock + float(i)/airports.size(), 1.f);
+    if(t >= .92f) continue;
+    const auto runwayStart = runway(from, false);
+    const auto runwayEnd = runway(from, true);
+    const auto fallback = getScreenPoint(MapPoint(from.point.x+8,-12));
+    Vector2 start = runwayStart;
+    Vector2 finish = runwayEnd;
+    float progress = t/.20f, altitude = 0;
+    if(t >= .20f && t < .72f) {
+      progress = (t-.20f)/.52f;
+      if(to) {
+        start = runwayEnd;
+        finish = runway(*to, false);
+        altitude = std::sin(progress*3.14159265f)*110.f;
+      } else if(progress < .5f) {
+        start = runwayEnd;
+        finish = fallback;
+        progress *= 2;
+        altitude = progress*110.f;
+      } else {
+        start = fallback;
+        finish = runwayStart;
+        progress = 2*progress-1;
+        altitude = (1-progress)*110.f;
+      }
+    } else if(t >= .72f) {
+      start = to ? runway(*to, false) : runwayStart;
+      finish = to ? runway(*to, true) : runwayEnd;
+      progress = (t-.72f)/.20f;
+    }
+    const auto dir = finish-start;
+    const float length = std::hypot(dir.x, dir.y);
     if(length < 1) continue;
-    Vector2 forward = direction*(zoom/length);
-    if(outbound) forward = forward*(-1);
-    const Vector2 side(-forward.y, forward.x);
-    Vector2 body[] = {location+forward*12, location-forward*8+side*2,
-                      location-forward*10, location-forward*8-side*2};
-    Vector2 wings[] = {location+forward*2, location-forward*4+side*12,
-                       location-forward*5, location-forward*4-side*12};
-    painter.setFillColor(Color(226,237,241));
-    painter.fillPolygon(4,wings);
-    painter.fillPolygon(4,body);
-    painter.setLineColor(Color(39,107,142));
-    painter.drawLine(location-forward*7-side*4,location-forward*7+side*4);
+    const auto location = start + dir*progress - Vector2(0,(altitude+3)*zoom);
+    if(location.x < -40 || location.y < -40 ||
+       location.x > getWidth()+40 || location.y > getHeight()+40) continue;
+    const Vector2 f = dir*(zoom/length), side(-f.y,f.x);
+    Vector2 body[] = {location+f*14, location+f*9+side*3, location-f*13+side*2,
+                      location-f*16, location-f*13-side*2, location+f*9-side*3};
+    Vector2 wing[] = {location+f*3, location-f*5+side*13, location-f*9+side*13,
+                      location-f*5, location-f*9-side*13, location-f*5-side*13};
+    Vector2 tail[] = {location-f*9,location-f*14+side*6,location-f*16,location-f*14-side*6};
+    painter.setFillColor(Color(191,211,224));
+    painter.fillPolygon(6,wing);
+    painter.setFillColor(Color(36,105,135));
+    painter.fillPolygon(4,tail);
+    painter.setFillColor(Color(244,244,235));
+    painter.fillPolygon(6,body);
+    painter.setLineColor(Color(29,82,114));
+    painter.drawLine(location+f*9,location-f*8);
+  }
+}
+
+void GameView::drawCircuitRaces(Painter& painter) {
+  // Road centerline in the circuit sprite's coordinates.
+  static const Vector2 route[] = {{110,188},{146,156},{255,143},{286,126},{284,94},
+    {305,71},{367,64},{408,72},{442,100},{482,114},{522,115},{579,121},{616,147},
+    {624,175},{655,191},{670,209},{648,228},{595,232},{552,257},{524,285},
+    {470,295},{434,292},{410,273},{375,274},{349,302},{309,315},{263,300},
+    {245,269},{199,248},{141,243},{106,225},{101,206}};
+  constexpr size_t segments = sizeof(route)/sizeof(route[0]);
+  const auto& world = getWorld();
+  const Color colors[] = {Color(220,52,42),Color(70,145,246),Color(255,200,61)};
+  for(const auto* building : world.map.constructions) {
+    if(building->isDead() || building->constructionGroup->group != GROUP_RACING_CIRCUIT ||
+       !static_cast<const CityBusiness*>(building)->operating) continue;
+    const auto origin = getScreenPoint(building->point.e(5).s(5)) - Vector2(384,384)*zoom;
+    for(int car = 0; car < 3; ++car) {
+      const float phase = std::fmod(world.evolution.visualTime/14500.f - car*.035f + 1.f, 1.f)*segments;
+      const size_t segment = static_cast<size_t>(phase);
+      const auto a = route[segment], b = route[(segment+1)%segments];
+      const auto location = origin + (a+(b-a)*(phase-segment))*zoom;
+      const auto f = (b-a)*(zoom/std::hypot(b.x-a.x,b.y-a.y));
+      const Vector2 side(-f.y,f.x);
+      Vector2 chassis[] = {location+f*5, location+f*2+side*3, location-f*4+side*2,
+                           location-f*5, location-f*4-side*2, location+f*2-side*3};
+      painter.setFillColor(colors[car]);
+      painter.fillPolygon(6,chassis);
+      painter.setLineColor(Color(31,39,45));
+      painter.drawLine(location-side*2, location+side*2);
+    }
   }
 }

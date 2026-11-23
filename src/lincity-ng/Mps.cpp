@@ -304,7 +304,10 @@ MpsMap::refreshInvProd(bool production) {
         reason = std::string("Needs ") + commodityName(stuff);
       else if(dailyOutput > 0 && capacity > 0 &&
               building.commodityCount[stuff] > capacity - dailyOutput)
-        reason = std::string(commodityName(stuff)) + " storage full";
+        reason = stuff == STUFF_HIVOLT || stuff == STUFF_LOVOLT
+          ? "Power backed up at output"
+          : stuff == STUFF_STEEL ? "Steel output needs an outlet"
+          : std::string(commodityName(stuff)) + " output backed up";
       if(!reason.empty())
         getParagraph(*this, "mps_status" + std::to_string(line++))->setText(reason);
     }

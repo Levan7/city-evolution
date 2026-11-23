@@ -23,6 +23,7 @@
 ** ---------------------------------------------------------------------- */
 
 #include "port.hpp"
+#include <sstream>
 #include <algorithm>
 #include <limits>
 
@@ -147,6 +148,7 @@ int Port::buy_stuff(Commodity stuff)
       world.expense(charged, world.stats.expenses.import, false);
       importPence = static_cast<int>(total % 100);
       produceStuff(stuff, i);
+      currentTrade.imported[stuff] += i;
       return charged;
     } catch(const OutOfMoneyMessage::Exception& ex) {
       return 0;
@@ -164,6 +166,7 @@ int Port::sell_stuff(Commodity stuff)
     if (i < (portConstructionGroup.commodityRuleCount[stuff].maxload / PORT_TRIGGER_RATE))
     {   return 0;}
     consumeStuff(stuff, i);
+    currentTrade.exported[stuff] += i;
     return (i * portConstructionGroup.commodityRates[stuff]);
 }
 
@@ -209,6 +212,12 @@ void Port::update()
         reset_prod_counters();
         busy = working_days;
         working_days = 0;
+        currentTrade.month = world.total_time / NUMOF_DAYS_IN_MONTH;
+        currentTrade.imports = monthly_ic;
+        currentTrade.exportCents = monthly_et;
+        tradeHistory.push_back(currentTrade);
+        if(tradeHistory.size() > historyMonths) tradeHistory.pop_front();
+        currentTrade = {};
         lastm_ic = monthly_ic;
         lastm_et = monthly_et;
         monthly_ic = 0;
@@ -256,6 +265,16 @@ void Port::save(xmlTextWriterPtr xmlWriter) const {
     xmlTextWriterWriteElement(xmlWriter, takeNameXml, xmlFormat<int>(rule.take));
   }
 
+  auto writeTrade = [&](const char* tag, const TradeMonth& entry) {
+    std::ostringstream fields;
+    fields << entry.month << ' ' << entry.imports << ' ' << entry.exportCents;
+    for(int amount : entry.imported) fields << ' ' << amount;
+    for(int amount : entry.exported) fields << ' ' << amount;
+    xmlTextWriterWriteElement(xmlWriter, (xmlStr)tag, (xmlStr)fields.str().c_str());
+  };
+  for(const auto& entry : tradeHistory) writeTrade("trade_history_month", entry);
+  writeTrade("trade_history_current", currentTrade);
+
   Construction::save(xmlWriter);
 }
 
@@ -265,6 +284,20 @@ bool Port::loadMember(xmlpp::TextReader& xmlReader, unsigned int ldsv_version) {
   else if(tag == "month_exports") monthly_et = std::max(0, xmlParse<int>(xmlReader.read_inner_xml()));
   else if(tag == "last_imports") lastm_ic = std::max(0, xmlParse<int>(xmlReader.read_inner_xml()));
   else if(tag == "last_exports") lastm_et = std::max(0, xmlParse<int>(xmlReader.read_inner_xml()));
+  else if(tag == "trade_history_month" || tag == "trade_history_current") {
+    std::istringstream fields(xmlReader.read_inner_xml());
+    TradeMonth entry;
+    if(!(fields >> entry.month >> entry.imports >> entry.exportCents)
+        || entry.month < 0 || entry.imports < 0 || entry.exportCents < 0) return true;
+    for(auto* amounts : {&entry.imported, &entry.exported})
+      for(int& amount : *amounts)
+        if(!(fields >> amount) || amount < 0) return true;
+    if(tag == "trade_history_current") currentTrade = entry;
+    else if(tradeHistory.empty() || tradeHistory.back().month < entry.month) {
+      tradeHistory.push_back(entry);
+      if(tradeHistory.size() > historyMonths) tradeHistory.pop_front();
+    }
+  }
   else if(tag == "trade_days") working_days = std::clamp(xmlParse<int>(xmlReader.read_inner_xml()),0,100);
   else if(tag == "last_trade_days") busy = std::clamp(xmlParse<int>(xmlReader.read_inner_xml()),0,100);
   else if(tag == "import_pence") importPence = std::clamp(xmlParse<int>(xmlReader.read_inner_xml()),0,99);

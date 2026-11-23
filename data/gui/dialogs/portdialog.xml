@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<?xml-stylesheet href="dialogs.xsl" type="text/xsl"?><Dialog width="400" height="465">
+<?xml-stylesheet href="dialogs.xsl" type="text/xsl"?><Dialog width="400" height="525">
 	<title>Harbour Trade Settings</title>
 	<contents>
-		<TableLayout rows="7" cols="3">
+		<TableLayout rows="8" cols="3">
 			<colsize col="1" relative="1.3"/>
 			<colsize col="2" relative="1"/>
 			<colsize col="3" relative="1"/>
@@ -160,19 +160,54 @@
 					</CheckButton>
 				</SwitchComponent>
 			</cell>
-      <cell row="7" col="1" colspan="3" valign="center">
+			<cell row="7" col="1" halign="center" valign="center">
+				<Paragraph style="message" translatable="yes">
+				Grid power</Paragraph>
+			</cell>
+			<cell row="7" col="2" halign="center" valign="center">
+				<SwitchComponent name="BuyHi-Volt">
+					<CheckButton name="green">
+						<image src="images/gui/checkbox/checkbox.png"/>
+						<image-checked src="images/gui/checkbox/checkbox_checked.png"/>
+					</CheckButton>
+					<CheckButton name="red">
+						<image src="images/gui/checkbox/checkbox_red.png"/>
+						<image-checked src="images/gui/checkbox/checkbox_red_checked.png"/>
+					</CheckButton>
+				</SwitchComponent>
+			</cell>
+			<cell row="7" col="3" halign="center" valign="center">
+				<SwitchComponent name="SellHi-Volt">
+					<CheckButton name="green">
+						<image src="images/gui/checkbox/checkbox.png"/>
+						<image-checked src="images/gui/checkbox/checkbox_checked.png"/>
+					</CheckButton>
+					<CheckButton name="red">
+						<image src="images/gui/checkbox/checkbox_red.png"/>
+						<image-checked src="images/gui/checkbox/checkbox_red_checked.png"/>
+					</CheckButton>
+				</SwitchComponent>
+			</cell>
+      <cell row="8" col="1" colspan="3" valign="center">
         <Paragraph font-size="15" color="#f2cc86" halign="center">Red means foreign trade is closed until next year. Select one direction per product.</Paragraph>
       </cell>
         </TableLayout>
 	</contents>
 	<buttonbar>
-		<TableLayout rows="1" cols="2">
+		<TableLayout rows="1" cols="3">
 			<cell row="1" col="1">
 				<Button name="goto">
 					<image src="images/gui/info/info.png"/>
 				</Button>
 			</cell>
 			<cell row="1" col="2">
+				<Button name="TradeHistory" width="110" height="34">
+					<image src="images/readable/plate-650-normal.png" width="110" height="34" resizable="yes"/>
+					<image-hover src="images/readable/plate-650-hover.png" width="110" height="34" resizable="yes"/>
+					<text-caption style="messagebold" halign="center">History</text-caption>
+				</Button>
+			</cell>
+			<cell row="1" col="3">
 				<Button name="Apply">
 					<image src="images/gui/dialogs/okaybutton.png"/>
 				</Button>

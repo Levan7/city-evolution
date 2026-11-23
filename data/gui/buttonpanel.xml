@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="identity.xsl" type="text/xsl"?>
-<ButtonPanel name="ButtonPanel" width="432" height="360">
+<ButtonPanel name="ButtonPanel" width="432" height="386">
   <menu button-name="BPPointerButton" drawer-name="BPPointerButtonDrawer" default="BPMPointerButton">
     <tool name="BPMPointerButton" action="QUERY" help="query" />
     <tool name="BPMBullDozeButton" action="BULLDOZE" help="bulldoze" />
@@ -64,7 +64,8 @@
     <tool name="BPMCoalPSButton" grpid="10" help="powerscoal" />
     <tool name="BPMSolarPSButton" grpid="02" help="powerssolar" />
     <tool name="BPMSubstationButton" grpid="03" help="substation" />
-    <tool name="BPMWindmillButton" grpid="49" help="windmill" />
+    <tool name="BPMWindmillButton" grpid="24" help="windmill" />
+    <tool name="BPMGridWindButton" grpid="49" help="windmill" />
     <tool name="BPMNuclearButton" grpid="74" help="nuclear-power" />
   </menu>
   <menu button-name="BPMiningButton" drawer-name="BPMiningButtonDrawer" default="BPMCoalButton">
@@ -967,16 +968,16 @@
           </Panel>
           <Panel name="BPPowerButtonDrawer" resizable="yes">
             <TableLayout rows="1" cols="1">
-              <rowsize row="1" fixed="226" />
+              <rowsize row="1" fixed="306" />
               <cell row="1" col="1" halign="left" valign="top">
-                <Panel width="320" height="226">
+                <Panel width="320" height="306">
                   <FilledRectangle color="#132c2bf2" />
                   <TableLayout rows="3" cols="3">
                     <colsize col="1" fixed="12" />
                     <colsize col="3" fixed="12" />
                     <rowsize row="1" fixed="36" />
                     <rowsize row="2" fixed="24" />
-                    <rowsize row="3" fixed="160" />
+                    <rowsize row="3" fixed="240" />
                     <cell row="1" col="2">
                       <Paragraph color="#eef1df" font-size="18">POWER</Paragraph>
                     </cell>
@@ -984,9 +985,10 @@
                       <Paragraph color="#c3d0bc" font-size="13">Choose a building or route</Paragraph>
                     </cell>
                     <cell row="3" col="2">
-                      <TableLayout rows="2" cols="3">
+                      <TableLayout rows="3" cols="3">
                         <rowsize row="1" fixed="80" />
                         <rowsize row="2" fixed="80" />
+                        <rowsize row="3" fixed="80" />
                         <cell row="1" col="1" halign="center" valign="center">
                           <CheckButton name="BPMPowerLineButton" width="88" height="76" auto-uncheck="false">
                             <image src="images/readable/plate-72-normal.png" width="88" height="76" resizable="yes" />
@@ -1029,7 +1031,24 @@
                             <image-hover src="images/readable/plate-72-hover.png" width="88" height="76" resizable="yes" />
                             <image-clicked src="images/readable/plate-72-clicked.png" width="88" height="76" resizable="yes" />
                             <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes" />
-                            <image-caption src="images/readable/BPMWindmillButton-building.png" width="88" height="76" resizable="yes" />
+                            <caption><Panel width="88" height="76"><TableLayout rows="2" cols="1">
+                              <rowsize row="1" fixed="53" /><rowsize row="2" fixed="23" />
+                              <cell row="1" col="1" halign="center" valign="center"><Image src="images/tiles/windmill1w.png" width="52" height="52" resizable="yes" /></cell>
+                              <cell row="2" col="1" halign="center" valign="center"><Paragraph color="#edf0df" font-size="11" halign="center">Local windmill</Paragraph></cell>
+                            </TableLayout></Panel></caption>
+                          </CheckButton>
+                        </cell>
+                        <cell row="3" col="1" halign="center" valign="center">
+                          <CheckButton name="BPMGridWindButton" width="88" height="76" auto-uncheck="false">
+                            <image src="images/readable/plate-72-normal.png" width="88" height="76" resizable="yes" />
+                            <image-hover src="images/readable/plate-72-hover.png" width="88" height="76" resizable="yes" />
+                            <image-clicked src="images/readable/plate-72-clicked.png" width="88" height="76" resizable="yes" />
+                            <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes" />
+                            <caption><Panel width="88" height="76"><TableLayout rows="2" cols="1">
+                              <rowsize row="1" fixed="53" /><rowsize row="2" fixed="23" />
+                              <cell row="1" col="1" halign="center" valign="center"><Image src="images/tiles/art01-scale-wind-turbine-00.png" width="52" height="52" resizable="yes" /></cell>
+                              <cell row="2" col="1" halign="center" valign="center"><Paragraph color="#edf0df" font-size="11" halign="center">Grid turbine</Paragraph></cell>
+                            </TableLayout></Panel></caption>
                           </CheckButton>
                         </cell>
                         <cell row="2" col="3" halign="center" valign="center">

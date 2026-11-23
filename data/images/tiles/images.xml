@@ -342,9 +342,9 @@
   </group>
   <group>
     <resourceID name="WindMill" />
-    <image file="art01-scale-wind-turbine-00.png" x="128" y="280" />
-    <image file="art01-scale-wind-turbine-01.png" x="128" y="280" />
-    <image file="art01-scale-wind-turbine-02.png" x="128" y="280" />
+    <image file="windmill1w.png" x="128" y="272" />
+    <image file="windmill2w.png" x="128" y="253" />
+    <image file="windmill3w.png" x="128" y="275" />
   </group>
   <group>
     <resourceID name="WindMillHTech" />

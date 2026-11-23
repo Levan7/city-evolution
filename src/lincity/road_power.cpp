@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 #include "road_power.hpp"
+#include "modules/port.hpp"
 
 #include "modules/all_modules.hpp"
 #include "world.hpp"
@@ -51,12 +52,18 @@ void deliver(Construction& source, Commodity from, Construction& target, Commodi
 }
 
 bool takes(const Construction& building, Commodity voltage) {
+  if(building.constructionGroup->group == GROUP_PORT) {
+    const auto& order = static_cast<const Port&>(building).commodityRuleCount[voltage];
+    return voltage == STUFF_HIVOLT && order.give && !order.take;
+  }
   const auto& rule = building.constructionGroup->commodityRuleCount[voltage];
   return rule.take && !rule.give && rule.maxload > 0;
 }
 
 int demand(const Construction& building, Commodity voltage) {
   if(!takes(building, voltage)) return 0;
+  if(building.constructionGroup->group == GROUP_PORT)
+    return PORT_GRID_CAPACITY - building.commodityCount[voltage];
   if(voltage == STUFF_LOVOLT)
     if(const auto* home = dynamic_cast<const Residence*>(&building))
       return home->local_population > 0 ? POWER_RES_OVERHEAD +
@@ -73,10 +80,18 @@ int substationReach(const Construction& station) {
 
 void distributeRoadPower(World& world) {
   world.poweredOverheadLines.clear();
-  std::vector<Construction*> sources, consumers, substations;
+  std::vector<Construction*> sources, consumers, substations, exportPorts;
   for(auto* building : world.map.constructions) {
     if(building->isDead() || building->flags & FLAG_EVACUATE) continue;
     const int group = building->constructionGroup->group;
+    if(group == GROUP_PORT) {
+      const auto& order = static_cast<const Port*>(building)->commodityRuleCount[STUFF_HIVOLT];
+      if(order.take && !order.give && building->commodityCount[STUFF_HIVOLT] > 0)
+        sources.push_back(building);
+      if(order.give && !order.take && world.tradeRule[STUFF_HIVOLT].give)
+        exportPorts.push_back(building);
+      continue;
+    }
     if(group == GROUP_SUBSTATION) substations.push_back(building);
     else if(takes(*building,STUFF_LOVOLT) || takes(*building,STUFF_HIVOLT))
       consumers.push_back(building);
@@ -89,6 +104,7 @@ void distributeRoadPower(World& world) {
   }
   if(!consumers.empty())
     std::rotate(consumers.begin(),consumers.begin()+world.total_time%consumers.size(),consumers.end());
+  consumers.insert(consumers.end(), exportPorts.begin(), exportPorts.end());
 
   const int side = world.map.len();
   auto index = [side](MapPoint p) { return p.y*side+p.x; };
@@ -152,6 +168,8 @@ void distributeRoadPower(World& world) {
     }
     const int reach = local ? substationReach(source) : 0;
     for(auto* target : consumers) {
+      if(target->constructionGroup->group == GROUP_PORT &&
+         source.constructionGroup->group == GROUP_PORT) continue;
       if(source.commodityCount[voltage] <= 0) break;
       int loss = lossTo(*target);
       if(reach) {

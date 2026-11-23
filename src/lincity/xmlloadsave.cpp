@@ -359,6 +359,7 @@ static void saveGlobals(xmlTextWriterPtr xmlWriter, const World& world) {
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_weather", f(world.evolution.weather));
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_weatherElapsed", f(world.evolution.weatherElapsed));
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_weatherDuration", f(world.evolution.weatherDuration));
+  xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_airportFare", f(world.evolution.airportFare));
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_visualTime", f(world.evolution.visualTime));
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_randomState", f(world.evolution.randomState));
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_approval", f(world.evolution.approval));
@@ -761,6 +762,7 @@ static void loadGlobals(xmlpp::TextReader& xmlReader, World& world,
     else if(xml_tag == "evolution_weather") world.evolution.weather = p<int>(xmlReader.read_inner_xml());
     else if(xml_tag == "evolution_weatherElapsed") world.evolution.weatherElapsed = p<int>(xmlReader.read_inner_xml());
     else if(xml_tag == "evolution_weatherDuration") world.evolution.weatherDuration = p<int>(xmlReader.read_inner_xml());
+    else if(xml_tag == "evolution_airportFare") world.evolution.airportFare = std::clamp(p<int>(xmlReader.read_inner_xml()), 0, 10);
     else if(xml_tag == "evolution_visualTime") world.evolution.visualTime = p<int>(xmlReader.read_inner_xml());
     else if(xml_tag == "evolution_randomState") world.evolution.randomState = p<unsigned int>(xmlReader.read_inner_xml());
     else if(xml_tag == "evolution_approval") world.evolution.approval = p<int>(xmlReader.read_inner_xml());

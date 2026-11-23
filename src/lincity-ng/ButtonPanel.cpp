@@ -301,22 +301,9 @@ ButtonPanel::setGame(Game *game) {
 void
 ButtonPanel::updateTech() {
   World& world = game->getWorld();
-  const int tech_level = world.tech_level;
   for(auto t : tools){
     Tool *tool = t.second;
     UserOperation& op = tool->operation;
-
-    if(op.constructionGroup == &windmillConstructionGroup) {
-      if(tech_level >= windpowerConstructionGroup.tech) {
-        op.constructionGroup = &windpowerConstructionGroup;
-        // TODO: if the windmill tool is in use, need to update the game uop too
-      }
-    }
-    else if(op.constructionGroup == &windpowerConstructionGroup) {
-      if(tech_level < windpowerConstructionGroup.tech) {
-        op.constructionGroup = &windmillConstructionGroup;
-      }
-    }
 
     Message::ptr msg;
     if(op.isAllowed(world, msg)) {

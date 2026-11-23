@@ -109,7 +109,9 @@ void CivicServices::update(World& w){
    auto* building = at(w,call->target);
    const int strength = 2 + budget[service]/50;
    if(u.kind==FIRE_CALL) {
-    call->severity -= strength;
+    // Give the crew time to visibly spray before it heads back.
+    if(u.working >= 18 || call->severity > strength)
+      call->severity -= strength;
     if(building && building->constructionGroup->group==GROUP_FIRE && call->severity<=0)
      static_cast<Fire*>(building)->burning_days = FIRE_LENGTH+1;
    } else if(u.working%std::max(2,7-strength)==0) {

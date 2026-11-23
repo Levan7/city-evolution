@@ -2,6 +2,7 @@
 #include "lincity/init_game.hpp"
 #include "lincity/modules/all_modules.hpp"
 #include "lincity/road_power.hpp"
+#include "lincity/modules/port.hpp"
 #include "lincity/world.hpp"
 #include "lincity/freight.hpp"
 #include <iostream>
@@ -266,7 +267,69 @@ static void overheadPower() {
        "removing the wire changed the river or left stale grid coverage");
 }
 
-int main(){try{initializeModules();overheadPower();preview23CityPolicy();negativeTreasury();congestedBusStops();marketFreight();oreFreight();preview22Buildings();int shortTrip=passengers(20,false),longTrip=passengers(100,false);need(shortTrip>longTrip&&longTrip>0,"long trips have no efficiency penalty");need(passengers(20,false,8)<shortTrip,"higher fares did not reduce demand");need(passengers(20,true)==0,"pedestrians walk through an uncrossed river");int near=electricity(13,false),far=electricity(113,false);need(near>far&&far>0,"distance losses missing");need(electricity(13,true)==0,"power crossed cut road");
+static void gridTradeAndHistory() {
+  auto world = new_barren_city(60);
+  world->total_money = 2000000;
+  world->tech_level = MAX_TECH_LEVEL;
+  for(int x = 20; x < 24; ++x) {
+    world->map({x,24})->setTerrain(GROUP_WATER);
+    world->map({x,24})->flags |= FLAG_IS_RIVER;
+  }
+  world->buildConstruction(portConstructionGroup,{20,20});
+  world->buildConstruction(substationConstructionGroup,{26,20});
+  world->buildConstruction(powerlineConstructionGroup,{24,20});
+  world->buildConstruction(powerlineConstructionGroup,{25,20});
+  const auto point = MapPoint(20,20);
+  auto& port = *static_cast<Port*>(world->map(point)->construction);
+  auto& order = port.commodityRuleCount[STUFF_HIVOLT];
+  order.take = true;
+  port.commodityCount[STUFF_LABOR] = PORT_LABOR;
+  world->total_time = NUMOF_DAYS_IN_MONTH-1;
+  port.update();
+  need(port.commodityCount[STUFF_HIVOLT] == PORT_GRID_CAPACITY/2,
+      "staffed port did not import grid power");
+  need(port.tradeHistory.size() == 1 &&
+      port.tradeHistory.front().imported[STUFF_HIVOLT] == PORT_GRID_CAPACITY/2,
+      "port failed to record the completed month's trade");
+  world->buildConstruction(warehouseConstructionGroup,{15,22});
+  for(int x = 17; x <= 19; ++x) world->buildConstruction(roadConstructionGroup,{x,22});
+  port.commodityRuleCount[STUFF_GOODS].take = true;
+  port.commodityCount[STUFF_GOODS] = 300;
+  distributeWarehouseFreight(*world);
+  need(world->map({15,22})->construction->commodityCount[STUFF_GOODS] > 0,
+      "warehouse could not pick up low-stock goods from an importing port");
+  distributeRoadPower(*world);
+  need(world->map({26,20})->construction->commodityCount[STUFF_HIVOLT] > 0,
+      "imported port electricity did not enter the connected grid");
+
+  world->buildConstruction(coal_powerConstructionGroup,{20,15});
+  world->buildConstruction(powerlineConstructionGroup,{20,19});
+  world->map({20,15})->construction->commodityCount[STUFF_HIVOLT] = 15000;
+  order.take = false;
+  order.give = true;
+  port.commodityCount[STUFF_HIVOLT] = 0;
+  distributeRoadPower(*world);
+  const auto stocked = port.commodityCount[STUFF_HIVOLT];
+  need(stocked >= PORT_GRID_CAPACITY/PORT_TRIGGER_RATE*2,
+      "exporting port did not accept surplus power from the grid");
+  port.commodityCount[STUFF_LABOR] = PORT_LABOR;
+  ++world->total_time;
+  port.update();
+  need(port.currentTrade.exported[STUFF_HIVOLT] == stocked/2,
+      "port did not record the grid electricity export");
+
+  world->evolution.airportFare = 6;
+  auto file = std::filesystem::temp_directory_path()/"ce-grid-trade.scn.gz";
+  world->save(file);
+  auto loaded = World::load(file);
+  std::filesystem::remove(file);
+  const auto& restored = *static_cast<Port*>(loaded->map(point)->construction);
+  need(restored.tradeHistory.size() == 1 && restored.currentTrade.exported[STUFF_HIVOLT] == stocked/2
+      && restored.commodityRuleCount[STUFF_HIVOLT].give && loaded->evolution.airportFare == 6,
+      "save lost a port order, trade history, or the airport fare");
+}
+
+int main(){try{initializeModules();gridTradeAndHistory();overheadPower();preview23CityPolicy();negativeTreasury();congestedBusStops();marketFreight();oreFreight();preview22Buildings();int shortTrip=passengers(20,false),longTrip=passengers(100,false);need(shortTrip>longTrip&&longTrip>0,"long trips have no efficiency penalty");need(passengers(20,false,8)<shortTrip,"higher fares did not reduce demand");need(passengers(20,true)==0,"pedestrians walk through an uncrossed river");int near=electricity(13,false),far=electricity(113,false);need(near>far&&far>0,"distance losses missing");need(electricity(13,true)==0,"power crossed cut road");
  auto w=new_barren_city(60);w->total_money=10000000;w->tech_level=MAX_TECH_LEVEL;w->buildConstruction(busStopGroup,{10,9});w->buildConstruction(busStopGroup,{35,11});for(int x=10;x<=35;++x)w->buildConstruction(trackConstructionGroup,{x,10});w->transit.update(*w,false);need(w->transit.connected[0]==2&&w->transit.disconnected[0]==0&&w->transit.unstaffed[0]==2,"track link, opposite sides or staffing reported disconnected");need(w->transit.passengers[0]==0,"unstaffed route carries passengers");w->bulldozeArea({22,10});w->transit.update(*w,false);need(w->transit.connected[0]==0&&w->transit.disconnected[0]==2,"route remains connected across break");
  for(int value:{5,15,25}){w->civic.budget[0]=value;int days=0;for(int day=0;day<100;++day)days+=w->civic.funded(0,day,9);need(days==value,"granular funding not respected");}
  std::cout<<"PASS referenda, fare demand, park pollution, port restrictions and pricing, save/load, negative treasury placement, stop capacity, warehouse-to-market-to-home freight, opposite-side dirt-track stops, staffing vs connectivity, broken streets, distance power losses, energy conservation and 5/15/25 percent funding\n";

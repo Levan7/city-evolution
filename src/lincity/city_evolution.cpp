@@ -84,7 +84,7 @@ void CityEvolution::updateCity(World& world) {
   if(world.total_money < 0) target -= 10;
   target -= std::max(0, world.money_rates.income_tax - 20) / 2;
   approval = std::clamp((approval*2 + target)/3, 5, 95);
-  if(!fullAutonomy) updatePlan(world);
+  updatePlan(world);
   runMayor(world);
   // Old cities schedule a fresh term from their first assessment.
   if(nextElection <= 0) nextElection = world.total_time + 4*NUMOF_DAYS_IN_YEAR;
@@ -307,9 +307,21 @@ std::vector<Advice> CityEvolution::advise(World& w) const {
   auto num = [](int v) { return std::to_string(v); };
   const int unis = w.stats.groupCount[GROUP_UNIVERSITY], schools = w.stats.groupCount[GROUP_SCHOOL];
   int darkHomes = 0, jammed = 0, housingCapacity = 0, housed = 0; std::string jamWhere;
+  int goodsShort = 0, laborShort = 0, producers = 0;
+  long long distributionGoods = 0;
   for(const Construction* c : w.map.constructions) {
     const int g = c->constructionGroup->group;
     if(c->isDead()) continue;
+    if(g == GROUP_MARKET || isWarehouseGroup(g) || g == GROUP_PORT)
+      distributionGoods += c->commodityCount[STUFF_GOODS];
+    else {
+      const auto& rules = c->constructionGroup->commodityRuleCount;
+      if(rules[STUFF_GOODS].give && !rules[STUFF_GOODS].take) ++producers;
+      const int goodsNeed = c->commodityMaxCons[STUFF_GOODS] / NUMOF_DAYS_IN_MONTH;
+      const int laborNeed = c->commodityMaxCons[STUFF_LABOR] / NUMOF_DAYS_IN_MONTH;
+      goodsShort += goodsNeed > 0 && c->commodityCount[STUFF_GOODS] < goodsNeed;
+      laborShort += laborNeed > 0 && c->commodityCount[STUFF_LABOR] < laborNeed;
+    }
     if(GROUP_IS_RESIDENCE(g)) {
       const auto& home = static_cast<const Residence&>(*c);
       housed += home.local_population;
@@ -373,6 +385,17 @@ std::vector<Advice> CityEvolution::advise(World& w) const {
   if(!schools)
     add(1, "No schools", "Your " + num(residents) + " residents have no school. Technicians come from schools; without them no factory or campus can grow.");
   // 2. Basic needs and logistics.
+  if(goodsShort)
+    add(1, "Buildings short of goods", num(goodsShort) + " buildings have less than a day's goods input. "
+      + (distributionGoods > 0
+        ? std::to_string(distributionGoods) + " goods are in markets, ports and freight storage. Check each shortage against local receiving settings, staffing and freight routes."
+        : producers ? "Check labor, raw materials and power at existing goods producers before adding factories."
+                    : "Build a pottery supplied with ore and coal, or a textile mill supplied with food and coal or electricity."));
+  if(laborShort)
+    add(1, "Buildings short of labor", num(laborShort) + " buildings have less than a day's labor input. "
+      + (housingCapacity > housed + w.people_pool
+        ? std::string("Supply vacant homes with food, water and power. Check commutes. If approval is low, review taxes and add accessible parks, cafes or food halls.")
+        : std::string("Add housing near supplies and jobs. Connect occupied neighborhoods to workplaces with staffed transit.")));
   if(darkHomes) add(2, "Homes without power", num(darkHomes) + " of " + num(homes) + " housing buildings have no electricity. Check generators, power lines and substations.");
   if(jammed) add(1, "Cut-off industry", num(jammed) + " industrial building(s) touch no road, track or rail, first one: " + jamWhere + ". Connect it or its goods cannot leave.");
   if(approval < 50) add(1, "People are unhappy", "Approval is " + num(approval) + "%. Unhappy cities also lose skilled workers.");

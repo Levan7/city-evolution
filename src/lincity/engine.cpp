@@ -166,8 +166,9 @@ World::do_random_fire() {
   const ConstructionGroup& cstGrp = *cst->constructionGroup;
   if(rand() % 100 >= cstGrp.fire_chance)
     return;
+  const auto origin = cst->point;
   cst->torch();
-  pushMessage(FireStartedMessage::create(loc, cstGrp));
+  pushMessage(FireStartedMessage::create(origin, cstGrp));
 }
 
 void

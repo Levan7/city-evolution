@@ -387,4 +387,68 @@ used for high traffic, the second half as low traffic
     <sound file="WindMillHTech2.wav" />
     </group>
 
+    <group>
+      <resourceID name="Airport" />
+      <sound file="RegionalAircraft.wav" />
+    </group>
+    <group>
+      <resourceID name="RacingCircuit" />
+      <sound file="GrandPrixPass.wav" />
+    </group>
+    <group>
+      <resourceID name="EvolutionWarehouse" />
+      <resourceID name="LargeWarehouse" />
+      <sound file="TruckEngine.wav" />
+    </group>
+    <group>
+      <resourceID name="EvolutionCafe" />
+      <resourceID name="EvolutionFoodhall" />
+      <sound file="MarketLow1.wav" />
+    </group>
+    <group>
+      <resourceID name="EvolutionTech" />
+      <sound file="School1.wav" />
+    </group>
+    <group>
+      <resourceID name="ComputerFactory" />
+      <resourceID name="CarFactory" />
+      <sound file="IndustryLight1.wav" />
+    </group>
+    <group>
+      <resourceID name="NuclearPower" />
+      <sound file="ElectricityNoise.wav" />
+    </group>
+    <group>
+      <resourceID name="PoliceStation" />
+      <sound file="TruckEngine.wav" />
+    </group>
+    <group>
+      <resourceID name="office-cyan-glass" />
+      <resourceID name="office-charcoal-bronze" />
+      <resourceID name="office-art-deco" />
+      <sound file="MarketMed1.wav" />
+    </group>
+    <group>
+      <resourceID name="residential-ivory-blue" />
+      <resourceID name="residential-red-brick" />
+      <resourceID name="residential-sand-green" />
+      <sound file="ResidentialHigh1.wav" />
+    </group>
+    <group>
+      <resourceID name="TransitBusStop" />
+      <resourceID name="TransitBusTerminal" />
+      <sound file="TruckEngine.wav" />
+    </group>
+    <group>
+      <resourceID name="TransitRail" />
+      <resourceID name="TransitMetro" />
+      <resourceID name="TransitElevated" />
+      <resourceID name="TransitTunnel" />
+      <resourceID name="TransitViaduct" />
+      <sound file="RailTrain1.wav" />
+    </group>
+    <group>
+      <resourceID name="CityPark" />
+      <sound file="ParklandPlane1.wav" />
+    </group>
 </resources>

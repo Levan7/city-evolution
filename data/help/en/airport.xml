@@ -2,7 +2,7 @@
 <Document><title>Regional airport</title><img src="images/tiles/airport.png"/><p>Build under Civic at 50% technology. Cost $180,000, footprint 6 by 6.
 Connect any side to dirt track, road or rail. Each operating day needs 60 labor,
 30 water, 200 low-voltage electricity and 20 goods, and produces 4 waste.
-Upkeep is $30 per day even when idle. A fully supplied day earns $60 in service
-receipts, listed under Service revenue. Flights arrive from beyond the map and
-depart when the airport is operating. Flying planes are a visual representation
-of this activity. Airports add pollution. Jobs are represented by labor demand.</p><p>Select the building to check inventory and input shortages. Use warehouses and markets for supplies, and keep waste moving to disposal.</p></Document>
+Upkeep is $30 per day even when idle. A fully supplied day earns $60 at the default $1 ticket price. Adjust the fare in
+the Transport report. Higher fares reduce ticket demand, and receipts appear under
+Service revenue. Aircraft use the runway and fly between operating airports, or
+between the airport and the map boundary when only one airport is operating. Airports add pollution. Jobs are represented by labor demand.</p><p>Select the building to check inventory and input shortages. Use warehouses and markets for supplies, and keep waste moving to disposal.</p></Document>

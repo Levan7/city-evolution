@@ -29,4 +29,5 @@
 	<li><a href="msb-power">Power overlay</a></li>
 	<li><a href="powerscoal">Coal fired power station</a></li>
 	<li><a href="powerssolar">Solar power station</a></li>
+  <p style="hp">Local windmills unlock at 3% technology and supply low voltage. Grid wind turbines unlock at 45% and supply high voltage. Both need workers. Use a substation to distribute grid power to low-voltage consumers. The Power menu keeps both choices available after they unlock.</p>
 </Document>

@@ -41,8 +41,8 @@
 #include "util/gettextutil.hpp"
 
 WindpowerConstructionGroup windpowerConstructionGroup(
-  N_("Wind Power"),
-  N_("Wind Power"),
+  N_("Grid wind turbine"),
+  N_("Grid wind turbines"),
   FALSE,                    /* need credit? */
   GROUP_WIND_POWER,
   GROUP_WIND_POWER_SIZE,

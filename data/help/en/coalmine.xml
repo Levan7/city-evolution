@@ -28,4 +28,5 @@
 	<li><a href="transport">Transport</a></li>
 	<li><a href="labor">Labor</a></li>
 	<li><a href="pollution">Pollution</a></li>
+  <p style="hp">After purchasing the coal survey, choose the Coal Mine tool to see deposits on the city map. Orange marks richer deposits and yellow marks smaller deposits. The mine can draw coal from seven tiles beyond each edge of its footprint.</p>
 </Document>

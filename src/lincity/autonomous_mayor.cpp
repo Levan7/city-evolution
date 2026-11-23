@@ -24,7 +24,13 @@ int CityEvolution::autonomousStep(World& w,bool allowBuilding,bool allowRoad,boo
  const int gridX=(x0+x1)/2,gridY=(y0+y1)/2;
  auto corridor=[&](int x,int y){return (x-gridX+6*n)%6==0||(y-gridY+6*n)%6==0;};
  std::map<int,int> count;int pop=0,capacity=0,homes=0,ax=0,ay=0,jams=0,unpowered=0,employed=0,unfed=0;long long food=0,goods=0,labor=0,ore=0,coal=0;std::vector<Construction*> existing;
+ int goodsShort=0, laborShort=0;
  for(auto*c:w.map.constructions){auto p=c->point;if(!inside(p.x,p.y))continue;existing.push_back(c);int g=c->constructionGroup->group;++count[g];
+  if(c->isDead() || (c->flags & FLAG_EVACUATE)) { existing.pop_back(); --count[g]; continue; }
+  const int goodsNeed = c->commodityMaxCons[STUFF_GOODS] / NUMOF_DAYS_IN_MONTH;
+  const int laborNeed = c->commodityMaxCons[STUFF_LABOR] / NUMOF_DAYS_IN_MONTH;
+  goodsShort += goodsNeed > 0 && c->commodityCount[STUFF_GOODS] < goodsNeed;
+  laborShort += laborNeed > 0 && c->commodityCount[STUFF_LABOR] < laborNeed;
   food+=c->commodityCount[STUFF_FOOD];goods+=c->commodityCount[STUFF_GOODS];labor+=c->commodityCount[STUFF_LABOR];ore+=c->commodityCount[STUFF_ORE];coal+=c->commodityCount[STUFF_COAL];
   if(GROUP_IS_RESIDENCE(g)){auto*r=static_cast<Residence*>(c);pop+=r->local_population;capacity+=r->max_population;++homes;unpowered+=!(c->flags&FLAG_HAD_POWER);employed+=bool(c->flags&FLAG_EMPLOYED);unfed+=!(c->flags&FLAG_FED);ax+=p.x;ay+=p.y;}
   if(auto*t=dynamic_cast<Transport*>(c))for(int k=0;k<STUFF_COUNT;++k)if(t->constructionGroup->commodityRuleCount[k].maxload>0&&t->trafficCount[k]*100LL/t->constructionGroup->commodityRuleCount[k].maxload>80){++jams;break;}
@@ -57,9 +63,13 @@ int CityEvolution::autonomousStep(World& w,bool allowBuilding,bool allowRoad,boo
  // Repair access before duplicating idle workplaces or services.
  if(allowRoad)for(auto*c:existing){if(c->flags&FLAG_IS_TRANSPORT || c->constructionGroup->group==GROUP_CITY_PARK)continue;int id=ring(c->point,c->constructionGroup->size);if(id<0||dist[id]==0)continue;auto route=path(id);if(route.empty())continue;MapPoint p=route.front();if(road.can_build_here(w,p,message)){int before=w.total_money;w.buildConstruction(road,p);account(before,road,p,"connect isolated "+c->constructionGroup->name,0);builtRoad=true;return 1;}}
  if(!allowBuilding){report="Monthly building allowance used; next assessment after this month.";return 0;}
- struct Need{ConstructionGroup*g;std::string why;};std::vector<Need> needs;
+ struct Need{ConstructionGroup*g;std::string why;bool planned=false;};std::vector<Need> needs;
  auto want=[&](bool yes,ConstructionGroup&g,const char*why){if(yes)needs.push_back({&g,why});};
  const int farms=count[GROUP_ORGANIC_FARM],markets=count[GROUP_MARKET],communes=count[GROUP_COMMUNE];
+ ConstructionGroup* planBuilding = nullptr;
+ std::string planReason;
+ if(mayorSpent < planBudgetYear && planNextBuild(w, planBuilding, planReason) && planBuilding)
+  needs.push_back({planBuilding, planReason, true});
  const int workshops=count[GROUP_POTTERY]+count[GROUP_MILL]+count[GROUP_BLACKSMITH]+count[GROUP_INDUSTRY_L];
  want(!count[GROUP_WATERWELL],waterwellConstructionGroup,"establish clean water");
  want(!farms,organic_farmConstructionGroup,"establish food production");
@@ -81,6 +91,15 @@ int CityEvolution::autonomousStep(World& w,bool allowBuilding,bool allowRoad,boo
  want(mayorServices && pop>150 && unpowered>0 &&
    generators < std::max(1,(unpowered+5)/6),windmillConstructionGroup,
    "supply streets serving homes without power");
+ const int freightHubs = count[GROUP_WAREHOUSE] + count[GROUP_LARGE_WAREHOUSE];
+ want(goodsShort >= 2 && goods > pop && freightHubs < std::max(1, homes/10),
+   warehouseConstructionGroup, "move existing goods to buildings short of supplies");
+ want(goodsShort >= 2 && goods < pop && count[GROUP_MILL] < std::max(1, pop/1200)
+   && food > 10LL*pop && coal > 40, millConstructionGroup, "turn surplus food into locally needed goods");
+ want(laborShort >= 3 && capacity-pop < std::max(20,pop/8) && farms && markets,
+   starterHome, "provide housing when nearby workplaces have labor shortages");
+ want(mayorServices && approval < 55 && goods > pop && homes >= 8 && !count[GROUP_FOODHALL],
+   foodHallConstructionGroup, "provide a neighborhood amenity while approval is low");
  const bool crowded = capacity > 0 && pop*100/capacity > 65;
  const bool growingNeighborhood = pop >= 120 && homes < std::min(8,1+pop/30) && unfed*3 <= homes;
  want(farms && markets && (crowded || growingNeighborhood ||
@@ -92,7 +111,7 @@ int CityEvolution::autonomousStep(World& w,bool allowBuilding,bool allowRoad,boo
  want(mayorServices&&pop>250&&!count[GROUP_FIRESTATION],fireStationConstructionGroup,"provide fire response");
  want(mayorServices&&pop>300&&!count[GROUP_HEALTH],healthCentreConstructionGroup,"provide healthcare");
  want(mayorServices&&pop>400&&!count[GROUP_POLICE]&&w.civic.crime>30,policeGroup,"provide police response");
- want(mayorServices&&pop>400&&count[GROUP_SCHOOL]<std::max(2,pop/500)&&goods>pop,schoolConstructionGroup,"expand education with funded supplies");
+ want(mayorServices&&pop>400&&count[GROUP_SCHOOL]<std::max(pop>=500 ? 4 : 2,pop/500)&&goods>pop,schoolConstructionGroup,"expand education with funded supplies");
  want(mayorServices&&pop>500&&workshops>1&&goods>pop&&!count[GROUP_UNIVERSITY],universityConstructionGroup,"train engineers for industry");
  want(pop>400&&goods<pop*3LL&&ore>200&&coal>100&&count[GROUP_INDUSTRY_L]<std::max(1,pop/900),industryLightConstructionGroup,"productive jobs with raw materials already present");
  want(mayorParks && pop>=140 && count[GROUP_PARKLAND]+count[GROUP_CITY_PARK]<std::max(1,homes/12),
@@ -101,7 +120,7 @@ int CityEvolution::autonomousStep(World& w,bool allowBuilding,bool allowRoad,boo
  want(mayorServices && pop>200 && (jams>2 || employed*2<homes) &&
    count[GROUP_BUS_STOP]+count[GROUP_BUS_TERMINAL]<std::max(2,homes/7),
    busStopGroup,"connect housing and jobs on busy streets");
- want(mayorServices && pop>300 && markets>=2 && !count[GROUP_WAREHOUSE] &&
+ want(mayorServices && pop>300 && markets>=2 && !freightHubs &&
    (ore>500 || goods>500),warehouseConstructionGroup,"move surplus freight between neighborhoods");
  want(pop>=100 && employed*2<homes && ore>40 && coal>20 &&
    workshops<std::max(2,homes/4),potteryConstructionGroup,"add jobs where housing lacks work");
@@ -111,9 +130,16 @@ int CityEvolution::autonomousStep(World& w,bool allowBuilding,bool allowRoad,boo
  want(pop>1000&&pop*100/std::max(1,capacity)>80&&w.total_money>150000,ivoryTowerGroup,"add high density housing where demand is strong");
  // Funding/technology failures do not block cheaper necessities farther down the list.
  std::string blocked;
- for(auto need:needs){auto&g=*need.g;if(!g.can_build(w,message)||g.getCosts(w)>available){
+ for(const auto& need : needs) {
+  auto& g = *need.g;
+  message.reset();
+  if(!g.can_build(w,message) || g.getCosts(w) > available) {
    if(blocked.empty()) {
-    if(w.tech_level < g.tech) {
+    if(auto requirement = dynamic_message_cast<CityRequirementMessage>(message))
+     blocked = requirement->text;
+    else if(g.group == GROUP_UNIVERSITY && count[GROUP_SCHOOL] < 4 * (count[GROUP_UNIVERSITY] + 1))
+     blocked = "Build four elementary schools per university";
+    else if(w.tech_level < g.tech) {
      const int tenths = (g.tech * 1000 + MAX_TECH_LEVEL - 1) / MAX_TECH_LEVEL;
      blocked = g.name + " unlocks at " + std::to_string(tenths/10)
        + "." + std::to_string(tenths%10) + "% technology";
@@ -132,7 +158,7 @@ int CityEvolution::autonomousStep(World& w,bool allowBuilding,bool allowRoad,boo
    if(std::any_of(route.begin(),route.end(),[&](MapPoint tile) {
      return tile.x>=x && tile.x<x+g.size && tile.y>=y && tile.y<y+g.size;
    })) continue;
-   int cost=g.getCosts(w)+int(route.size())*road.getCosts(w);if(cost>available)continue;
+   int cost=g.getCosts(w)+int(route.size())*road.getCosts(w);if(cost > available || (need.planned && cost > planBudgetYear - mayorSpent)) continue;
    int score=distance*2+int(route.size())*5+roadReserve*18;
    if(g.group==GROUP_ORGANIC_FARM)score+=dry*10;
    if(GROUP_IS_RESIDENCE(g.group))score+=w.map(p)->pollution/20;
@@ -144,7 +170,13 @@ int CityEvolution::autonomousStep(World& w,bool allowBuilding,bool allowRoad,boo
   // Preflight the entire road project. No player building is demolished or replaced.
   bool valid=true;for(auto p:bestRoute)valid&=road.can_build_here(w,p,message);if(!valid)continue;
   int before=w.total_money;
-  try{for(auto p:bestRoute)w.buildConstruction(road,p);w.buildConstruction(g,best);account(before,g,best,need.why,int(bestRoute.size()));return 1;}
+  try {
+    for(auto p : bestRoute) w.buildConstruction(road,p);
+    w.buildConstruction(g,best);
+    account(before,g,best,need.why,int(bestRoute.size()));
+    if(need.planned) planSpent += std::max(0,before-w.total_money);
+    return 1;
+  }
   catch(const Message::Exception&){mayorSpent+=std::max(0,before-w.total_money);report="Project deferred after ordinary construction checks.";return 0;}
  }
  // Upgrade loaded dirt tracks when road technology and cash permit, rather than adding idle factories.

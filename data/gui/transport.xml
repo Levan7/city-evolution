@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?xml-stylesheet href="identity.xsl" type="text/xsl"?>
-<Window name="TransportWindow" width="800" height="570" border="10" titlesize="32" resizable="no">
+<Window name="TransportWindow" width="800" height="612" border="10" titlesize="32" resizable="no">
   <title>
     <Paragraph color="#f1efdf" font-size="22">TRANSPORT REPORT</Paragraph>
   </title>
@@ -14,7 +14,7 @@
     <text color="white">X</text>
   </closebutton>
   <contents>
-    <TableLayout rows="8" cols="2">
+    <TableLayout rows="9" cols="2">
       <colsize col="1" relative="3"/>
       <colsize col="2" relative="1"/>
       <rowsize row="1" fixed="46"/>
@@ -22,9 +22,10 @@
       <rowsize row="3" fixed="42"/>
       <rowsize row="4" fixed="42"/>
       <rowsize row="5" fixed="42"/>
-      <rowsize row="6" fixed="66"/>
-      <rowsize row="7" fixed="48"/>
+      <rowsize row="6" fixed="42"/>
+      <rowsize row="7" fixed="66"/>
       <rowsize row="8" fixed="48"/>
+      <rowsize row="9" fixed="48"/>
       <cell row="1" col="1" colspan="2">
         <Paragraph name="TransitSummary" color="#edf0df" font-size="17">Passenger services connect homes to jobs.</Paragraph>
       </cell>
@@ -124,10 +125,34 @@
           </cell>
         </TableLayout>
       </cell>
-      <cell row="6" col="1" colspan="2">
-        <Paragraph name="TransitIntro" color="#edf0df" font-size="17">Adjust fares per trip. Higher fares reduce demand. Fare revenue enters the treasury at month-end.</Paragraph>
+      <cell row="6" col="1" valign="center">
+        <Paragraph name="TransitMode4" color="#edf0df" font-size="17">Waiting for a connected service.</Paragraph>
       </cell>
-      <cell row="7" col="1" colspan="2" halign="center" valign="center">
+      <cell row="6" col="2">
+        <TableLayout rows="1" cols="3">
+          <cell row="1" col="1" valign="center" halign="center">
+            <Button name="FareDown4" width="48" height="32">
+              <image src="images/readable/plate-72-normal.png" width="48" height="32" resizable="yes"/>
+              <image-hover src="images/readable/plate-72-hover.png" width="48" height="32" resizable="yes"/>
+              <text-caption color="#edf0df" halign="center" font-size="18">−</text-caption>
+            </Button>
+          </cell>
+          <cell row="1" col="3" valign="center" halign="center">
+            <Button name="FareUp4" width="48" height="32">
+              <image src="images/readable/plate-72-normal.png" width="48" height="32" resizable="yes"/>
+              <image-hover src="images/readable/plate-72-hover.png" width="48" height="32" resizable="yes"/>
+              <text-caption color="#edf0df" halign="center" font-size="18">+</text-caption>
+            </Button>
+          </cell>
+          <cell row="1" col="2" valign="center">
+            <Paragraph name="Fare4" color="#edf0df" font-size="16" halign="center">Fare / trip</Paragraph>
+          </cell>
+        </TableLayout>
+      </cell>
+      <cell row="7" col="1" colspan="2">
+        <Paragraph name="TransitIntro" color="#edf0df" font-size="17">Adjust fares per trip. Higher fares reduce demand. Surface and metro fares are assessed monthly. Airports earn ticket revenue on operating days.</Paragraph>
+      </cell>
+      <cell row="8" col="1" colspan="2" halign="center" valign="center">
         <Button name="TransitView" width="720" height="36">
           <image src="images/readable/plate-650-normal.png" width="720" height="36" resizable="yes"/>
           <image-hover src="images/readable/plate-650-hover.png" width="720" height="36" resizable="yes"/>
@@ -135,7 +160,7 @@
           <text-caption color="#edf1df" halign="center" font-size="18">Normal city view</text-caption>
         </Button>
       </cell>
-      <cell row="8" col="1" colspan="2">
+      <cell row="9" col="1" colspan="2">
         <TableLayout rows="1" cols="2">
           <cell row="1" col="1" halign="center" valign="center">
             <Button name="TransitRefresh" width="340" height="36">

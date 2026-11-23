@@ -180,7 +180,7 @@ void Coalmine::place(MapPoint point) {
   mine_nw = point.n(constructionGroup->range).w(constructionGroup->range);
   if(mine_nw.x < 1) mine_nw.x = 1;
   if(mine_nw.y < 1) mine_nw.y = 1;
-  mine_se = point.s(constructionGroup->range).e(constructionGroup->range);
+  mine_se = point.s(constructionGroup->range + constructionGroup->size).e(constructionGroup->range + constructionGroup->size);
   if(mine_se.x >= world.map.len()-1) mine_se.x = world.map.len()-1;
   if(mine_se.y >= world.map.len()-1) mine_se.y = world.map.len()-1;
   mine_cur = mine_nw;
