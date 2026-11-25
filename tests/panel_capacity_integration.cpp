@@ -125,7 +125,7 @@ int main() {
     // and a mass skip must not turn this test into a no-op.
     if(unfedOccupiedHousing != 9)
       throw std::runtime_error("test did not reach occupied, unfed housing (supply advice line)");
-    if(!skipped.empty() || built < 70)
+    if(!skipped.empty() || built < 71)
       throw std::runtime_error("too few building types were built to trust this scan: " + std::to_string(built));
     std::cout << "PASS info panel capacity\n";
   } catch(const std::exception& e) {

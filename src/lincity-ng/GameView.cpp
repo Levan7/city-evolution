@@ -1,3 +1,4 @@
+#include "lincity/modules/cricket.hpp"
 #include "lincity/modules/city_business.hpp"
 /* ---------------------------------------------------------------------- *
  * src/lincity-ng/GameView.cpp
@@ -1272,7 +1273,7 @@ void GameView::fetchTextures() {
 
 
 
-void GameView::drawTexture(Painter& painter, const MapPoint &tile, GraphicsInfo *graphicsInfo)
+void GameView::drawTexture(Painter& painter, const MapPoint &tile, GraphicsInfo *graphicsInfo, unsigned char opacity)
 {
     Rect2D tilerect( 0, 0, tileWidth, tileHeight );
     Vector2 tileOnScreenPoint = getScreenPoint( tile );
@@ -1308,7 +1309,9 @@ void GameView::drawTexture(Painter& painter, const MapPoint &tile, GraphicsInfo 
         }
         const int cloud = e.currentWeather() ? 10 : 0;
         setNightTint(*graphicsInfo->texture, dark, cloud, powered);
+        if(opacity != 255) graphicsInfo->texture->setOpacity(opacity);
         painter.drawStretchTexture(graphicsInfo->texture, tilerect);
+        if(opacity != 255) graphicsInfo->texture->setOpacity(255);
         graphicsInfo->texture->setLighting(255,255,255);
         bool occupied=true;
         if(inCity(tile)) { auto* c=getWorld().map(tile)->reportingConstruction; if(c){int group=c->constructionGroup->group;if(GROUP_IS_RESIDENCE(group))occupied=static_cast<Residence*>(c)->local_population>0;else if(group==GROUP_HEALTH)occupied=static_cast<HealthCentre*>(c)->active;else if(group==GROUP_FIRESTATION)occupied=static_cast<FireStation*>(c)->active;else if(group==GROUP_POLICE)occupied=getWorld().civic.stationReady(*c,CivicServices::POLICE);} }
@@ -1316,6 +1319,79 @@ void GameView::drawTexture(Painter& painter, const MapPoint &tile, GraphicsInfo 
     }
 }
 
+
+namespace {
+
+void drawFootballMatch(Painter& painter, Vector2 origin, float zoom, int time) {
+  constexpr float tau = 6.2831853f;
+  const float play = float(time % 24000) * tau / 24000;
+  auto onPitch = [&](float across, float down) {
+    return origin + Vector2(112 - 19*down + (160 + 38*down)*across, 65 + 64*down)*zoom;
+  };
+  const auto ball = onPitch(.5f + .37f*std::sin(play), .5f + .31f*std::sin(play*2));
+  for(int team = 0; team < 2; ++team) {
+    for(int player = 0; player < 5; ++player) {
+      const float phase = play * (player % 2 ? 2 : 3) + player*1.31f + team;
+      const float formation = team == 0 ? .26f : .74f;
+      const auto feet = onPitch(formation + .18f*std::sin(play) + .075f*std::sin(phase),
+                                 .16f + .17f*player + .075f*std::cos(phase));
+      const float stride = std::sin(float(time % 460)*tau/460 + player)*1.9f;
+      const Vector2 waist = feet-Vector2(0, 3)*zoom;
+      painter.setLineColor(Color(32, 40, 49));
+      painter.drawLine(waist, feet+Vector2(-stride, 0)*zoom);
+      painter.drawLine(waist, feet+Vector2(stride, -1)*zoom);
+      painter.setFillColor(team == 0 ? Color(209, 55, 47) : Color(60, 126, 227));
+      painter.fillRectangle(Rect2D(waist-Vector2(1.7f, 3)*zoom, waist+Vector2(1.7f, .5f)*zoom));
+      painter.setFillColor(Color(244, 192, 149));
+      painter.fillRectangle(Rect2D(waist-Vector2(1, 5)*zoom, waist+Vector2(1, -3)*zoom));
+    }
+  }
+  painter.setFillColor(Color(253, 249, 234));
+  painter.fillRectangle(Rect2D(ball-Vector2(1.3f, 1.3f)*zoom, ball+Vector2(1.3f, 1.3f)*zoom));
+}
+
+void drawFerrisWheel(Painter& painter, Vector2 origin, float zoom, int time, bool running, bool night) {
+  constexpr float tau = 6.2831853f;
+  const float phase = running ? float(time % 18000)*tau/18000 : 0;
+  const auto hub = origin + Vector2(261, 52)*zoom;
+  auto wheel = [&](float angle) {
+    return hub + Vector2(36*std::cos(angle), 35*std::sin(angle) - 12*std::cos(angle))*zoom;
+  };
+  const Color frame(118, 71, 48);
+  const Color trim = night && running ? Color(255, 208, 111) : Color(223, 183, 117);
+  const Vector2 support[] = {
+    origin+Vector2(239, 95)*zoom, hub, hub+Vector2(4, 2)*zoom, origin+Vector2(247, 98)*zoom
+  };
+  painter.setFillColor(frame);
+  painter.fillPolygon(4, support);
+  const Vector2 rearSupport[] = {
+    origin+Vector2(279, 93)*zoom, hub, hub+Vector2(-3, -2)*zoom, origin+Vector2(285, 91)*zoom
+  };
+  painter.fillPolygon(4, rearSupport);
+  constexpr int rimSegments = 24;
+  for(int i = 0; i < rimSegments; ++i) {
+    const auto a = wheel(tau*i/rimSegments), b = wheel(tau*(i+1)/rimSegments);
+    painter.setLineColor(frame);
+    painter.drawLine(a+Vector2(0, 1)*zoom, b+Vector2(0, 1)*zoom);
+    painter.setLineColor(trim);
+    painter.drawLine(a, b);
+  }
+  constexpr int cabins = 8;
+  const Color paint[] = {Color(171, 54, 56), Color(47, 116, 115), Color(191, 132, 57)};
+  for(int i = 0; i < cabins; ++i) {
+    const auto seat = wheel(phase + tau*i/cabins);
+    painter.setLineColor(trim);
+    painter.drawLine(hub, seat);
+    painter.setFillColor(paint[i%3]);
+    painter.fillRectangle(Rect2D(seat+Vector2(-4, 1)*zoom, seat+Vector2(4, 7)*zoom));
+    painter.setFillColor(trim);
+    painter.fillRectangle(Rect2D(seat+Vector2(-4, 0)*zoom, seat+Vector2(4, 2)*zoom));
+  }
+  painter.setFillColor(frame);
+  painter.fillRectangle(Rect2D(hub-Vector2(3, 3)*zoom, hub+Vector2(3, 3)*zoom));
+}
+
+} // namespace
 
 void GameView::drawTile(Painter& painter, const MapPoint &tile)
 {
@@ -1340,7 +1416,8 @@ void GameView::drawTile(Painter& painter, const MapPoint &tile)
     if(tile.n(size-1) == upperLeft)
     {
         if(cstgrp->group == GROUP_AIRPORT || cstgrp->group == GROUP_RACING_CIRCUIT ||
-           cstgrp->group == GROUP_LARGE_WAREHOUSE || cstgrp->group == GROUP_WINDMILL) {
+           cstgrp->group == GROUP_LARGE_WAREHOUSE || cstgrp->group == GROUP_WINDMILL ||
+           cstgrp->group == GROUP_AMUSEMENT_PARK) {
             auto& ground = ResourceGroup::resMap.at("Green")->graphicsInfoVector;
             if(!ground.empty())
                 for(int y = 0; y < size; ++y)
@@ -1432,6 +1509,14 @@ void GameView::drawTile(Painter& painter, const MapPoint &tile)
                                 const auto* building = getWorld().map(upperLeft)->reportingConstruction;
                                 if(!hideHigh && building && graphicsInfo->texture
                                    && frit == building->frameIt) {
+                                    const auto origin = getScreenPoint(lowerRightTile)
+                                      - Vector2(graphicsInfo->x, graphicsInfo->y)*zoom;
+                                    const auto& evolution = getWorld().evolution;
+                                    if(cstgrp->group == GROUP_FOOTBALL && static_cast<const Cricket&>(*building).matchInProgress)
+                                        drawFootballMatch(painter, origin, zoom, evolution.visualTime);
+                                    else if(cstgrp->group == GROUP_AMUSEMENT_PARK)
+                                        drawFerrisWheel(painter, origin, zoom, evolution.visualTime,
+                                          static_cast<const CityBusiness&>(*building).operating, evolution.darkness() > 500);
                                     const auto* home = dynamic_cast<const Residence*>(building);
                                     const bool noPower = home ? home->local_population > 0 && !home->hasElectricity()
                                       : building->missingElectricity();
@@ -1956,7 +2041,7 @@ void GameView::updateStreetActors() {
       a.next=a.route[a.routeIndex++];
     }
     bool motor=TrafficEra::motorVehicle(world.tech_level,MAX_TECH_LEVEL,a.appearance);
-    a.progress += delta/(a.car?(motor?1900.f:3600.f):5200.f);
+    a.progress += delta/(a.car?(motor?2800.f:3600.f):5200.f);
     ++it;
   }
   streetActorsByTile.clear();
@@ -2120,7 +2205,7 @@ void GameView::drawCityLife(Painter& painter) {
       float y=std::fmod(i*97.73f + e.visualTime*.43f,getHeight()+50)-25;
       painter.drawLine(Vector2(x,y),Vector2(x-4,y+13));
     }
-    if(weather==3 && e.visualTime%19000 < 180) {
+    if(e.lightningFlash() >= 0) {
       painter.setFillColor(Color(201,218,255,105));
       painter.fillRectangle(Rect2D(0,0,getWidth(),getHeight()));
     }
@@ -2297,7 +2382,8 @@ void GameView::drawEmergencyActors(Painter& painter) {
      auto* fire=ResourceGroup::resMap["Fire"];
      if(fire && !fire->graphicsInfoVector.empty())
        drawTexture(painter,tile.e(building->constructionGroup->size-1),
-         &fire->graphicsInfoVector[(w.evolution.visualTime/100)%fire->graphicsInfoVector.size()]);
+         &fire->graphicsInfoVector[(w.evolution.visualTime/100)%fire->graphicsInfoVector.size()],
+         static_cast<unsigned char>(std::clamp(56 + call.severity*4, 56, 255)));
    }
    if(call.kind==CivicServices::ZOMBIE_CALL) {
      const auto p=getScreenPoint(tile)-Vector2(0,tileHeight);
@@ -2376,13 +2462,13 @@ void GameView::drawAirportFlights(Painter& painter) {
   const auto& world = getWorld();
   const int now = world.evolution.visualTime;
   int elapsed = (now - flightWaveStarted + 3600000) % 3600000;
-  if(flightWaveStarted < 0 || elapsed >= (airportFlights.empty() ? 1500 : 30000)) {
+  if(flightWaveStarted < 0 || elapsed >= (airportFlights.empty() ? 1500 : 60000)) {
     planAirportFlights();
     elapsed = 0;
   }
 
-  constexpr int runwayRollMs = 3200;
-  constexpr int offMapPauseMs = 1200;
+  constexpr int runwayRollMs = 5600;
+  constexpr int offMapPauseMs = 2400;
   const Vector2 runwayAxis(345, -156);
   const Vector2 heading = runwayAxis / std::hypot(runwayAxis.x, runwayAxis.y);
   // Match the airport sprite's 6x6 anchor and its painted runway centerline.
@@ -2406,7 +2492,7 @@ void GameView::drawAirportFlights(Painter& painter) {
     const Vector2 landingEnd = landingStart + runwayAxis*zoom;
     const Vector2 gap = landingStart - takeoffEnd;
     const float distance = std::hypot(gap.x, gap.y) / zoom;
-    const int cruiseMs = local ? 18000 : std::clamp(int(distance * 5), 5500, 20000);
+    const int cruiseMs = local ? 36000 : std::clamp(int(distance * 11), 12000, 46000);
     const int landingTime = runwayRollMs + cruiseMs;
     Vector2 location, direction = heading;
     float altitude = 0;
@@ -2477,6 +2563,14 @@ void GameView::drawCircuitRaces(Painter& painter) {
     {470,295},{434,292},{410,273},{375,274},{349,302},{309,315},{263,300},
     {245,269},{199,248},{141,243},{106,225},{101,206}};
   constexpr size_t segments = sizeof(route)/sizeof(route[0]);
+  static const auto distances = [] {
+    std::array<float, segments+1> cumulative{};
+    for(size_t i = 0; i < segments; ++i) {
+      const auto delta = route[(i+1)%segments] - route[i];
+      cumulative[i+1] = cumulative[i] + std::hypot(delta.x, delta.y);
+    }
+    return cumulative;
+  }();
   const auto& world = getWorld();
   const Color colors[] = {Color(220,52,42),Color(70,145,246),Color(255,200,61)};
   for(const auto* building : world.map.constructions) {
@@ -2484,10 +2578,12 @@ void GameView::drawCircuitRaces(Painter& painter) {
        !static_cast<const CityBusiness*>(building)->operating) continue;
     const auto origin = getScreenPoint(building->point.e(5).s(5)) - Vector2(384,384)*zoom;
     for(int car = 0; car < 3; ++car) {
-      const float phase = std::fmod(world.evolution.visualTime/14500.f - car*.035f + 1.f, 1.f)*segments;
-      const size_t segment = static_cast<size_t>(phase);
+      const float lap = std::fmod(world.evolution.visualTime/30000.f + 1.f - car*.035f, 1.f);
+      const float traveled = lap * distances.back();
+      const size_t segment = std::upper_bound(distances.begin(), distances.end(), traveled) - distances.begin() - 1;
       const auto a = route[segment], b = route[(segment+1)%segments];
-      const auto location = origin + (a+(b-a)*(phase-segment))*zoom;
+      const float fraction = (traveled-distances[segment]) / (distances[segment+1]-distances[segment]);
+      const auto location = origin + (a + (b-a)*fraction)*zoom;
       const auto f = (b-a)*(zoom/std::hypot(b.x-a.x,b.y-a.y));
       const Vector2 side(-f.y,f.x);
       Vector2 chassis[] = {location+f*5, location+f*2+side*3, location-f*4+side*2,

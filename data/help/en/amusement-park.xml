@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Document style="helpdocument">
+  <p style="htitle">Amusement park</p>
+  <img src="images/tiles/amusement-park.png" halign="center"/>
+  <p style="hp">Build from Civic at 20% technology. The park costs $25,000, occupies 3 by 3 tiles and needs road or rail access.</p>
+  <p style="hp">The park uses 18 labor, 8 water, 40 low-voltage electricity and 6 goods per operating day. It produces 2 waste. The Ferris wheel turns while the park operates.</p>
+  <p style="hp">Tickets bring in $20 per operating day. Upkeep is $8 per day, including days when the park is closed.</p>
+  <li><a href="park">Parks</a></li>
+  <li><a href="power">Power</a></li>
+</Document>

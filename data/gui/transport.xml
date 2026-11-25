@@ -145,7 +145,7 @@
             </Button>
           </cell>
           <cell row="1" col="2" valign="center">
-            <Paragraph name="Fare4" color="#edf0df" font-size="16" halign="center">Fare / trip</Paragraph>
+            <Paragraph name="Fare4" color="#edf0df" font-size="14" halign="center">Fare / trip</Paragraph>
           </cell>
         </TableLayout>
       </cell>

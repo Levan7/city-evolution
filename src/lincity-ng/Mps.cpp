@@ -292,7 +292,7 @@ MpsMap::refreshInvProd(bool production) {
       }
       return;
     }
-    if((group == GROUP_AIRPORT || group == GROUP_RACING_CIRCUIT) &&
+    if((group == GROUP_AIRPORT || group == GROUP_RACING_CIRCUIT || group == GROUP_AMUSEMENT_PARK) &&
        !static_cast<const CityBusiness&>(building).hasTransportAccess())
       getParagraph(*this, "mps_status" + std::to_string(line++))->setText("Needs road or rail access");
     for(Commodity stuff = STUFF_INIT; stuff < STUFF_COUNT && line < 3; ++stuff) {
@@ -305,7 +305,7 @@ MpsMap::refreshInvProd(bool production) {
       else if(dailyOutput > 0 && capacity > 0 &&
               building.commodityCount[stuff] > capacity - dailyOutput)
         reason = stuff == STUFF_HIVOLT || stuff == STUFF_LOVOLT
-          ? "Power backed up at output"
+          ? "Power output storage nearly full"
           : stuff == STUFF_STEEL ? "Steel output needs an outlet"
           : std::string(commodityName(stuff)) + " output backed up";
       if(!reason.empty())

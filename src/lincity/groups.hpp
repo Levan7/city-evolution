@@ -26,7 +26,8 @@
 
 /******* Buildings // GROUPS ************/
 
-#define NUM_OF_GROUPS    78
+#define NUM_OF_GROUPS    79
+#define GROUP_AMUSEMENT_PARK 78
 #define GROUP_AIRPORT 76
 #define GROUP_RACING_CIRCUIT 77
 #define GROUP_CITY_PARK 75

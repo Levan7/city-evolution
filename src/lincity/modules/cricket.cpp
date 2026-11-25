@@ -89,6 +89,7 @@ Cricket::Cricket(World& world, ConstructionGroup *cstgrp) :
 void Cricket::update()
 {
     ++daycount;
+    matchInProgress = false;
     try {
       world.expense(constructionGroup->group == GROUP_FOOTBALL ? 8 : CRICKET_RUNNING_COST, world.stats.expenses.cricket);
 
@@ -99,6 +100,7 @@ void Cricket::update()
         consumeStuff(STUFF_LABOR, CRICKET_LABOR);
         consumeStuff(STUFF_GOODS, CRICKET_GOODS);
         produceStuff(STUFF_WASTE, CRICKET_GOODS / 3);
+        matchInProgress = constructionGroup->group == GROUP_FOOTBALL;
         ++covercount;
         ++working_days;
       }

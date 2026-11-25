@@ -1,5 +1,14 @@
 # Changelog
 
+## City Evolution — Preview 28
+
+- Slow aircraft, road traffic and circuit cars. Circuit cars hold a steadier speed along the track.
+- Give fire crews a longer response and spraying animation, with flames fading as the crew works.
+- Play quieter thunder once per visible lightning flash.
+- Show players on the field during football matches. Add an amusement park under Civic with a working Ferris wheel.
+- Add selectable port trade charts and totals for one month, one year, five years, ten years, fifty years and one hundred years.
+- Make room for longer build button captions, clarify the power storage warning, and link all build help pages from the index.
+
 ## City Evolution — Preview 27
 
 - Fill exposed ground beneath the regional airport, Grand Prix circuit and distribution center. Fit the Industry drawer and the minimap to their panels.

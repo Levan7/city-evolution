@@ -98,6 +98,7 @@
     <tool name="BPMChurchButton" grpid="62" help="church" />
       <tool name="BPMAirportButton" grpid="76" help="airport" />
       <tool name="BPMCircuitButton" grpid="77" help="racing-circuit" />
+      <tool name="BPMAmusementParkButton" grpid="78" help="amusement-park" />
   </menu>
   <content>
     <TableLayout rows="1" cols="2">
@@ -662,8 +663,8 @@
                             <image-clicked src="images/readable/plate-72-clicked.png" width="88" height="76" resizable="yes" />
                             <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes" />
                             <caption><Panel width="88" height="76"><TableLayout rows="2" cols="1">
-                              <rowsize row="1" fixed="53" /><rowsize row="2" fixed="23" />
-                              <cell row="1" col="1" halign="center" valign="center"><Image src="images/tiles/football-stadium.png" width="52" height="52" resizable="yes" /></cell>
+                              <rowsize row="1" fixed="44" /><rowsize row="2" fixed="32" />
+                              <cell row="1" col="1" halign="center" valign="center"><Image src="images/tiles/football-stadium.png" width="42" height="42" resizable="yes" /></cell>
                               <cell row="2" col="1" halign="center" valign="center"><Paragraph color="#edf0df" font-size="11" halign="center">Football stadium</Paragraph></cell>
                             </TableLayout></Panel></caption>
                             <tooltip>Football stadium</tooltip>
@@ -952,8 +953,8 @@
                             <image-clicked src="images/readable/plate-72-clicked.png" width="88" height="76" resizable="yes" />
                             <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes" />
                             <caption><Panel width="88" height="76"><TableLayout rows="2" cols="1">
-                              <rowsize row="1" fixed="53" /><rowsize row="2" fixed="23" />
-                              <cell row="1" col="1" halign="center" valign="center"><Image src="images/tiles/large-warehouse.png" width="52" height="52" resizable="yes" /></cell>
+                              <rowsize row="1" fixed="44" /><rowsize row="2" fixed="32" />
+                              <cell row="1" col="1" halign="center" valign="center"><Image src="images/tiles/large-warehouse.png" width="42" height="42" resizable="yes" /></cell>
                               <cell row="2" col="1" halign="center" valign="center"><Paragraph color="#edf0df" font-size="11" halign="center">Distribution center</Paragraph></cell>
                             </TableLayout></Panel></caption>
                             <tooltip>Distribution center</tooltip>
@@ -1272,8 +1273,8 @@
                             <image-clicked src="images/readable/plate-72-clicked.png" width="88" height="76" resizable="yes" />
                             <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes" />
                             <caption><Panel width="88" height="76"><TableLayout rows="2" cols="1">
-                              <rowsize row="1" fixed="53" /><rowsize row="2" fixed="23" />
-                              <cell row="1" col="1" halign="center" valign="center"><Image src="images/tiles/computer-factory.png" width="52" height="52" resizable="yes" /></cell>
+                              <rowsize row="1" fixed="44" /><rowsize row="2" fixed="32" />
+                              <cell row="1" col="1" halign="center" valign="center"><Image src="images/tiles/computer-factory.png" width="42" height="42" resizable="yes" /></cell>
                               <cell row="2" col="1" halign="center" valign="center"><Paragraph color="#edf0df" font-size="11" halign="center">Computer factory</Paragraph></cell>
                             </TableLayout></Panel></caption>
                             <tooltip>Computer factory</tooltip>
@@ -1449,7 +1450,14 @@
  <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes"/>
  <caption><Panel width="88" height="76"><TableLayout rows="2" cols="1"><rowsize row="1" fixed="53"/><rowsize row="2" fixed="23"/>
  <cell row="1" col="1"><Image src="images/tiles/racing-circuit.png" width="70" height="50" resizable="yes"/></cell>
- <cell row="2" col="1"><Paragraph color="#edf0df" font-size="10" halign="center">Grand Prix circuit</Paragraph></cell></TableLayout></Panel></caption><tooltip>Grand Prix circuit</tooltip></CheckButton></cell></TableLayout>
+ <cell row="2" col="1"><Paragraph color="#edf0df" font-size="10" halign="center">Grand Prix circuit</Paragraph></cell></TableLayout></Panel></caption><tooltip>Grand Prix circuit</tooltip></CheckButton></cell>
+<cell row="2" col="3" halign="center" valign="center"><CheckButton name="BPMAmusementParkButton" width="88" height="76" auto-uncheck="false">
+ <image src="images/readable/plate-72-normal.png" width="88" height="76" resizable="yes"/>
+ <image-hover src="images/readable/plate-72-hover.png" width="88" height="76" resizable="yes"/>
+ <image-checked src="images/readable/plate-72-checked.png" width="88" height="76" resizable="yes"/>
+ <caption><Panel width="88" height="76"><TableLayout rows="2" cols="1"><rowsize row="1" fixed="53"/><rowsize row="2" fixed="23"/>
+ <cell row="1" col="1"><Image src="images/tiles/amusement-park.png" width="70" height="50" resizable="yes"/></cell>
+ <cell row="2" col="1"><Paragraph color="#edf0df" font-size="10" halign="center">Amusement park</Paragraph></cell></TableLayout></Panel></caption><tooltip>Amusement park</tooltip></CheckButton></cell></TableLayout>
                     </cell>
                   </TableLayout>
                 </Panel>

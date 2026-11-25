@@ -324,7 +324,13 @@ static void gridTradeAndHistory() {
   auto loaded = World::load(file);
   std::filesystem::remove(file);
   const auto& restored = *static_cast<Port*>(loaded->map(point)->construction);
-  need(restored.tradeHistory.size() == 1 && restored.currentTrade.exported[STUFF_HIVOLT] == stocked/2
+  need(restored.tradeHistory.size() == 1 &&
+      restored.tradeHistory.front().month == port.tradeHistory.front().month &&
+      restored.tradeHistory.front().imports == port.tradeHistory.front().imports &&
+      restored.tradeHistory.front().exportCents == port.tradeHistory.front().exportCents &&
+      restored.tradeHistory.front().imported == port.tradeHistory.front().imported &&
+      restored.tradeHistory.front().exported == port.tradeHistory.front().exported &&
+      restored.currentTrade.exported[STUFF_HIVOLT] == stocked/2
       && restored.commodityRuleCount[STUFF_HIVOLT].give && loaded->evolution.airportFare == 6,
       "save lost a port order, trade history, or the airport fare");
 }

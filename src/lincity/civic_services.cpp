@@ -96,22 +96,25 @@ void CivicServices::update(World& w){
  if(w.total_time%NUMOF_DAYS_IN_MONTH==0)monthly(w);
  if(!zombiesEnabled)incidents.erase(std::remove_if(incidents.begin(),incidents.end(),[](auto& c){return c.kind==ZOMBIE_CALL;}),incidents.end());
  for(auto* c:w.map.constructions)if(!c->isDead()&&c->constructionGroup->group==GROUP_FIRE&&static_cast<Fire*>(c)->burning_days<FIRE_LENGTH)addIncident(FIRE_CALL,idOf(w,c->point),60);
- for(auto& c:incidents){++c.age;auto* b=at(w,c.target);if(c.kind==FIRE_CALL&&b&&b->constructionGroup->group!=GROUP_FIRE&&c.age>=600){forceBurn=c.target;b->torch();forceBurn=-1;c.age=0;}}
+ for(auto& c:incidents){++c.age;auto* b=at(w,c.target);if(c.kind==FIRE_CALL&&b&&b->constructionGroup->group!=GROUP_FIRE&&c.age>=600&&!fireResponseAt(c.target)){forceBurn=c.target;b->torch();forceBurn=-1;c.age=0;}}
  incidents.erase(std::remove_if(incidents.begin(),incidents.end(),[&](auto& c){auto* b=at(w,c.target);return !b||c.severity<=0||(c.kind==FIRE_CALL&&b->constructionGroup->group==GROUP_FIRE&&static_cast<Fire*>(b)->burning_days>=FIRE_LENGTH)||(c.kind==MEDICAL_CALL&&(!GROUP_IS_RESIDENCE(b->constructionGroup->group)||illAt(c.target)+w.flu.infectiousAt(c.target)<=0))||(c.kind==CRIME_CALL&&c.age>=600)||(c.kind==ZOMBIE_CALL&&c.age>=1200);}),incidents.end());
  for(auto it=units.begin();it!=units.end();){auto& u=*it;int service=serviceFor(u.kind);auto* station=at(w,u.home);if(!station||idOf(w,station->point)!=u.home||station->constructionGroup->group!=groupFor(service)){it=units.erase(it);continue;}
   auto call=std::find_if(incidents.begin(),incidents.end(),[&](auto& c){return c.id==u.call;});if(call==incidents.end()&&!u.returning){u.path.resize(std::min(int(u.path.size()),u.step+1));std::reverse(u.path.begin(),u.path.end());u.step=0;u.credit=0;u.returning=true;}
   if(u.path.empty()){it=units.erase(it);continue;}
 
-  if(u.step+1<int(u.path.size())){u.credit+=6;int target=u.returning?u.home:call->target;int cost=terrainCost(w,u.path[u.step+1],u.home,target);if(!cost){auto newPath=route(w,u.path[u.step],target);if(newPath.empty()){it=units.erase(it);continue;}u.path=std::move(newPath);u.step=0;u.credit=0;}else if(u.credit>=cost){u.credit-=cost;++u.step;}}
+  if(u.step+1<int(u.path.size())){u.credit+=u.kind==FIRE_CALL ? 2 : 6;int target=u.returning?u.home:call->target;int cost=terrainCost(w,u.path[u.step+1],u.home,target);if(!cost){auto newPath=route(w,u.path[u.step],target);if(newPath.empty()){it=units.erase(it);continue;}u.path=std::move(newPath);u.step=0;u.credit=0;}else if(u.credit>=cost){u.credit-=cost;++u.step;}}
   else if(u.returning){it=units.erase(it);continue;}
   else if(call!=incidents.end()) {
    ++u.working;
    auto* building = at(w,call->target);
    const int strength = 2 + budget[service]/50;
    if(u.kind==FIRE_CALL) {
-    // Give the crew time to visibly spray before it heads back.
-    if(u.working >= 18 || call->severity > strength)
-      call->severity -= strength;
+    // Let the crew work for several seconds at normal simulation speed.
+    constexpr int minimumSprayDays = 72;
+    if(u.working % 4 == 0) {
+      const int minimumSeverity = u.working < minimumSprayDays ? 1 : 0;
+      call->severity = std::max(minimumSeverity, call->severity - strength);
+    }
     if(building && building->constructionGroup->group==GROUP_FIRE && call->severity<=0)
      static_cast<Fire*>(building)->burning_days = FIRE_LENGTH+1;
    } else if(u.working%std::max(2,7-strength)==0) {

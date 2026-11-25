@@ -34,4 +34,5 @@
 	<li><a href="steel">Steel</a></li>
   <p style="hp">Red boxes mean foreign trade for that product and direction is closed until the new year. A checked box keeps your order ready to resume. Trade also requires workers and enough cargo to form a shipment. The report separates the latest completed month from this month so far. A zero means there was no reportable trade in that period.</p>
   <p style="hp">Use Grid power to trade high-voltage electricity. Connect the port to your grid to use imported power or deliver surplus to an exporting port. Open History to see import spending, export receipts and quantities by commodity over completed periods. Old saves start recording history after this update.</p>
+  <p style="hp">Open History to compare import spending and export receipts. Choose a period from one completed month to 100 years. The chart uses recorded history only, and the table shows the quantities traded.</p>
 </Document>

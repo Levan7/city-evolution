@@ -183,6 +183,9 @@ struct CityEvolution {
     return skyPhase == 1 ? fade : 1000 - fade;
   }
   int currentWeather() const { return weatherMode ? weatherMode - 1 : weather; }
+  int lightningFlash() const {
+    return currentWeather() == 3 && visualTime % 19000 < 180 ? visualTime / 19000 : -1;
+  }
   int solarPercent() const {
     const int sky = 100 - darkness()/10;
     const int cloud = currentWeather() == 0 ? 100 : currentWeather() == 1 ? 70 : currentWeather() == 2 ? 45 : 25;

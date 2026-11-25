@@ -284,7 +284,7 @@ Sound::~Sound() {
  *  playSound( "beep" ) would pick one of the three Files randomly
  */
 void
-Sound::playSound(const std::string& name) {
+Sound::playSound(const std::string& name, float gain) {
   if(!getConfig()->soundEnabled.get()) {
     return;
   }
@@ -303,7 +303,8 @@ Sound::playSound(const std::string& name) {
     it++;
   }
 
-  MIX_SetTrackGain(soundTrack, .01f * getConfig()->soundVolume.get());
+  effectGain = std::clamp(gain, 0.f, 1.f);
+  MIX_SetTrackGain(soundTrack, effectGain * .01f * getConfig()->soundVolume.get());
   MIX_SetTrackAudio(soundTrack, it->second);
   MIX_PlayTrack(soundTrack, 0);
 }
@@ -368,6 +369,7 @@ void Sound::playASound(MIX_Audio *chunk) {
     return;
   if(!audioOpen)
     return;
+  effectGain = 1.f;
   MIX_SetTrackGain(soundTrack, .01f * getConfig()->soundVolume.get());
   MIX_SetTrackAudio(soundTrack, chunk);
   MIX_PlayTrack(soundTrack, 0);
@@ -499,7 +501,7 @@ Sound::setSoundVolume(int vol)
     vol=std::clamp(vol,0,100);
     getConfig()->soundVolume.session = vol;
     float volvalue = .01f * vol;
-    if(audioOpen&&soundTrack)MIX_SetTrackGain(soundTrack, volvalue);
+    if(audioOpen&&soundTrack)MIX_SetTrackGain(soundTrack, effectGain * volvalue);
 }
 
 

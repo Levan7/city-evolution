@@ -4,6 +4,7 @@ set(guiSourceFiles
   publicservices.xml
   cityhall.xml
   transport.xml
+  porttradehistory.xml
   app.xml
   buttonpanel.xml
   creditslist.xml

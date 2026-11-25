@@ -132,7 +132,7 @@ private:
     Vector2 getScreenPoint(MapPoint point);
     MapPoint getTile(const Vector2& point);
     void drawTile(Painter& painter, const MapPoint &point);
-    void drawTexture(Painter& painter, const MapPoint &point, GraphicsInfo *graphicsInfo);
+    void drawTexture(Painter& painter, const MapPoint &point, GraphicsInfo *graphicsInfo, unsigned char opacity = 255);
     void drawOverlay(Painter& painter, const MapPoint &point);
     void fillDiamond( Painter& painter, const Rect2D& rect );
     void drawDiamond( Painter& painter, const Rect2D& rect );

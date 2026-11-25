@@ -1030,12 +1030,6 @@ Game::run() {
         if(tick >= next_gui) { // gui update
             const int weather = world->evolution.currentWeather();
             getSound()->setRainAmbience(weather == 3 ? .42f : weather == 2 ? .28f : 0.f);
-            const int weatherClock = world->evolution.visualTime;
-            if(weather == 3 && weatherClock%19000 >= 400 && weatherClock%19000 < 750 &&
-               lastThunder != weatherClock/19000) {
-              lastThunder = weatherClock/19000;
-              getSound()->playSound("Thunder");
-            }
             // fire update event
             gui->event(Event((tick - prev_gui) / 1000.0f));
 
@@ -1110,6 +1104,11 @@ Game::run() {
         if(tick >= next_animate) { // game animation
           // animate
           world->evolution.advance(std::min<Uint32>(250, tick - prev_animate));
+          const int flash = world->evolution.lightningFlash();
+          if(flash >= 0 && flash != lastThunder) {
+            lastThunder = flash;
+            getSound()->playSound("Thunder", .28f);
+          }
           if(tick >= next_building_animation) {
             world->do_animate(tick);
             next_building_animation = tick + ANIMATE_DELAY;

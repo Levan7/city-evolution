@@ -292,6 +292,8 @@ bool Port::loadMember(xmlpp::TextReader& xmlReader, unsigned int ldsv_version) {
     for(auto* amounts : {&entry.imported, &entry.exported})
       for(int& amount : *amounts)
         if(!(fields >> amount) || amount < 0) return true;
+    fields >> std::ws;
+    if(!fields.eof()) return true;
     if(tag == "trade_history_current") currentTrade = entry;
     else if(tradeHistory.empty() || tradeHistory.back().month < entry.month) {
       tradeHistory.push_back(entry);

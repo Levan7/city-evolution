@@ -98,6 +98,7 @@ public:
     int daycount, covercount;
     int anim;
     bool animate_enable, active;
+    bool matchInProgress = false;
     int working_days, busy;
 };
 

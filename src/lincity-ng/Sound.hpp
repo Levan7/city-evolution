@@ -58,7 +58,7 @@ public:
     Sound();
     ~Sound();
 
-    void playSound(const std::string& name);
+    void playSound(const std::string& name, float gain = 1.f);
     void playSound(const MapTile& tile);
     void playASound(MIX_Audio *chunk);
     void playMusic();
@@ -102,6 +102,7 @@ private:
     MIX_Track *soundTrack=nullptr;
     MIX_Track *rainTrack=nullptr;
     float rainGain = 0.f;
+    float effectGain = 1.f;
     Uint64 lastRainUpdate = 0;
     Uint64 lastBell = 0;
     MIX_Mixer *mixer=nullptr;

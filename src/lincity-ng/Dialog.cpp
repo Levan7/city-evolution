@@ -27,6 +27,9 @@
 #include <config.h>                         // for PACKAGE_VERSION
 #include <stdio.h>                          // for snprintf
 #include <stdlib.h>                         // for free, malloc
+#include <algorithm>
+#include <deque>
+#include <libxml++/parsers/textreader.h>
 #include <array>                            // for array
 #include <exception>                        // for exception
 #include <filesystem>                       // for path, operator/
@@ -46,6 +49,8 @@
 #include "gui/Button.hpp"                   // for Button
 #include "gui/CheckButton.hpp"              // for CheckButton
 #include "gui/Component.hpp"                // for Component
+#include "gui/ComponentFactory.hpp"
+#include "gui/Painter.hpp"
 #include "gui/ComponentLoader.hpp"          // for loadGUIFile
 #include "gui/Paragraph.hpp"                // for Paragraph
 #include "gui/Signal.hpp"                   // for Signal
@@ -66,6 +71,148 @@
 #include "util/ptrutil.hpp"                 // for dynamic_unique_cast
 
 using namespace std::placeholders;
+
+namespace {
+
+struct TradeBar {
+  long long importCents = 0, exportCents = 0;
+  bool recorded = false;
+};
+
+const Color importColor(99, 177, 231);
+const Color exportColor(246, 183, 107);
+
+class PortTradeChart : public Component {
+public:
+  void parse(xmlpp::TextReader& reader) {
+    while(reader.move_to_next_attribute())
+      parseAttribute(reader);
+    reader.move_to_element();
+    setFlags(FLAG_RESIZABLE);
+  }
+
+  void resize(float w, float h) override {
+    width = w;
+    height = h;
+  }
+
+  void setSeries(std::vector<TradeBar> series, long long maxCents) {
+    bars = std::move(series);
+    ceiling = std::max(1LL, maxCents);
+    setDirty();
+  }
+
+  void draw(Painter& painter) override {
+    painter.setFillColor(Color(16, 31, 38));
+    painter.fillRectangle(Rect2D(0, 0, width, height));
+    const float baseline = height - 8;
+    const float plotHeight = height - 16;
+    painter.setLineColor(Color(51, 73, 82));
+    for(int line = 0; line <= 4; ++line) {
+      const float y = baseline - plotHeight * line / 4;
+      painter.drawLine(Vector2(8, y), Vector2(width-8, y));
+    }
+    if(bars.empty()) return;
+    const float slotWidth = (width-16) / bars.size();
+    const float barWidth = std::min(42.f, slotWidth*.42f);
+    auto drawBar = [&](float x, long long cents, Color color) {
+      if(cents <= 0) return;
+      const float h = std::max(1.f, float(plotHeight * double(cents) / ceiling));
+      painter.setFillColor(color);
+      painter.fillRectangle(Rect2D(x, baseline-h, x+barWidth, baseline));
+    };
+    for(size_t i = 0; i < bars.size(); ++i) {
+      const float center = 8 + (i+.5f)*slotWidth;
+      const auto& bar = bars[i];
+      if(!bar.recorded) continue;
+      painter.setFillColor(Color(84, 116, 125));
+      painter.fillRectangle(Rect2D(center-barWidth, baseline, center+barWidth, baseline+2));
+      drawBar(center-barWidth, bar.importCents, importColor);
+      drawBar(center, bar.exportCents, exportColor);
+    }
+  }
+
+private:
+  std::vector<TradeBar> bars;
+  long long ceiling = 1;
+};
+
+IMPLEMENT_COMPONENT_FACTORY(PortTradeChart)
+
+std::string tradeMoney(long long cents) {
+  const int remainder = cents % 100;
+  return "$" + std::to_string(cents / 100) +
+    (remainder ? (remainder < 10 ? ".0" : ".") + std::to_string(remainder) : "");
+}
+
+void showPortTradeHistory(WindowManager& manager, const Port& port, int today) {
+  auto panel = dynamic_unique_cast<Window>(loadGUIFile("gui/porttradehistory.xml"));
+  auto* window = panel.get();
+  const auto records = std::make_shared<const std::deque<Port::TradeMonth>>(port.tradeHistory);
+  const int currentMonth = (today + 1) / NUMOF_DAYS_IN_MONTH;
+  getParagraph(*window, "TradeCurrent")->setText(
+    "Month in progress  |  " + tradeMoney(port.monthly_ic * 100LL) +
+    " imported  |  " + tradeMoney(port.monthly_et) + " exported");
+
+  const auto showRange = [window, records, currentMonth](int months) {
+    const int start = std::max(0, currentMonth - months);
+    const int bucketMonths = months > 120 ? 12 : 1;
+    std::vector<TradeBar> bars((currentMonth - start + bucketMonths - 1) / bucketMonths);
+    std::array<long long, STUFF_COUNT> importUnits{}, exportUnits{};
+    long long importCents = 0, exportCents = 0;
+    int recorded = 0;
+    for(const auto& entry : *records) {
+      if(entry.month < start || entry.month >= currentMonth) continue;
+      auto& bar = bars[(entry.month - start) / bucketMonths];
+      bar.recorded = true;
+      bar.importCents += entry.imports * 100LL;
+      bar.exportCents += entry.exportCents;
+      importCents += entry.imports * 100LL;
+      exportCents += entry.exportCents;
+      ++recorded;
+      for(Commodity item = STUFF_INIT; item < STUFF_COUNT; ++item) {
+        importUnits[item] += entry.imported[item];
+        exportUnits[item] += entry.exported[item];
+      }
+    }
+    long long ceiling = 0;
+    for(const auto& bar : bars)
+      ceiling = std::max({ceiling, bar.importCents, bar.exportCents});
+    auto* chart = dynamic_cast<PortTradeChart*>(window->findComponent("TradeChart"));
+    chart->setSeries(std::move(bars), ceiling);
+
+    auto monthLabel = [](int month) {
+      const int day = month * NUMOF_DAYS_IN_MONTH;
+      return std::string(current_month(day)) + " " + std::to_string(current_year(day));
+    };
+    getParagraph(*window, "TradePeriod")->setText(start == currentMonth ? "No completed months yet" :
+      monthLabel(start) + " to " + monthLabel(currentMonth-1) + "  |  " +
+      std::to_string(recorded) + " of " + std::to_string(currentMonth-start) + " months recorded");
+    getParagraph(*window, "TradeScale")->setText(recorded ?
+      "Chart peak " + tradeMoney(ceiling) + (bucketMonths == 1 ? " / month" : " / 12 months") :
+      "No trade history for this period");
+    getParagraph(*window, "TradeImports")->setText("Imports  " + tradeMoney(importCents));
+    getParagraph(*window, "TradeExports")->setText("Exports  " + tradeMoney(exportCents));
+
+    const Commodity items[] = {STUFF_FOOD, STUFF_COAL, STUFF_GOODS, STUFF_ORE, STUFF_STEEL, STUFF_HIVOLT};
+    for(size_t i = 0; i < std::size(items); ++i) {
+      const auto item = items[i];
+      const auto row = std::to_string(i);
+      getParagraph(*window, "TradeItem" + row)->setText(
+        item == STUFF_HIVOLT ? "Grid power" : commodityName(item));
+      getParagraph(*window, "TradeIn" + row)->setText(std::to_string(importUnits[item]));
+      getParagraph(*window, "TradeOut" + row)->setText(std::to_string(exportUnits[item]));
+    }
+  };
+  for(int months : {1, 12, 60, 120, 600, 1200})
+    getButton(*window, "TradeRange" + std::to_string(months))->clicked.connect(
+      [showRange, months](Button*) { showRange(months); });
+  manager.addWindow(std::move(panel));
+  showRange(1);
+}
+
+} // namespace
+
 
 bool blockingDialogIsOpen = false;
 
@@ -655,37 +802,7 @@ void Dialog::editPort(){
     applyButton->clicked.connect(
       std::bind(&Dialog::applyPortButtonClicked, this, _1));
     getButton(*myDialogComponent, "TradeHistory")->clicked.connect([this, port](Button*) {
-      DialogBuilder history;
-      history.windowManager(windowManager).titleText("Port trade history").buttonSet(DialogBuilder::ButtonSet::OK);
-      const int currentMonth = (game.getWorld().total_time + 1) / NUMOF_DAYS_IN_MONTH;
-      history.messageAddText("This month so far: $" + std::to_string(port->monthly_ic)
-        + " imported, $" + std::to_string(port->monthly_et / 100) + " exported.");
-      history.messageAddText("Completed months only. Old saves start recording history after this update.");
-      for(const int months : {1, 12, 60, 120, 600, 1200}) {
-        long long cost = 0, revenueCents = 0;
-        int recorded = 0;
-        std::array<long long, STUFF_COUNT> imports{}, exports{};
-        for(const auto& entry : port->tradeHistory) {
-          if(entry.month < currentMonth - months || entry.month >= currentMonth) continue;
-          ++recorded;
-          cost += entry.imports;
-          revenueCents += entry.exportCents;
-          for(Commodity c = STUFF_INIT; c < STUFF_COUNT; ++c) {
-            imports[c] += entry.imported[c];
-            exports[c] += entry.exported[c];
-          }
-        }
-        const std::string label = months == 1 ? "Last month" :
-          "Last " + std::to_string(months / 12) + (months == 12 ? " year" : " years");
-        history.messageAddTextBold(label + " (" + std::to_string(recorded) + " months recorded)");
-        history.messageAddText("$" + std::to_string(cost) + " imported, $"
-          + std::to_string(revenueCents / 100) + " exported.");
-        for(Commodity c = STUFF_INIT; c < STUFF_COUNT; ++c)
-          if(imports[c] || exports[c])
-            history.messageAddText(std::string(commodityName(c)) + ": "
-              + std::to_string(imports[c]) + " imported / " + std::to_string(exports[c]) + " exported");
-      }
-      history.build();
+      showPortTradeHistory(*windowManager, *port, game.getWorld().total_time);
     });
     Button* gotoButton = getButton( *myDialogComponent, "goto" );
     gotoButton->clicked.connect(
