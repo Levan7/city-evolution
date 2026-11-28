@@ -84,7 +84,9 @@
 #include "lincity/messages.hpp"           // for Message
 #include "lincity/modules/tile.hpp"       // for TileConstructionGroup, bare...
 #include "lincity/transport.hpp"          // for BRIDGE_FACTOR
-#include "lincity/world.hpp"              // for Map, World, MapTile, Ground
+#include "lincity/world.hpp"
+#include "lincity/modules/river_industries.hpp"
+#include "lincity/modules/port.hpp"              // for Map, World, MapTile, Ground
 #include "util/gettextutil.hpp"           // for _
 #include "util/xmlutil.hpp"               // for xmlParse, unexpectedXmlAttr...
 
@@ -139,7 +141,7 @@ GameView::GameView() {
 
 GameView::~GameView() {
     stopThread = true;
-    SDL_WaitThread( loaderThread, NULL );
+    if(loaderThread) SDL_WaitThread( loaderThread, NULL );
 }
 
 //Static function to use with SDL_CreateThread
@@ -1417,7 +1419,7 @@ void GameView::drawTile(Painter& painter, const MapPoint &tile)
     {
         if(cstgrp->group == GROUP_AIRPORT || cstgrp->group == GROUP_RACING_CIRCUIT ||
            cstgrp->group == GROUP_LARGE_WAREHOUSE || cstgrp->group == GROUP_WINDMILL ||
-           cstgrp->group == GROUP_AMUSEMENT_PARK) {
+           cstgrp->group == GROUP_AMUSEMENT_PARK || cstgrp->group >= GROUP_FISHERY) {
             auto& ground = ResourceGroup::resMap.at("Green")->graphicsInfoVector;
             if(!ground.empty())
                 for(int y = 0; y < size; ++y)
@@ -1794,7 +1796,7 @@ void GameView::draw(Painter& painter)
         }
         }
       }
-      drawTransit(painter,1);drawEmergencyActors(painter);drawCityLife(painter);drawAirportFlights(painter);drawCircuitRaces(painter);
+      drawTransit(painter,1);drawEmergencyActors(painter);drawCityLife(painter);drawRiverTraffic(painter);drawAirportFlights(painter);drawCircuitRaces(painter);
       if(getWorld().evolution.darkness()>50)for(auto*c:getWorld().map.constructions){int g=c->constructionGroup->group;if(g==GROUP_ROAD||g==GROUP_TRACK||g==GROUP_ROAD_BRIDGE||g==GROUP_TRACK_BRIDGE)drawStreetLamps(painter,c->point);}
     }
 
@@ -2437,6 +2439,8 @@ void GameView::drawStreetLamps(Painter& painter,MapPoint tile) {
 
 void GameView::resetAirportFlights() {
   airportFlights.clear();
+  riverBoats.clear();
+  riverRoutesAt = -1;
   flightWaveStarted = -1;
 }
 
@@ -2456,6 +2460,94 @@ void GameView::planAirportFlights() {
   // cannot turn an in-flight trip into a different route.
   for(size_t i = 0; i < airports.size(); ++i)
     airportFlights.push_back({airports[i], airports[(i+1) % airports.size()], int(i % 5) * 400});
+}
+
+#ifdef CE_UI_SCREENSHOTS
+void GameView::finishTextureLoadForSnapshot() {
+  stopThread = true;
+  if(loaderThread) SDL_WaitThread(loaderThread, nullptr);
+  loaderThread = nullptr;
+  fetchTextures();
+}
+#endif
+
+void GameView::drawRiverTraffic(Painter& painter) {
+  const auto& world = getWorld();
+  const auto& map = world.map;
+  const int clock = world.evolution.visualTime;
+  if(riverRoutesAt < 0 || clock - riverRoutesAt >= 10000) {
+    riverRoutesAt = clock;
+    riverBoats.clear();
+    const auto addBoat = [&](MapPoint start, MapPoint dock, int group, const char* sprite,
+                             int distance, int tileTime, int stopTime, int pixelWidth) {
+      auto route = waterRoute(world, start, {-1,-1}, distance);
+      if(route.size() < 3) return;
+      riverBoats.push_back({sprite, std::move(route), dock, group,
+        int(riverBoats.size()) * 1700, tileTime, stopTime, pixelWidth});
+    };
+    const int side = map.len();
+    for(int region = 1; region <= 3; ++region) {
+      const int row = side * region / 4;
+      MapPoint start(-1,-1);
+      for(int y = row; y < std::min(side - 1, row + 9) && start.x < 0; ++y)
+        for(int x = 1; x < side - 1; ++x)
+          if(map({x,y})->is_river()) { start = {x,y}; break; }
+      if(start.x >= 0) addBoat(start, {}, 0, "cabin-launch", 24, 1450, 1000, 51);
+    }
+    for(const auto* building : map.constructions) {
+      if(building->isDead() || riverBoats.size() >= 28) continue;
+      const int group = building->constructionGroup->group;
+      if(group != GROUP_PORT && group != GROUP_FISHERY) continue;
+      if(group == GROUP_PORT && static_cast<const Port*>(building)->working_days == 0 &&
+         static_cast<const Port*>(building)->busy == 0) continue;
+      if(group == GROUP_FISHERY && !static_cast<const RiverIndustry*>(building)->operating) continue;
+      auto docks = shorelineWater(world, building->point, building->constructionGroup->size);
+      if(!docks.empty())
+        addBoat(docks[docks.size() / 2], building->point, group,
+          group == GROUP_PORT ? "coastal-freighter" : "fishing-skiff",
+          group == GROUP_PORT ? 42 : 8, group == GROUP_PORT ? 2300 : 1900,
+          group == GROUP_PORT ? 6500 : 4600, group == GROUP_PORT ? 126 : 42);
+    }
+  }
+
+  for(const auto& boat : riverBoats) {
+    if(boat.buildingGroup) {
+      const auto* dock = map(boat.dock)->construction;
+      if(!dock || dock->isDead() || dock->constructionGroup->group != boat.buildingGroup) continue;
+    }
+    const int segments = int(boat.path.size()) - 1;
+    const int duration = segments * boat.tileTime;
+    const int time = (clock + boat.offset) % (2 * (duration + boat.dockTime));
+    const bool outbound = time < duration + boat.dockTime;
+    const int elapsed = outbound ? time : time - duration - boat.dockTime;
+    const float index = std::min(float(segments), float(elapsed) / boat.tileTime);
+    const int segment = std::min(segments - 1, int(index));
+    const auto first = boat.path[outbound ? segment : segments - segment];
+    const auto second = boat.path[outbound ? segment + 1 : segments - segment - 1];
+    const float blend = index - segment;
+    if(!map(first)->is_river() || !map(second)->is_river() ||
+       map(blend < .5f ? first : second)->is_transport()) continue;
+    const Vector2 start = getScreenPoint(first);
+    const Vector2 step = getScreenPoint(second) - start;
+    const Vector2 center = start + step * blend - Vector2(0, tileHeight * .5f);
+    if(center.x < -150 * zoom || center.x > getWidth() + 150 * zoom ||
+       center.y < -90 * zoom || center.y > getHeight() + 90 * zoom) continue;
+    const char* direction = step.x >= 0 ? (step.y < 0 ? "ne" : "se") : (step.y < 0 ? "nw" : "sw");
+    auto* sprite = texture_manager->load("images/river/" + boat.sprite + "-" + direction + ".png");
+    const float width = boat.width * zoom;
+    const float height = width * sprite->getHeight() / sprite->getWidth();
+    const int dark = world.evolution.darkness() * 100 / 1000;
+    sprite->setLighting(255 - dark, 255 - dark, 255 - dark / 2);
+    if(elapsed < duration) {
+      const auto aft = center - step * .21f;
+      painter.setLineColor(Color(192,225,226,115));
+      painter.drawLine(aft, aft - step * .25f + Vector2(0, 2 * zoom));
+      painter.drawLine(aft, aft - step * .25f - Vector2(0, 2 * zoom));
+    }
+    painter.drawStretchTexture(sprite, Rect2D(center.x - width / 2, center.y - height * .72f,
+      center.x + width / 2, center.y + height * .28f));
+    sprite->setLighting(255,255,255);
+  }
 }
 
 void GameView::drawAirportFlights(Painter& painter) {

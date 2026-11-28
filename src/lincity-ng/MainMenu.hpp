@@ -47,6 +47,9 @@ public:
     ~MainMenu();
 
     void run();
+#ifdef CE_UI_SCREENSHOTS
+    void captureUi(const std::filesystem::path& directory);
+#endif
     void gotoMainMenu();
 
 private:
@@ -99,6 +102,8 @@ private:
     Component *optionsMenu;
 
     RadioButtonGroup newGameSelection;
+    unsigned int newWorldSeed = 275930;
+    int newWorldGoal = 0;
     RadioButtonGroup loadGameSelection;
     RadioButtonGroup saveGameSelection;
     std::unordered_map<CheckButton *, std::filesystem::path> loadFiles;

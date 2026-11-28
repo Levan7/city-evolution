@@ -194,7 +194,8 @@ void showPortTradeHistory(WindowManager& manager, const Port& port, int today) {
     getParagraph(*window, "TradeImports")->setText("Imports  " + tradeMoney(importCents));
     getParagraph(*window, "TradeExports")->setText("Exports  " + tradeMoney(exportCents));
 
-    const Commodity items[] = {STUFF_FOOD, STUFF_COAL, STUFF_GOODS, STUFF_ORE, STUFF_STEEL, STUFF_HIVOLT};
+    const Commodity items[] = {STUFF_FOOD, STUFF_COAL, STUFF_GOODS, STUFF_ORE, STUFF_STEEL, STUFF_HIVOLT,
+      STUFF_TIMBER, STUFF_GRAPES, STUFF_WINE, STUFF_SPARKLING, STUFF_SPIRITS, STUFF_COMPUTERS};
     for(size_t i = 0; i < std::size(items); ++i) {
       const auto item = items[i];
       const auto row = std::to_string(i);

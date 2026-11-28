@@ -56,6 +56,8 @@ new_temperate_city(city_settings *city, int mapSize
 std::unique_ptr<World>
 new_swamp_city(city_settings *city, int mapSize);
 
+std::unique_ptr<World> new_estuary_city(city_settings *city, int mapSize);
+
 #endif /* __init_game_h__ */
 
 /** @file lincity/init_game.h */

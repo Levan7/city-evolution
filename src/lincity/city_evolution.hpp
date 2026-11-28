@@ -130,6 +130,8 @@ struct CityEvolution {
   std::vector<std::string> planLines(World& world) const; // text for the City Hall page
   // Real active-play milliseconds, deliberately independent of simulation days.
   int skyMode = 0; // 0 occasional nights, 1 permanent day, 2 permanent night
+  int scenarioGoal = 0, scenarioStart = 0, achievementFlags = 0;
+  int visitorDemand = 0, tourismProviders = 0;
   int weatherMode = 0; // 0 changing, 1 clear, 2 clouds, 3 rain, 4 storm, 5 snow
   int skyPhase = 0; // daylight, dusk, night, dawn
   int skyElapsed = 0;

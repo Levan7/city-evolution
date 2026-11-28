@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Document>
+  <title>Museum</title>
+  <img src="images/tiles/city-museum.png"/>
+  <p>A local cultural attraction that brings visitors to hotels. Needs Labor, Goods, and low-voltage electricity.</p>
+  <p><a href="index">Help index</a></p>
+</Document>

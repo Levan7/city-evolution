@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Document>
+  <title>Wood farm</title>
+  <img src="images/tiles/wood-farm.png"/>
+  <p>Staff and water the wood farm. It grows replacement trees and harvests Timber every ten days. Ship Timber to sawmills or export it at a port.</p>
+  <p><a href="index">Help index</a></p>
+</Document>

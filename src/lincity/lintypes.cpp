@@ -52,7 +52,8 @@
 #include "util.hpp"                       // for used_in_assert
 #include "util/gettextutil.hpp"           // for _
 #include "util/xmlutil.hpp"               // for xmlParse, xmlStr, xmlStrF
-#include "world.hpp"                      // for World, Map, MapTile
+#include "world.hpp"
+#include "modules/river_industries.hpp"                      // for World, Map, MapTile
 
 extern int simDelay; // is defined in lincity-ng/MainLincity.cpp
 
@@ -667,6 +668,12 @@ bool Construction::missingElectricity() const {
 }
 
 const CommodityRule& Construction::localTradeRule(Commodity stuff) const {
+    const int group = constructionGroup->group;
+    static const CommodityRule disconnected{};
+    if((flags & FLAG_IS_TRANSPORT) && floodDisrupts(world, point)) return disconnected;
+    if(stuff == STUFF_HIVOLT && regionalEvent(world.total_time) == 3 &&
+       (group == GROUP_COAL_POWER || group == GROUP_NUCLEAR_POWER || group == GROUP_WASTE_ENERGY))
+      return disconnected;
     if(constructionGroup->group == GROUP_MARKET)
       return static_cast<const Market*>(this)->commodityRuleCount[stuff];
     return constructionGroup->commodityRuleCount[stuff];

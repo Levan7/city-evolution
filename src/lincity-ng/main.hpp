@@ -41,5 +41,10 @@ std::string getLang();
  */
 extern Painter* painter;
 
+#ifdef CE_UI_SCREENSHOTS
+#include <filesystem>
+void saveUiScreenshot(const std::filesystem::path& file);
+#endif
+
 #endif
 /** @file lincity-ng/main.hpp */

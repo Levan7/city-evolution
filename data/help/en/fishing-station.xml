@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Document>
+  <title>Fishing station</title>
+  <img src="images/tiles/fishing-station.png"/>
+  <p>Hire workers on a navigable shoreline and land fish as Food. Connect the station to a road or rail to supply markets or export Food at a port. Shore pollution hurts the fishery.</p>
+  <p><a href="index">Help index</a></p>
+</Document>

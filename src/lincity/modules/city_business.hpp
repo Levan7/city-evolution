@@ -10,7 +10,7 @@ public:
 extern CityBusinessGroup warehouseConstructionGroup, techCampusConstructionGroup,
   cafeConstructionGroup, foodHallConstructionGroup, largeWarehouseConstructionGroup,
   computerFactoryConstructionGroup, carFactoryConstructionGroup, nuclearPowerConstructionGroup, airportConstructionGroup, racingCircuitConstructionGroup,
-  amusementParkConstructionGroup;
+  amusementParkConstructionGroup, deliveryHubConstructionGroup;
 class CityBusiness : public Construction {
 public:
   CityBusiness(World& world, ConstructionGroup* group);

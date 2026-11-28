@@ -59,3 +59,7 @@ include_directories(.)
 
 include(TranslateTarget)
 translate_target(lincity-ng lincity-ng.pot)
+
+if(LINCITYNG_EVOLUTION_CHECKS)
+  target_compile_definitions(lincity-ng PRIVATE CE_UI_SCREENSHOTS)
+endif()

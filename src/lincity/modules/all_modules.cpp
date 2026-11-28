@@ -29,8 +29,12 @@
 #include "lincity/lintypes.hpp"     // for ConstructionGroup
 #include "lincity/resources.hpp"  // for ResourceGroup
 
+#include "river_industries.hpp"
+
 void initializeModules() {
     ConstructionGroup::clearGroupMap();
+    registerRiverIndustries(false);
+    ConstructionGroup::addConstructionGroup(&deliveryHubConstructionGroup);
     for(auto* g : {&warehouseConstructionGroup, &techCampusConstructionGroup, &cafeConstructionGroup, &foodHallConstructionGroup}) ConstructionGroup::addConstructionGroup(g);
     ConstructionGroup::addConstructionGroup(&fireStationConstructionGroup);
     ConstructionGroup::addConstructionGroup(&healthCentreConstructionGroup);
@@ -88,6 +92,8 @@ void initializeModules() {
     for(auto* g:{&policeGroup,&glassOfficeGroup,&bronzeOfficeGroup,&decoOfficeGroup})ConstructionGroup::addConstructionGroup(g);
     for(auto* g:{&ivoryTowerGroup,&brickTowerGroup,&sandTowerGroup})ConstructionGroup::addConstructionGroup(g);
     ConstructionGroup::clearResourcepMap();
+    registerRiverIndustries(true);
+    ConstructionGroup::addResourceID("DeliveryHub", &deliveryHubConstructionGroup);
     ConstructionGroup::addResourceID("PoliceStation",&policeGroup);
     ConstructionGroup::addResourceID("residential-ivory-blue",&ivoryTowerGroup);
     ConstructionGroup::addResourceID("residential-red-brick",&brickTowerGroup);

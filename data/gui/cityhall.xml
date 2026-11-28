@@ -54,7 +54,7 @@
         <Button name="WeatherTab" width="150" height="36">
           <image src="images/readable/plate-160-normal.png" />
           <image-hover src="images/readable/plate-160-hover.png" />
-          <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Sky</text-caption>
+          <text-caption color="#ffffff" font-size="18" halign="center" font-weight="bold">Sky &amp; Goals</text-caption>
         </Button>
       </cell>
       <cell row="4" col="4" colspan="1" halign="center" valign="center">
@@ -305,7 +305,7 @@
                 <Paragraph name="ClockExplanation" color="#ffffff" font-size="18">The sun rises and sets by itself. Days last 8-16 minutes; nights last 3-6.</Paragraph>
               </cell>
               <cell row="5" col="1" colspan="2" halign="center" valign="center">
-                <Paragraph name="SolarNote" color="#ffffff" font-size="18">Clouds make solar panels weaker. At night they make no power.</Paragraph>
+                <Paragraph name="RegionalGoals" color="#ffffff" font-size="18">Scenario goals and achievements</Paragraph>
               </cell>
             </TableLayout>
           </Panel>

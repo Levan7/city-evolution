@@ -534,4 +534,22 @@
   <group><resourceID name="Airport"/><image file="airport.png" x="384" y="384"/></group>
   <group><resourceID name="AmusementPark"/><image file="amusement-park.png" x="192" y="207"/></group>
   <group><resourceID name="RacingCircuit"/><image file="racing-circuit.png" x="384" y="384"/></group>
+  <group><resourceID name="FishingStation"/><image file="fishing-station.png" x="128" y="210"/><image file="fishing-station-west.png" x="128" y="210"/></group>
+  <group><resourceID name="WoodFarm"/><image file="wood-farm.png" x="192" y="291"/></group>
+  <group><resourceID name="LumberSawmill"/><image file="lumber-sawmill.png" x="128" y="134"/></group>
+  <group><resourceID name="UtilitySolarFarm"/><image file="utility-solar-farm.png" x="320" y="292"/></group>
+  <group><resourceID name="GridBattery"/><image file="grid-battery.png" x="128" y="178"/></group>
+  <group><resourceID name="WasteEnergy"/><image file="waste-energy.png" x="192" y="323"/></group>
+  <group><resourceID name="EVCharging"/><image file="ev-charging.png" x="64" y="88"/></group>
+  <group><resourceID name="DataCenter"/><image file="data-center.png" x="192" y="280"/></group>
+  <group><resourceID name="DeliveryHub"/><image file="delivery-hub.png" x="64" y="88"/></group>
+  <group><resourceID name="RegionalHospital"/><image file="regional-hospital.png" x="192" y="273"/></group>
+  <group><resourceID name="UniversityCampus"/><image file="university-campus.png" x="256" y="364"/></group>
+  <group><resourceID name="CityHotel"/><image file="city-hotel.png" x="128" y="181"/></group>
+  <group><resourceID name="ConventionCenter"/><image file="convention-center.png" x="256" y="314"/></group>
+  <group><resourceID name="CityMuseum"/><image file="city-museum.png" x="192" y="276"/></group>
+  <group><resourceID name="CityVineyard"/><image file="city-vineyard.png" x="192" y="271"/></group>
+  <group><resourceID name="CityWinery"/><image file="city-winery.png" x="128" y="172"/></group>
+  <group><resourceID name="SparklingCellar"/><image file="sparkling-cellar.png" x="128" y="138"/></group>
+  <group><resourceID name="CityDistillery"/><image file="city-distillery.png" x="128" y="146"/></group>
 </resources>

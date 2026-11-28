@@ -357,6 +357,9 @@ static void saveGlobals(xmlTextWriterPtr xmlWriter, const World& world) {
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_skyElapsed", f(world.evolution.skyElapsed));
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_skyDuration", f(world.evolution.skyDuration));
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_weather", f(world.evolution.weather));
+  xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_scenarioGoal", f(world.evolution.scenarioGoal));
+  xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_scenarioStart", f(world.evolution.scenarioStart));
+  xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_achievements", f(world.evolution.achievementFlags));
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_weatherElapsed", f(world.evolution.weatherElapsed));
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_weatherDuration", f(world.evolution.weatherDuration));
   xmlTextWriterWriteElement(xmlWriter, (xmlStr)"evolution_airportFare", f(world.evolution.airportFare));
@@ -760,6 +763,9 @@ static void loadGlobals(xmlpp::TextReader& xmlReader, World& world,
     else if(xml_tag == "evolution_skyElapsed") world.evolution.skyElapsed = p<int>(xmlReader.read_inner_xml());
     else if(xml_tag == "evolution_skyDuration") world.evolution.skyDuration = p<int>(xmlReader.read_inner_xml());
     else if(xml_tag == "evolution_weather") world.evolution.weather = p<int>(xmlReader.read_inner_xml());
+    else if(xml_tag == "evolution_scenarioGoal") world.evolution.scenarioGoal = std::clamp(p<int>(xmlReader.read_inner_xml()),0,2);
+    else if(xml_tag == "evolution_scenarioStart") world.evolution.scenarioStart = std::max(0,p<int>(xmlReader.read_inner_xml()));
+    else if(xml_tag == "evolution_achievements") world.evolution.achievementFlags = p<int>(xmlReader.read_inner_xml()) & 7;
     else if(xml_tag == "evolution_weatherElapsed") world.evolution.weatherElapsed = p<int>(xmlReader.read_inner_xml());
     else if(xml_tag == "evolution_weatherDuration") world.evolution.weatherDuration = p<int>(xmlReader.read_inner_xml());
     else if(xml_tag == "evolution_airportFare") world.evolution.airportFare = std::clamp(p<int>(xmlReader.read_inner_xml()), 0, 10);

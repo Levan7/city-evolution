@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Document>
+  <title>Grid battery</title>
+  <img src="images/tiles/grid-battery.png"/>
+  <p>Charges with surplus high-voltage power once other consumers are served. Port imports can charge it on cheap days. Stored energy discharges into shortages on the same connected grid. With at least 75% reserve, a connected export port can sell power at peak prices after local demand. Capacity 36000, daily transfer limit 2400, charging efficiency 95%.</p>
+  <p><a href="index">Help index</a></p>
+</Document>

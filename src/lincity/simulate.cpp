@@ -47,6 +47,7 @@
 #include "stats.hpp"                       // for Stats, Stat
 #include "sustainable.hpp"                 // for SUST_FIRE_YEARS_NEEDED, SUST...
 #include "world.hpp"
+#include "modules/river_industries.hpp"
 #include "road_power.hpp"
 #include "freight.hpp"
 #include "modules/residence.hpp"                       // for World, Map, MapTile
@@ -67,6 +68,7 @@ World::do_time_step(void) {
       stats.yearly();
 
     /* Run through simulation equations for each farm, residence, etc. */
+    updateRegionalEconomy(*this);
     distributeRoadPower(*this);
     distributeWarehouseFreight(*this);
     distributeMetroSupplies(*this);

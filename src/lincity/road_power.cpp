@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 #include "road_power.hpp"
 #include "modules/port.hpp"
+#include "modules/river_industries.hpp"
 
 #include "modules/all_modules.hpp"
 #include "world.hpp"
@@ -28,7 +29,7 @@ void footprint(const Construction& building, Visit visit) {
 }
 
 int conductor(const World& world, MapPoint point) {
-  if(!world.map.is_visible(point)) return 0;
+  if(!world.map.is_visible(point) || floodDisrupts(world, point)) return 0;
   const int group = world.map(point)->getTransportGroup();
   if(group == GROUP_POWER_LINE) return 1;
   if(group == GROUP_RAIL) return 2;
@@ -66,10 +67,10 @@ int demand(const Construction& building, Commodity voltage) {
     return PORT_GRID_CAPACITY - building.commodityCount[voltage];
   if(voltage == STUFF_LOVOLT)
     if(const auto* home = dynamic_cast<const Residence*>(&building))
-      return home->local_population > 0 ? POWER_RES_OVERHEAD +
-        POWER_USE_PER_PERSON * home->local_population - home->commodityCount[voltage] : 0;
+      return home->local_population > 0 ? home->powerNeeded() - home->commodityCount[voltage] : 0;
   const auto& rule = building.constructionGroup->commodityRuleCount[voltage];
-  const int daily = building.commodityMaxCons[voltage] / NUMOF_DAYS_IN_MONTH;
+  int daily = building.commodityMaxCons[voltage] / NUMOF_DAYS_IN_MONTH;
+  if(regionalEvent(building.world.total_time) == 1) daily += daily / 3;
   return std::min(rule.maxload, std::max(20, daily * 2)) - building.commodityCount[voltage];
 }
 }
@@ -81,9 +82,16 @@ int substationReach(const Construction& station) {
 void distributeRoadPower(World& world) {
   world.poweredOverheadLines.clear();
   std::vector<Construction*> sources, consumers, substations, exportPorts;
+  std::vector<RiverIndustry*> batteries;
+  const bool outage = regionalEvent(world.total_time) == 3;
+  const int powerPrice = gridTradePrice(world);
   for(auto* building : world.map.constructions) {
     if(building->isDead() || building->flags & FLAG_EVACUATE) continue;
     const int group = building->constructionGroup->group;
+    if(group == GROUP_GRID_BATTERY) {
+      batteries.push_back(static_cast<RiverIndustry*>(building));
+      continue;
+    }
     if(group == GROUP_PORT) {
       const auto& order = static_cast<const Port*>(building)->commodityRuleCount[STUFF_HIVOLT];
       if(order.take && !order.give && building->commodityCount[STUFF_HIVOLT] > 0)
@@ -92,6 +100,7 @@ void distributeRoadPower(World& world) {
         exportPorts.push_back(building);
       continue;
     }
+    if(outage && (group == GROUP_COAL_POWER || group == GROUP_NUCLEAR_POWER || group == GROUP_WASTE_ENERGY)) continue;
     if(group == GROUP_SUBSTATION) substations.push_back(building);
     else if(takes(*building,STUFF_LOVOLT) || takes(*building,STUFF_HIVOLT))
       consumers.push_back(building);
@@ -104,17 +113,18 @@ void distributeRoadPower(World& world) {
   }
   if(!consumers.empty())
     std::rotate(consumers.begin(),consumers.begin()+world.total_time%consumers.size(),consumers.end());
+  const size_t domesticConsumers = consumers.size();
   consumers.insert(consumers.end(), exportPorts.begin(), exportPorts.end());
 
   const int side = world.map.len();
   auto index = [side](MapPoint p) { return p.y*side+p.x; };
   std::vector<int> weights(side*side,0);
   std::map<Construction*,int> stationInput;
-  if(!sources.empty() || !substations.empty())
+  if(!sources.empty() || !substations.empty() || !batteries.empty())
     for(int y=1; y<side-1; ++y)
       for(int x=1; x<side-1; ++x) weights[y*side+x] = conductor(world,{x,y});
 
-  auto distribute = [&](Construction& source, Commodity voltage, bool local) {
+  auto distribute = [&](Construction& source, Commodity voltage, bool local, bool charging = false) {
     if(source.commodityCount[voltage] <= 0) return;
     using Node = std::pair<int,int>;
     std::priority_queue<Node,std::vector<Node>,std::greater<Node>> pending;
@@ -150,6 +160,16 @@ void distributeRoadPower(World& world) {
       });
       return loss;
     };
+    if(charging) {
+      for(auto* battery : batteries) {
+        const int loss = lossTo(*battery);
+        if(loss == unreachable || battery->operating) continue;
+        const int amount = std::min(batteryRate - battery->commodityCount[STUFF_HIVOLT],
+                                    batteryCapacity - battery->reserve);
+        deliver(source, voltage, *battery, STUFF_HIVOLT, loss, amount);
+      }
+      return;
+    }
     if(!local) {
       for(auto* station : substations) {
         const int loss = lossTo(*station);
@@ -160,6 +180,7 @@ void distributeRoadPower(World& world) {
         const int available = int(source.commodityCount[voltage]*100LL/(100+loss));
         stationInput[station] += std::min(quota,available)*equivalent;
         const int before = station->commodityCount[voltage];
+        if(source.constructionGroup->group == GROUP_GRID_BATTERY && before >= (high ? SUBSTATION_HIVOLT : SUBSTATION_LOVOLT)) continue;
         // Keep enough buffer for conversion without letting stale stock determine reach.
         const int target = std::min(high ? SUBSTATION_HIVOLT*2 : SUBSTATION_LOVOLT,
                                     before+quota);
@@ -167,9 +188,14 @@ void distributeRoadPower(World& world) {
       }
     }
     const int reach = local ? substationReach(source) : 0;
-    for(auto* target : consumers) {
-      if(target->constructionGroup->group == GROUP_PORT &&
-         source.constructionGroup->group == GROUP_PORT) continue;
+    for(size_t i = 0; i < consumers.size(); ++i) {
+      auto* target = consumers[i];
+      if(i >= domesticConsumers) {
+        if(source.constructionGroup->group == GROUP_PORT) continue;
+        if(source.constructionGroup->group == GROUP_GRID_BATTERY &&
+           (powerPrice < 6 || static_cast<const RiverIndustry&>(source).reserve < batteryCapacity * 3 / 4))
+          continue;
+      }
       if(source.commodityCount[voltage] <= 0) break;
       int loss = lossTo(*target);
       if(reach) {
@@ -189,6 +215,26 @@ void distributeRoadPower(World& world) {
   for(auto* source : sources) {
     distribute(*source,STUFF_HIVOLT,false);
     distribute(*source,STUFF_LOVOLT,false);
+  }
+  for(auto* battery : batteries) {
+    const int offered = std::min(batteryRate, battery->reserve);
+    battery->commodityCount[STUFF_HIVOLT] = offered;
+    distribute(*battery, STUFF_HIVOLT, false);
+    const int sent = offered - battery->commodityCount[STUFF_HIVOLT];
+    battery->reserve -= sent;
+    battery->operating = sent > 0;
+    battery->commodityCount[STUFF_HIVOLT] = 0;
+  }
+  if(!batteries.empty()) {
+    for(auto* source : sources)
+      if(source->constructionGroup->group != GROUP_PORT || powerPrice == 1)
+        distribute(*source, STUFF_HIVOLT, false, true);
+    for(auto* battery : batteries) {
+      const int received = battery->commodityCount[STUFF_HIVOLT];
+      battery->reserve = std::min(batteryCapacity, battery->reserve + received * 95 / 100);
+      battery->workingDays += received > 0 || battery->operating;
+      battery->commodityCount[STUFF_HIVOLT] = 0;
+    }
   }
   for(auto* station : substations) {
     const int input = stationInput[station];

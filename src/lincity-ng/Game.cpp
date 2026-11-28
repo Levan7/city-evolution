@@ -54,6 +54,7 @@
 #include "TimerInterface.hpp"               // for get_real_time_with
 #include "Util.hpp"                         // for getButton
 #include "gui/Button.hpp"                   // for Button
+#include "gui/CheckButton.hpp"
 #include "gui/Component.hpp"                // for Component
 #include "gui/ComponentLoader.hpp"          // for loadGUIFile
 #include "gui/Desktop.hpp"                  // for Desktop
@@ -71,7 +72,8 @@
 #include "lincity/lintypes.hpp"             // for ConstructionGroup, Constr...
 #include "lincity/messages.hpp"             // for dynamic_message_cast, Mes...
 #include "lincity/modules/all_modules.hpp"  // for RocketPad, ParklandConstr...
-#include "lincity/world.hpp"                // for World, Map, MapTile
+#include "lincity/world.hpp"
+#include "lincity/modules/river_industries.hpp"                // for World, Map, MapTile
 #include "main.hpp"                         // for painter, videoSizeChanged
 #include "util/gettextutil.hpp"             // for _
 #include "util/ptrutil.hpp"                 // for dynamic_unique_cast
@@ -259,6 +261,11 @@ void Game::showCityHall(bool mayor, const char* page) {
       + " | Last result: " + std::to_string(e.lastVote) + "% | Next in " + std::to_string(std::max(0,e.nextElection-world->total_time)) + " days");
     getParagraph(*w,"EconomySummary")->setText("Businesses: " + std::to_string(e.operatingBusinesses)
       + " working | " + std::to_string(e.newJobs) + " jobs | " + std::to_string(e.amenities) + " amenities");
+    const char* eventNames[] = {"No regional alert", "Heat wave", "River flooding", "Grid outage"};
+    getParagraph(*w, "RegionalGoals")->setText(regionalGoals(*world));
+    getParagraph(*w, "ClockExplanation")->setText(std::string(eventNames[regionalEvent(world->total_time)]) +
+      ". Visitor demand " + std::to_string(e.visitorDemand) +
+      ". Grid trade " + std::to_string(gridTradePrice(*world)) + "¢ per unit.");
     getParagraph(*w,"AtmosphereSummary")->setText("Spiritual wellbeing: "+std::to_string(e.spiritualCoverage)+"% homes | "+std::to_string(e.churchesWorking)+" churches open. Sunlight for solar: "+std::to_string(e.solarPercent())+"%.");
     {
       const bool on=e.mayorMode!=0;
@@ -867,6 +874,42 @@ Game::getButtonPanel() const {
   return *buttonpanel;
 }
 
+
+#ifdef CE_UI_SCREENSHOTS
+void Game::captureUi(const std::filesystem::path& directory) {
+  const auto ui = resizeUserInterface();
+  gui->resize(ui.width, ui.height);
+  DialogBuilder::setDefaultWindowManager(windowmanager);
+  const MapPoint port(23, 24);
+  for(int y = 10; y < 40; ++y) {
+    auto* tile = world->map({27,y});
+    tile->setTerrain(GROUP_WATER);
+    tile->flags |= FLAG_IS_RIVER;
+  }
+  world->buildConstruction(portConstructionGroup, port);
+  world->buildConstruction(*ConstructionGroup::getConstructionGroup(GROUP_FISHERY), {28,23});
+  world->map.connect_transport(20,20,33,31);
+  gameview->finishTextureLoadForSnapshot();
+  gameview->show({25,25});
+  getMpsMap().query(world->map({28,23}));
+  world->setUpdated(World::Updatable::MONEY);
+  getCheckButton(*gui, "BPFarmButton")->clicked(getCheckButton(*gui, "BPFarmButton"), SDL_BUTTON_LEFT);
+  gui->draw(*painter);
+  saveUiScreenshot(directory / "food-drawer.png");
+  auto* farm = getCheckButton(*gui, "BPFarmButton");
+  farm->clicked(farm, SDL_BUTTON_LEFT);
+  buttonpanel->selectQueryTool();
+  showCityHall(false, "WeatherPage");
+  gui->draw(*painter);
+  saveUiScreenshot(directory / "climate-goals.png");
+  windowmanager->removeWindow(static_cast<Window*>(hallPtr));
+  hallPtr = nullptr;
+  auto* dialog = new Dialog(*this, EDIT_PORT, port);
+  gui->draw(*painter);
+  saveUiScreenshot(directory / "port-trade.png");
+  dialog->closeDialog();
+}
+#endif
 
 void
 Game::run() {

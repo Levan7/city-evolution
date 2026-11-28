@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?xml-stylesheet href="identity.xsl" type="text/xsl"?>
-<Window name="PortTradeHistory" width="704" height="510" border="10" titlesize="32" resizable="no">
+<Window name="PortTradeHistory" width="704" height="642" border="10" titlesize="32" resizable="no">
   <title><Paragraph color="#f1efdf" font-size="22">Port trade history</Paragraph></title>
   <background><FilledRectangle color="#14252dff"/></background>
   <title-background><FilledRectangle color="#29463fff"/></title-background>
   <closebutton><text color="white">X</text></closebutton>
   <contents>
-    <TableLayout rows="13" cols="6">
+    <TableLayout rows="19" cols="6">
     <rowsize row="1" fixed="44"/>
     <rowsize row="2" fixed="28"/>
     <rowsize row="3" fixed="128"/>
@@ -89,6 +89,24 @@
     <cell row="13" col="1" colspan="2" valign="center"><Paragraph name="TradeItem5" color="#edf0df" font-size="15" halign="left"></Paragraph></cell>
     <cell row="13" col="3" colspan="2" valign="center"><Paragraph name="TradeIn5" color="#edf0df" font-size="15" halign="center"></Paragraph></cell>
     <cell row="13" col="5" colspan="2" valign="center"><Paragraph name="TradeOut5" color="#edf0df" font-size="15" halign="center"></Paragraph></cell>
+    <cell row="14" col="1" colspan="2" valign="center"><Paragraph name="TradeItem6" color="#edf0df" font-size="15" halign="left"></Paragraph></cell>
+    <cell row="14" col="3" colspan="2" valign="center"><Paragraph name="TradeIn6" color="#edf0df" font-size="15" halign="center"></Paragraph></cell>
+    <cell row="14" col="5" colspan="2" valign="center"><Paragraph name="TradeOut6" color="#edf0df" font-size="15" halign="center"></Paragraph></cell>
+    <cell row="15" col="1" colspan="2" valign="center"><Paragraph name="TradeItem7" color="#edf0df" font-size="15" halign="left"></Paragraph></cell>
+    <cell row="15" col="3" colspan="2" valign="center"><Paragraph name="TradeIn7" color="#edf0df" font-size="15" halign="center"></Paragraph></cell>
+    <cell row="15" col="5" colspan="2" valign="center"><Paragraph name="TradeOut7" color="#edf0df" font-size="15" halign="center"></Paragraph></cell>
+    <cell row="16" col="1" colspan="2" valign="center"><Paragraph name="TradeItem8" color="#edf0df" font-size="15" halign="left"></Paragraph></cell>
+    <cell row="16" col="3" colspan="2" valign="center"><Paragraph name="TradeIn8" color="#edf0df" font-size="15" halign="center"></Paragraph></cell>
+    <cell row="16" col="5" colspan="2" valign="center"><Paragraph name="TradeOut8" color="#edf0df" font-size="15" halign="center"></Paragraph></cell>
+    <cell row="17" col="1" colspan="2" valign="center"><Paragraph name="TradeItem9" color="#edf0df" font-size="15" halign="left"></Paragraph></cell>
+    <cell row="17" col="3" colspan="2" valign="center"><Paragraph name="TradeIn9" color="#edf0df" font-size="15" halign="center"></Paragraph></cell>
+    <cell row="17" col="5" colspan="2" valign="center"><Paragraph name="TradeOut9" color="#edf0df" font-size="15" halign="center"></Paragraph></cell>
+    <cell row="18" col="1" colspan="2" valign="center"><Paragraph name="TradeItem10" color="#edf0df" font-size="15" halign="left"></Paragraph></cell>
+    <cell row="18" col="3" colspan="2" valign="center"><Paragraph name="TradeIn10" color="#edf0df" font-size="15" halign="center"></Paragraph></cell>
+    <cell row="18" col="5" colspan="2" valign="center"><Paragraph name="TradeOut10" color="#edf0df" font-size="15" halign="center"></Paragraph></cell>
+    <cell row="19" col="1" colspan="2" valign="center"><Paragraph name="TradeItem11" color="#edf0df" font-size="15" halign="left"></Paragraph></cell>
+    <cell row="19" col="3" colspan="2" valign="center"><Paragraph name="TradeIn11" color="#edf0df" font-size="15" halign="center"></Paragraph></cell>
+    <cell row="19" col="5" colspan="2" valign="center"><Paragraph name="TradeOut11" color="#edf0df" font-size="15" halign="center"></Paragraph></cell>
     </TableLayout>
   </contents>
 </Window>

@@ -13,6 +13,7 @@
 #include "modules/all_modules.hpp"
 #include "modules/school.hpp"
 #include "modules/university.hpp"
+#include "modules/river_industries.hpp"
 #include <limits>
 #include <cmath>
 // Monthly: train, lose and allocate skilled people. Deterministic, integer only.
@@ -27,6 +28,11 @@ void CityEvolution::updateWorkforce(World& world) {
     const int boost = uniDistrict ? UNIVERSITY_DISTRICT_TRAINING : 100;
     if(g == GROUP_SCHOOL) { int d = std::clamp(static_cast<School*>(c)->busy, 0, 100); schoolDays += d * boost / 100; schoolsWorking += d > 0; }
     else if(g == GROUP_UNIVERSITY) { int d = std::clamp(static_cast<University*>(c)->busy, 0, 100); uniDays += d * boost / 100; universitiesWorking += d > 0; }
+    else if(g == GROUP_UNIVERSITY_CAMPUS) {
+      const int days = static_cast<const RiverIndustry*>(c)->busy;
+      uniDays += days * 2 * boost / 100;
+      universitiesWorking += days > 0;
+    }
     else if(g == GROUP_TECH_CAMPUS) ++campuses;
     else if(g == GROUP_INDUSTRY_L) ++lightFactories;
     else if(g == GROUP_INDUSTRY_H) ++heavyFactories;
@@ -66,6 +72,12 @@ void CityEvolution::updateCity(World& world) {
       pollution += world.map(c->point)->pollution;
     }
     if(g==GROUP_CHURCH&&static_cast<GeorgianChurch*>(c)->active)++churchesWorking;
+    if(g >= GROUP_FISHERY && g != GROUP_DELIVERY_HUB && g != GROUP_GRID_BATTERY &&
+       static_cast<const RiverIndustry*>(c)->busy > 0) {
+      ++operatingBusinesses;
+      newJobs += c->commodityMaxCons[STUFF_LABOR] / NUMOF_DAYS_IN_MONTH;
+      if(g == GROUP_MUSEUM || g == GROUP_CONVENTION_CENTER) ++amenities;
+    }
     if(g >= GROUP_WAREHOUSE && g <= GROUP_FOODHALL) {
       auto* b = static_cast<CityBusiness*>(c);
       if(b->busy > 0) {

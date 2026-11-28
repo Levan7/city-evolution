@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 #include "freight.hpp"
+#include "modules/river_industries.hpp"
 
 #include "world.hpp"
 #include "transport.hpp"
@@ -13,7 +14,7 @@
 #include <tuple>
 
 namespace {
-constexpr std::array cargo{STUFF_FOOD, STUFF_COAL, STUFF_GOODS, STUFF_ORE, STUFF_STEEL};
+constexpr auto& cargo = freightCommodities;
 
 bool rail(int group) { return group == GROUP_RAIL || group == GROUP_RAIL_BRIDGE; }
 
@@ -34,14 +35,15 @@ void perimeter(MapPoint p, int size, Visit visit) {
 }
 
 void distributeWarehouseFreight(World& world) {
-  if(!world.stats.groupCount[GROUP_WAREHOUSE] && !world.stats.groupCount[GROUP_LARGE_WAREHOUSE]) return;
+  if(!world.stats.groupCount[GROUP_WAREHOUSE] && !world.stats.groupCount[GROUP_LARGE_WAREHOUSE] &&
+     !world.stats.groupCount[GROUP_DELIVERY_HUB]) return;
   const int side = world.map.len();
   auto index = [side](MapPoint p) { return p.y * side + p.x; };
   auto at = [&world](MapPoint p) -> Construction* {
     return world.map.is_visible(p) ? world.map(p)->reportingConstruction : nullptr;
   };
   // A tile has one daily budget per commodity shared by all warehouse deliveries.
-  std::map<int,std::array<int,cargo.size()>> used;
+  std::map<int,std::array<int,std::size(cargo)>> used;
   for(auto* building : world.map.constructions) {
     if(!isWarehouseGroup(building->constructionGroup->group) || !available(world,*building))
       continue;
@@ -55,10 +57,11 @@ void distributeWarehouseFreight(World& world) {
     std::set<int> seen;
     std::queue<int> pending;
     const int radius = warehouse->constructionGroup->range;
-    const int reach = warehouse->constructionGroup->group == GROUP_LARGE_WAREHOUSE ? 96 : WarehouseFreightRange;
+    const int reach = warehouse->constructionGroup->group == GROUP_LARGE_WAREHOUSE ? 96 :
+      warehouse->constructionGroup->group == GROUP_DELIVERY_HUB ? 16 : WarehouseFreightRange;
     auto enqueue = [&](MapPoint p, int previous, int distance, Construction* prior) {
       auto* tile = at(p);
-      if(!tile || !(tile->flags & FLAG_IS_TRANSPORT) || tile->isDead() ||
+      if(!tile || !(tile->flags & FLAG_IS_TRANSPORT) || tile->isDead() || floodDisrupts(world, p) ||
          (prior && rail(tile->constructionGroup->group) != rail(prior->constructionGroup->group))) return;
       const int id = index(p);
       if(network.emplace(id,Link{tile,previous,distance}).second) pending.push(id);
@@ -137,8 +140,9 @@ void distributeWarehouseFreight(World& world) {
       }
     };
 
-    for(size_t i=0;i<cargo.size();++i) {
+    for(size_t i=0;i<std::size(cargo);++i) {
       auto stuff = cargo[i];
+      if(!warehouse->localTradeRule(stuff).maxload) continue;
       // Start with farms whose storage is closest to capacity.
       if(stuff == STUFF_FOOD)
         std::stable_sort(endpoints.begin(),endpoints.end(),[](const auto& a,const auto& b) {

@@ -23,6 +23,7 @@
 ** ---------------------------------------------------------------------- */
 
 #include "port.hpp"
+#include "river_industries.hpp"
 #include <sstream>
 #include <algorithm>
 #include <limits>
@@ -99,16 +100,10 @@ Port::Port(World& world, ConstructionGroup *cstgrp) :
       .take = false,
       .give = false
     };
-    commodityRuleCount[STUFF_FOOD].take = false;
-    commodityRuleCount[STUFF_FOOD].give = false;
-    commodityRuleCount[STUFF_COAL].take = false;
-    commodityRuleCount[STUFF_COAL].give = false;
-    commodityRuleCount[STUFF_GOODS].take = false;
-    commodityRuleCount[STUFF_GOODS].give = false;
-    commodityRuleCount[STUFF_ORE].take = false;
-    commodityRuleCount[STUFF_ORE].give = false;
-    commodityRuleCount[STUFF_STEEL].take = false;
-    commodityRuleCount[STUFF_STEEL].give = false;
+    for(auto item : freightCommodities) {
+      commodityRuleCount[item].take = false;
+      commodityRuleCount[item].give = false;
+    }
 
     commodityMaxCons[STUFF_LABOR] = 100 * PORT_LABOR;
     for(Commodity stuff = STUFF_INIT ; stuff < STUFF_COUNT ; stuff++) {
@@ -136,7 +131,8 @@ int Port::buy_stuff(Commodity stuff)
       // 64-bit from the first multiplication: a large order at a high tariff
       // overflows 32 bits. Rounding is unchanged (integer division, remainder
       // carried in importPence).
-      const long long base = static_cast<long long>(i) * portConstructionGroup.commodityRates[stuff];
+      const int unitPrice = stuff == STUFF_HIVOLT ? gridTradePrice(world) : portConstructionGroup.commodityRates[stuff];
+      const long long base = static_cast<long long>(i) * unitPrice;
       // Foreign purchases carry a 10% markup over the base export value.
       const long long tariff = std::clamp(world.money_rates.import_cost, 1, 100);
       const long long total = 11LL * base * tariff / 10 + importPence;
@@ -167,7 +163,7 @@ int Port::sell_stuff(Commodity stuff)
     {   return 0;}
     consumeStuff(stuff, i);
     currentTrade.exported[stuff] += i;
-    return (i * portConstructionGroup.commodityRates[stuff]);
+    return i * (stuff == STUFF_HIVOLT ? gridTradePrice(world) : portConstructionGroup.commodityRates[stuff]);
 }
 
 void Port::trade_connection()
@@ -237,7 +233,9 @@ void Port::report(Mps& mps, bool production) const {
   const auto gross = "This mo. $: " + std::to_string(monthly_et/100)
     + " out / " + std::to_string(monthly_ic) + " in";
   mps.add_s(gross);
-  list_commodities(mps, production);
+  for(auto item : {STUFF_LABOR, STUFF_FOOD, STUFF_COAL, STUFF_GOODS, STUFF_ORE, STUFF_STEEL, STUFF_HIVOLT})
+    mps.add_sd(commodityName(item), production ? commodityProdPrev[item] : commodityCount[item]);
+  mps.add_s("Full cargo breakdown in Trade history");
 }
 
 void Port::save(xmlTextWriterPtr xmlWriter) const {
@@ -272,8 +270,8 @@ void Port::save(xmlTextWriterPtr xmlWriter) const {
     for(int amount : entry.exported) fields << ' ' << amount;
     xmlTextWriterWriteElement(xmlWriter, (xmlStr)tag, (xmlStr)fields.str().c_str());
   };
-  for(const auto& entry : tradeHistory) writeTrade("trade_history_month", entry);
-  writeTrade("trade_history_current", currentTrade);
+  for(const auto& entry : tradeHistory) writeTrade("trade_history_month_v2", entry);
+  writeTrade("trade_history_current_v2", currentTrade);
 
   Construction::save(xmlWriter);
 }
@@ -284,17 +282,19 @@ bool Port::loadMember(xmlpp::TextReader& xmlReader, unsigned int ldsv_version) {
   else if(tag == "month_exports") monthly_et = std::max(0, xmlParse<int>(xmlReader.read_inner_xml()));
   else if(tag == "last_imports") lastm_ic = std::max(0, xmlParse<int>(xmlReader.read_inner_xml()));
   else if(tag == "last_exports") lastm_et = std::max(0, xmlParse<int>(xmlReader.read_inner_xml()));
-  else if(tag == "trade_history_month" || tag == "trade_history_current") {
+  else if(tag == "trade_history_month" || tag == "trade_history_current" ||
+          tag == "trade_history_month_v2" || tag == "trade_history_current_v2") {
     std::istringstream fields(xmlReader.read_inner_xml());
     TradeMonth entry;
     if(!(fields >> entry.month >> entry.imports >> entry.exportCents)
         || entry.month < 0 || entry.imports < 0 || entry.exportCents < 0) return true;
+    const int count = (tag == "trade_history_month_v2" || tag == "trade_history_current_v2") ? int(STUFF_COUNT) : int(STUFF_TIMBER);
     for(auto* amounts : {&entry.imported, &entry.exported})
-      for(int& amount : *amounts)
-        if(!(fields >> amount) || amount < 0) return true;
+      for(int i = 0; i < count; ++i)
+        if(!(fields >> (*amounts)[i]) || (*amounts)[i] < 0) return true;
     fields >> std::ws;
     if(!fields.eof()) return true;
-    if(tag == "trade_history_current") currentTrade = entry;
+    if(tag == "trade_history_current" || tag == "trade_history_current_v2") currentTrade = entry;
     else if(tradeHistory.empty() || tradeHistory.back().month < entry.month) {
       tradeHistory.push_back(entry);
       if(tradeHistory.size() > historyMonths) tradeHistory.pop_front();

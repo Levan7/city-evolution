@@ -27,6 +27,7 @@
 #include <list>                  // for list
 #include <memory>
 #include <functional>
+#include <filesystem>
 #include <string>                // for unique_ptr
 #include <string>                // for string
 
@@ -54,6 +55,9 @@ public:
     ~Game();
 
     void run();
+#ifdef CE_UI_SCREENSHOTS
+    void captureUi(const std::filesystem::path& directory);
+#endif
 
     void showHelpWindow(std::string topic);
 

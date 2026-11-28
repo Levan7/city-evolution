@@ -106,6 +106,11 @@ new_swamp_city(city_settings *city, int mapSize) {
 }
 
 std::unique_ptr<World>
+new_estuary_city(city_settings *city, int mapSize) {
+  return create_new_city(city, mapSize, true, 4);
+}
+
+std::unique_ptr<World>
 new_barren_city(int mapSize) {
   auto world = std::make_unique<World>(WorldSetup::boundedSize(mapSize));
   for(MapTile& tile : world->map) {
@@ -264,6 +269,10 @@ create_new_city(city_settings *city, int mapSize, int old_setup_ground,
   int global_mountainity = 100 + rand() % 300;
   int global_aridity = -1;
   switch(climate) {
+  case 4:
+    global_aridity = -80;
+    global_mountainity /= 3;
+    break;
   case 0: //old style map, with Y river: lets be very random on climate
     global_aridity = rand() % 450 - 150;
     break;
@@ -286,6 +295,22 @@ create_new_city(city_settings *city, int mapSize, int old_setup_ground,
   else
     new_setup_river_ground(world.map, global_mountainity, global_aridity);
 
+  if(climate == 4) {
+    const int length = world.map.len();
+    int riverMouth = length / 2;
+    for(int x = 1; x < length - 1; ++x)
+      if(world.map({x,length - 2})->is_river()) { riverMouth = x; break; }
+    const int depth = std::min(14, length / 6);
+    for(int y = length - depth - 1; y < length; ++y) {
+      const int width = 2 + (y - (length - depth - 1)) * 2;
+      for(int x = std::max(1, riverMouth - width); x <= std::min(length - 2, riverMouth + width); ++x) {
+        auto& tile = *world.map({x,y});
+        tile.setTerrain(GROUP_WATER);
+        tile.flags |= FLAG_IS_RIVER | FLAG_HAS_UNDERGROUND_WATER;
+        tile.ground.water_alt = tile.ground.altitude;
+      }
+    }
+  }
   setup_land(world.map, global_aridity, city && city->without_trees);
   ore_reserve_setup(world.map);
 

@@ -26,7 +26,25 @@
 
 /******* Buildings // GROUPS ************/
 
-#define NUM_OF_GROUPS    79
+#define NUM_OF_GROUPS    97
+#define GROUP_FISHERY 79
+#define GROUP_WOOD_FARM 80
+#define GROUP_SAWMILL 81
+#define GROUP_SOLAR_FARM 82
+#define GROUP_GRID_BATTERY 83
+#define GROUP_WASTE_ENERGY 84
+#define GROUP_EV_CHARGERS 85
+#define GROUP_DATA_CENTER 86
+#define GROUP_DELIVERY_HUB 87
+#define GROUP_HOSPITAL 88
+#define GROUP_UNIVERSITY_CAMPUS 89
+#define GROUP_HOTEL 90
+#define GROUP_CONVENTION_CENTER 91
+#define GROUP_MUSEUM 92
+#define GROUP_VINEYARD 93
+#define GROUP_WINERY 94
+#define GROUP_SPARKLING_CELLAR 95
+#define GROUP_DISTILLERY 96
 #define GROUP_AMUSEMENT_PARK 78
 #define GROUP_AIRPORT 76
 #define GROUP_RACING_CIRCUIT 77
@@ -50,7 +68,7 @@
 #define GROUP_WAREHOUSE     51
 
 constexpr bool isWarehouseGroup(int group) {
-  return group == GROUP_WAREHOUSE || group == GROUP_LARGE_WAREHOUSE;
+  return group == GROUP_WAREHOUSE || group == GROUP_LARGE_WAREHOUSE || group == GROUP_DELIVERY_HUB;
 }
 #define GROUP_TECH_CAMPUS   52
 #define GROUP_CAFE          53

@@ -1,4 +1,7 @@
 add_library(lincity_lib_modules  STATIC
+  regional_economy.cpp
+  river_industries.cpp
+  river_industries.hpp
         city_business.cpp
   civic_buildings.cpp
   civic_buildings.hpp

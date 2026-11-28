@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Document>
+  <title>Waste-to-energy plant</title>
+  <img src="images/tiles/waste-energy.png"/>
+  <p>Turns collected Waste and Labor into high-voltage electricity. It needs both a waste shipment route and an outlet for the power.</p>
+  <p><a href="index">Help index</a></p>
+</Document>

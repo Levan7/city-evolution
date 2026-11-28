@@ -108,4 +108,26 @@
 	<li><a href="sand-homes">Sand homes</a></li>
 	<li><a href="technology-campus">Technology Campus</a></li>
 	<li><a href="warehouse">Freight Warehouse</a></li>
+
+  <p style="hsubtitle">River industries and regional development</p>
+  <ul>
+    <li><a href="fishing-station">Fishing dock</a></li>
+    <li><a href="wood-farm">Wood farm</a></li>
+    <li><a href="lumber-sawmill">Sawmill</a></li>
+    <li><a href="utility-solar-farm">Solar farm</a></li>
+    <li><a href="grid-battery">Grid battery</a></li>
+    <li><a href="waste-energy">Waste power</a></li>
+    <li><a href="ev-charging">EV charging</a></li>
+    <li><a href="data-center">Data center</a></li>
+    <li><a href="delivery-hub">Delivery hub</a></li>
+    <li><a href="regional-hospital">Hospital</a></li>
+    <li><a href="university-campus">Adv. campus</a></li>
+    <li><a href="city-hotel">Hotel</a></li>
+    <li><a href="convention-center">Convention</a></li>
+    <li><a href="city-museum">Museum</a></li>
+    <li><a href="city-vineyard">Vineyard</a></li>
+    <li><a href="city-winery">Winery</a></li>
+    <li><a href="sparkling-cellar">Sparkling wine</a></li>
+    <li><a href="city-distillery">Distillery</a></li>
+  </ul>
 </Document>

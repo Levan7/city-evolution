@@ -99,6 +99,9 @@ public:
         commodityRuleCount[STUFF_COAL].give = true;
         commodityRuleCount[STUFF_GOODS].take = true;
         commodityRuleCount[STUFF_GOODS].give = true;
+        for(Commodity item : freightCommodities)
+          if(item >= STUFF_TIMBER)
+            commodityRuleCount[item] = {commodityRuleCount[STUFF_GOODS].maxload, true, true};
         commodityRuleCount[STUFF_ORE].take = true;
         commodityRuleCount[STUFF_ORE].give = true;
         commodityRuleCount[STUFF_STEEL].take = true;

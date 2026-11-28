@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Document>
+  <title>Winery</title>
+  <img src="images/tiles/city-winery.png"/>
+  <p>Consumes Grapes, Water and Labor to produce Wine. Export Wine or supply a sparkling wine cellar.</p>
+  <p><a href="index">Help index</a></p>
+</Document>

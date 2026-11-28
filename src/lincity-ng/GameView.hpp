@@ -55,6 +55,9 @@ public:
     void parse(xmlpp::TextReader& reader);
 
     void draw(Painter& painter);
+#ifdef CE_UI_SCREENSHOTS
+    void finishTextureLoadForSnapshot();
+#endif
     void resize(float width, float height );
     void event(const Event& event);
     /// Start drawing a district zone: the next left-button drag on the map selects its rectangle.
@@ -118,6 +121,17 @@ private:
     int flightWaveStarted = -1;
     void planAirportFlights();
     void drawAirportFlights(Painter& painter);
+    void drawRiverTraffic(Painter& painter);
+    struct RiverBoat {
+      std::string sprite;
+      std::vector<MapPoint> path;
+      MapPoint dock;
+      int buildingGroup;
+      int offset, tileTime, dockTime;
+      int width;
+    };
+    std::vector<RiverBoat> riverBoats;
+    int riverRoutesAt = -1;
     void drawCircuitRaces(Painter& painter);
     void drawTransit(Painter&,int modeFilter=-1,MapPoint tile=MapPoint(-1,-1));
     int lastTransitFrame=-1;

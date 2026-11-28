@@ -254,8 +254,25 @@ getLang() {
   return "";
 }
 
+#ifdef CE_UI_SCREENSHOTS
+void saveUiScreenshot(const std::filesystem::path& file) {
+  if(!window_renderer) throw std::runtime_error("UI capture needs the SDL renderer");
+  std::unique_ptr<SDL_Surface, decltype(&SDL_DestroySurface)> capture(
+    SDL_RenderReadPixels(window_renderer, nullptr), SDL_DestroySurface);
+  if(!capture || !SDL_SavePNG(capture.get(), file.string().c_str()))
+    throw std::runtime_error(std::string("Could not save UI screenshot: ") + SDL_GetError());
+}
+#endif
+
 void mainLoop() {
-  MainMenu(window).run();
+  MainMenu menu(window);
+#ifdef CE_UI_SCREENSHOTS
+  if(const char* dir = std::getenv("CE_UI_SCREENSHOT_DIR")) {
+    menu.captureUi(dir);
+    return;
+  }
+#endif
+  menu.run();
 }
 
 // Message::Exception derives privately from std::exception, so a plain

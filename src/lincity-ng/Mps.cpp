@@ -46,6 +46,7 @@
 #include "lincity/lin-city.hpp"             // for FLAG_IS_LAKE, FLAG_IS_RIVER
 #include "lincity/lintypes.hpp"             // for NUMOF_DAYS_IN_MONTH, Cons...
 #include "lincity/modules/all_modules.hpp"  // for TileConstructionGroup
+#include "lincity/modules/river_industries.hpp"
 #include "lincity/modules/port.hpp"         // for Port, PORT_LABOR
 #include "lincity/stats.hpp"                // for Stat, Stats
 #include "lincity/util.hpp"                 // for num_to_ansi, current_year
@@ -275,6 +276,18 @@ MpsMap::refreshInvProd(bool production) {
     building.report(*this, production);
     int line = 0;
     const int group = building.constructionGroup->group;
+    if(GROUP_IS_RESIDENCE(group)) {
+      const auto& home = static_cast<const Residence&>(building);
+      if(home.local_population > 0) {
+        for(const auto* reason : {
+            !(home.flags & FLAG_FED) ? "Food shortage" : "",
+            !(home.flags & FLAG_EMPLOYED) ? "Residents need jobs" : "",
+            !home.hasElectricity() ? "No electricity delivered" : "",
+            building.world.map(building.point)->pollution >= 80 ? "High air pollution" : ""}) {
+          if(*reason && line < 3) getParagraph(*this, "mps_status" + std::to_string(line++))->setText(reason);
+        }
+      }
+    }
     if(group == GROUP_PORT) {
       const auto& port = static_cast<const Port&>(building);
       const int labor = port.commodityCount[STUFF_LABOR];

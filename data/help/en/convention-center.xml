@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Document>
+  <title>Convention center</title>
+  <img src="images/tiles/convention-center.png"/>
+  <p>Produces visitor demand when staffed and supplied. Hotels can use that demand and nearby working airports increase visitor numbers.</p>
+  <p><a href="index">Help index</a></p>
+</Document>

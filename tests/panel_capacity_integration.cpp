@@ -88,7 +88,8 @@ int main() {
       try {
         Message::ptr message;
         if(!group->can_build(*w, message) || !group->can_build_here(*w, {x, y}, message)) {
-          if(id != GROUP_UNIVERSITY && id != GROUP_TECH_CAMPUS && id != GROUP_FOODHALL) {
+          if(id != GROUP_UNIVERSITY && id != GROUP_TECH_CAMPUS && id != GROUP_FOODHALL &&
+             id != GROUP_HOSPITAL && id != GROUP_UNIVERSITY_CAMPUS) {
             skipped.insert(group->name); continue;
           }
           group->placeItem(*w, {x, y});
@@ -125,7 +126,7 @@ int main() {
     // and a mass skip must not turn this test into a no-op.
     if(unfedOccupiedHousing != 9)
       throw std::runtime_error("test did not reach occupied, unfed housing (supply advice line)");
-    if(!skipped.empty() || built < 71)
+    if(!skipped.empty() || built < 89)
       throw std::runtime_error("too few building types were built to trust this scan: " + std::to_string(built));
     std::cout << "PASS info panel capacity\n";
   } catch(const std::exception& e) {

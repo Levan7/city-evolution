@@ -293,7 +293,7 @@ void Transport::animate(unsigned long real_time) {
 }
 
 void Transport::list_traffic(Mps& mps) const {
-  for(Commodity stuff = STUFF_INIT ; stuff < STUFF_COUNT ; stuff++) {
+  for(Commodity stuff = STUFF_INIT; stuff < STUFF_TIMBER; ++stuff) {
     if(!constructionGroup->commodityRuleCount[stuff].maxload)
       continue;
     mps.add_sfp(commodityNames[stuff],
@@ -309,8 +309,13 @@ void Transport::report(Mps& mps, bool production) const {
     list_traffic(mps);
   }
   else {
-    // mps.add_s(_("Commodities"));
-    list_commodities(mps, false);
+    for(Commodity stuff = STUFF_INIT; stuff < STUFF_TIMBER; ++stuff)
+      if(constructionGroup->commodityRuleCount[stuff].maxload)
+        mps.add_sd(commodityName(stuff), commodityCount[stuff]);
+    int regionalCargo = 0;
+    for(Commodity stuff = STUFF_TIMBER; stuff < STUFF_COUNT; ++stuff)
+      regionalCargo += commodityCount[stuff];
+    mps.add_sd("Specialty freight", regionalCargo);
   }
 }
 

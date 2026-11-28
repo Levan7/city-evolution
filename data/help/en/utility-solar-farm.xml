@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Document>
+  <title>Solar farm</title>
+  <img src="images/tiles/utility-solar-farm.png"/>
+  <p>A utility-scale solar field. Needs Labor, daylight and a connection to the high-voltage grid. Output falls with cloud cover and darkness.</p>
+  <p><a href="index">Help index</a></p>
+</Document>

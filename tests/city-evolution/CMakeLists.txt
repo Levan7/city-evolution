@@ -67,3 +67,7 @@ endif()
 add_executable(airport-checks ../airport_integration.cpp headless_adapters.cpp)
 target_link_libraries(airport-checks PRIVATE LinCity::lib fmt::fmt)
 target_include_directories(airport-checks PRIVATE ../../src)
+
+add_executable(river-industries-checks ../river_industries_integration.cpp headless_adapters.cpp)
+target_link_libraries(river-industries-checks PRIVATE LinCity::lib fmt::fmt)
+target_include_directories(river-industries-checks PRIVATE ../../src)

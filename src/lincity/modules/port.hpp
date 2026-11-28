@@ -123,6 +123,11 @@ public:
         commodityRates[STUFF_GOODS] = PORT_GOODS_RATE;
         commodityRates[STUFF_ORE] = PORT_ORE_RATE;
         commodityRates[STUFF_STEEL] = PORT_STEEL_RATE;
+        const int newRates[] = {4, 4, 12, 30, 18, 25};
+        for(Commodity item = STUFF_TIMBER; item < STUFF_COUNT; ++item) {
+            commodityRuleCount[item] = {400, true, true};
+            commodityRates[item] = newRates[item - STUFF_TIMBER];
+        }
     };
     //map that holds the Rates for the commodities
     std::map<Commodity, int> commodityRates;

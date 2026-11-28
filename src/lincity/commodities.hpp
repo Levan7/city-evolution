@@ -34,6 +34,12 @@ enum Commodity : int {
   STUFF_LOVOLT,
   STUFF_HIVOLT,
   STUFF_WATER,
+  STUFF_TIMBER,
+  STUFF_GRAPES,
+  STUFF_WINE,
+  STUFF_SPARKLING,
+  STUFF_SPIRITS,
+  STUFF_COMPUTERS,
   STUFF_COUNT
 };
 Commodity& operator++(Commodity& stuff);
@@ -54,5 +60,10 @@ struct CommodityRule {
   bool take;
   bool give;
 };
+
+// Commodities that businesses can route through road and rail freight.
+inline constexpr Commodity freightCommodities[] = {STUFF_FOOD, STUFF_COAL,
+  STUFF_GOODS, STUFF_ORE, STUFF_STEEL, STUFF_TIMBER, STUFF_GRAPES, STUFF_WINE,
+  STUFF_SPARKLING, STUFF_SPIRITS, STUFF_COMPUTERS};
 
 #endif // __LINCITY_COMMODITIES_HPP__

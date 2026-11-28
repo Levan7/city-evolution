@@ -213,6 +213,7 @@ public:
     int max_population;
     int desireability;
     bool hasElectricity() const { return poweredToday; }
+    int powerNeeded() const;
     std::string foodSupplyAdvice() const;
     int births, deaths, pol_deaths;
 

@@ -23,6 +23,7 @@
 ** ---------------------------------------------------------------------- */
 
 #include "residence.hpp"
+#include "river_industries.hpp"
 #include "church.hpp"
 
 #include <libxml++/parsers/textreader.h>  // for TextReader
@@ -242,10 +243,11 @@ void Residence::update()
     }
 
      /* now get power for nothing */
-    poweredToday = commodityCount[STUFF_LOVOLT] >= POWER_RES_OVERHEAD + POWER_USE_PER_PERSON * local_population;
+    const int electricity = powerNeeded();
+    poweredToday = commodityCount[STUFF_LOVOLT] >= electricity;
     if (poweredToday)
     {
-        consumeStuff(STUFF_LOVOLT, POWER_RES_OVERHEAD + (POWER_USE_PER_PERSON * local_population));
+        consumeStuff(STUFF_LOVOLT, electricity);
         flags |= FLAG_HAD_POWER;
         good += 10;
     }
@@ -452,6 +454,11 @@ std::string Residence::foodSupplyAdvice() const {
         return "Check market workers and food trade";
     }
   return hasMarket ? "Supply the market with food" : "Connect to a market or farm";
+}
+
+int Residence::powerNeeded() const {
+  const int base = POWER_RES_OVERHEAD + POWER_USE_PER_PERSON * local_population;
+  return regionalEvent(world.total_time) == 1 ? base + base / 3 : base;
 }
 
 void Residence::report(Mps& mps, bool production) const {

@@ -82,16 +82,17 @@ void CityEvolution::updateDistricts(World& w) {
     if(GROUP_IS_RESIDENCE(g)) { ++s.homes; continue; }
     switch(g) {
       case GROUP_SCHOOL: ++s.schools; break;
-      case GROUP_UNIVERSITY: ++s.universities; break;
+      case GROUP_UNIVERSITY: case GROUP_UNIVERSITY_CAMPUS: ++s.universities; break;
       case GROUP_TECH_CAMPUS: ++s.campuses; break;
       case GROUP_INDUSTRY_L: case GROUP_INDUSTRY_H: ++s.factories; break;
-      case GROUP_ORGANIC_FARM: {
+      case GROUP_VINEYARD: case GROUP_WOOD_FARM: ++s.farms; break;
+      case GROUP_FISHERY: case GROUP_ORGANIC_FARM: {
         ++s.farms;
         const int cap = c->constructionGroup->commodityRuleCount[STUFF_FOOD].maxload;
         if(cap > 0 && c->commodityCount[STUFF_FOOD] * 10 >= cap * 9) ++s.backedUpFarms; // at least 90% of food storage occupied
         break; }
       case GROUP_PORT: ++s.ports; break;
-      case GROUP_LARGE_WAREHOUSE: case GROUP_WAREHOUSE: ++s.warehouses; break;
+      case GROUP_DELIVERY_HUB: case GROUP_LARGE_WAREHOUSE: case GROUP_WAREHOUSE: ++s.warehouses; break;
       case GROUP_MARKET: ++s.markets; break;
       default: continue;
     }

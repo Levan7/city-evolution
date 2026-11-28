@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Document>
+  <title>Sawmill</title>
+  <img src="images/tiles/lumber-sawmill.png"/>
+  <p>Consumes Timber and Labor to make Goods. Supply it from a wood farm by road or rail and leave a route to customers and waste collection.</p>
+  <p><a href="index">Help index</a></p>
+</Document>

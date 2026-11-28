@@ -33,6 +33,7 @@
 #include <cstdlib>                      // for abs
 #include <functional>                   // for function, bind, _1, _2
 #include <initializer_list>             // for initializer_list
+#include <random>
 #include <iomanip>                      // for operator<<, setfill, setw
 #include <iostream>                     // for basic_ostream, operator<<
 #include <sstream>                      // for basic_stringstream
@@ -77,6 +78,7 @@ extern std::string autoLanguage;
 MainMenu::MainMenu(SDL_Window* _window)
     : window(_window)
 {
+    newWorldSeed = std::random_device{}();
     std::fprintf(stderr, "[startup] parsing main menu\n");
     std::fflush(stderr);
     loadMainMenu();
@@ -261,6 +263,22 @@ MainMenu::loadNewGameMenu() {
     [this](CheckButton*, int) { changeNewWorldLen(false); });
   getCheckButton(*newGameMenu, "MapSizeNext")->clicked.connect(
     [this](CheckButton*, int) { changeNewWorldLen(true); });
+  auto* seed = getCheckButton(*newGameMenu, "WorldSeed");
+  seed->clicked.connect([this](CheckButton*, int) {
+    newWorldSeed = std::random_device{}();
+    refreshWorldSetup();
+  });
+  getCheckButton(*newGameMenu, "WorldGoal")->clicked.connect([this](CheckButton*, int) {
+    newWorldGoal = (newWorldGoal + 1) % 3;
+    refreshWorldSetup();
+  });
+  for(const auto* name : {"RandomLandscape", "EstuaryArea"}) {
+    auto* landscape = getCheckButton(*newGameMenu, name);
+    landscape->clicked.connect(std::bind(&MainMenu::doubleClick, this, landscape, [this](){
+      newGameStartButtonClicked(nullptr);
+    }));
+    newGameSelection.registerButton(landscape);
+  }
   //button->setCaptionText(_("random empty board"));
   //button->clicked.connect(std::bind(&MainMenu::selectLoadGameButtonClicked, this, _1, _2));
 
@@ -321,6 +339,11 @@ void MainMenu::refreshWorldSetup() {
   }
   getCheckButton(*newGameMenu, "MapSizePrev")->enable(!scenario);
   getCheckButton(*newGameMenu, "MapSizeNext")->enable(!scenario);
+  getCheckButton(*newGameMenu, "WorldSeed")->enable(!scenario);
+  getCheckButton(*newGameMenu, "WorldGoal")->enable(!scenario);
+  getCheckButton(*newGameMenu, "WorldSeed")->setCaptionText("Seed " + std::to_string(newWorldSeed) + " · Shuffle");
+  static constexpr const char* goals[] = {"Sandbox", "Clean grid by year 40", "Export port economy"};
+  getCheckButton(*newGameMenu, "WorldGoal")->setCaptionText(goals[newWorldGoal]);
   getCheckButton(*newGameMenu, "WithVillage")->enable(!scenario && !barren);
   getCheckButton(*newGameMenu, "WithoutTrees")->enable(!scenario && !barren);
   getParagraph(*newGameMenu, "MapSizeParagraph")->setText(
@@ -862,7 +885,14 @@ MainMenu::newGameStartButtonClicked(Button *) {
     getConfig()->startWithVillage.config = settings.with_village;
     getConfig()->startWithoutTrees.config = settings.without_trees;
     getConfig()->save();
-    if(bName == "BarrenArea") {
+    std::srand(newWorldSeed);
+    if(bName == "RandomLandscape") {
+      using Generator = std::unique_ptr<World>(*)(city_settings*, int);
+      static constexpr Generator generators[] = {new_city, new_temperate_city, new_desert_city, new_swamp_city, new_estuary_city};
+      world = generators[newWorldSeed % std::size(generators)](&settings, getConfig()->worldSize.get());
+    } else if(bName == "EstuaryArea") {
+      world = new_estuary_city(&settings, getConfig()->worldSize.get());
+    } else if(bName == "BarrenArea") {
       world = new_barren_city(getConfig()->worldSize.get());
     } else if(bName == "RiverDelta") {
       world = new_city(&settings, getConfig()->worldSize.get());
@@ -874,6 +904,10 @@ MainMenu::newGameStartButtonClicked(Button *) {
       world = new_swamp_city(&settings, getConfig()->worldSize.get());
     }
     assert(world);
+    if(world) {
+      world->evolution.scenarioGoal = newWorldGoal;
+      world->evolution.scenarioStart = world->total_time;
+    }
   }
   else {
     world = loadCityNG(fileIt->second);
@@ -1089,6 +1123,29 @@ MainMenu::run() {
         }
     }
 }
+
+#ifdef CE_UI_SCREENSHOTS
+void MainMenu::captureUi(const std::filesystem::path& directory) {
+  std::filesystem::create_directories(directory);
+  newWorldSeed = 275930;
+  newWorldGoal = 1;
+  newGameSelection.select(getCheckButton(*newGameMenu, "EstuaryArea"));
+  refreshWorldSetup();
+  switchMenu(newGameMenu);
+  const auto ui = resizeUserInterface();
+  menu->resize(ui.width,ui.height);
+  menu->draw(*painter);
+  saveUiScreenshot(directory / "new-world.png");
+
+  auto fixture = new_barren_city(50);
+  fixture->total_money = 5000000;
+  fixture->tech_level = MAX_TECH_LEVEL;
+  fixture->evolution.scenarioGoal = 1;
+  Game testGame(window);
+  testGame.setWorld(std::move(fixture));
+  testGame.captureUi(directory);
+}
+#endif
 
 void
 MainMenu::launchGame() {

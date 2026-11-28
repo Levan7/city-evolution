@@ -1,5 +1,15 @@
 # Changelog
 
+## City Evolution — Preview 29
+
+- Build fishing stations on a navigable shore. Fish enter the city's Food network. Launches, fishing skiffs and trading freighters follow waterways.
+- Add wood farms and sawmills, vineyards, wineries, sparkling wine cellars and distilleries. Transport timber, grapes, wine, sparkling wine, spirits and computers by road or rail, and configure their trade at ports.
+- Add grid-scale solar, battery storage, waste-to-energy, EV charging, a data center and a neighborhood delivery hub.
+- Expand health care and education with a regional hospital and advanced university campus. Museums, convention centers and hotels work with airports, stadiums and circuits to support tourism.
+- Add a random landscape option, a wide estuary and seed shuffling. Select a Clean grid or Export port challenge and track progress in City Hall.
+- Heat waves increase demand. Floods disrupt low shore roads and industry. Grid outages interrupt fuel-powered grid sources, giving batteries a chance to cover the shortfall.
+- Show household problems in the info panel. Capture deterministic UI screens on the Linux build for layout regression checks.
+
 ## City Evolution — Preview 28
 
 - Slow aircraft, road traffic and circuit cars. Circuit cars hold a steadier speed along the track.
